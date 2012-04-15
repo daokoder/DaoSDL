@@ -182,7 +182,7 @@ DaoType *dao_type_CommonState = NULL;
 static void dao_CommonState_GETF_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->flags );
+  DaoProcess_PutInteger( _proc, (daoint) self->flags );
 }
 static void dao_CommonState_SETF_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -192,7 +192,7 @@ static void dao_CommonState_SETF_flags( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_CommonState_GETF_verbose( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->verbose );
+  DaoProcess_PutInteger( _proc, (daoint) self->verbose );
 }
 static void dao_CommonState_SETF_verbose( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -207,7 +207,7 @@ static void dao_CommonState_GETF_videodriver( DaoProcess *_proc, DaoValue *_p[],
 static void dao_CommonState_GETF_display( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->display );
+  DaoProcess_PutInteger( _proc, (daoint) self->display );
 }
 static void dao_CommonState_SETF_display( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -227,7 +227,7 @@ static void dao_CommonState_GETF_window_icon( DaoProcess *_proc, DaoValue *_p[],
 static void dao_CommonState_GETF_window_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->window_flags );
+  DaoProcess_PutInteger( _proc, (daoint) self->window_flags );
 }
 static void dao_CommonState_SETF_window_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -237,7 +237,7 @@ static void dao_CommonState_SETF_window_flags( DaoProcess *_proc, DaoValue *_p[]
 static void dao_CommonState_GETF_window_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->window_x );
+  DaoProcess_PutInteger( _proc, (daoint) self->window_x );
 }
 static void dao_CommonState_SETF_window_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -247,7 +247,7 @@ static void dao_CommonState_SETF_window_x( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_CommonState_GETF_window_y( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->window_y );
+  DaoProcess_PutInteger( _proc, (daoint) self->window_y );
 }
 static void dao_CommonState_SETF_window_y( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -257,7 +257,7 @@ static void dao_CommonState_SETF_window_y( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_CommonState_GETF_window_w( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->window_w );
+  DaoProcess_PutInteger( _proc, (daoint) self->window_w );
 }
 static void dao_CommonState_SETF_window_w( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -267,7 +267,7 @@ static void dao_CommonState_SETF_window_w( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_CommonState_GETF_window_h( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->window_h );
+  DaoProcess_PutInteger( _proc, (daoint) self->window_h );
 }
 static void dao_CommonState_SETF_window_h( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -277,7 +277,7 @@ static void dao_CommonState_SETF_window_h( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_CommonState_GETF_depth( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->depth );
+  DaoProcess_PutInteger( _proc, (daoint) self->depth );
 }
 static void dao_CommonState_SETF_depth( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -287,7 +287,7 @@ static void dao_CommonState_SETF_depth( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_CommonState_GETF_refresh_rate( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->refresh_rate );
+  DaoProcess_PutInteger( _proc, (daoint) self->refresh_rate );
 }
 static void dao_CommonState_SETF_refresh_rate( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -297,7 +297,7 @@ static void dao_CommonState_SETF_refresh_rate( DaoProcess *_proc, DaoValue *_p[]
 static void dao_CommonState_GETF_num_windows( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->num_windows );
+  DaoProcess_PutInteger( _proc, (daoint) self->num_windows );
 }
 static void dao_CommonState_SETF_num_windows( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -307,11 +307,10 @@ static void dao_CommonState_SETF_num_windows( DaoProcess *_proc, DaoValue *_p[],
 static void dao_CommonState_GETF_windows( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoFactory *fac = DaoProcess_GetFactory( _proc );
   DaoList *list = DaoProcess_PutList( _proc );
   daoint i, n = self->num_windows;
   for(i=0; i<n; i++){
-    DaoCdata *it = DaoFactory_NewCdata( fac, dao_type_SDL_Window, self->windows[i], 0 );
+    DaoCdata *it = DaoProcess_NewCdata( _proc, dao_type_SDL_Window, self->windows[i], 0 );
     DaoList_PushBack( list, (DaoValue*) it );
   }
 }
@@ -323,7 +322,7 @@ static void dao_CommonState_GETF_renderdriver( DaoProcess *_proc, DaoValue *_p[]
 static void dao_CommonState_GETF_render_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->render_flags );
+  DaoProcess_PutInteger( _proc, (daoint) self->render_flags );
 }
 static void dao_CommonState_SETF_render_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -333,7 +332,7 @@ static void dao_CommonState_SETF_render_flags( DaoProcess *_proc, DaoValue *_p[]
 static void dao_CommonState_GETF_skip_renderer( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->skip_renderer );
+  DaoProcess_PutInteger( _proc, (daoint) self->skip_renderer );
 }
 static void dao_CommonState_SETF_skip_renderer( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -343,11 +342,10 @@ static void dao_CommonState_SETF_skip_renderer( DaoProcess *_proc, DaoValue *_p[
 static void dao_CommonState_GETF_renderers( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoFactory *fac = DaoProcess_GetFactory( _proc );
   DaoList *list = DaoProcess_PutList( _proc );
   daoint i, n = self->num_windows;
   for(i=0; i<n; i++){
-    DaoCdata *it = DaoFactory_NewCdata( fac, dao_type_SDL_Renderer, self->renderers[i], 0 );
+    DaoCdata *it = DaoProcess_NewCdata( _proc, dao_type_SDL_Renderer, self->renderers[i], 0 );
     DaoList_PushBack( list, (DaoValue*) it );
   }
 }
@@ -364,7 +362,7 @@ static void dao_CommonState_GETF_audiospec( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_CommonState_GETF_gl_red_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_red_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_red_size );
 }
 static void dao_CommonState_SETF_gl_red_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -374,7 +372,7 @@ static void dao_CommonState_SETF_gl_red_size( DaoProcess *_proc, DaoValue *_p[],
 static void dao_CommonState_GETF_gl_green_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_green_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_green_size );
 }
 static void dao_CommonState_SETF_gl_green_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -384,7 +382,7 @@ static void dao_CommonState_SETF_gl_green_size( DaoProcess *_proc, DaoValue *_p[
 static void dao_CommonState_GETF_gl_blue_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_blue_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_blue_size );
 }
 static void dao_CommonState_SETF_gl_blue_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -394,7 +392,7 @@ static void dao_CommonState_SETF_gl_blue_size( DaoProcess *_proc, DaoValue *_p[]
 static void dao_CommonState_GETF_gl_alpha_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_alpha_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_alpha_size );
 }
 static void dao_CommonState_SETF_gl_alpha_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -404,7 +402,7 @@ static void dao_CommonState_SETF_gl_alpha_size( DaoProcess *_proc, DaoValue *_p[
 static void dao_CommonState_GETF_gl_buffer_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_buffer_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_buffer_size );
 }
 static void dao_CommonState_SETF_gl_buffer_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -414,7 +412,7 @@ static void dao_CommonState_SETF_gl_buffer_size( DaoProcess *_proc, DaoValue *_p
 static void dao_CommonState_GETF_gl_depth_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_depth_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_depth_size );
 }
 static void dao_CommonState_SETF_gl_depth_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -424,7 +422,7 @@ static void dao_CommonState_SETF_gl_depth_size( DaoProcess *_proc, DaoValue *_p[
 static void dao_CommonState_GETF_gl_stencil_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_stencil_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_stencil_size );
 }
 static void dao_CommonState_SETF_gl_stencil_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -434,7 +432,7 @@ static void dao_CommonState_SETF_gl_stencil_size( DaoProcess *_proc, DaoValue *_
 static void dao_CommonState_GETF_gl_double_buffer( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_double_buffer );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_double_buffer );
 }
 static void dao_CommonState_SETF_gl_double_buffer( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -444,7 +442,7 @@ static void dao_CommonState_SETF_gl_double_buffer( DaoProcess *_proc, DaoValue *
 static void dao_CommonState_GETF_gl_accum_red_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_accum_red_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_accum_red_size );
 }
 static void dao_CommonState_SETF_gl_accum_red_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -454,7 +452,7 @@ static void dao_CommonState_SETF_gl_accum_red_size( DaoProcess *_proc, DaoValue 
 static void dao_CommonState_GETF_gl_accum_green_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_accum_green_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_accum_green_size );
 }
 static void dao_CommonState_SETF_gl_accum_green_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -464,7 +462,7 @@ static void dao_CommonState_SETF_gl_accum_green_size( DaoProcess *_proc, DaoValu
 static void dao_CommonState_GETF_gl_accum_blue_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_accum_blue_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_accum_blue_size );
 }
 static void dao_CommonState_SETF_gl_accum_blue_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -474,7 +472,7 @@ static void dao_CommonState_SETF_gl_accum_blue_size( DaoProcess *_proc, DaoValue
 static void dao_CommonState_GETF_gl_accum_alpha_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_accum_alpha_size );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_accum_alpha_size );
 }
 static void dao_CommonState_SETF_gl_accum_alpha_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -484,7 +482,7 @@ static void dao_CommonState_SETF_gl_accum_alpha_size( DaoProcess *_proc, DaoValu
 static void dao_CommonState_GETF_gl_stereo( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_stereo );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_stereo );
 }
 static void dao_CommonState_SETF_gl_stereo( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -494,7 +492,7 @@ static void dao_CommonState_SETF_gl_stereo( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_CommonState_GETF_gl_multisamplebuffers( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_multisamplebuffers );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_multisamplebuffers );
 }
 static void dao_CommonState_SETF_gl_multisamplebuffers( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -504,7 +502,7 @@ static void dao_CommonState_SETF_gl_multisamplebuffers( DaoProcess *_proc, DaoVa
 static void dao_CommonState_GETF_gl_multisamplesamples( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_multisamplesamples );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_multisamplesamples );
 }
 static void dao_CommonState_SETF_gl_multisamplesamples( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -514,7 +512,7 @@ static void dao_CommonState_SETF_gl_multisamplesamples( DaoProcess *_proc, DaoVa
 static void dao_CommonState_GETF_gl_retained_backing( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_retained_backing );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_retained_backing );
 }
 static void dao_CommonState_SETF_gl_retained_backing( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -524,7 +522,7 @@ static void dao_CommonState_SETF_gl_retained_backing( DaoProcess *_proc, DaoValu
 static void dao_CommonState_GETF_gl_accelerated( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_accelerated );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_accelerated );
 }
 static void dao_CommonState_SETF_gl_accelerated( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -534,7 +532,7 @@ static void dao_CommonState_SETF_gl_accelerated( DaoProcess *_proc, DaoValue *_p
 static void dao_CommonState_GETF_gl_major_version( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_major_version );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_major_version );
 }
 static void dao_CommonState_SETF_gl_major_version( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -544,7 +542,7 @@ static void dao_CommonState_SETF_gl_major_version( DaoProcess *_proc, DaoValue *
 static void dao_CommonState_GETF_gl_minor_version( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   CommonState *self = (CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_CommonState);
-  DaoProcess_PutInteger( _proc, (int) self->gl_minor_version );
+  DaoProcess_PutInteger( _proc, (daoint) self->gl_minor_version );
 }
 static void dao_CommonState_SETF_gl_minor_version( DaoProcess *_proc, DaoValue *_p[], int _n )
 {

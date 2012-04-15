@@ -233,7 +233,7 @@ routine main( ... )
         # Check for events 
         ++frames;
         while (SDL_PollEvent(event)) {
-            CommonEvent(state, event, &done);
+            done = CommonEvent(state, event, done);
         }
         for (i = 0; i < state.num_windows; ++i) {
             renderer = state.renderers[i];

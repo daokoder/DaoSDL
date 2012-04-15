@@ -23,18 +23,17 @@ char** DaoStringList_ToStaticCStringArray( DaoList *slist )
   }
   return argv;
 }
-static int DaoPF100E0( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context )
+static int DaoPF100E2( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
-  DaoFactory *_fac = DaoProcess_GetFactory( _proc );
   DaoValue *_res, **_dp;
   DaoCdata *_cd;
   int X = (int) 0;
   if( _ro == NULL ) goto EndCall;
-  DaoFactory_CacheValue( _fac, context );
-  _dp = DaoFactory_GetLastValues( _fac, 1 );
+  DaoProcess_CacheValue( _proc, context );
+  _dp = DaoProcess_GetLastValues( _proc, 1 );
   _ro = DaoRoutine_Resolve( _ro, (DaoValue*) _ob, _dp, 1 );
-  if( DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
+  if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
   if( (*_cs = DaoProcess_Call( _proc, _ro, (DaoValue*)_ob, _dp, 1 )) ) goto EndCall;
   _res = DaoProcess_GetReturned( _proc );
   if(DaoValue_CastInteger(_res)) X=(int)DaoValue_TryGetInteger(_res);
@@ -42,20 +41,19 @@ EndCall:
   DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
   return X;
 }
-static long DaoPF100DD( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, long offset, int whence )
+static long DaoPF100DF( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, long offset, int whence )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
-  DaoFactory *_fac = DaoProcess_GetFactory( _proc );
   DaoValue *_res, **_dp;
   DaoCdata *_cd;
   long X = (long) 0;
   if( _ro == NULL ) goto EndCall;
-  DaoFactory_CacheValue( _fac, context );
-  DaoFactory_NewInteger( _fac, (int) offset );
-  DaoFactory_NewInteger( _fac, (int) whence );
-  _dp = DaoFactory_GetLastValues( _fac, 3 );
+  DaoProcess_CacheValue( _proc, context );
+  DaoProcess_NewInteger( _proc, (daoint) offset );
+  DaoProcess_NewInteger( _proc, (daoint) whence );
+  _dp = DaoProcess_GetLastValues( _proc, 3 );
   _ro = DaoRoutine_Resolve( _ro, (DaoValue*) _ob, _dp, 3 );
-  if( DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
+  if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
   if( (*_cs = DaoProcess_Call( _proc, _ro, (DaoValue*)_ob, _dp, 3 )) ) goto EndCall;
   _res = DaoProcess_GetReturned( _proc );
   if(DaoValue_CastInteger(_res)) X=(long)DaoValue_TryGetInteger(_res);
@@ -63,21 +61,20 @@ EndCall:
   DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
   return X;
 }
-static size_t DaoPF100DF( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, const void* ptr, size_t size, size_t maxnum )
+static size_t DaoPF100E1( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, const void* ptr, size_t size, size_t maxnum )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
-  DaoFactory *_fac = DaoProcess_GetFactory( _proc );
   DaoValue *_res, **_dp;
   DaoCdata *_cd;
   size_t X = (size_t) 0;
   if( _ro == NULL ) goto EndCall;
-  DaoFactory_CacheValue( _fac, context );
-  DaoFactory_NewCdata( _fac, NULL, (void*) ptr, 0 );
-  DaoFactory_NewInteger( _fac, (int) size );
-  DaoFactory_NewInteger( _fac, (int) maxnum );
-  _dp = DaoFactory_GetLastValues( _fac, 4 );
+  DaoProcess_CacheValue( _proc, context );
+  DaoProcess_NewCdata( _proc, NULL, (void*) ptr, 0 );
+  DaoProcess_NewInteger( _proc, (daoint) size );
+  DaoProcess_NewInteger( _proc, (daoint) maxnum );
+  _dp = DaoProcess_GetLastValues( _proc, 4 );
   _ro = DaoRoutine_Resolve( _ro, (DaoValue*) _ob, _dp, 4 );
-  if( DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
+  if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
   if( (*_cs = DaoProcess_Call( _proc, _ro, (DaoValue*)_ob, _dp, 4 )) ) goto EndCall;
   _res = DaoProcess_GetReturned( _proc );
   if(DaoValue_CastInteger(_res)) X=(unsigned long)DaoValue_TryGetInteger(_res);
@@ -85,21 +82,20 @@ EndCall:
   DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
   return X;
 }
-static size_t DaoPF100DE( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, void* ptr, size_t size, size_t maxnum )
+static size_t DaoPF100E0( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, void* ptr, size_t size, size_t maxnum )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
-  DaoFactory *_fac = DaoProcess_GetFactory( _proc );
   DaoValue *_res, **_dp;
   DaoCdata *_cd;
   size_t X = (size_t) 0;
   if( _ro == NULL ) goto EndCall;
-  DaoFactory_CacheValue( _fac, context );
-  DaoFactory_NewCdata( _fac, NULL, (void*) ptr, 0 );
-  DaoFactory_NewInteger( _fac, (int) size );
-  DaoFactory_NewInteger( _fac, (int) maxnum );
-  _dp = DaoFactory_GetLastValues( _fac, 4 );
+  DaoProcess_CacheValue( _proc, context );
+  DaoProcess_NewCdata( _proc, NULL, (void*) ptr, 0 );
+  DaoProcess_NewInteger( _proc, (daoint) size );
+  DaoProcess_NewInteger( _proc, (daoint) maxnum );
+  _dp = DaoProcess_GetLastValues( _proc, 4 );
   _ro = DaoRoutine_Resolve( _ro, (DaoValue*) _ob, _dp, 4 );
-  if( DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
+  if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
   if( (*_cs = DaoProcess_Call( _proc, _ro, (DaoValue*)_ob, _dp, 4 )) ) goto EndCall;
   _res = DaoProcess_GetReturned( _proc );
   if(DaoValue_CastInteger(_res)) X=(unsigned long)DaoValue_TryGetInteger(_res);
@@ -107,16 +103,15 @@ EndCall:
   DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
   return X;
 }
-static void DaoPF10163( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *touch )
+static void DaoPF10165( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *touch )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
-  DaoFactory *_fac = DaoProcess_GetFactory( _proc );
   DaoValue **_dp;
   if( _ro == NULL ) goto EndCall;
-  DaoFactory_CacheValue( _fac, touch );
-  _dp = DaoFactory_GetLastValues( _fac, 1 );
+  DaoProcess_CacheValue( _proc, touch );
+  _dp = DaoProcess_GetLastValues( _proc, 1 );
   _ro = DaoRoutine_Resolve( _ro, (DaoValue*) _ob, _dp, 1 );
-  if( DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
+  if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
   *_cs = DaoProcess_Call( _proc, _ro, (DaoValue*)_ob, _dp, 1 );
 EndCall:
   DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
