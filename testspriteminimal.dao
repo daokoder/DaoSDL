@@ -64,7 +64,7 @@ routine LoadSprite( file :string, renderer :SDL_Renderer )
 
     # Create textures from the image 
     sprite = SDL_CreateTextureFromSurface(renderer, temp);
-    if (!sprite) {
+    if (sprite == none) {
         io.writef( "Couldn't create texture: %s\n", SDL_GetError());
         SDL_FreeSurface(temp);
         return (-1);

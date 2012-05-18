@@ -304,6 +304,7 @@ static void dao__SDL_LogMessageV( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetPowerInfo( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetNumRenderDrivers( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRenderDriverInfo( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_CreateWindowAndRenderer( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CreateRenderer( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CreateSoftwareRenderer( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRenderer( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -656,6 +657,7 @@ static DaoFuncItem dao__Funcs[] =
   { dao__SDL_GetPowerInfo, "SDL_GetPowerInfo( secs :int, pct :int )=>tuple<int,int,int>" },
   { dao__SDL_GetNumRenderDrivers, "SDL_GetNumRenderDrivers(  )=>int" },
   { dao__SDL_GetRenderDriverInfo, "SDL_GetRenderDriverInfo( index :int, info :SDL_RendererInfo )=>int" },
+  { dao__SDL_CreateWindowAndRenderer, "SDL_CreateWindowAndRenderer( width :int, height :int, window_flags :int, window :SDL_Window, renderer :SDL_Renderer )=>tuple<int,SDL_Window,SDL_Renderer>" },
   { dao__SDL_CreateRenderer, "SDL_CreateRenderer( window :SDL_Window, index :int, flags :int )=>SDL_Renderer" },
   { dao__SDL_CreateSoftwareRenderer, "SDL_CreateSoftwareRenderer( surface :SDL_Surface )=>SDL_Renderer" },
   { dao__SDL_GetRenderer, "SDL_GetRenderer( window :SDL_Window )=>SDL_Renderer" },
@@ -714,7 +716,6 @@ static void dao__SDL_wcslen( DaoProcess *_proc, DaoValue *_p[], int _n )
   const int* string = (const int*) DaoArray_ToSInt( (DaoArray*)_p[0] );
 
   size_t _SDL_wcslen = SDL_wcslen( string );
-  DaoArray_FromSInt( (DaoArray*)_p[0] );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_wcslen );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
@@ -725,7 +726,6 @@ static void dao__SDL_wcslcpy( DaoProcess *_proc, DaoValue *_p[], int _n )
   const int* src = (const int*) DaoArray_ToSInt( (DaoArray*)_p[1] );
 
   size_t _SDL_wcslcpy = SDL_wcslcpy( &dst, src, maxlen );
-  DaoArray_FromSInt( (DaoArray*)_p[1] );
   DaoProcess_NewInteger( _proc, (daoint) _SDL_wcslcpy );
   DaoProcess_NewInteger( _proc, (daoint)dst );
   DaoProcess_PutTuple( _proc, -2 );
@@ -738,7 +738,6 @@ static void dao__SDL_wcslcat( DaoProcess *_proc, DaoValue *_p[], int _n )
   const int* src = (const int*) DaoArray_ToSInt( (DaoArray*)_p[1] );
 
   size_t _SDL_wcslcat = SDL_wcslcat( &dst, src, maxlen );
-  DaoArray_FromSInt( (DaoArray*)_p[1] );
   DaoProcess_NewInteger( _proc, (daoint) _SDL_wcslcat );
   DaoProcess_NewInteger( _proc, (daoint)dst );
   DaoProcess_PutTuple( _proc, -2 );
@@ -2471,9 +2470,6 @@ static void dao__SDL_SetWindowGammaRamp( DaoProcess *_proc, DaoValue *_p[], int 
   const unsigned short* red = (const unsigned short*) DaoArray_ToUShort( (DaoArray*)_p[1] );
 
   int _SDL_SetWindowGammaRamp = SDL_SetWindowGammaRamp( window, red, green, blue );
-  DaoArray_FromUShort( (DaoArray*)_p[1] );
-  DaoArray_FromUShort( (DaoArray*)_p[2] );
-  DaoArray_FromUShort( (DaoArray*)_p[3] );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_SetWindowGammaRamp );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
@@ -3289,6 +3285,19 @@ static void dao__SDL_GetRenderDriverInfo( DaoProcess *_proc, DaoValue *_p[], int
 
   int _SDL_GetRenderDriverInfo = SDL_GetRenderDriverInfo( index, info );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetRenderDriverInfo );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_CreateWindowAndRenderer( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int width = (int) DaoValue_TryGetInteger( _p[0] );
+  int height = (int) DaoValue_TryGetInteger( _p[1] );
+  unsigned int window_flags = (unsigned int) DaoValue_TryGetInteger( _p[2] );
+  SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[3], dao_type_SDL_Window );
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[4], dao_type_SDL_Renderer );
+
+  int _SDL_CreateWindowAndRenderer = SDL_CreateWindowAndRenderer( width, height, window_flags, &window, &renderer );
+  DaoProcess_NewInteger( _proc, (daoint) _SDL_CreateWindowAndRenderer );
+  DaoProcess_PutTuple( _proc, -3 );
 }
 /* /usr/local/include/SDL2/SDL_render.h */
 static void dao__SDL_CreateRenderer( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -4893,11 +4902,13 @@ int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 {
 	__daoVmSpace = vms;
 	DaoNamespace_AddConstNumbers( ns, dao__Nums );
-	dao_type___darwin_pthread_handler_rec = DaoNamespace_WrapType( ns, dao___darwin_pthread_handler_rec_Typer, 1 );
+	dao_type__opaque_pthread_attr_t = DaoNamespace_WrapType( ns, dao__opaque_pthread_attr_t_Typer, 1 );
 	dao_type_fd_set = DaoNamespace_WrapType( ns, dao_fd_set_Typer, 1 );
 	dao_type___sFILE = DaoNamespace_WrapType( ns, dao___sFILE_Typer, 1 );
+	dao_type_sigval = DaoNamespace_WrapType( ns, dao_sigval_Typer, 1 );
+	dao_type_sigevent = DaoNamespace_WrapType( ns, dao_sigevent_Typer, 1 );
 	dao_type___siginfo = DaoNamespace_WrapType( ns, dao___siginfo_Typer, 1 );
-	dao_type___sigaction_u = DaoNamespace_WrapType( ns, dao___sigaction_u_Typer, 1 );
+	dao_type_sigvec = DaoNamespace_WrapType( ns, dao_sigvec_Typer, 1 );
 	dao_type_timeval = DaoNamespace_WrapType( ns, dao_timeval_Typer, 1 );
 	dao_type_rusage = DaoNamespace_WrapType( ns, dao_rusage_Typer, 1 );
 	dao_type_rlimit = DaoNamespace_WrapType( ns, dao_rlimit_Typer, 1 );

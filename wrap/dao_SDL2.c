@@ -3,10 +3,10 @@
 extern "C"{
 #endif
 /* /usr/include/sys/_types.h */
-static DaoTypeBase __darwin_pthread_handler_rec_Typer = 
-{ "__darwin_pthread_handler_rec", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao___darwin_pthread_handler_rec_Typer = & __darwin_pthread_handler_rec_Typer;
-DaoType *dao_type___darwin_pthread_handler_rec = NULL;
+static DaoTypeBase _opaque_pthread_attr_t_Typer = 
+{ "_opaque_pthread_attr_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
+DaoTypeBase DAO_DLL_SDL *dao__opaque_pthread_attr_t_Typer = & _opaque_pthread_attr_t_Typer;
+DaoType *dao_type__opaque_pthread_attr_t = NULL;
 /* /usr/include/sys/_structs.h */
 static DaoTypeBase fd_set_Typer = 
 { "fd_set", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
@@ -18,15 +18,25 @@ static DaoTypeBase __sFILE_Typer =
 DaoTypeBase DAO_DLL_SDL *dao___sFILE_Typer = & __sFILE_Typer;
 DaoType *dao_type___sFILE = NULL;
 /* /usr/include/sys/signal.h */
+static DaoTypeBase sigval_Typer = 
+{ "sigval", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
+DaoTypeBase DAO_DLL_SDL *dao_sigval_Typer = & sigval_Typer;
+DaoType *dao_type_sigval = NULL;
+/* /usr/include/sys/signal.h */
+static DaoTypeBase sigevent_Typer = 
+{ "sigevent", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
+DaoTypeBase DAO_DLL_SDL *dao_sigevent_Typer = & sigevent_Typer;
+DaoType *dao_type_sigevent = NULL;
+/* /usr/include/sys/signal.h */
 static DaoTypeBase __siginfo_Typer = 
 { "__siginfo", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
 DaoTypeBase DAO_DLL_SDL *dao___siginfo_Typer = & __siginfo_Typer;
 DaoType *dao_type___siginfo = NULL;
 /* /usr/include/sys/signal.h */
-static DaoTypeBase __sigaction_u_Typer = 
-{ "__sigaction_u", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao___sigaction_u_Typer = & __sigaction_u_Typer;
-DaoType *dao_type___sigaction_u = NULL;
+static DaoTypeBase sigvec_Typer = 
+{ "sigvec", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
+DaoTypeBase DAO_DLL_SDL *dao_sigvec_Typer = & sigvec_Typer;
+DaoType *dao_type_sigvec = NULL;
 /* /usr/include/sys/_structs.h */
 static DaoTypeBase timeval_Typer = 
 { "timeval", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };

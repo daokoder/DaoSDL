@@ -18,6 +18,7 @@ extern "C"{
 #include"SDL_main.h"
 #include"SDL_assert.h"
 #include"SDL_atomic.h"
+#include"SDL_power.h"
 #include"SDL_error.h"
 #include"SDL_audio.h"
 #include"SDL_endian.h"
@@ -26,15 +27,15 @@ extern "C"{
 #include"SDL_rwops.h"
 #include"SDL_clipboard.h"
 #include"SDL_cpuinfo.h"
-#include"SDL_events.h"
-#include"SDL_pixels.h"
 #include"SDL_video.h"
+#include"SDL_pixels.h"
+#include"SDL_events.h"
 #include"SDL_rect.h"
 #include"SDL_surface.h"
 #include"SDL_blendmode.h"
 #include"SDL_keyboard.h"
-#include"SDL_keycode.h"
 #include"SDL_scancode.h"
+#include"SDL_keycode.h"
 #include"SDL_mouse.h"
 #include"SDL_joystick.h"
 #include"SDL_quit.h"
@@ -43,7 +44,6 @@ extern "C"{
 #include"SDL_hints.h"
 #include"SDL_loadso.h"
 #include"SDL_log.h"
-#include"SDL_power.h"
 #include"SDL_render.h"
 #include"SDL_timer.h"
 #include"SDL_version.h"
@@ -61,11 +61,13 @@ extern DaoVmSpace *__daoVmSpace;
 #ifdef __cplusplus
 extern "C"{
 #endif
-extern DaoTypeBase *dao___darwin_pthread_handler_rec_Typer;
+extern DaoTypeBase *dao__opaque_pthread_attr_t_Typer;
 extern DaoTypeBase *dao_fd_set_Typer;
 extern DaoTypeBase *dao___sFILE_Typer;
+extern DaoTypeBase *dao_sigval_Typer;
+extern DaoTypeBase *dao_sigevent_Typer;
 extern DaoTypeBase *dao___siginfo_Typer;
-extern DaoTypeBase *dao___sigaction_u_Typer;
+extern DaoTypeBase *dao_sigvec_Typer;
 extern DaoTypeBase *dao_timeval_Typer;
 extern DaoTypeBase *dao_rusage_Typer;
 extern DaoTypeBase *dao_rlimit_Typer;
@@ -123,11 +125,13 @@ extern DaoTypeBase *dao_SDL_RendererInfo_Typer;
 extern DaoTypeBase *dao_SDL_Renderer_Typer;
 extern DaoTypeBase *dao_SDL_Texture_Typer;
 extern DaoTypeBase *dao_SDL_version_Typer;
-extern DaoType *dao_type___darwin_pthread_handler_rec;
+extern DaoType *dao_type__opaque_pthread_attr_t;
 extern DaoType *dao_type_fd_set;
 extern DaoType *dao_type___sFILE;
+extern DaoType *dao_type_sigval;
+extern DaoType *dao_type_sigevent;
 extern DaoType *dao_type___siginfo;
-extern DaoType *dao_type___sigaction_u;
+extern DaoType *dao_type_sigvec;
 extern DaoType *dao_type_timeval;
 extern DaoType *dao_type_rusage;
 extern DaoType *dao_type_rlimit;

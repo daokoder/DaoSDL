@@ -165,7 +165,7 @@ routine main( ... )
 
     # Initialize test framework 
     state = CommonCreateState(ARGV, SDL_INIT_VIDEO);
-    if (!state) {
+    if (state == none) {
         io.writeln( "failed to create state" );
         return 1;
     }
