@@ -410,7 +410,7 @@ static DaoFuncItem dao__Funcs[] =
   { dao__SDL_SetThreadPriority, "SDL_SetThreadPriority( priority :int )=>int" },
   { dao__SDL_WaitThread, "SDL_WaitThread( thread :SDL_Thread, status :int )=>int" },
   { dao__SDL_RWFromFile, "SDL_RWFromFile( file :string, mode :string )=>SDL_RWops" },
-  { dao__SDL_RWFromFP, "SDL_RWFromFP( fp :io::stream, autoclose :int )=>SDL_RWops" },
+  { dao__SDL_RWFromFP, "SDL_RWFromFP( fp :dao::io::stream, autoclose :int )=>SDL_RWops" },
   { dao__SDL_RWFromMem, "SDL_RWFromMem( mem :cdata, size :int )=>SDL_RWops" },
   { dao__SDL_RWFromConstMem, "SDL_RWFromConstMem( mem :cdata, size :int )=>SDL_RWops" },
   { dao__SDL_AllocRW, "SDL_AllocRW(  )=>SDL_RWops" },
@@ -2298,7 +2298,7 @@ static void dao__SDL_SetWindowData( DaoProcess *_proc, DaoValue *_p[], int _n )
   void* userdata = (void*) DaoValue_TryGetCdata( _p[2] );
 
   void* _SDL_SetWindowData = SDL_SetWindowData( window, name, userdata );
-  DaoProcess_PutCdata( _proc, (void*) _SDL_SetWindowData, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_SetWindowData, NULL );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GetWindowData( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2307,7 +2307,7 @@ static void dao__SDL_GetWindowData( DaoProcess *_proc, DaoValue *_p[], int _n )
   const char* name = (const char*) DaoValue_TryGetMBString( _p[1] );
 
   void* _SDL_GetWindowData = SDL_GetWindowData( window, name );
-  DaoProcess_PutCdata( _proc, (void*) _SDL_GetWindowData, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_GetWindowData, NULL );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_SetWindowPosition( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2527,7 +2527,7 @@ static void dao__SDL_GL_GetProcAddress( DaoProcess *_proc, DaoValue *_p[], int _
   const char* proc = (const char*) DaoValue_TryGetMBString( _p[0] );
 
   void* _SDL_GL_GetProcAddress = SDL_GL_GetProcAddress( proc );
-  DaoProcess_PutCdata( _proc, (void*) _SDL_GL_GetProcAddress, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_GL_GetProcAddress, NULL );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GL_UnloadLibrary( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2569,7 +2569,7 @@ static void dao__SDL_GL_CreateContext( DaoProcess *_proc, DaoValue *_p[], int _n
   SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
 
   SDL_GLContext _SDL_GL_CreateContext = SDL_GL_CreateContext( window );
-  DaoProcess_PutCdata( _proc, (void*) _SDL_GL_CreateContext, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_GL_CreateContext, NULL );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GL_MakeCurrent( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -3137,7 +3137,7 @@ static void dao__SDL_LoadObject( DaoProcess *_proc, DaoValue *_p[], int _n )
   const char* sofile = (const char*) DaoValue_TryGetMBString( _p[0] );
 
   void* _SDL_LoadObject = SDL_LoadObject( sofile );
-  DaoProcess_PutCdata( _proc, (void*) _SDL_LoadObject, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_LoadObject, NULL );
 }
 /* /usr/local/include/SDL2/SDL_loadso.h */
 static void dao__SDL_LoadFunction( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -3146,7 +3146,7 @@ static void dao__SDL_LoadFunction( DaoProcess *_proc, DaoValue *_p[], int _n )
   const char* name = (const char*) DaoValue_TryGetMBString( _p[1] );
 
   void* _SDL_LoadFunction = SDL_LoadFunction( handle, name );
-  DaoProcess_PutCdata( _proc, (void*) _SDL_LoadFunction, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_LoadFunction, NULL );
 }
 /* /usr/local/include/SDL2/SDL_loadso.h */
 static void dao__SDL_UnloadObject( DaoProcess *_proc, DaoValue *_p[], int _n )

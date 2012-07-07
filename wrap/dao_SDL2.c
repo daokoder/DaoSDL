@@ -446,7 +446,7 @@ static void dao_SDL_AudioSpec_SETF_size( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_AudioSpec_GETF_userdata( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
-  DaoProcess_PutCdata( _proc, (void*) self->userdata, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) self->userdata, NULL );
 }
 static void dao_SDL_AudioSpec_SDL_AudioSpec( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1339,7 +1339,7 @@ static void dao_SDL_Surface_GETF_pitch( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_Surface_GETF_pixels( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Surface *self = (SDL_Surface*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Surface);
-  DaoProcess_PutCdata( _proc, (void*) self->pixels, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) self->pixels, NULL );
 }
 static void dao_SDL_Surface_GETI_Pixel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1402,7 +1402,7 @@ static void dao_SDL_Surface_SETI_Pixel( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_Surface_GETF_userdata( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Surface *self = (SDL_Surface*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Surface);
-  DaoProcess_PutCdata( _proc, (void*) self->userdata, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) self->userdata, NULL );
 }
 static void dao_SDL_Surface_GETF_locked( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1412,7 +1412,7 @@ static void dao_SDL_Surface_GETF_locked( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_Surface_GETF_lock_data( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Surface *self = (SDL_Surface*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Surface);
-  DaoProcess_PutCdata( _proc, (void*) self->lock_data, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) self->lock_data, NULL );
 }
 static void dao_SDL_Surface_GETF_clip_rect( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1532,7 +1532,7 @@ static void dao_SDL_DisplayMode_SETF_refresh_rate( DaoProcess *_proc, DaoValue *
 static void dao_SDL_DisplayMode_GETF_driverdata( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DisplayMode *self = (SDL_DisplayMode*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DisplayMode);
-  DaoProcess_PutCdata( _proc, (void*) self->driverdata, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) self->driverdata, NULL );
 }
 static void dao_SDL_DisplayMode_SDL_DisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2155,7 +2155,7 @@ static void dao_SDL_Touch_SETF_max_fingers( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_Touch_GETF_driverdata( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   struct SDL_Touch *self = (struct SDL_Touch*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Touch);
-  DaoProcess_PutCdata( _proc, (void*) self->driverdata, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) self->driverdata, NULL );
 }
 static void dao_SDL_Touch_SDL_Touch( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4598,12 +4598,12 @@ static void dao_SDL_UserEvent_SETF_code( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_UserEvent_GETF_data1( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_UserEvent *self = (SDL_UserEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_UserEvent);
-  DaoProcess_PutCdata( _proc, (void*) self->data1, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) self->data1, NULL );
 }
 static void dao_SDL_UserEvent_GETF_data2( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_UserEvent *self = (SDL_UserEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_UserEvent);
-  DaoProcess_PutCdata( _proc, (void*) self->data2, NULL );
+  DaoProcess_WrapCdata( _proc, (void*) self->data2, NULL );
 }
 static void dao_SDL_UserEvent_SDL_UserEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
