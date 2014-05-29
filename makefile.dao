@@ -1,0 +1,35 @@
+
+project = DaoMake::Project( "DaoSDL" ) 
+
+daovm = DaoMake::FindPackage( "Dao", $REQUIRED )
+sdl2  = DaoMake::FindPackage( "SDL", $REQUIRED )
+
+if( daovm == none or sdl2 == none ) return
+
+cflags = sdl2.GetFlags( "SDL", $cflags )
+
+bind = project.AddCommand( 'wrap/dao_SDL.h: sdl.c', '@$(DAOMAKE) mkdir2 ./wrap/' )
+bind2 = project.AddCommand( 'wrap/dao_SDL_Test.h: sdl_test.c', '@$(DAOMAKE) mkdir2 ./wrap/' )
+bind.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl.c -o wrap/' )
+bind2.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl_test.c -o wrap/' )
+
+
+project.UseImportLibrary( daovm, "dao" )
+
+project.AddIncludePath( "." )
+project.AddIncludePath( "../../kernel" )
+
+sources = { "wrap/dao_SDL.c", "wrap/dao_SDL2.c", "wrap/dao_SDL3.c" }
+sources2 = { "wrap/dao_SDL_Test.c", "wrap/dao_SDL_Test2.c", "wrap/dao_SDL_Test3.c" }
+
+daosdl_objs = project.AddObjects( sources, { "wrap/dao_SDL.h" } )
+daosdl_objs2 = project.AddObjects( sources2, { "wrap/dao_SDL_Test.h" } )
+daosdl_dll = project.AddSharedLibrary( "dao_sdl", daosdl_objs )
+daosdl_dll2 = project.AddSharedLibrary( "dao_sdl_test", daosdl_objs2 )
+daosdl_dll2.AddLinkingFlag( "-lSDL2_test" );
+daosdl_dll.UseSharedLibrary( sdl2 )
+daosdl_dll2.UseSharedLibrary( sdl2 )
+
+project.Install( daovm.GetPath( "MOD-PATH" ), daosdl_dll );
+
+project.GenerateFinder( $TRUE );

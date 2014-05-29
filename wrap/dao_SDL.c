@@ -1,28 +1,78 @@
-#include"dao_SDL.h"
+#include"dao_sdl.h"
 
 DaoVmSpace *__daoVmSpace = NULL;
 #ifdef __cplusplus
 extern "C"{
 #endif
+static void dao__SDL_malloc( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_calloc( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_realloc( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_free( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_getenv( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_setenv( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_abs( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_isdigit( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_isspace( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_toupper( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_tolower( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_memset( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_memset4( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_memcpy( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_memcpy4( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_memmove( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_memcmp( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_wcslen( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_wcslcpy( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_wcslcat( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strlen( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strlcpy( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_utf8strlcpy( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strlcat( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strdup( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_strrev( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_strupr( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_strlwr( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strchr( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strrchr( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strstr( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_itoa( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_uitoa( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ltoa( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ultoa( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_lltoa( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ulltoa( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_atoi( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_atof( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strcmp( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strncmp( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strcasecmp( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_strncasecmp( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_sscanf( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_snprintf( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_atan( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_atan2( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_ceil( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_copysign( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_cos( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_cosf( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_fabs( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_floor( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_log( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_pow( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_scalbn( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_sin( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_sinf( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_sqrt( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_iconv_open( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_iconv_close( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_iconv_string( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_SetMainReady( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ReportAssertion( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetAssertionReport( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ResetAssertionReport( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_AtomicTryLock( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_AtomicLock( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_AtomicUnlock( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_AtomicCAS_( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_AtomicSet( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_AtomicGet( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_AtomicAdd( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -35,8 +85,9 @@ static void dao__SDL_Swap32( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_Swap64( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SwapFloat( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CreateMutex( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_mutexP( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_mutexV( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_LockMutex( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_TryLockMutex( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_UnlockMutex( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_DestroyMutex( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CreateSemaphore( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_DestroySemaphore( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -56,18 +107,22 @@ static void dao__SDL_ThreadID( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetThreadID( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetThreadPriority( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_WaitThread( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_TLSCreate( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_TLSGet( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RWFromFile( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RWFromFP( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RWFromMem( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RWFromConstMem( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_AllocRW( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_FreeRW( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_ReadU8( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ReadLE16( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ReadBE16( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ReadLE32( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ReadBE32( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ReadLE64( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ReadBE64( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_WriteU8( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_WriteLE16( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_WriteBE16( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_WriteLE32( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -126,6 +181,8 @@ static void dao__SDL_MapRGBA( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRGB( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRGBA( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CalculateGammaRamp( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RectEmpty( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RectEquals( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_HasIntersection( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_IntersectRect( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_UnionRect( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -166,13 +223,14 @@ static void dao__SDL_VideoInit( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_VideoQuit( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetCurrentVideoDriver( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetNumVideoDisplays( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetDisplayName( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetDisplayBounds( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetNumDisplayModes( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetDisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetDesktopDisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetCurrentDisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetClosestDisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_GetWindowDisplay( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetWindowDisplayIndex( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetWindowDisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetWindowDisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetWindowPixelFormat( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -190,6 +248,11 @@ static void dao__SDL_SetWindowPosition( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao__SDL_GetWindowPosition( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetWindowSize( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetWindowSize( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_SetWindowMinimumSize( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetWindowMinimumSize( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_SetWindowMaximumSize( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetWindowMaximumSize( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_SetWindowBordered( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ShowWindow( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_HideWindow( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RaiseWindow( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -218,6 +281,8 @@ static void dao__SDL_GL_SetAttribute( DaoProcess *_proc, DaoValue *_p[], int _n 
 static void dao__SDL_GL_GetAttribute( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GL_CreateContext( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GL_MakeCurrent( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GL_GetCurrentWindow( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GL_GetCurrentContext( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GL_SetSwapInterval( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GL_GetSwapInterval( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GL_SwapWindow( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -233,8 +298,11 @@ static void dao__SDL_GetScancodeFromName( DaoProcess *_proc, DaoValue *_p[], int
 static void dao__SDL_GetKeyName( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetKeyFromName( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_StartTextInput( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_IsTextInputActive( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_StopTextInput( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetTextInputRect( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_HasScreenKeyboardSupport( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_IsScreenKeyboardShown( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetMouseFocus( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetMouseState( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRelativeMouseState( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -243,15 +311,22 @@ static void dao__SDL_SetRelativeMouseMode( DaoProcess *_proc, DaoValue *_p[], in
 static void dao__SDL_GetRelativeMouseMode( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CreateCursor( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CreateColorCursor( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_CreateSystemCursor( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetCursor( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetCursor( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetDefaultCursor( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_FreeCursor( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_ShowCursor( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_NumJoysticks( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_JoystickName( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_JoystickNameForIndex( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_JoystickOpen( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_JoystickOpened( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_JoystickIndex( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_JoystickName( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_JoystickGetDeviceGUID( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_JoystickGetGUID( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_JoystickGetGUIDString( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_JoystickGetGUIDFromString( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_JoystickGetAttached( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_JoystickInstanceID( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_JoystickNumAxes( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_JoystickNumBalls( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_JoystickNumHats( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -263,8 +338,10 @@ static void dao__SDL_JoystickGetHat( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_JoystickGetBall( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_JoystickGetButton( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_JoystickClose( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_GetTouch( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_GetFinger( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetNumTouchDevices( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetTouchDevice( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetNumTouchFingers( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetTouchFinger( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RecordGesture( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SaveAllDollarTemplates( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SaveDollarTemplate( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -300,7 +377,6 @@ static void dao__SDL_LogWarn( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_LogError( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_LogCritical( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_LogMessage( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__SDL_LogMessageV( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetPowerInfo( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetNumRenderDrivers( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRenderDriverInfo( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -309,6 +385,7 @@ static void dao__SDL_CreateRenderer( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_CreateSoftwareRenderer( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRenderer( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRendererInfo( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetRendererOutputSize( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CreateTexture( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_CreateTextureFromSurface( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_QueryTexture( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -322,8 +399,15 @@ static void dao__SDL_UpdateTexture( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_UnlockTexture( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RenderTargetSupported( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetRenderTarget( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GetRenderTarget( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RenderSetLogicalSize( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RenderGetLogicalSize( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RenderSetViewport( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RenderGetViewport( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RenderSetClipRect( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RenderGetClipRect( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RenderSetScale( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RenderGetScale( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetRenderDrawColor( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetRenderDrawColor( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetRenderDrawBlendMode( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -338,10 +422,13 @@ static void dao__SDL_RenderDrawRects( DaoProcess *_proc, DaoValue *_p[], int _n 
 static void dao__SDL_RenderFillRect( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RenderFillRects( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RenderCopy( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_RenderCopyEx( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RenderReadPixels( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RenderPresent( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_DestroyTexture( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_DestroyRenderer( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GL_BindTexture( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDL_GL_UnbindTexture( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetTicks( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetPerformanceCounter( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_GetPerformanceFrequency( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -357,101 +444,156 @@ static void dao__SDL_WasInit( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_Quit( DaoProcess *_proc, DaoValue *_p[], int _n );
 static DaoFuncItem dao__Funcs[] = 
 {
-  { dao__SDL_wcslen, "SDL_wcslen( string :array<int> )=>int" },
-  { dao__SDL_wcslcpy, "SDL_wcslcpy( dst :int, src :array<int>, maxlen :int )=>tuple<int,int>" },
-  { dao__SDL_wcslcat, "SDL_wcslcat( dst :int, src :array<int>, maxlen :int )=>tuple<int,int>" },
-  { dao__SDL_utf8strlcpy, "SDL_utf8strlcpy( dst :string, src :string, dst_bytes :int )=>int" },
-  { dao__SDL_strrev, "SDL_strrev( string :string )=>string" },
-  { dao__SDL_strupr, "SDL_strupr( string :string )=>string" },
-  { dao__SDL_strlwr, "SDL_strlwr( string :string )=>string" },
-  { dao__SDL_ltoa, "SDL_ltoa( value :int, string :string, radix :int )=>string" },
-  { dao__SDL_ultoa, "SDL_ultoa( value :int, string :string, radix :int )=>string" },
-  { dao__SDL_lltoa, "SDL_lltoa( value :int, string :string, radix :int )=>string" },
-  { dao__SDL_ulltoa, "SDL_ulltoa( value :int, string :string, radix :int )=>string" },
-  { dao__SDL_iconv_string, "SDL_iconv_string( tocode :string, fromcode :string, inbuf :string, inbytesleft :int )=>string" },
-  { dao__SDL_ReportAssertion, "SDL_ReportAssertion( _p0 :SDL_assert_data, _p1 :string, _p2 :string, _p3 :int )=>int" },
+  { dao__SDL_malloc, "SDL_malloc( size: int )=>cdata" },
+  { dao__SDL_calloc, "SDL_calloc( nmemb: int, size: int )=>cdata" },
+  { dao__SDL_realloc, "SDL_realloc( mem: cdata, size: int )=>cdata" },
+  { dao__SDL_free, "SDL_free( mem: cdata )" },
+  { dao__SDL_getenv, "SDL_getenv( name: string )=>string" },
+  { dao__SDL_setenv, "SDL_setenv( name: string, value: string, overwrite: int )=>int" },
+  { dao__SDL_abs, "SDL_abs( x: int )=>int" },
+  { dao__SDL_isdigit, "SDL_isdigit( x: int )=>int" },
+  { dao__SDL_isspace, "SDL_isspace( x: int )=>int" },
+  { dao__SDL_toupper, "SDL_toupper( x: int )=>int" },
+  { dao__SDL_tolower, "SDL_tolower( x: int )=>int" },
+  { dao__SDL_memset, "SDL_memset( dst: cdata, c: int, len: int )=>cdata" },
+  { dao__SDL_memset4, "SDL_memset4( dst: cdata, val: int, dwords: int )" },
+  { dao__SDL_memcpy, "SDL_memcpy( dst: cdata, src: cdata, len: int )=>cdata" },
+  { dao__SDL_memcpy4, "SDL_memcpy4( dst: cdata, src: cdata, dwords: int )=>cdata" },
+  { dao__SDL_memmove, "SDL_memmove( dst: cdata, src: cdata, len: int )=>cdata" },
+  { dao__SDL_memcmp, "SDL_memcmp( s1: cdata, s2: cdata, len: int )=>int" },
+  { dao__SDL_wcslen, "SDL_wcslen( wstr: array<int> )=>int" },
+  { dao__SDL_wcslcpy, "SDL_wcslcpy( dst: int, src: array<int>, maxlen: int )=>tuple<int,int>" },
+  { dao__SDL_wcslcat, "SDL_wcslcat( dst: int, src: array<int>, maxlen: int )=>tuple<int,int>" },
+  { dao__SDL_strlen, "SDL_strlen( str: string )=>int" },
+  { dao__SDL_strlcpy, "SDL_strlcpy( dst: string, src: string, maxlen: int )=>int" },
+  { dao__SDL_utf8strlcpy, "SDL_utf8strlcpy( dst: string, src: string, dst_bytes: int )=>int" },
+  { dao__SDL_strlcat, "SDL_strlcat( dst: string, src: string, maxlen: int )=>int" },
+  { dao__SDL_strdup, "SDL_strdup( str: string )=>string" },
+  { dao__SDL_strrev, "SDL_strrev( str: string )=>string" },
+  { dao__SDL_strupr, "SDL_strupr( str: string )=>string" },
+  { dao__SDL_strlwr, "SDL_strlwr( str: string )=>string" },
+  { dao__SDL_strchr, "SDL_strchr( str: string, c: int )=>string" },
+  { dao__SDL_strrchr, "SDL_strrchr( str: string, c: int )=>string" },
+  { dao__SDL_strstr, "SDL_strstr( haystack: string, needle: string )=>string" },
+  { dao__SDL_itoa, "SDL_itoa( value: int, str: string, radix: int )=>string" },
+  { dao__SDL_uitoa, "SDL_uitoa( value: int, str: string, radix: int )=>string" },
+  { dao__SDL_ltoa, "SDL_ltoa( value: int, str: string, radix: int )=>string" },
+  { dao__SDL_ultoa, "SDL_ultoa( value: int, str: string, radix: int )=>string" },
+  { dao__SDL_lltoa, "SDL_lltoa( value: int, str: string, radix: int )=>string" },
+  { dao__SDL_ulltoa, "SDL_ulltoa( value: int, str: string, radix: int )=>string" },
+  { dao__SDL_atoi, "SDL_atoi( str: string )=>int" },
+  { dao__SDL_atof, "SDL_atof( str: string )=>double" },
+  { dao__SDL_strcmp, "SDL_strcmp( str1: string, str2: string )=>int" },
+  { dao__SDL_strncmp, "SDL_strncmp( str1: string, str2: string, maxlen: int )=>int" },
+  { dao__SDL_strcasecmp, "SDL_strcasecmp( str1: string, str2: string )=>int" },
+  { dao__SDL_strncasecmp, "SDL_strncasecmp( str1: string, str2: string, len: int )=>int" },
+  { dao__SDL_sscanf, "SDL_sscanf( text: string, fmt: string )=>int" },
+  { dao__SDL_snprintf, "SDL_snprintf( text: string, maxlen: int, fmt: string )=>int" },
+  { dao__SDL_atan, "SDL_atan( x: double )=>double" },
+  { dao__SDL_atan2, "SDL_atan2( x: double, y: double )=>double" },
+  { dao__SDL_ceil, "SDL_ceil( x: double )=>double" },
+  { dao__SDL_copysign, "SDL_copysign( x: double, y: double )=>double" },
+  { dao__SDL_cos, "SDL_cos( x: double )=>double" },
+  { dao__SDL_cosf, "SDL_cosf( x: float )=>float" },
+  { dao__SDL_fabs, "SDL_fabs( x: double )=>double" },
+  { dao__SDL_floor, "SDL_floor( x: double )=>double" },
+  { dao__SDL_log, "SDL_log( x: double )=>double" },
+  { dao__SDL_pow, "SDL_pow( x: double, y: double )=>double" },
+  { dao__SDL_scalbn, "SDL_scalbn( x: double, n: int )=>double" },
+  { dao__SDL_sin, "SDL_sin( x: double )=>double" },
+  { dao__SDL_sinf, "SDL_sinf( x: float )=>float" },
+  { dao__SDL_sqrt, "SDL_sqrt( x: double )=>double" },
+  { dao__SDL_iconv_open, "SDL_iconv_open( tocode: string, fromcode: string )=>_SDL_iconv_t" },
+  { dao__SDL_iconv_close, "SDL_iconv_close( cd: _SDL_iconv_t )=>int" },
+  { dao__SDL_iconv_string, "SDL_iconv_string( tocode: string, fromcode: string, inbuf: string, inbytesleft: int )=>string" },
+  { dao__SDL_SetMainReady, "SDL_SetMainReady(  )" },
+  { dao__SDL_ReportAssertion, "SDL_ReportAssertion( _p0: SDL_assert_data, _p1: string, _p2: string, _p3: int )=>int" },
   { dao__SDL_GetAssertionReport, "SDL_GetAssertionReport(  )=>SDL_assert_data" },
   { dao__SDL_ResetAssertionReport, "SDL_ResetAssertionReport(  )" },
-  { dao__SDL_AtomicTryLock, "SDL_AtomicTryLock( lock :int )=>tuple<int,int>" },
-  { dao__SDL_AtomicLock, "SDL_AtomicLock( lock :int )=>int" },
-  { dao__SDL_AtomicUnlock, "SDL_AtomicUnlock( lock :int )=>int" },
-  { dao__SDL_AtomicCAS_, "SDL_AtomicCAS_( a :SDL_atomic_t, oldval :int, newval :int )=>int" },
-  { dao__SDL_AtomicSet, "SDL_AtomicSet( a :SDL_atomic_t, v :int )=>int" },
-  { dao__SDL_AtomicGet, "SDL_AtomicGet( a :SDL_atomic_t )=>int" },
-  { dao__SDL_AtomicAdd, "SDL_AtomicAdd( a :SDL_atomic_t, v :int )=>int" },
-  { dao__SDL_SetError, "SDL_SetError( fmt :string )" },
+  { dao__SDL_AtomicTryLock, "SDL_AtomicTryLock( lock: int )=>tuple<int,int>" },
+  { dao__SDL_AtomicLock, "SDL_AtomicLock( lock: int )=>int" },
+  { dao__SDL_AtomicUnlock, "SDL_AtomicUnlock( lock: int )=>int" },
+  { dao__SDL_AtomicSet, "SDL_AtomicSet( a: SDL_atomic_t, v: int )=>int" },
+  { dao__SDL_AtomicGet, "SDL_AtomicGet( a: SDL_atomic_t )=>int" },
+  { dao__SDL_AtomicAdd, "SDL_AtomicAdd( a: SDL_atomic_t, v: int )=>int" },
+  { dao__SDL_SetError, "SDL_SetError( fmt: string )=>int" },
   { dao__SDL_GetError, "SDL_GetError(  )=>string" },
   { dao__SDL_ClearError, "SDL_ClearError(  )" },
-  { dao__SDL_Error, "SDL_Error( code :int )" },
-  { dao__SDL_Swap16, "SDL_Swap16( x :int )=>int" },
-  { dao__SDL_Swap32, "SDL_Swap32( x :int )=>int" },
-  { dao__SDL_Swap64, "SDL_Swap64( x :int )=>int" },
-  { dao__SDL_SwapFloat, "SDL_SwapFloat( x :float )=>float" },
+  { dao__SDL_Error, "SDL_Error( code: int )=>int" },
+  { dao__SDL_Swap16, "SDL_Swap16( x: int )=>int" },
+  { dao__SDL_Swap32, "SDL_Swap32( x: int )=>int" },
+  { dao__SDL_Swap64, "SDL_Swap64( x: int )=>int" },
+  { dao__SDL_SwapFloat, "SDL_SwapFloat( x: float )=>float" },
   { dao__SDL_CreateMutex, "SDL_CreateMutex(  )=>SDL_mutex" },
-  { dao__SDL_mutexP, "SDL_mutexP( mutex :SDL_mutex )=>int" },
-  { dao__SDL_mutexV, "SDL_mutexV( mutex :SDL_mutex )=>int" },
-  { dao__SDL_DestroyMutex, "SDL_DestroyMutex( mutex :SDL_mutex )" },
-  { dao__SDL_CreateSemaphore, "SDL_CreateSemaphore( initial_value :int )=>SDL_semaphore" },
-  { dao__SDL_DestroySemaphore, "SDL_DestroySemaphore( sem :SDL_semaphore )" },
-  { dao__SDL_SemWait, "SDL_SemWait( sem :SDL_semaphore )=>int" },
-  { dao__SDL_SemTryWait, "SDL_SemTryWait( sem :SDL_semaphore )=>int" },
-  { dao__SDL_SemWaitTimeout, "SDL_SemWaitTimeout( sem :SDL_semaphore, ms :int )=>int" },
-  { dao__SDL_SemPost, "SDL_SemPost( sem :SDL_semaphore )=>int" },
-  { dao__SDL_SemValue, "SDL_SemValue( sem :SDL_semaphore )=>int" },
+  { dao__SDL_LockMutex, "SDL_LockMutex( mutex: SDL_mutex )=>int" },
+  { dao__SDL_TryLockMutex, "SDL_TryLockMutex( mutex: SDL_mutex )=>int" },
+  { dao__SDL_UnlockMutex, "SDL_UnlockMutex( mutex: SDL_mutex )=>int" },
+  { dao__SDL_DestroyMutex, "SDL_DestroyMutex( mutex: SDL_mutex )" },
+  { dao__SDL_CreateSemaphore, "SDL_CreateSemaphore( initial_value: int )=>SDL_semaphore" },
+  { dao__SDL_DestroySemaphore, "SDL_DestroySemaphore( sem: SDL_semaphore )" },
+  { dao__SDL_SemWait, "SDL_SemWait( sem: SDL_semaphore )=>int" },
+  { dao__SDL_SemTryWait, "SDL_SemTryWait( sem: SDL_semaphore )=>int" },
+  { dao__SDL_SemWaitTimeout, "SDL_SemWaitTimeout( sem: SDL_semaphore, ms: int )=>int" },
+  { dao__SDL_SemPost, "SDL_SemPost( sem: SDL_semaphore )=>int" },
+  { dao__SDL_SemValue, "SDL_SemValue( sem: SDL_semaphore )=>int" },
   { dao__SDL_CreateCond, "SDL_CreateCond(  )=>SDL_cond" },
-  { dao__SDL_DestroyCond, "SDL_DestroyCond( cond :SDL_cond )" },
-  { dao__SDL_CondSignal, "SDL_CondSignal( cond :SDL_cond )=>int" },
-  { dao__SDL_CondBroadcast, "SDL_CondBroadcast( cond :SDL_cond )=>int" },
-  { dao__SDL_CondWait, "SDL_CondWait( cond :SDL_cond, mutex :SDL_mutex )=>int" },
-  { dao__SDL_CondWaitTimeout, "SDL_CondWaitTimeout( cond :SDL_cond, mutex :SDL_mutex, ms :int )=>int" },
-  { dao__SDL_GetThreadName, "SDL_GetThreadName( thread :SDL_Thread )=>string" },
+  { dao__SDL_DestroyCond, "SDL_DestroyCond( cond: SDL_cond )" },
+  { dao__SDL_CondSignal, "SDL_CondSignal( cond: SDL_cond )=>int" },
+  { dao__SDL_CondBroadcast, "SDL_CondBroadcast( cond: SDL_cond )=>int" },
+  { dao__SDL_CondWait, "SDL_CondWait( cond: SDL_cond, mutex: SDL_mutex )=>int" },
+  { dao__SDL_CondWaitTimeout, "SDL_CondWaitTimeout( cond: SDL_cond, mutex: SDL_mutex, ms: int )=>int" },
+  { dao__SDL_GetThreadName, "SDL_GetThreadName( thread: SDL_Thread )=>string" },
   { dao__SDL_ThreadID, "SDL_ThreadID(  )=>int" },
-  { dao__SDL_GetThreadID, "SDL_GetThreadID( thread :SDL_Thread )=>int" },
-  { dao__SDL_SetThreadPriority, "SDL_SetThreadPriority( priority :int )=>int" },
-  { dao__SDL_WaitThread, "SDL_WaitThread( thread :SDL_Thread, status :int )=>int" },
-  { dao__SDL_RWFromFile, "SDL_RWFromFile( file :string, mode :string )=>SDL_RWops" },
-  { dao__SDL_RWFromFP, "SDL_RWFromFP( fp :dao::io::stream, autoclose :int )=>SDL_RWops" },
-  { dao__SDL_RWFromMem, "SDL_RWFromMem( mem :cdata, size :int )=>SDL_RWops" },
-  { dao__SDL_RWFromConstMem, "SDL_RWFromConstMem( mem :cdata, size :int )=>SDL_RWops" },
+  { dao__SDL_GetThreadID, "SDL_GetThreadID( thread: SDL_Thread )=>int" },
+  { dao__SDL_SetThreadPriority, "SDL_SetThreadPriority( priority: int )=>int" },
+  { dao__SDL_WaitThread, "SDL_WaitThread( thread: SDL_Thread, status: int )=>int" },
+  { dao__SDL_TLSCreate, "SDL_TLSCreate(  )=>int" },
+  { dao__SDL_TLSGet, "SDL_TLSGet( id: int )=>cdata" },
+  { dao__SDL_RWFromFile, "SDL_RWFromFile( file: string, mode: string )=>SDL_RWops" },
+  { dao__SDL_RWFromFP, "SDL_RWFromFP( fp: dao::io::stream, autoclose: int )=>SDL_RWops" },
+  { dao__SDL_RWFromMem, "SDL_RWFromMem( mem: cdata, size: int )=>SDL_RWops" },
+  { dao__SDL_RWFromConstMem, "SDL_RWFromConstMem( mem: cdata, size: int )=>SDL_RWops" },
   { dao__SDL_AllocRW, "SDL_AllocRW(  )=>SDL_RWops" },
-  { dao__SDL_FreeRW, "SDL_FreeRW( area :SDL_RWops )" },
-  { dao__SDL_ReadLE16, "SDL_ReadLE16( src :SDL_RWops )=>int" },
-  { dao__SDL_ReadBE16, "SDL_ReadBE16( src :SDL_RWops )=>int" },
-  { dao__SDL_ReadLE32, "SDL_ReadLE32( src :SDL_RWops )=>int" },
-  { dao__SDL_ReadBE32, "SDL_ReadBE32( src :SDL_RWops )=>int" },
-  { dao__SDL_ReadLE64, "SDL_ReadLE64( src :SDL_RWops )=>int" },
-  { dao__SDL_ReadBE64, "SDL_ReadBE64( src :SDL_RWops )=>int" },
-  { dao__SDL_WriteLE16, "SDL_WriteLE16( dst :SDL_RWops, value :int )=>int" },
-  { dao__SDL_WriteBE16, "SDL_WriteBE16( dst :SDL_RWops, value :int )=>int" },
-  { dao__SDL_WriteLE32, "SDL_WriteLE32( dst :SDL_RWops, value :int )=>int" },
-  { dao__SDL_WriteBE32, "SDL_WriteBE32( dst :SDL_RWops, value :int )=>int" },
-  { dao__SDL_WriteLE64, "SDL_WriteLE64( dst :SDL_RWops, value :int )=>int" },
-  { dao__SDL_WriteBE64, "SDL_WriteBE64( dst :SDL_RWops, value :int )=>int" },
+  { dao__SDL_FreeRW, "SDL_FreeRW( area: SDL_RWops )" },
+  { dao__SDL_ReadU8, "SDL_ReadU8( src: SDL_RWops )=>int" },
+  { dao__SDL_ReadLE16, "SDL_ReadLE16( src: SDL_RWops )=>int" },
+  { dao__SDL_ReadBE16, "SDL_ReadBE16( src: SDL_RWops )=>int" },
+  { dao__SDL_ReadLE32, "SDL_ReadLE32( src: SDL_RWops )=>int" },
+  { dao__SDL_ReadBE32, "SDL_ReadBE32( src: SDL_RWops )=>int" },
+  { dao__SDL_ReadLE64, "SDL_ReadLE64( src: SDL_RWops )=>int" },
+  { dao__SDL_ReadBE64, "SDL_ReadBE64( src: SDL_RWops )=>int" },
+  { dao__SDL_WriteU8, "SDL_WriteU8( dst: SDL_RWops, value: int )=>int" },
+  { dao__SDL_WriteLE16, "SDL_WriteLE16( dst: SDL_RWops, value: int )=>int" },
+  { dao__SDL_WriteBE16, "SDL_WriteBE16( dst: SDL_RWops, value: int )=>int" },
+  { dao__SDL_WriteLE32, "SDL_WriteLE32( dst: SDL_RWops, value: int )=>int" },
+  { dao__SDL_WriteBE32, "SDL_WriteBE32( dst: SDL_RWops, value: int )=>int" },
+  { dao__SDL_WriteLE64, "SDL_WriteLE64( dst: SDL_RWops, value: int )=>int" },
+  { dao__SDL_WriteBE64, "SDL_WriteBE64( dst: SDL_RWops, value: int )=>int" },
   { dao__SDL_GetNumAudioDrivers, "SDL_GetNumAudioDrivers(  )=>int" },
-  { dao__SDL_GetAudioDriver, "SDL_GetAudioDriver( index :int )=>string" },
-  { dao__SDL_AudioInit, "SDL_AudioInit( driver_name :string )=>int" },
+  { dao__SDL_GetAudioDriver, "SDL_GetAudioDriver( index: int )=>string" },
+  { dao__SDL_AudioInit, "SDL_AudioInit( driver_name: string )=>int" },
   { dao__SDL_AudioQuit, "SDL_AudioQuit(  )" },
   { dao__SDL_GetCurrentAudioDriver, "SDL_GetCurrentAudioDriver(  )=>string" },
-  { dao__SDL_OpenAudio, "SDL_OpenAudio( desired :SDL_AudioSpec, obtained :SDL_AudioSpec )=>int" },
-  { dao__SDL_GetNumAudioDevices, "SDL_GetNumAudioDevices( iscapture :int )=>int" },
-  { dao__SDL_GetAudioDeviceName, "SDL_GetAudioDeviceName( index :int, iscapture :int )=>string" },
-  { dao__SDL_OpenAudioDevice, "SDL_OpenAudioDevice( device :string, iscapture :int, desired :SDL_AudioSpec, obtained :SDL_AudioSpec, allowed_changes :int )=>int" },
+  { dao__SDL_OpenAudio, "SDL_OpenAudio( desired: SDL_AudioSpec, obtained: SDL_AudioSpec )=>int" },
+  { dao__SDL_GetNumAudioDevices, "SDL_GetNumAudioDevices( iscapture: int )=>int" },
+  { dao__SDL_GetAudioDeviceName, "SDL_GetAudioDeviceName( index: int, iscapture: int )=>string" },
+  { dao__SDL_OpenAudioDevice, "SDL_OpenAudioDevice( device: string, iscapture: int, desired: SDL_AudioSpec, obtained: SDL_AudioSpec, allowed_changes: int )=>int" },
   { dao__SDL_GetAudioStatus, "SDL_GetAudioStatus(  )=>int" },
-  { dao__SDL_GetAudioDeviceStatus, "SDL_GetAudioDeviceStatus( dev :int )=>int" },
-  { dao__SDL_PauseAudio, "SDL_PauseAudio( pause_on :int )" },
-  { dao__SDL_PauseAudioDevice, "SDL_PauseAudioDevice( dev :int, pause_on :int )" },
-  { dao__SDL_FreeWAV, "SDL_FreeWAV( audio_buf :string )" },
-  { dao__SDL_BuildAudioCVT, "SDL_BuildAudioCVT( cvt :SDL_AudioCVT, src_format :int, src_channels :int, src_rate :int, dst_format :int, dst_channels :int, dst_rate :int )=>int" },
-  { dao__SDL_ConvertAudio, "SDL_ConvertAudio( cvt :SDL_AudioCVT )=>int" },
-  { dao__SDL_MixAudio, "SDL_MixAudio( dst :string, src :string, len :int, volume :int )" },
-  { dao__SDL_MixAudioFormat, "SDL_MixAudioFormat( dst :string, src :string, format :int, len :int, volume :int )" },
+  { dao__SDL_GetAudioDeviceStatus, "SDL_GetAudioDeviceStatus( dev: int )=>int" },
+  { dao__SDL_PauseAudio, "SDL_PauseAudio( pause_on: int )" },
+  { dao__SDL_PauseAudioDevice, "SDL_PauseAudioDevice( dev: int, pause_on: int )" },
+  { dao__SDL_FreeWAV, "SDL_FreeWAV( audio_buf: string )" },
+  { dao__SDL_BuildAudioCVT, "SDL_BuildAudioCVT( cvt: SDL_AudioCVT, src_format: int, src_channels: int, src_rate: int, dst_format: int, dst_channels: int, dst_rate: int )=>int" },
+  { dao__SDL_ConvertAudio, "SDL_ConvertAudio( cvt: SDL_AudioCVT )=>int" },
+  { dao__SDL_MixAudio, "SDL_MixAudio( dst: string, src: string, len: int, volume: int )" },
+  { dao__SDL_MixAudioFormat, "SDL_MixAudioFormat( dst: string, src: string, format: int, len: int, volume: int )" },
   { dao__SDL_LockAudio, "SDL_LockAudio(  )" },
-  { dao__SDL_LockAudioDevice, "SDL_LockAudioDevice( dev :int )" },
+  { dao__SDL_LockAudioDevice, "SDL_LockAudioDevice( dev: int )" },
   { dao__SDL_UnlockAudio, "SDL_UnlockAudio(  )" },
-  { dao__SDL_UnlockAudioDevice, "SDL_UnlockAudioDevice( dev :int )" },
+  { dao__SDL_UnlockAudioDevice, "SDL_UnlockAudioDevice( dev: int )" },
   { dao__SDL_CloseAudio, "SDL_CloseAudio(  )" },
-  { dao__SDL_CloseAudioDevice, "SDL_CloseAudioDevice( dev :int )" },
-  { dao__SDL_SetClipboardText, "SDL_SetClipboardText( text :string )=>int" },
+  { dao__SDL_CloseAudioDevice, "SDL_CloseAudioDevice( dev: int )" },
+  { dao__SDL_SetClipboardText, "SDL_SetClipboardText( text: string )=>int" },
   { dao__SDL_GetClipboardText, "SDL_GetClipboardText(  )=>string" },
   { dao__SDL_HasClipboardText, "SDL_HasClipboardText(  )=>int" },
   { dao__SDL_GetCPUCount, "SDL_GetCPUCount(  )=>int" },
@@ -465,257 +607,439 @@ static DaoFuncItem dao__Funcs[] =
   { dao__SDL_HasSSE3, "SDL_HasSSE3(  )=>int" },
   { dao__SDL_HasSSE41, "SDL_HasSSE41(  )=>int" },
   { dao__SDL_HasSSE42, "SDL_HasSSE42(  )=>int" },
-  { dao__SDL_GetPixelFormatName, "SDL_GetPixelFormatName( format :int )=>string" },
-  { dao__SDL_PixelFormatEnumToMasks, "SDL_PixelFormatEnumToMasks( format :int, bpp :int, Rmask :int, Gmask :int, Bmask :int, Amask :int )=>tuple<int,int,int,int,int,int>" },
-  { dao__SDL_MasksToPixelFormatEnum, "SDL_MasksToPixelFormatEnum( bpp :int, Rmask :int, Gmask :int, Bmask :int, Amask :int )=>int" },
-  { dao__SDL_AllocFormat, "SDL_AllocFormat( pixel_format :int )=>SDL_PixelFormat" },
-  { dao__SDL_FreeFormat, "SDL_FreeFormat( format :SDL_PixelFormat )" },
-  { dao__SDL_AllocPalette, "SDL_AllocPalette( ncolors :int )=>SDL_Palette" },
-  { dao__SDL_SetPixelFormatPalette, "SDL_SetPixelFormatPalette( format :SDL_PixelFormat, palette :SDL_Palette )=>int" },
-  { dao__SDL_SetPaletteColors, "SDL_SetPaletteColors( palette :SDL_Palette, colors :SDL_Color, firstcolor :int, ncolors :int )=>int" },
-  { dao__SDL_FreePalette, "SDL_FreePalette( palette :SDL_Palette )" },
-  { dao__SDL_MapRGB, "SDL_MapRGB( format :SDL_PixelFormat, r :int, g :int, b :int )=>int" },
-  { dao__SDL_MapRGBA, "SDL_MapRGBA( format :SDL_PixelFormat, r :int, g :int, b :int, a :int )=>int" },
-  { dao__SDL_GetRGB, "SDL_GetRGB( pixel :int, format :SDL_PixelFormat, r :string, g :string, b :string )" },
-  { dao__SDL_GetRGBA, "SDL_GetRGBA( pixel :int, format :SDL_PixelFormat, r :string, g :string, b :string, a :string )" },
-  { dao__SDL_CalculateGammaRamp, "SDL_CalculateGammaRamp( gamma :float, ramp :int )=>int" },
-  { dao__SDL_HasIntersection, "SDL_HasIntersection( A :SDL_Rect, B :SDL_Rect )=>int" },
-  { dao__SDL_IntersectRect, "SDL_IntersectRect( A :SDL_Rect, B :SDL_Rect, result :SDL_Rect )=>int" },
-  { dao__SDL_UnionRect, "SDL_UnionRect( A :SDL_Rect, B :SDL_Rect, result :SDL_Rect )" },
-  { dao__SDL_EnclosePoints, "SDL_EnclosePoints( points :SDL_Point, count :int, clip :SDL_Rect, result :SDL_Rect )=>int" },
-  { dao__SDL_IntersectRectAndLine, "SDL_IntersectRectAndLine( rect :SDL_Rect, X1 :int, Y1 :int, X2 :int, Y2 :int )=>tuple<int,int,int,int,int>" },
-  { dao__SDL_CreateRGBSurface, "SDL_CreateRGBSurface( flags :int, width :int, height :int, depth :int, Rmask :int, Gmask :int, Bmask :int, Amask :int )=>SDL_Surface" },
-  { dao__SDL_CreateRGBSurfaceFrom, "SDL_CreateRGBSurfaceFrom( pixels :cdata, width :int, height :int, depth :int, pitch :int, Rmask :int, Gmask :int, Bmask :int, Amask :int )=>SDL_Surface" },
-  { dao__SDL_FreeSurface, "SDL_FreeSurface( surface :SDL_Surface )" },
-  { dao__SDL_SetSurfacePalette, "SDL_SetSurfacePalette( surface :SDL_Surface, palette :SDL_Palette )=>int" },
-  { dao__SDL_LockSurface, "SDL_LockSurface( surface :SDL_Surface )=>int" },
-  { dao__SDL_UnlockSurface, "SDL_UnlockSurface( surface :SDL_Surface )" },
-  { dao__SDL_LoadBMP_RW, "SDL_LoadBMP_RW( src :SDL_RWops, freesrc :int )=>SDL_Surface" },
-  { dao__SDL_SaveBMP_RW, "SDL_SaveBMP_RW( surface :SDL_Surface, dst :SDL_RWops, freedst :int )=>int" },
-  { dao__SDL_SetSurfaceRLE, "SDL_SetSurfaceRLE( surface :SDL_Surface, flag :int )=>int" },
-  { dao__SDL_SetColorKey, "SDL_SetColorKey( surface :SDL_Surface, flag :int, key :int )=>int" },
-  { dao__SDL_GetColorKey, "SDL_GetColorKey( surface :SDL_Surface, key :int )=>tuple<int,int>" },
-  { dao__SDL_SetSurfaceColorMod, "SDL_SetSurfaceColorMod( surface :SDL_Surface, r :int, g :int, b :int )=>int" },
-  { dao__SDL_GetSurfaceColorMod, "SDL_GetSurfaceColorMod( surface :SDL_Surface, r :string, g :string, b :string )=>int" },
-  { dao__SDL_SetSurfaceAlphaMod, "SDL_SetSurfaceAlphaMod( surface :SDL_Surface, alpha :int )=>int" },
-  { dao__SDL_GetSurfaceAlphaMod, "SDL_GetSurfaceAlphaMod( surface :SDL_Surface, alpha :string )=>int" },
-  { dao__SDL_SetSurfaceBlendMode, "SDL_SetSurfaceBlendMode( surface :SDL_Surface, blendMode :int )=>int" },
-  { dao__SDL_GetSurfaceBlendMode, "SDL_GetSurfaceBlendMode( surface :SDL_Surface, blendMode :int )=>int" },
-  { dao__SDL_SetClipRect, "SDL_SetClipRect( surface :SDL_Surface, rect :SDL_Rect )=>int" },
-  { dao__SDL_GetClipRect, "SDL_GetClipRect( surface :SDL_Surface, rect :SDL_Rect )" },
-  { dao__SDL_ConvertSurface, "SDL_ConvertSurface( src :SDL_Surface, fmt :SDL_PixelFormat, flags :int )=>SDL_Surface" },
-  { dao__SDL_ConvertSurfaceFormat, "SDL_ConvertSurfaceFormat( src :SDL_Surface, pixel_format :int, flags :int )=>SDL_Surface" },
-  { dao__SDL_ConvertPixels, "SDL_ConvertPixels( width :int, height :int, src_format :int, src :cdata, src_pitch :int, dst_format :int, dst :cdata, dst_pitch :int )=>int" },
-  { dao__SDL_FillRect, "SDL_FillRect( dst :SDL_Surface, rect :SDL_Rect, color :int )=>int" },
-  { dao__SDL_FillRects, "SDL_FillRects( dst :SDL_Surface, rects :SDL_Rect, count :int, color :int )=>int" },
-  { dao__SDL_UpperBlit, "SDL_UpperBlit( src :SDL_Surface, srcrect :SDL_Rect, dst :SDL_Surface, dstrect :SDL_Rect )=>int" },
-  { dao__SDL_LowerBlit, "SDL_LowerBlit( src :SDL_Surface, srcrect :SDL_Rect, dst :SDL_Surface, dstrect :SDL_Rect )=>int" },
-  { dao__SDL_SoftStretch, "SDL_SoftStretch( src :SDL_Surface, srcrect :SDL_Rect, dst :SDL_Surface, dstrect :SDL_Rect )=>int" },
-  { dao__SDL_UpperBlitScaled, "SDL_UpperBlitScaled( src :SDL_Surface, srcrect :SDL_Rect, dst :SDL_Surface, dstrect :SDL_Rect )=>int" },
-  { dao__SDL_LowerBlitScaled, "SDL_LowerBlitScaled( src :SDL_Surface, srcrect :SDL_Rect, dst :SDL_Surface, dstrect :SDL_Rect )=>int" },
+  { dao__SDL_GetPixelFormatName, "SDL_GetPixelFormatName( format: int )=>string" },
+  { dao__SDL_PixelFormatEnumToMasks, "SDL_PixelFormatEnumToMasks( format: int, bpp: int, Rmask: int, Gmask: int, Bmask: int, Amask: int )=>tuple<int,int,int,int,int,int>" },
+  { dao__SDL_MasksToPixelFormatEnum, "SDL_MasksToPixelFormatEnum( bpp: int, Rmask: int, Gmask: int, Bmask: int, Amask: int )=>int" },
+  { dao__SDL_AllocFormat, "SDL_AllocFormat( pixel_format: int )=>SDL_PixelFormat" },
+  { dao__SDL_FreeFormat, "SDL_FreeFormat( format: SDL_PixelFormat )" },
+  { dao__SDL_AllocPalette, "SDL_AllocPalette( ncolors: int )=>SDL_Palette" },
+  { dao__SDL_SetPixelFormatPalette, "SDL_SetPixelFormatPalette( format: SDL_PixelFormat, palette: SDL_Palette )=>int" },
+  { dao__SDL_SetPaletteColors, "SDL_SetPaletteColors( palette: SDL_Palette, colors: SDL_Color, firstcolor: int, ncolors: int )=>int" },
+  { dao__SDL_FreePalette, "SDL_FreePalette( palette: SDL_Palette )" },
+  { dao__SDL_MapRGB, "SDL_MapRGB( format: SDL_PixelFormat, r: int, g: int, b: int )=>int" },
+  { dao__SDL_MapRGBA, "SDL_MapRGBA( format: SDL_PixelFormat, r: int, g: int, b: int, a: int )=>int" },
+  { dao__SDL_GetRGB, "SDL_GetRGB( pixel: int, format: SDL_PixelFormat, r: string, g: string, b: string )" },
+  { dao__SDL_GetRGBA, "SDL_GetRGBA( pixel: int, format: SDL_PixelFormat, r: string, g: string, b: string, a: string )" },
+  { dao__SDL_CalculateGammaRamp, "SDL_CalculateGammaRamp( gamma: float, ramp: int )=>int" },
+  { dao__SDL_RectEmpty, "SDL_RectEmpty( r: SDL_Rect )=>int" },
+  { dao__SDL_RectEquals, "SDL_RectEquals( a: SDL_Rect, b: SDL_Rect )=>int" },
+  { dao__SDL_HasIntersection, "SDL_HasIntersection( A: SDL_Rect, B: SDL_Rect )=>int" },
+  { dao__SDL_IntersectRect, "SDL_IntersectRect( A: SDL_Rect, B: SDL_Rect, result: SDL_Rect )=>int" },
+  { dao__SDL_UnionRect, "SDL_UnionRect( A: SDL_Rect, B: SDL_Rect, result: SDL_Rect )" },
+  { dao__SDL_EnclosePoints, "SDL_EnclosePoints( points: SDL_Point, count: int, clip: SDL_Rect, result: SDL_Rect )=>int" },
+  { dao__SDL_IntersectRectAndLine, "SDL_IntersectRectAndLine( rect: SDL_Rect, X1: int, Y1: int, X2: int, Y2: int )=>tuple<int,int,int,int,int>" },
+  { dao__SDL_CreateRGBSurface, "SDL_CreateRGBSurface( flags: int, width: int, height: int, depth: int, Rmask: int, Gmask: int, Bmask: int, Amask: int )=>SDL_Surface" },
+  { dao__SDL_CreateRGBSurfaceFrom, "SDL_CreateRGBSurfaceFrom( pixels: cdata, width: int, height: int, depth: int, pitch: int, Rmask: int, Gmask: int, Bmask: int, Amask: int )=>SDL_Surface" },
+  { dao__SDL_FreeSurface, "SDL_FreeSurface( surface: SDL_Surface )" },
+  { dao__SDL_SetSurfacePalette, "SDL_SetSurfacePalette( surface: SDL_Surface, palette: SDL_Palette )=>int" },
+  { dao__SDL_LockSurface, "SDL_LockSurface( surface: SDL_Surface )=>int" },
+  { dao__SDL_UnlockSurface, "SDL_UnlockSurface( surface: SDL_Surface )" },
+  { dao__SDL_LoadBMP_RW, "SDL_LoadBMP_RW( src: SDL_RWops, freesrc: int )=>SDL_Surface" },
+  { dao__SDL_SaveBMP_RW, "SDL_SaveBMP_RW( surface: SDL_Surface, dst: SDL_RWops, freedst: int )=>int" },
+  { dao__SDL_SetSurfaceRLE, "SDL_SetSurfaceRLE( surface: SDL_Surface, flag: int )=>int" },
+  { dao__SDL_SetColorKey, "SDL_SetColorKey( surface: SDL_Surface, flag: int, key: int )=>int" },
+  { dao__SDL_GetColorKey, "SDL_GetColorKey( surface: SDL_Surface, key: int )=>tuple<int,int>" },
+  { dao__SDL_SetSurfaceColorMod, "SDL_SetSurfaceColorMod( surface: SDL_Surface, r: int, g: int, b: int )=>int" },
+  { dao__SDL_GetSurfaceColorMod, "SDL_GetSurfaceColorMod( surface: SDL_Surface, r: string, g: string, b: string )=>int" },
+  { dao__SDL_SetSurfaceAlphaMod, "SDL_SetSurfaceAlphaMod( surface: SDL_Surface, alpha: int )=>int" },
+  { dao__SDL_GetSurfaceAlphaMod, "SDL_GetSurfaceAlphaMod( surface: SDL_Surface, alpha: string )=>int" },
+  { dao__SDL_SetSurfaceBlendMode, "SDL_SetSurfaceBlendMode( surface: SDL_Surface, blendMode: int )=>int" },
+  { dao__SDL_GetSurfaceBlendMode, "SDL_GetSurfaceBlendMode( surface: SDL_Surface, blendMode: int )=>int" },
+  { dao__SDL_SetClipRect, "SDL_SetClipRect( surface: SDL_Surface, rect: SDL_Rect )=>int" },
+  { dao__SDL_GetClipRect, "SDL_GetClipRect( surface: SDL_Surface, rect: SDL_Rect )" },
+  { dao__SDL_ConvertSurface, "SDL_ConvertSurface( src: SDL_Surface, fmt: SDL_PixelFormat, flags: int )=>SDL_Surface" },
+  { dao__SDL_ConvertSurfaceFormat, "SDL_ConvertSurfaceFormat( src: SDL_Surface, pixel_format: int, flags: int )=>SDL_Surface" },
+  { dao__SDL_ConvertPixels, "SDL_ConvertPixels( width: int, height: int, src_format: int, src: cdata, src_pitch: int, dst_format: int, dst: cdata, dst_pitch: int )=>int" },
+  { dao__SDL_FillRect, "SDL_FillRect( dst: SDL_Surface, rect: SDL_Rect, color: int )=>int" },
+  { dao__SDL_FillRects, "SDL_FillRects( dst: SDL_Surface, rects: SDL_Rect, count: int, color: int )=>int" },
+  { dao__SDL_UpperBlit, "SDL_UpperBlit( src: SDL_Surface, srcrect: SDL_Rect, dst: SDL_Surface, dstrect: SDL_Rect )=>int" },
+  { dao__SDL_LowerBlit, "SDL_LowerBlit( src: SDL_Surface, srcrect: SDL_Rect, dst: SDL_Surface, dstrect: SDL_Rect )=>int" },
+  { dao__SDL_SoftStretch, "SDL_SoftStretch( src: SDL_Surface, srcrect: SDL_Rect, dst: SDL_Surface, dstrect: SDL_Rect )=>int" },
+  { dao__SDL_UpperBlitScaled, "SDL_UpperBlitScaled( src: SDL_Surface, srcrect: SDL_Rect, dst: SDL_Surface, dstrect: SDL_Rect )=>int" },
+  { dao__SDL_LowerBlitScaled, "SDL_LowerBlitScaled( src: SDL_Surface, srcrect: SDL_Rect, dst: SDL_Surface, dstrect: SDL_Rect )=>int" },
   { dao__SDL_GetNumVideoDrivers, "SDL_GetNumVideoDrivers(  )=>int" },
-  { dao__SDL_GetVideoDriver, "SDL_GetVideoDriver( index :int )=>string" },
-  { dao__SDL_VideoInit, "SDL_VideoInit( driver_name :string )=>int" },
+  { dao__SDL_GetVideoDriver, "SDL_GetVideoDriver( index: int )=>string" },
+  { dao__SDL_VideoInit, "SDL_VideoInit( driver_name: string )=>int" },
   { dao__SDL_VideoQuit, "SDL_VideoQuit(  )" },
   { dao__SDL_GetCurrentVideoDriver, "SDL_GetCurrentVideoDriver(  )=>string" },
   { dao__SDL_GetNumVideoDisplays, "SDL_GetNumVideoDisplays(  )=>int" },
-  { dao__SDL_GetDisplayBounds, "SDL_GetDisplayBounds( displayIndex :int, rect :SDL_Rect )=>int" },
-  { dao__SDL_GetNumDisplayModes, "SDL_GetNumDisplayModes( displayIndex :int )=>int" },
-  { dao__SDL_GetDisplayMode, "SDL_GetDisplayMode( displayIndex :int, modeIndex :int, mode :SDL_DisplayMode )=>int" },
-  { dao__SDL_GetDesktopDisplayMode, "SDL_GetDesktopDisplayMode( displayIndex :int, mode :SDL_DisplayMode )=>int" },
-  { dao__SDL_GetCurrentDisplayMode, "SDL_GetCurrentDisplayMode( displayIndex :int, mode :SDL_DisplayMode )=>int" },
-  { dao__SDL_GetClosestDisplayMode, "SDL_GetClosestDisplayMode( displayIndex :int, mode :SDL_DisplayMode, closest :SDL_DisplayMode )=>SDL_DisplayMode" },
-  { dao__SDL_GetWindowDisplay, "SDL_GetWindowDisplay( window :SDL_Window )=>int" },
-  { dao__SDL_SetWindowDisplayMode, "SDL_SetWindowDisplayMode( window :SDL_Window, mode :SDL_DisplayMode )=>int" },
-  { dao__SDL_GetWindowDisplayMode, "SDL_GetWindowDisplayMode( window :SDL_Window, mode :SDL_DisplayMode )=>int" },
-  { dao__SDL_GetWindowPixelFormat, "SDL_GetWindowPixelFormat( window :SDL_Window )=>int" },
-  { dao__SDL_CreateWindow, "SDL_CreateWindow( title :string, x :int, y :int, w :int, h :int, flags :int )=>SDL_Window" },
-  { dao__SDL_CreateWindowFrom, "SDL_CreateWindowFrom( data :cdata )=>SDL_Window" },
-  { dao__SDL_GetWindowID, "SDL_GetWindowID( window :SDL_Window )=>int" },
-  { dao__SDL_GetWindowFromID, "SDL_GetWindowFromID( id :int )=>SDL_Window" },
-  { dao__SDL_GetWindowFlags, "SDL_GetWindowFlags( window :SDL_Window )=>int" },
-  { dao__SDL_SetWindowTitle, "SDL_SetWindowTitle( window :SDL_Window, title :string )" },
-  { dao__SDL_GetWindowTitle, "SDL_GetWindowTitle( window :SDL_Window )=>string" },
-  { dao__SDL_SetWindowIcon, "SDL_SetWindowIcon( window :SDL_Window, icon :SDL_Surface )" },
-  { dao__SDL_SetWindowData, "SDL_SetWindowData( window :SDL_Window, name :string, userdata :cdata )=>cdata" },
-  { dao__SDL_GetWindowData, "SDL_GetWindowData( window :SDL_Window, name :string )=>cdata" },
-  { dao__SDL_SetWindowPosition, "SDL_SetWindowPosition( window :SDL_Window, x :int, y :int )" },
-  { dao__SDL_GetWindowPosition, "SDL_GetWindowPosition( window :SDL_Window, x :int, y :int )=>tuple<int,int>" },
-  { dao__SDL_SetWindowSize, "SDL_SetWindowSize( window :SDL_Window, w :int, h :int )" },
-  { dao__SDL_GetWindowSize, "SDL_GetWindowSize( window :SDL_Window, w :int, h :int )=>tuple<int,int>" },
-  { dao__SDL_ShowWindow, "SDL_ShowWindow( window :SDL_Window )" },
-  { dao__SDL_HideWindow, "SDL_HideWindow( window :SDL_Window )" },
-  { dao__SDL_RaiseWindow, "SDL_RaiseWindow( window :SDL_Window )" },
-  { dao__SDL_MaximizeWindow, "SDL_MaximizeWindow( window :SDL_Window )" },
-  { dao__SDL_MinimizeWindow, "SDL_MinimizeWindow( window :SDL_Window )" },
-  { dao__SDL_RestoreWindow, "SDL_RestoreWindow( window :SDL_Window )" },
-  { dao__SDL_SetWindowFullscreen, "SDL_SetWindowFullscreen( window :SDL_Window, fullscreen :int )=>int" },
-  { dao__SDL_GetWindowSurface, "SDL_GetWindowSurface( window :SDL_Window )=>SDL_Surface" },
-  { dao__SDL_UpdateWindowSurface, "SDL_UpdateWindowSurface( window :SDL_Window )=>int" },
-  { dao__SDL_UpdateWindowSurfaceRects, "SDL_UpdateWindowSurfaceRects( window :SDL_Window, rects :SDL_Rect, numrects :int )=>int" },
-  { dao__SDL_SetWindowGrab, "SDL_SetWindowGrab( window :SDL_Window, grabbed :int )" },
-  { dao__SDL_GetWindowGrab, "SDL_GetWindowGrab( window :SDL_Window )=>int" },
-  { dao__SDL_SetWindowBrightness, "SDL_SetWindowBrightness( window :SDL_Window, brightness :float )=>int" },
-  { dao__SDL_GetWindowBrightness, "SDL_GetWindowBrightness( window :SDL_Window )=>float" },
-  { dao__SDL_SetWindowGammaRamp, "SDL_SetWindowGammaRamp( window :SDL_Window, red :array<int>, green :array<int>, blue :array<int> )=>int" },
-  { dao__SDL_GetWindowGammaRamp, "SDL_GetWindowGammaRamp( window :SDL_Window, red :int, green :int, blue :int )=>tuple<int,int,int,int>" },
-  { dao__SDL_DestroyWindow, "SDL_DestroyWindow( window :SDL_Window )" },
+  { dao__SDL_GetDisplayName, "SDL_GetDisplayName( displayIndex: int )=>string" },
+  { dao__SDL_GetDisplayBounds, "SDL_GetDisplayBounds( displayIndex: int, rect: SDL_Rect )=>int" },
+  { dao__SDL_GetNumDisplayModes, "SDL_GetNumDisplayModes( displayIndex: int )=>int" },
+  { dao__SDL_GetDisplayMode, "SDL_GetDisplayMode( displayIndex: int, modeIndex: int, mode: SDL_DisplayMode )=>int" },
+  { dao__SDL_GetDesktopDisplayMode, "SDL_GetDesktopDisplayMode( displayIndex: int, mode: SDL_DisplayMode )=>int" },
+  { dao__SDL_GetCurrentDisplayMode, "SDL_GetCurrentDisplayMode( displayIndex: int, mode: SDL_DisplayMode )=>int" },
+  { dao__SDL_GetClosestDisplayMode, "SDL_GetClosestDisplayMode( displayIndex: int, mode: SDL_DisplayMode, closest: SDL_DisplayMode )=>SDL_DisplayMode" },
+  { dao__SDL_GetWindowDisplayIndex, "SDL_GetWindowDisplayIndex( window: SDL_Window )=>int" },
+  { dao__SDL_SetWindowDisplayMode, "SDL_SetWindowDisplayMode( window: SDL_Window, mode: SDL_DisplayMode )=>int" },
+  { dao__SDL_GetWindowDisplayMode, "SDL_GetWindowDisplayMode( window: SDL_Window, mode: SDL_DisplayMode )=>int" },
+  { dao__SDL_GetWindowPixelFormat, "SDL_GetWindowPixelFormat( window: SDL_Window )=>int" },
+  { dao__SDL_CreateWindow, "SDL_CreateWindow( title: string, x: int, y: int, w: int, h: int, flags: int )=>SDL_Window" },
+  { dao__SDL_CreateWindowFrom, "SDL_CreateWindowFrom( data: cdata )=>SDL_Window" },
+  { dao__SDL_GetWindowID, "SDL_GetWindowID( window: SDL_Window )=>int" },
+  { dao__SDL_GetWindowFromID, "SDL_GetWindowFromID( id: int )=>SDL_Window" },
+  { dao__SDL_GetWindowFlags, "SDL_GetWindowFlags( window: SDL_Window )=>int" },
+  { dao__SDL_SetWindowTitle, "SDL_SetWindowTitle( window: SDL_Window, title: string )" },
+  { dao__SDL_GetWindowTitle, "SDL_GetWindowTitle( window: SDL_Window )=>string" },
+  { dao__SDL_SetWindowIcon, "SDL_SetWindowIcon( window: SDL_Window, icon: SDL_Surface )" },
+  { dao__SDL_SetWindowData, "SDL_SetWindowData( window: SDL_Window, name: string, userdata: cdata )=>cdata" },
+  { dao__SDL_GetWindowData, "SDL_GetWindowData( window: SDL_Window, name: string )=>cdata" },
+  { dao__SDL_SetWindowPosition, "SDL_SetWindowPosition( window: SDL_Window, x: int, y: int )" },
+  { dao__SDL_GetWindowPosition, "SDL_GetWindowPosition( window: SDL_Window, x: int, y: int )=>tuple<int,int>" },
+  { dao__SDL_SetWindowSize, "SDL_SetWindowSize( window: SDL_Window, w: int, h: int )" },
+  { dao__SDL_GetWindowSize, "SDL_GetWindowSize( window: SDL_Window, w: int, h: int )=>tuple<int,int>" },
+  { dao__SDL_SetWindowMinimumSize, "SDL_SetWindowMinimumSize( window: SDL_Window, min_w: int, min_h: int )" },
+  { dao__SDL_GetWindowMinimumSize, "SDL_GetWindowMinimumSize( window: SDL_Window, w: int, h: int )=>tuple<int,int>" },
+  { dao__SDL_SetWindowMaximumSize, "SDL_SetWindowMaximumSize( window: SDL_Window, max_w: int, max_h: int )" },
+  { dao__SDL_GetWindowMaximumSize, "SDL_GetWindowMaximumSize( window: SDL_Window, w: int, h: int )=>tuple<int,int>" },
+  { dao__SDL_SetWindowBordered, "SDL_SetWindowBordered( window: SDL_Window, bordered: int )" },
+  { dao__SDL_ShowWindow, "SDL_ShowWindow( window: SDL_Window )" },
+  { dao__SDL_HideWindow, "SDL_HideWindow( window: SDL_Window )" },
+  { dao__SDL_RaiseWindow, "SDL_RaiseWindow( window: SDL_Window )" },
+  { dao__SDL_MaximizeWindow, "SDL_MaximizeWindow( window: SDL_Window )" },
+  { dao__SDL_MinimizeWindow, "SDL_MinimizeWindow( window: SDL_Window )" },
+  { dao__SDL_RestoreWindow, "SDL_RestoreWindow( window: SDL_Window )" },
+  { dao__SDL_SetWindowFullscreen, "SDL_SetWindowFullscreen( window: SDL_Window, flags: int )=>int" },
+  { dao__SDL_GetWindowSurface, "SDL_GetWindowSurface( window: SDL_Window )=>SDL_Surface" },
+  { dao__SDL_UpdateWindowSurface, "SDL_UpdateWindowSurface( window: SDL_Window )=>int" },
+  { dao__SDL_UpdateWindowSurfaceRects, "SDL_UpdateWindowSurfaceRects( window: SDL_Window, rects: SDL_Rect, numrects: int )=>int" },
+  { dao__SDL_SetWindowGrab, "SDL_SetWindowGrab( window: SDL_Window, grabbed: int )" },
+  { dao__SDL_GetWindowGrab, "SDL_GetWindowGrab( window: SDL_Window )=>int" },
+  { dao__SDL_SetWindowBrightness, "SDL_SetWindowBrightness( window: SDL_Window, brightness: float )=>int" },
+  { dao__SDL_GetWindowBrightness, "SDL_GetWindowBrightness( window: SDL_Window )=>float" },
+  { dao__SDL_SetWindowGammaRamp, "SDL_SetWindowGammaRamp( window: SDL_Window, red: array<int>, green: array<int>, blue: array<int> )=>int" },
+  { dao__SDL_GetWindowGammaRamp, "SDL_GetWindowGammaRamp( window: SDL_Window, red: int, green: int, blue: int )=>tuple<int,int,int,int>" },
+  { dao__SDL_DestroyWindow, "SDL_DestroyWindow( window: SDL_Window )" },
   { dao__SDL_IsScreenSaverEnabled, "SDL_IsScreenSaverEnabled(  )=>int" },
   { dao__SDL_EnableScreenSaver, "SDL_EnableScreenSaver(  )" },
   { dao__SDL_DisableScreenSaver, "SDL_DisableScreenSaver(  )" },
-  { dao__SDL_GL_LoadLibrary, "SDL_GL_LoadLibrary( path :string )=>int" },
-  { dao__SDL_GL_GetProcAddress, "SDL_GL_GetProcAddress( proc :string )=>cdata" },
+  { dao__SDL_GL_LoadLibrary, "SDL_GL_LoadLibrary( path: string )=>int" },
+  { dao__SDL_GL_GetProcAddress, "SDL_GL_GetProcAddress( proc: string )=>cdata" },
   { dao__SDL_GL_UnloadLibrary, "SDL_GL_UnloadLibrary(  )" },
-  { dao__SDL_GL_ExtensionSupported, "SDL_GL_ExtensionSupported( extension :string )=>int" },
-  { dao__SDL_GL_SetAttribute, "SDL_GL_SetAttribute( attr :int, value :int )=>int" },
-  { dao__SDL_GL_GetAttribute, "SDL_GL_GetAttribute( attr :int, value :int )=>tuple<int,int>" },
-  { dao__SDL_GL_CreateContext, "SDL_GL_CreateContext( window :SDL_Window )=>cdata" },
-  { dao__SDL_GL_MakeCurrent, "SDL_GL_MakeCurrent( window :SDL_Window, context :cdata )=>int" },
-  { dao__SDL_GL_SetSwapInterval, "SDL_GL_SetSwapInterval( interval :int )=>int" },
+  { dao__SDL_GL_ExtensionSupported, "SDL_GL_ExtensionSupported( extension: string )=>int" },
+  { dao__SDL_GL_SetAttribute, "SDL_GL_SetAttribute( attr: int, value: int )=>int" },
+  { dao__SDL_GL_GetAttribute, "SDL_GL_GetAttribute( attr: int, value: int )=>tuple<int,int>" },
+  { dao__SDL_GL_CreateContext, "SDL_GL_CreateContext( window: SDL_Window )=>cdata" },
+  { dao__SDL_GL_MakeCurrent, "SDL_GL_MakeCurrent( window: SDL_Window, context: cdata )=>int" },
+  { dao__SDL_GL_GetCurrentWindow, "SDL_GL_GetCurrentWindow(  )=>SDL_Window" },
+  { dao__SDL_GL_GetCurrentContext, "SDL_GL_GetCurrentContext(  )=>cdata" },
+  { dao__SDL_GL_SetSwapInterval, "SDL_GL_SetSwapInterval( interval: int )=>int" },
   { dao__SDL_GL_GetSwapInterval, "SDL_GL_GetSwapInterval(  )=>int" },
-  { dao__SDL_GL_SwapWindow, "SDL_GL_SwapWindow( window :SDL_Window )" },
-  { dao__SDL_GL_DeleteContext, "SDL_GL_DeleteContext( context :cdata )" },
+  { dao__SDL_GL_SwapWindow, "SDL_GL_SwapWindow( window: SDL_Window )" },
+  { dao__SDL_GL_DeleteContext, "SDL_GL_DeleteContext( context: cdata )" },
   { dao__SDL_GetKeyboardFocus, "SDL_GetKeyboardFocus(  )=>SDL_Window" },
-  { dao__SDL_GetKeyboardState, "SDL_GetKeyboardState( numkeys :int )=>tuple<string,int>" },
+  { dao__SDL_GetKeyboardState, "SDL_GetKeyboardState( numkeys: int )=>tuple<string,int>" },
   { dao__SDL_GetModState, "SDL_GetModState(  )=>int" },
-  { dao__SDL_SetModState, "SDL_SetModState( modstate :int )" },
-  { dao__SDL_GetKeyFromScancode, "SDL_GetKeyFromScancode( scancode :int )=>int" },
-  { dao__SDL_GetScancodeFromKey, "SDL_GetScancodeFromKey( key :int )=>int" },
-  { dao__SDL_GetScancodeName, "SDL_GetScancodeName( scancode :int )=>string" },
-  { dao__SDL_GetScancodeFromName, "SDL_GetScancodeFromName( name :string )=>int" },
-  { dao__SDL_GetKeyName, "SDL_GetKeyName( key :int )=>string" },
-  { dao__SDL_GetKeyFromName, "SDL_GetKeyFromName( name :string )=>int" },
+  { dao__SDL_SetModState, "SDL_SetModState( modstate: int )" },
+  { dao__SDL_GetKeyFromScancode, "SDL_GetKeyFromScancode( scancode: int )=>int" },
+  { dao__SDL_GetScancodeFromKey, "SDL_GetScancodeFromKey( key: int )=>int" },
+  { dao__SDL_GetScancodeName, "SDL_GetScancodeName( scancode: int )=>string" },
+  { dao__SDL_GetScancodeFromName, "SDL_GetScancodeFromName( name: string )=>int" },
+  { dao__SDL_GetKeyName, "SDL_GetKeyName( key: int )=>string" },
+  { dao__SDL_GetKeyFromName, "SDL_GetKeyFromName( name: string )=>int" },
   { dao__SDL_StartTextInput, "SDL_StartTextInput(  )" },
+  { dao__SDL_IsTextInputActive, "SDL_IsTextInputActive(  )=>int" },
   { dao__SDL_StopTextInput, "SDL_StopTextInput(  )" },
-  { dao__SDL_SetTextInputRect, "SDL_SetTextInputRect( rect :SDL_Rect )" },
+  { dao__SDL_SetTextInputRect, "SDL_SetTextInputRect( rect: SDL_Rect )" },
+  { dao__SDL_HasScreenKeyboardSupport, "SDL_HasScreenKeyboardSupport(  )=>int" },
+  { dao__SDL_IsScreenKeyboardShown, "SDL_IsScreenKeyboardShown( window: SDL_Window )=>int" },
   { dao__SDL_GetMouseFocus, "SDL_GetMouseFocus(  )=>SDL_Window" },
-  { dao__SDL_GetMouseState, "SDL_GetMouseState( x :int, y :int )=>tuple<int,int,int>" },
-  { dao__SDL_GetRelativeMouseState, "SDL_GetRelativeMouseState( x :int, y :int )=>tuple<int,int,int>" },
-  { dao__SDL_WarpMouseInWindow, "SDL_WarpMouseInWindow( window :SDL_Window, x :int, y :int )" },
-  { dao__SDL_SetRelativeMouseMode, "SDL_SetRelativeMouseMode( enabled :int )=>int" },
+  { dao__SDL_GetMouseState, "SDL_GetMouseState( x: int, y: int )=>tuple<int,int,int>" },
+  { dao__SDL_GetRelativeMouseState, "SDL_GetRelativeMouseState( x: int, y: int )=>tuple<int,int,int>" },
+  { dao__SDL_WarpMouseInWindow, "SDL_WarpMouseInWindow( window: SDL_Window, x: int, y: int )" },
+  { dao__SDL_SetRelativeMouseMode, "SDL_SetRelativeMouseMode( enabled: int )=>int" },
   { dao__SDL_GetRelativeMouseMode, "SDL_GetRelativeMouseMode(  )=>int" },
-  { dao__SDL_CreateCursor, "SDL_CreateCursor( data :string, mask :string, w :int, h :int, hot_x :int, hot_y :int )=>SDL_Cursor" },
-  { dao__SDL_CreateColorCursor, "SDL_CreateColorCursor( surface :SDL_Surface, hot_x :int, hot_y :int )=>SDL_Cursor" },
-  { dao__SDL_SetCursor, "SDL_SetCursor( cursor :SDL_Cursor )" },
+  { dao__SDL_CreateCursor, "SDL_CreateCursor( data: string, mask: string, w: int, h: int, hot_x: int, hot_y: int )=>SDL_Cursor" },
+  { dao__SDL_CreateColorCursor, "SDL_CreateColorCursor( surface: SDL_Surface, hot_x: int, hot_y: int )=>SDL_Cursor" },
+  { dao__SDL_CreateSystemCursor, "SDL_CreateSystemCursor( id: int )=>SDL_Cursor" },
+  { dao__SDL_SetCursor, "SDL_SetCursor( cursor: SDL_Cursor )" },
   { dao__SDL_GetCursor, "SDL_GetCursor(  )=>SDL_Cursor" },
-  { dao__SDL_FreeCursor, "SDL_FreeCursor( cursor :SDL_Cursor )" },
-  { dao__SDL_ShowCursor, "SDL_ShowCursor( toggle :int )=>int" },
+  { dao__SDL_GetDefaultCursor, "SDL_GetDefaultCursor(  )=>SDL_Cursor" },
+  { dao__SDL_FreeCursor, "SDL_FreeCursor( cursor: SDL_Cursor )" },
+  { dao__SDL_ShowCursor, "SDL_ShowCursor( toggle: int )=>int" },
   { dao__SDL_NumJoysticks, "SDL_NumJoysticks(  )=>int" },
-  { dao__SDL_JoystickName, "SDL_JoystickName( device_index :int )=>string" },
-  { dao__SDL_JoystickOpen, "SDL_JoystickOpen( device_index :int )=>_SDL_Joystick" },
-  { dao__SDL_JoystickOpened, "SDL_JoystickOpened( device_index :int )=>int" },
-  { dao__SDL_JoystickIndex, "SDL_JoystickIndex( joystick :_SDL_Joystick )=>int" },
-  { dao__SDL_JoystickNumAxes, "SDL_JoystickNumAxes( joystick :_SDL_Joystick )=>int" },
-  { dao__SDL_JoystickNumBalls, "SDL_JoystickNumBalls( joystick :_SDL_Joystick )=>int" },
-  { dao__SDL_JoystickNumHats, "SDL_JoystickNumHats( joystick :_SDL_Joystick )=>int" },
-  { dao__SDL_JoystickNumButtons, "SDL_JoystickNumButtons( joystick :_SDL_Joystick )=>int" },
+  { dao__SDL_JoystickNameForIndex, "SDL_JoystickNameForIndex( device_index: int )=>string" },
+  { dao__SDL_JoystickOpen, "SDL_JoystickOpen( device_index: int )=>_SDL_Joystick" },
+  { dao__SDL_JoystickName, "SDL_JoystickName( joystick: _SDL_Joystick )=>string" },
+  { dao__SDL_JoystickGetDeviceGUID, "SDL_JoystickGetDeviceGUID( device_index: int )=>SDL_JoystickGUID" },
+  { dao__SDL_JoystickGetGUID, "SDL_JoystickGetGUID( joystick: _SDL_Joystick )=>SDL_JoystickGUID" },
+  { dao__SDL_JoystickGetGUIDString, "SDL_JoystickGetGUIDString( guid: SDL_JoystickGUID, pszGUID: string, cbGUID: int )" },
+  { dao__SDL_JoystickGetGUIDFromString, "SDL_JoystickGetGUIDFromString( pchGUID: string )=>SDL_JoystickGUID" },
+  { dao__SDL_JoystickGetAttached, "SDL_JoystickGetAttached( joystick: _SDL_Joystick )=>int" },
+  { dao__SDL_JoystickInstanceID, "SDL_JoystickInstanceID( joystick: _SDL_Joystick )=>int" },
+  { dao__SDL_JoystickNumAxes, "SDL_JoystickNumAxes( joystick: _SDL_Joystick )=>int" },
+  { dao__SDL_JoystickNumBalls, "SDL_JoystickNumBalls( joystick: _SDL_Joystick )=>int" },
+  { dao__SDL_JoystickNumHats, "SDL_JoystickNumHats( joystick: _SDL_Joystick )=>int" },
+  { dao__SDL_JoystickNumButtons, "SDL_JoystickNumButtons( joystick: _SDL_Joystick )=>int" },
   { dao__SDL_JoystickUpdate, "SDL_JoystickUpdate(  )" },
-  { dao__SDL_JoystickEventState, "SDL_JoystickEventState( state :int )=>int" },
-  { dao__SDL_JoystickGetAxis, "SDL_JoystickGetAxis( joystick :_SDL_Joystick, axis :int )=>int" },
-  { dao__SDL_JoystickGetHat, "SDL_JoystickGetHat( joystick :_SDL_Joystick, hat :int )=>int" },
-  { dao__SDL_JoystickGetBall, "SDL_JoystickGetBall( joystick :_SDL_Joystick, ball :int, dx :int, dy :int )=>tuple<int,int,int>" },
-  { dao__SDL_JoystickGetButton, "SDL_JoystickGetButton( joystick :_SDL_Joystick, button :int )=>int" },
-  { dao__SDL_JoystickClose, "SDL_JoystickClose( joystick :_SDL_Joystick )" },
-  { dao__SDL_GetTouch, "SDL_GetTouch( id :int )=>SDL_Touch" },
-  { dao__SDL_GetFinger, "SDL_GetFinger( touch :SDL_Touch, id :int )=>SDL_Finger" },
-  { dao__SDL_RecordGesture, "SDL_RecordGesture( touchId :int )=>int" },
-  { dao__SDL_SaveAllDollarTemplates, "SDL_SaveAllDollarTemplates( src :SDL_RWops )=>int" },
-  { dao__SDL_SaveDollarTemplate, "SDL_SaveDollarTemplate( gestureId :int, src :SDL_RWops )=>int" },
-  { dao__SDL_LoadDollarTemplates, "SDL_LoadDollarTemplates( touchId :int, src :SDL_RWops )=>int" },
+  { dao__SDL_JoystickEventState, "SDL_JoystickEventState( state: int )=>int" },
+  { dao__SDL_JoystickGetAxis, "SDL_JoystickGetAxis( joystick: _SDL_Joystick, axis: int )=>int" },
+  { dao__SDL_JoystickGetHat, "SDL_JoystickGetHat( joystick: _SDL_Joystick, hat: int )=>int" },
+  { dao__SDL_JoystickGetBall, "SDL_JoystickGetBall( joystick: _SDL_Joystick, ball: int, dx: int, dy: int )=>tuple<int,int,int>" },
+  { dao__SDL_JoystickGetButton, "SDL_JoystickGetButton( joystick: _SDL_Joystick, button: int )=>int" },
+  { dao__SDL_JoystickClose, "SDL_JoystickClose( joystick: _SDL_Joystick )" },
+  { dao__SDL_GetNumTouchDevices, "SDL_GetNumTouchDevices(  )=>int" },
+  { dao__SDL_GetTouchDevice, "SDL_GetTouchDevice( index: int )=>int" },
+  { dao__SDL_GetNumTouchFingers, "SDL_GetNumTouchFingers( touchID: int )=>int" },
+  { dao__SDL_GetTouchFinger, "SDL_GetTouchFinger( touchID: int, index: int )=>SDL_Finger" },
+  { dao__SDL_RecordGesture, "SDL_RecordGesture( touchId: int )=>int" },
+  { dao__SDL_SaveAllDollarTemplates, "SDL_SaveAllDollarTemplates( src: SDL_RWops )=>int" },
+  { dao__SDL_SaveDollarTemplate, "SDL_SaveDollarTemplate( gestureId: int, src: SDL_RWops )=>int" },
+  { dao__SDL_LoadDollarTemplates, "SDL_LoadDollarTemplates( touchId: int, src: SDL_RWops )=>int" },
   { dao__SDL_PumpEvents, "SDL_PumpEvents(  )" },
-  { dao__SDL_PeepEvents, "SDL_PeepEvents( events :SDL_Event, numevents :int, action :int, minType :int, maxType :int )=>int" },
-  { dao__SDL_HasEvent, "SDL_HasEvent( type :int )=>int" },
-  { dao__SDL_HasEvents, "SDL_HasEvents( minType :int, maxType :int )=>int" },
-  { dao__SDL_FlushEvent, "SDL_FlushEvent( type :int )" },
-  { dao__SDL_FlushEvents, "SDL_FlushEvents( minType :int, maxType :int )" },
-  { dao__SDL_PollEvent, "SDL_PollEvent( event :SDL_Event )=>int" },
-  { dao__SDL_WaitEvent, "SDL_WaitEvent( event :SDL_Event )=>int" },
-  { dao__SDL_WaitEventTimeout, "SDL_WaitEventTimeout( event :SDL_Event, timeout :int )=>int" },
-  { dao__SDL_PushEvent, "SDL_PushEvent( event :SDL_Event )=>int" },
-  { dao__SDL_EventState, "SDL_EventState( type :int, state :int )=>int" },
-  { dao__SDL_RegisterEvents, "SDL_RegisterEvents( numevents :int )=>int" },
-  { dao__SDL_SetHintWithPriority, "SDL_SetHintWithPriority( name :string, value :string, priority :int )=>int" },
-  { dao__SDL_SetHint, "SDL_SetHint( name :string, value :string )=>int" },
-  { dao__SDL_GetHint, "SDL_GetHint( name :string )=>string" },
+  { dao__SDL_PeepEvents, "SDL_PeepEvents( events: SDL_Event, numevents: int, action: int, minType: int, maxType: int )=>int" },
+  { dao__SDL_HasEvent, "SDL_HasEvent( type: int )=>int" },
+  { dao__SDL_HasEvents, "SDL_HasEvents( minType: int, maxType: int )=>int" },
+  { dao__SDL_FlushEvent, "SDL_FlushEvent( type: int )" },
+  { dao__SDL_FlushEvents, "SDL_FlushEvents( minType: int, maxType: int )" },
+  { dao__SDL_PollEvent, "SDL_PollEvent( event: SDL_Event )=>int" },
+  { dao__SDL_WaitEvent, "SDL_WaitEvent( event: SDL_Event )=>int" },
+  { dao__SDL_WaitEventTimeout, "SDL_WaitEventTimeout( event: SDL_Event, timeout: int )=>int" },
+  { dao__SDL_PushEvent, "SDL_PushEvent( event: SDL_Event )=>int" },
+  { dao__SDL_EventState, "SDL_EventState( type: int, state: int )=>int" },
+  { dao__SDL_RegisterEvents, "SDL_RegisterEvents( numevents: int )=>int" },
+  { dao__SDL_SetHintWithPriority, "SDL_SetHintWithPriority( name: string, value: string, priority: int )=>int" },
+  { dao__SDL_SetHint, "SDL_SetHint( name: string, value: string )=>int" },
+  { dao__SDL_GetHint, "SDL_GetHint( name: string )=>string" },
   { dao__SDL_ClearHints, "SDL_ClearHints(  )" },
-  { dao__SDL_LoadObject, "SDL_LoadObject( sofile :string )=>cdata" },
-  { dao__SDL_LoadFunction, "SDL_LoadFunction( handle :cdata, name :string )=>cdata" },
-  { dao__SDL_UnloadObject, "SDL_UnloadObject( handle :cdata )" },
-  { dao__SDL_LogSetAllPriority, "SDL_LogSetAllPriority( priority :int )" },
-  { dao__SDL_LogSetPriority, "SDL_LogSetPriority( category :int, priority :int )" },
-  { dao__SDL_LogGetPriority, "SDL_LogGetPriority( category :int )=>int" },
+  { dao__SDL_LoadObject, "SDL_LoadObject( sofile: string )=>cdata" },
+  { dao__SDL_LoadFunction, "SDL_LoadFunction( handle: cdata, name: string )=>cdata" },
+  { dao__SDL_UnloadObject, "SDL_UnloadObject( handle: cdata )" },
+  { dao__SDL_LogSetAllPriority, "SDL_LogSetAllPriority( priority: int )" },
+  { dao__SDL_LogSetPriority, "SDL_LogSetPriority( category: int, priority: int )" },
+  { dao__SDL_LogGetPriority, "SDL_LogGetPriority( category: int )=>int" },
   { dao__SDL_LogResetPriorities, "SDL_LogResetPriorities(  )" },
-  { dao__SDL_Log, "SDL_Log( fmt :string )" },
-  { dao__SDL_LogVerbose, "SDL_LogVerbose( category :int, fmt :string )" },
-  { dao__SDL_LogDebug, "SDL_LogDebug( category :int, fmt :string )" },
-  { dao__SDL_LogInfo, "SDL_LogInfo( category :int, fmt :string )" },
-  { dao__SDL_LogWarn, "SDL_LogWarn( category :int, fmt :string )" },
-  { dao__SDL_LogError, "SDL_LogError( category :int, fmt :string )" },
-  { dao__SDL_LogCritical, "SDL_LogCritical( category :int, fmt :string )" },
-  { dao__SDL_LogMessage, "SDL_LogMessage( category :int, priority :int, fmt :string )" },
-  { dao__SDL_LogMessageV, "SDL_LogMessageV( category :int, priority :int, fmt :string, ap :string )" },
-  { dao__SDL_GetPowerInfo, "SDL_GetPowerInfo( secs :int, pct :int )=>tuple<int,int,int>" },
+  { dao__SDL_Log, "SDL_Log( fmt: string )" },
+  { dao__SDL_LogVerbose, "SDL_LogVerbose( category: int, fmt: string )" },
+  { dao__SDL_LogDebug, "SDL_LogDebug( category: int, fmt: string )" },
+  { dao__SDL_LogInfo, "SDL_LogInfo( category: int, fmt: string )" },
+  { dao__SDL_LogWarn, "SDL_LogWarn( category: int, fmt: string )" },
+  { dao__SDL_LogError, "SDL_LogError( category: int, fmt: string )" },
+  { dao__SDL_LogCritical, "SDL_LogCritical( category: int, fmt: string )" },
+  { dao__SDL_LogMessage, "SDL_LogMessage( category: int, priority: int, fmt: string )" },
+  { dao__SDL_GetPowerInfo, "SDL_GetPowerInfo( secs: int, pct: int )=>tuple<int,int,int>" },
   { dao__SDL_GetNumRenderDrivers, "SDL_GetNumRenderDrivers(  )=>int" },
-  { dao__SDL_GetRenderDriverInfo, "SDL_GetRenderDriverInfo( index :int, info :SDL_RendererInfo )=>int" },
-  { dao__SDL_CreateWindowAndRenderer, "SDL_CreateWindowAndRenderer( width :int, height :int, window_flags :int, window :SDL_Window, renderer :SDL_Renderer )=>tuple<int,SDL_Window,SDL_Renderer>" },
-  { dao__SDL_CreateRenderer, "SDL_CreateRenderer( window :SDL_Window, index :int, flags :int )=>SDL_Renderer" },
-  { dao__SDL_CreateSoftwareRenderer, "SDL_CreateSoftwareRenderer( surface :SDL_Surface )=>SDL_Renderer" },
-  { dao__SDL_GetRenderer, "SDL_GetRenderer( window :SDL_Window )=>SDL_Renderer" },
-  { dao__SDL_GetRendererInfo, "SDL_GetRendererInfo( renderer :SDL_Renderer, info :SDL_RendererInfo )=>int" },
-  { dao__SDL_CreateTexture, "SDL_CreateTexture( renderer :SDL_Renderer, format :int, access :int, w :int, h :int )=>SDL_Texture" },
-  { dao__SDL_CreateTextureFromSurface, "SDL_CreateTextureFromSurface( renderer :SDL_Renderer, surface :SDL_Surface )=>SDL_Texture" },
-  { dao__SDL_QueryTexture, "SDL_QueryTexture( texture :SDL_Texture, format :int, access :int, w :int, h :int )=>tuple<int,int,int,int,int>" },
-  { dao__SDL_SetTextureColorMod, "SDL_SetTextureColorMod( texture :SDL_Texture, r :int, g :int, b :int )=>int" },
-  { dao__SDL_GetTextureColorMod, "SDL_GetTextureColorMod( texture :SDL_Texture, r :string, g :string, b :string )=>int" },
-  { dao__SDL_SetTextureAlphaMod, "SDL_SetTextureAlphaMod( texture :SDL_Texture, alpha :int )=>int" },
-  { dao__SDL_GetTextureAlphaMod, "SDL_GetTextureAlphaMod( texture :SDL_Texture, alpha :string )=>int" },
-  { dao__SDL_SetTextureBlendMode, "SDL_SetTextureBlendMode( texture :SDL_Texture, blendMode :int )=>int" },
-  { dao__SDL_GetTextureBlendMode, "SDL_GetTextureBlendMode( texture :SDL_Texture, blendMode :int )=>int" },
-  { dao__SDL_UpdateTexture, "SDL_UpdateTexture( texture :SDL_Texture, rect :SDL_Rect, pixels :cdata, pitch :int )=>int" },
-  { dao__SDL_UnlockTexture, "SDL_UnlockTexture( texture :SDL_Texture )" },
-  { dao__SDL_RenderTargetSupported, "SDL_RenderTargetSupported( renderer :SDL_Renderer )=>int" },
-  { dao__SDL_SetRenderTarget, "SDL_SetRenderTarget( renderer :SDL_Renderer, texture :SDL_Texture )=>int" },
-  { dao__SDL_RenderSetViewport, "SDL_RenderSetViewport( renderer :SDL_Renderer, rect :SDL_Rect )=>int" },
-  { dao__SDL_RenderGetViewport, "SDL_RenderGetViewport( renderer :SDL_Renderer, rect :SDL_Rect )" },
-  { dao__SDL_SetRenderDrawColor, "SDL_SetRenderDrawColor( renderer :SDL_Renderer, r :int, g :int, b :int, a :int )=>int" },
-  { dao__SDL_GetRenderDrawColor, "SDL_GetRenderDrawColor( renderer :SDL_Renderer, r :string, g :string, b :string, a :string )=>int" },
-  { dao__SDL_SetRenderDrawBlendMode, "SDL_SetRenderDrawBlendMode( renderer :SDL_Renderer, blendMode :int )=>int" },
-  { dao__SDL_GetRenderDrawBlendMode, "SDL_GetRenderDrawBlendMode( renderer :SDL_Renderer, blendMode :int )=>int" },
-  { dao__SDL_RenderClear, "SDL_RenderClear( renderer :SDL_Renderer )=>int" },
-  { dao__SDL_RenderDrawPoint, "SDL_RenderDrawPoint( renderer :SDL_Renderer, x :int, y :int )=>int" },
-  { dao__SDL_RenderDrawPoints, "SDL_RenderDrawPoints( renderer :SDL_Renderer, points :SDL_Point, count :int )=>int" },
-  { dao__SDL_RenderDrawLine, "SDL_RenderDrawLine( renderer :SDL_Renderer, x1 :int, y1 :int, x2 :int, y2 :int )=>int" },
-  { dao__SDL_RenderDrawLines, "SDL_RenderDrawLines( renderer :SDL_Renderer, points :SDL_Point, count :int )=>int" },
-  { dao__SDL_RenderDrawRect, "SDL_RenderDrawRect( renderer :SDL_Renderer, rect :SDL_Rect )=>int" },
-  { dao__SDL_RenderDrawRects, "SDL_RenderDrawRects( renderer :SDL_Renderer, rects :SDL_Rect, count :int )=>int" },
-  { dao__SDL_RenderFillRect, "SDL_RenderFillRect( renderer :SDL_Renderer, rect :SDL_Rect )=>int" },
-  { dao__SDL_RenderFillRects, "SDL_RenderFillRects( renderer :SDL_Renderer, rects :SDL_Rect, count :int )=>int" },
-  { dao__SDL_RenderCopy, "SDL_RenderCopy( renderer :SDL_Renderer, texture :SDL_Texture, srcrect :SDL_Rect|none, dstrect :SDL_Rect|none )=>int" },
-  { dao__SDL_RenderReadPixels, "SDL_RenderReadPixels( renderer :SDL_Renderer, rect :SDL_Rect, format :int, pixels :cdata, pitch :int )=>int" },
-  { dao__SDL_RenderPresent, "SDL_RenderPresent( renderer :SDL_Renderer )" },
-  { dao__SDL_DestroyTexture, "SDL_DestroyTexture( texture :SDL_Texture )" },
-  { dao__SDL_DestroyRenderer, "SDL_DestroyRenderer( renderer :SDL_Renderer )" },
+  { dao__SDL_GetRenderDriverInfo, "SDL_GetRenderDriverInfo( index: int, info: SDL_RendererInfo )=>int" },
+  { dao__SDL_CreateWindowAndRenderer, "SDL_CreateWindowAndRenderer( width: int, height: int, window_flags: int, window: SDL_Window, renderer: SDL_Renderer )=>tuple<int,SDL_Window,SDL_Renderer>" },
+  { dao__SDL_CreateRenderer, "SDL_CreateRenderer( window: SDL_Window, index: int, flags: int )=>SDL_Renderer" },
+  { dao__SDL_CreateSoftwareRenderer, "SDL_CreateSoftwareRenderer( surface: SDL_Surface )=>SDL_Renderer" },
+  { dao__SDL_GetRenderer, "SDL_GetRenderer( window: SDL_Window )=>SDL_Renderer" },
+  { dao__SDL_GetRendererInfo, "SDL_GetRendererInfo( renderer: SDL_Renderer, info: SDL_RendererInfo )=>int" },
+  { dao__SDL_GetRendererOutputSize, "SDL_GetRendererOutputSize( renderer: SDL_Renderer, w: int, h: int )=>tuple<int,int,int>" },
+  { dao__SDL_CreateTexture, "SDL_CreateTexture( renderer: SDL_Renderer, format: int, access: int, w: int, h: int )=>SDL_Texture" },
+  { dao__SDL_CreateTextureFromSurface, "SDL_CreateTextureFromSurface( renderer: SDL_Renderer, surface: SDL_Surface )=>SDL_Texture" },
+  { dao__SDL_QueryTexture, "SDL_QueryTexture( texture: SDL_Texture, format: int, access: int, w: int, h: int )=>tuple<int,int,int,int,int>" },
+  { dao__SDL_SetTextureColorMod, "SDL_SetTextureColorMod( texture: SDL_Texture, r: int, g: int, b: int )=>int" },
+  { dao__SDL_GetTextureColorMod, "SDL_GetTextureColorMod( texture: SDL_Texture, r: string, g: string, b: string )=>int" },
+  { dao__SDL_SetTextureAlphaMod, "SDL_SetTextureAlphaMod( texture: SDL_Texture, alpha: int )=>int" },
+  { dao__SDL_GetTextureAlphaMod, "SDL_GetTextureAlphaMod( texture: SDL_Texture, alpha: string )=>int" },
+  { dao__SDL_SetTextureBlendMode, "SDL_SetTextureBlendMode( texture: SDL_Texture, blendMode: int )=>int" },
+  { dao__SDL_GetTextureBlendMode, "SDL_GetTextureBlendMode( texture: SDL_Texture, blendMode: int )=>int" },
+  { dao__SDL_UpdateTexture, "SDL_UpdateTexture( texture: SDL_Texture, rect: SDL_Rect, pixels: cdata, pitch: int )=>int" },
+  { dao__SDL_UnlockTexture, "SDL_UnlockTexture( texture: SDL_Texture )" },
+  { dao__SDL_RenderTargetSupported, "SDL_RenderTargetSupported( renderer: SDL_Renderer )=>int" },
+  { dao__SDL_SetRenderTarget, "SDL_SetRenderTarget( renderer: SDL_Renderer, texture: SDL_Texture )=>int" },
+  { dao__SDL_GetRenderTarget, "SDL_GetRenderTarget( renderer: SDL_Renderer )=>SDL_Texture" },
+  { dao__SDL_RenderSetLogicalSize, "SDL_RenderSetLogicalSize( renderer: SDL_Renderer, w: int, h: int )=>int" },
+  { dao__SDL_RenderGetLogicalSize, "SDL_RenderGetLogicalSize( renderer: SDL_Renderer, w: int, h: int )=>tuple<int,int>" },
+  { dao__SDL_RenderSetViewport, "SDL_RenderSetViewport( renderer: SDL_Renderer, rect: SDL_Rect )=>int" },
+  { dao__SDL_RenderGetViewport, "SDL_RenderGetViewport( renderer: SDL_Renderer, rect: SDL_Rect )" },
+  { dao__SDL_RenderSetClipRect, "SDL_RenderSetClipRect( renderer: SDL_Renderer, rect: SDL_Rect )=>int" },
+  { dao__SDL_RenderGetClipRect, "SDL_RenderGetClipRect( renderer: SDL_Renderer, rect: SDL_Rect )" },
+  { dao__SDL_RenderSetScale, "SDL_RenderSetScale( renderer: SDL_Renderer, scaleX: float, scaleY: float )=>int" },
+  { dao__SDL_RenderGetScale, "SDL_RenderGetScale( renderer: SDL_Renderer, scaleX: float, scaleY: float )=>tuple<float,float>" },
+  { dao__SDL_SetRenderDrawColor, "SDL_SetRenderDrawColor( renderer: SDL_Renderer, r: int, g: int, b: int, a: int )=>int" },
+  { dao__SDL_GetRenderDrawColor, "SDL_GetRenderDrawColor( renderer: SDL_Renderer, r: string, g: string, b: string, a: string )=>int" },
+  { dao__SDL_SetRenderDrawBlendMode, "SDL_SetRenderDrawBlendMode( renderer: SDL_Renderer, blendMode: int )=>int" },
+  { dao__SDL_GetRenderDrawBlendMode, "SDL_GetRenderDrawBlendMode( renderer: SDL_Renderer, blendMode: int )=>int" },
+  { dao__SDL_RenderClear, "SDL_RenderClear( renderer: SDL_Renderer )=>int" },
+  { dao__SDL_RenderDrawPoint, "SDL_RenderDrawPoint( renderer: SDL_Renderer, x: int, y: int )=>int" },
+  { dao__SDL_RenderDrawPoints, "SDL_RenderDrawPoints( renderer: SDL_Renderer, points: SDL_Point, count: int )=>int" },
+  { dao__SDL_RenderDrawLine, "SDL_RenderDrawLine( renderer: SDL_Renderer, x1: int, y1: int, x2: int, y2: int )=>int" },
+  { dao__SDL_RenderDrawLines, "SDL_RenderDrawLines( renderer: SDL_Renderer, points: SDL_Point, count: int )=>int" },
+  { dao__SDL_RenderDrawRect, "SDL_RenderDrawRect( renderer: SDL_Renderer, rect: SDL_Rect )=>int" },
+  { dao__SDL_RenderDrawRects, "SDL_RenderDrawRects( renderer: SDL_Renderer, rects: SDL_Rect, count: int )=>int" },
+  { dao__SDL_RenderFillRect, "SDL_RenderFillRect( renderer: SDL_Renderer, rect: SDL_Rect )=>int" },
+  { dao__SDL_RenderFillRects, "SDL_RenderFillRects( renderer: SDL_Renderer, rects: SDL_Rect, count: int )=>int" },
+  { dao__SDL_RenderCopy, "SDL_RenderCopy( renderer: SDL_Renderer, texture: SDL_Texture, srcrect: SDL_Rect|none, dstrect: SDL_Rect|none )=>int" },
+  { dao__SDL_RenderCopyEx, "SDL_RenderCopyEx( renderer: SDL_Renderer, texture: SDL_Texture, srcrect: SDL_Rect, dstrect: SDL_Rect, angle: double, center: SDL_Point, flip: int )=>int" },
+  { dao__SDL_RenderReadPixels, "SDL_RenderReadPixels( renderer: SDL_Renderer, rect: SDL_Rect, format: int, pixels: cdata, pitch: int )=>int" },
+  { dao__SDL_RenderPresent, "SDL_RenderPresent( renderer: SDL_Renderer )" },
+  { dao__SDL_DestroyTexture, "SDL_DestroyTexture( texture: SDL_Texture )" },
+  { dao__SDL_DestroyRenderer, "SDL_DestroyRenderer( renderer: SDL_Renderer )" },
+  { dao__SDL_GL_BindTexture, "SDL_GL_BindTexture( texture: SDL_Texture, texw: float, texh: float )=>tuple<int,float,float>" },
+  { dao__SDL_GL_UnbindTexture, "SDL_GL_UnbindTexture( texture: SDL_Texture )=>int" },
   { dao__SDL_GetTicks, "SDL_GetTicks(  )=>int" },
   { dao__SDL_GetPerformanceCounter, "SDL_GetPerformanceCounter(  )=>int" },
   { dao__SDL_GetPerformanceFrequency, "SDL_GetPerformanceFrequency(  )=>int" },
-  { dao__SDL_Delay, "SDL_Delay( ms :int )" },
-  { dao__SDL_RemoveTimer, "SDL_RemoveTimer( id :int )=>int" },
-  { dao__SDL_GetVersion, "SDL_GetVersion( ver :SDL_version )" },
+  { dao__SDL_Delay, "SDL_Delay( ms: int )" },
+  { dao__SDL_RemoveTimer, "SDL_RemoveTimer( id: int )=>int" },
+  { dao__SDL_GetVersion, "SDL_GetVersion( ver: SDL_version )" },
   { dao__SDL_GetRevision, "SDL_GetRevision(  )=>string" },
   { dao__SDL_GetRevisionNumber, "SDL_GetRevisionNumber(  )=>int" },
-  { dao__SDL_Init, "SDL_Init( flags :int )=>int" },
-  { dao__SDL_InitSubSystem, "SDL_InitSubSystem( flags :int )=>int" },
-  { dao__SDL_QuitSubSystem, "SDL_QuitSubSystem( flags :int )" },
-  { dao__SDL_WasInit, "SDL_WasInit( flags :int )=>int" },
+  { dao__SDL_Init, "SDL_Init( flags: int )=>int" },
+  { dao__SDL_InitSubSystem, "SDL_InitSubSystem( flags: int )=>int" },
+  { dao__SDL_QuitSubSystem, "SDL_QuitSubSystem( flags: int )" },
+  { dao__SDL_WasInit, "SDL_WasInit( flags: int )=>int" },
   { dao__SDL_Quit, "SDL_Quit(  )" },
   { NULL, NULL }
 };
 /* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_malloc( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  unsigned long size = (unsigned long) DaoValue_TryGetInteger( _p[0] );
+
+  void* _SDL_malloc = SDL_malloc( size );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_malloc, NULL );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_calloc( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  unsigned long nmemb = (unsigned long) DaoValue_TryGetInteger( _p[0] );
+  unsigned long size = (unsigned long) DaoValue_TryGetInteger( _p[1] );
+
+  void* _SDL_calloc = SDL_calloc( nmemb, size );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_calloc, NULL );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_realloc( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  void* mem = (void*) DaoValue_TryGetCdata( _p[0] );
+  unsigned long size = (unsigned long) DaoValue_TryGetInteger( _p[1] );
+
+  void* _SDL_realloc = SDL_realloc( mem, size );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_realloc, NULL );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_free( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  void* mem = (void*) DaoValue_TryGetCdata( _p[0] );
+
+  SDL_free( mem );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_getenv( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* name = (const char*) DaoValue_TryGetChars( _p[0] );
+
+  char* _SDL_getenv = SDL_getenv( name );
+  DaoProcess_PutChars( _proc, (char*) _SDL_getenv );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_setenv( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* name = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* value = (const char*) DaoValue_TryGetChars( _p[1] );
+  int overwrite = (int) DaoValue_TryGetInteger( _p[2] );
+
+  int _SDL_setenv = SDL_setenv( name, value, overwrite );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_setenv );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_abs( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int x = (int) DaoValue_TryGetInteger( _p[0] );
+
+  int _SDL_abs = SDL_abs( x );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_abs );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_isdigit( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int x = (int) DaoValue_TryGetInteger( _p[0] );
+
+  int _SDL_isdigit = SDL_isdigit( x );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_isdigit );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_isspace( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int x = (int) DaoValue_TryGetInteger( _p[0] );
+
+  int _SDL_isspace = SDL_isspace( x );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_isspace );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_toupper( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int x = (int) DaoValue_TryGetInteger( _p[0] );
+
+  int _SDL_toupper = SDL_toupper( x );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_toupper );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_tolower( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int x = (int) DaoValue_TryGetInteger( _p[0] );
+
+  int _SDL_tolower = SDL_tolower( x );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_tolower );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_memset( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  void* dst = (void*) DaoValue_TryGetCdata( _p[0] );
+  int c = (int) DaoValue_TryGetInteger( _p[1] );
+  unsigned long len = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  void* _SDL_memset = SDL_memset( dst, c, len );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_memset, NULL );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_memset4( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  void* dst = (void*) DaoValue_TryGetCdata( _p[0] );
+  int val = (int) DaoValue_TryGetInteger( _p[1] );
+  unsigned long dwords = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  SDL_memset4( dst, val, dwords );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_memcpy( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  void* dst = (void*) DaoValue_TryGetCdata( _p[0] );
+  const void* src = (const void*) DaoValue_TryGetCdata( _p[1] );
+  unsigned long len = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  void* _SDL_memcpy = SDL_memcpy( dst, src, len );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_memcpy, NULL );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_memcpy4( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  void* dst = (void*) DaoValue_TryGetCdata( _p[0] );
+  const void* src = (const void*) DaoValue_TryGetCdata( _p[1] );
+  unsigned long dwords = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  void* _SDL_memcpy4 = SDL_memcpy4( dst, src, dwords );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_memcpy4, NULL );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_memmove( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  void* dst = (void*) DaoValue_TryGetCdata( _p[0] );
+  const void* src = (const void*) DaoValue_TryGetCdata( _p[1] );
+  unsigned long len = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  void* _SDL_memmove = SDL_memmove( dst, src, len );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_memmove, NULL );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_memcmp( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const void* s1 = (const void*) DaoValue_TryGetCdata( _p[0] );
+  const void* s2 = (const void*) DaoValue_TryGetCdata( _p[1] );
+  unsigned long len = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  int _SDL_memcmp = SDL_memcmp( s1, s2, len );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_memcmp );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_wcslen( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const int* string = (const int*) DaoArray_ToSInt( (DaoArray*)_p[0] );
+  const int* wstr = (const int*) DaoArray_ToSInt( (DaoArray*)_p[0] );
 
-  size_t _SDL_wcslen = SDL_wcslen( string );
+  size_t _SDL_wcslen = SDL_wcslen( wstr );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_wcslen );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
@@ -743,96 +1067,391 @@ static void dao__SDL_wcslcat( DaoProcess *_proc, DaoValue *_p[], int _n )
   DaoProcess_PutTuple( _proc, -2 );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strlen( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str = (const char*) DaoValue_TryGetChars( _p[0] );
+
+  size_t _SDL_strlen = SDL_strlen( str );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_strlen );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strlcpy( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  char* dst = (char*) DaoValue_TryGetChars( _p[0] );
+  const char* src = (const char*) DaoValue_TryGetChars( _p[1] );
+  unsigned long maxlen = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  size_t _SDL_strlcpy = SDL_strlcpy( dst, src, maxlen );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_strlcpy );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_utf8strlcpy( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  char* dst = (char*) DaoValue_TryGetMBString( _p[0] );
-  const char* src = (const char*) DaoValue_TryGetMBString( _p[1] );
+  char* dst = (char*) DaoValue_TryGetChars( _p[0] );
+  const char* src = (const char*) DaoValue_TryGetChars( _p[1] );
   unsigned long dst_bytes = (unsigned long) DaoValue_TryGetInteger( _p[2] );
 
   size_t _SDL_utf8strlcpy = SDL_utf8strlcpy( dst, src, dst_bytes );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_utf8strlcpy );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strlcat( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  char* dst = (char*) DaoValue_TryGetChars( _p[0] );
+  const char* src = (const char*) DaoValue_TryGetChars( _p[1] );
+  unsigned long maxlen = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  size_t _SDL_strlcat = SDL_strlcat( dst, src, maxlen );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_strlcat );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strdup( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str = (const char*) DaoValue_TryGetChars( _p[0] );
+
+  char* _SDL_strdup = SDL_strdup( str );
+  DaoProcess_PutChars( _proc, (char*) _SDL_strdup );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_strrev( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  char* string = (char*) DaoValue_TryGetMBString( _p[0] );
+  char* str = (char*) DaoValue_TryGetChars( _p[0] );
 
-  char* _SDL_strrev = SDL_strrev( string );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_strrev );
+  char* _SDL_strrev = SDL_strrev( str );
+  DaoProcess_PutChars( _proc, (char*) _SDL_strrev );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_strupr( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  char* string = (char*) DaoValue_TryGetMBString( _p[0] );
+  char* str = (char*) DaoValue_TryGetChars( _p[0] );
 
-  char* _SDL_strupr = SDL_strupr( string );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_strupr );
+  char* _SDL_strupr = SDL_strupr( str );
+  DaoProcess_PutChars( _proc, (char*) _SDL_strupr );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_strlwr( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  char* string = (char*) DaoValue_TryGetMBString( _p[0] );
+  char* str = (char*) DaoValue_TryGetChars( _p[0] );
 
-  char* _SDL_strlwr = SDL_strlwr( string );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_strlwr );
+  char* _SDL_strlwr = SDL_strlwr( str );
+  DaoProcess_PutChars( _proc, (char*) _SDL_strlwr );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strchr( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str = (const char*) DaoValue_TryGetChars( _p[0] );
+  int c = (int) DaoValue_TryGetInteger( _p[1] );
+
+  char* _SDL_strchr = SDL_strchr( str, c );
+  DaoProcess_PutChars( _proc, (char*) _SDL_strchr );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strrchr( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str = (const char*) DaoValue_TryGetChars( _p[0] );
+  int c = (int) DaoValue_TryGetInteger( _p[1] );
+
+  char* _SDL_strrchr = SDL_strrchr( str, c );
+  DaoProcess_PutChars( _proc, (char*) _SDL_strrchr );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strstr( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* haystack = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* needle = (const char*) DaoValue_TryGetChars( _p[1] );
+
+  char* _SDL_strstr = SDL_strstr( haystack, needle );
+  DaoProcess_PutChars( _proc, (char*) _SDL_strstr );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_itoa( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int value = (int) DaoValue_TryGetInteger( _p[0] );
+  char* str = (char*) DaoValue_TryGetChars( _p[1] );
+  int radix = (int) DaoValue_TryGetInteger( _p[2] );
+
+  char* _SDL_itoa = SDL_itoa( value, str, radix );
+  DaoProcess_PutChars( _proc, (char*) _SDL_itoa );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_uitoa( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  unsigned int value = (unsigned int) DaoValue_TryGetInteger( _p[0] );
+  char* str = (char*) DaoValue_TryGetChars( _p[1] );
+  int radix = (int) DaoValue_TryGetInteger( _p[2] );
+
+  char* _SDL_uitoa = SDL_uitoa( value, str, radix );
+  DaoProcess_PutChars( _proc, (char*) _SDL_uitoa );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_ltoa( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   long value = (long) DaoValue_TryGetInteger( _p[0] );
-  char* string = (char*) DaoValue_TryGetMBString( _p[1] );
+  char* str = (char*) DaoValue_TryGetChars( _p[1] );
   int radix = (int) DaoValue_TryGetInteger( _p[2] );
 
-  char* _SDL_ltoa = SDL_ltoa( value, string, radix );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_ltoa );
+  char* _SDL_ltoa = SDL_ltoa( value, str, radix );
+  DaoProcess_PutChars( _proc, (char*) _SDL_ltoa );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_ultoa( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   unsigned long value = (unsigned long) DaoValue_TryGetInteger( _p[0] );
-  char* string = (char*) DaoValue_TryGetMBString( _p[1] );
+  char* str = (char*) DaoValue_TryGetChars( _p[1] );
   int radix = (int) DaoValue_TryGetInteger( _p[2] );
 
-  char* _SDL_ultoa = SDL_ultoa( value, string, radix );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_ultoa );
+  char* _SDL_ultoa = SDL_ultoa( value, str, radix );
+  DaoProcess_PutChars( _proc, (char*) _SDL_ultoa );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_lltoa( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   long long value = (long long) DaoValue_TryGetInteger( _p[0] );
-  char* string = (char*) DaoValue_TryGetMBString( _p[1] );
+  char* str = (char*) DaoValue_TryGetChars( _p[1] );
   int radix = (int) DaoValue_TryGetInteger( _p[2] );
 
-  char* _SDL_lltoa = SDL_lltoa( value, string, radix );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_lltoa );
+  char* _SDL_lltoa = SDL_lltoa( value, str, radix );
+  DaoProcess_PutChars( _proc, (char*) _SDL_lltoa );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_ulltoa( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   unsigned long long value = (unsigned long long) DaoValue_TryGetInteger( _p[0] );
-  char* string = (char*) DaoValue_TryGetMBString( _p[1] );
+  char* str = (char*) DaoValue_TryGetChars( _p[1] );
   int radix = (int) DaoValue_TryGetInteger( _p[2] );
 
-  char* _SDL_ulltoa = SDL_ulltoa( value, string, radix );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_ulltoa );
+  char* _SDL_ulltoa = SDL_ulltoa( value, str, radix );
+  DaoProcess_PutChars( _proc, (char*) _SDL_ulltoa );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_atoi( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str = (const char*) DaoValue_TryGetChars( _p[0] );
+
+  int _SDL_atoi = SDL_atoi( str );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_atoi );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_atof( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str = (const char*) DaoValue_TryGetChars( _p[0] );
+
+  double _SDL_atof = SDL_atof( str );
+  DaoProcess_PutDouble( _proc, (double) _SDL_atof );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strcmp( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str1 = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* str2 = (const char*) DaoValue_TryGetChars( _p[1] );
+
+  int _SDL_strcmp = SDL_strcmp( str1, str2 );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_strcmp );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strncmp( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str1 = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* str2 = (const char*) DaoValue_TryGetChars( _p[1] );
+  unsigned long maxlen = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  int _SDL_strncmp = SDL_strncmp( str1, str2, maxlen );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_strncmp );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strcasecmp( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str1 = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* str2 = (const char*) DaoValue_TryGetChars( _p[1] );
+
+  int _SDL_strcasecmp = SDL_strcasecmp( str1, str2 );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_strcasecmp );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_strncasecmp( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* str1 = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* str2 = (const char*) DaoValue_TryGetChars( _p[1] );
+  unsigned long len = (unsigned long) DaoValue_TryGetInteger( _p[2] );
+
+  int _SDL_strncasecmp = SDL_strncasecmp( str1, str2, len );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_strncasecmp );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_sscanf( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* text = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[1] );
+
+  int _SDL_sscanf = SDL_sscanf( text, fmt );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_sscanf );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_snprintf( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  char* text = (char*) DaoValue_TryGetChars( _p[0] );
+  unsigned long maxlen = (unsigned long) DaoValue_TryGetInteger( _p[1] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[2] );
+
+  int _SDL_snprintf = SDL_snprintf( text, maxlen, fmt );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_snprintf );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_atan( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+
+  double _SDL_atan = SDL_atan( x );
+  DaoProcess_PutDouble( _proc, (double) _SDL_atan );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_atan2( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+  double y = (double) DaoValue_TryGetDouble( _p[1] );
+
+  double _SDL_atan2 = SDL_atan2( x, y );
+  DaoProcess_PutDouble( _proc, (double) _SDL_atan2 );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_ceil( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+
+  double _SDL_ceil = SDL_ceil( x );
+  DaoProcess_PutDouble( _proc, (double) _SDL_ceil );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_copysign( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+  double y = (double) DaoValue_TryGetDouble( _p[1] );
+
+  double _SDL_copysign = SDL_copysign( x, y );
+  DaoProcess_PutDouble( _proc, (double) _SDL_copysign );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_cos( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+
+  double _SDL_cos = SDL_cos( x );
+  DaoProcess_PutDouble( _proc, (double) _SDL_cos );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_cosf( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  float x = (float) DaoValue_TryGetFloat( _p[0] );
+
+  float _SDL_cosf = SDL_cosf( x );
+  DaoProcess_PutFloat( _proc, (float) _SDL_cosf );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_fabs( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+
+  double _SDL_fabs = SDL_fabs( x );
+  DaoProcess_PutDouble( _proc, (double) _SDL_fabs );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_floor( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+
+  double _SDL_floor = SDL_floor( x );
+  DaoProcess_PutDouble( _proc, (double) _SDL_floor );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_log( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+
+  double _SDL_log = SDL_log( x );
+  DaoProcess_PutDouble( _proc, (double) _SDL_log );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_pow( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+  double y = (double) DaoValue_TryGetDouble( _p[1] );
+
+  double _SDL_pow = SDL_pow( x, y );
+  DaoProcess_PutDouble( _proc, (double) _SDL_pow );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_scalbn( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+  int n = (int) DaoValue_TryGetInteger( _p[1] );
+
+  double _SDL_scalbn = SDL_scalbn( x, n );
+  DaoProcess_PutDouble( _proc, (double) _SDL_scalbn );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_sin( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+
+  double _SDL_sin = SDL_sin( x );
+  DaoProcess_PutDouble( _proc, (double) _SDL_sin );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_sinf( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  float x = (float) DaoValue_TryGetFloat( _p[0] );
+
+  float _SDL_sinf = SDL_sinf( x );
+  DaoProcess_PutFloat( _proc, (float) _SDL_sinf );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_sqrt( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  double x = (double) DaoValue_TryGetDouble( _p[0] );
+
+  double _SDL_sqrt = SDL_sqrt( x );
+  DaoProcess_PutDouble( _proc, (double) _SDL_sqrt );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_iconv_open( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* tocode = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* fromcode = (const char*) DaoValue_TryGetChars( _p[1] );
+
+  SDL_iconv_t _SDL_iconv_open = SDL_iconv_open( tocode, fromcode );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_iconv_open, dao_type__SDL_iconv_t );
+}
+/* /usr/local/include/SDL2/SDL_stdinc.h */
+static void dao__SDL_iconv_close( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  struct _SDL_iconv_t* cd = (struct _SDL_iconv_t*) DaoValue_TryCastCdata( _p[0], dao_type__SDL_iconv_t );
+
+  int _SDL_iconv_close = SDL_iconv_close( cd );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_iconv_close );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static void dao__SDL_iconv_string( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* tocode = (const char*) DaoValue_TryGetMBString( _p[0] );
-  const char* fromcode = (const char*) DaoValue_TryGetMBString( _p[1] );
-  const char* inbuf = (const char*) DaoValue_TryGetMBString( _p[2] );
+  const char* tocode = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* fromcode = (const char*) DaoValue_TryGetChars( _p[1] );
+  const char* inbuf = (const char*) DaoValue_TryGetChars( _p[2] );
   unsigned long inbytesleft = (unsigned long) DaoValue_TryGetInteger( _p[3] );
 
   char* _SDL_iconv_string = SDL_iconv_string( tocode, fromcode, inbuf, inbytesleft );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_iconv_string );
+  DaoProcess_PutChars( _proc, (char*) _SDL_iconv_string );
+}
+/* /usr/local/include/SDL2/SDL_main.h */
+static void dao__SDL_SetMainReady( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+
+  SDL_SetMainReady(  );
 }
 /* /usr/local/include/SDL2/SDL_assert.h */
 static void dao__SDL_ReportAssertion( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_assert_data* _p0 = (SDL_assert_data*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_assert_data );
-  const char* _p1 = (const char*) DaoValue_TryGetMBString( _p[1] );
-  const char* _p2 = (const char*) DaoValue_TryGetMBString( _p[2] );
+  const char* _p1 = (const char*) DaoValue_TryGetChars( _p[1] );
+  const char* _p2 = (const char*) DaoValue_TryGetChars( _p[2] );
   int _p3 = (int) DaoValue_TryGetInteger( _p[3] );
 
   SDL_assert_state _SDL_ReportAssertion = SDL_ReportAssertion( _p0, _p1, _p2, _p3 );
@@ -878,16 +1497,6 @@ static void dao__SDL_AtomicUnlock( DaoProcess *_proc, DaoValue *_p[], int _n )
   DaoProcess_PutInteger( _proc, (daoint) lock );
 }
 /* /usr/local/include/SDL2/SDL_atomic.h */
-static void dao__SDL_AtomicCAS_( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_atomic_t* a = (SDL_atomic_t*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_atomic_t );
-  int oldval = (int) DaoValue_TryGetInteger( _p[1] );
-  int newval = (int) DaoValue_TryGetInteger( _p[2] );
-
-  SDL_bool _SDL_AtomicCAS_ = SDL_AtomicCAS_( a, oldval, newval );
-  DaoProcess_PutInteger( _proc, (daoint) _SDL_AtomicCAS_ );
-}
-/* /usr/local/include/SDL2/SDL_atomic.h */
 static void dao__SDL_AtomicSet( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_atomic_t* a = (SDL_atomic_t*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_atomic_t );
@@ -916,16 +1525,17 @@ static void dao__SDL_AtomicAdd( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_error.h */
 static void dao__SDL_SetError( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[0] );
 
-  SDL_SetError( fmt );
+  int _SDL_SetError = SDL_SetError( fmt );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_SetError );
 }
 /* /usr/local/include/SDL2/SDL_error.h */
 static void dao__SDL_GetError( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
 
   const char* _SDL_GetError = SDL_GetError(  );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetError );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetError );
 }
 /* /usr/local/include/SDL2/SDL_error.h */
 static void dao__SDL_ClearError( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -938,7 +1548,8 @@ static void dao__SDL_Error( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_errorcode code = (SDL_errorcode) DaoValue_TryGetInteger( _p[0] );
 
-  SDL_Error( code );
+  int _SDL_Error = SDL_Error( code );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_Error );
 }
 /* /usr/local/include/SDL2/SDL_endian.h */
 static void dao__SDL_Swap16( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -980,20 +1591,28 @@ static void dao__SDL_CreateMutex( DaoProcess *_proc, DaoValue *_p[], int _n )
   DaoProcess_WrapCdata( _proc, (void*) _SDL_CreateMutex, dao_type_SDL_mutex );
 }
 /* /usr/local/include/SDL2/SDL_mutex.h */
-static void dao__SDL_mutexP( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao__SDL_LockMutex( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_mutex* mutex = (SDL_mutex*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_mutex );
 
-  int _SDL_mutexP = SDL_mutexP( mutex );
-  DaoProcess_PutInteger( _proc, (daoint) _SDL_mutexP );
+  int _SDL_LockMutex = SDL_LockMutex( mutex );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_LockMutex );
 }
 /* /usr/local/include/SDL2/SDL_mutex.h */
-static void dao__SDL_mutexV( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao__SDL_TryLockMutex( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_mutex* mutex = (SDL_mutex*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_mutex );
 
-  int _SDL_mutexV = SDL_mutexV( mutex );
-  DaoProcess_PutInteger( _proc, (daoint) _SDL_mutexV );
+  int _SDL_TryLockMutex = SDL_TryLockMutex( mutex );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_TryLockMutex );
+}
+/* /usr/local/include/SDL2/SDL_mutex.h */
+static void dao__SDL_UnlockMutex( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_mutex* mutex = (SDL_mutex*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_mutex );
+
+  int _SDL_UnlockMutex = SDL_UnlockMutex( mutex );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_UnlockMutex );
 }
 /* /usr/local/include/SDL2/SDL_mutex.h */
 static void dao__SDL_DestroyMutex( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -1113,7 +1732,7 @@ static void dao__SDL_GetThreadName( DaoProcess *_proc, DaoValue *_p[], int _n )
   SDL_Thread* thread = (SDL_Thread*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Thread );
 
   const char* _SDL_GetThreadName = SDL_GetThreadName( thread );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetThreadName );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetThreadName );
 }
 /* /usr/local/include/SDL2/SDL_thread.h */
 static void dao__SDL_ThreadID( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -1147,11 +1766,26 @@ static void dao__SDL_WaitThread( DaoProcess *_proc, DaoValue *_p[], int _n )
   SDL_WaitThread( thread, &status );
   DaoProcess_PutInteger( _proc, (daoint) status );
 }
+/* /usr/local/include/SDL2/SDL_thread.h */
+static void dao__SDL_TLSCreate( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+
+  SDL_TLSID _SDL_TLSCreate = SDL_TLSCreate(  );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_TLSCreate );
+}
+/* /usr/local/include/SDL2/SDL_thread.h */
+static void dao__SDL_TLSGet( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  unsigned int id = (unsigned int) DaoValue_TryGetInteger( _p[0] );
+
+  void* _SDL_TLSGet = SDL_TLSGet( id );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_TLSGet, NULL );
+}
 /* /usr/local/include/SDL2/SDL_rwops.h */
 static void dao__SDL_RWFromFile( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* file = (const char*) DaoValue_TryGetMBString( _p[0] );
-  const char* mode = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* file = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* mode = (const char*) DaoValue_TryGetChars( _p[1] );
 
   struct SDL_RWops* _SDL_RWFromFile = SDL_RWFromFile( file, mode );
   DaoProcess_WrapCdata( _proc, (void*) _SDL_RWFromFile, dao_type_SDL_RWops );
@@ -1196,6 +1830,14 @@ static void dao__SDL_FreeRW( DaoProcess *_proc, DaoValue *_p[], int _n )
   SDL_RWops* area = (SDL_RWops*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_RWops );
 
   SDL_FreeRW( area );
+}
+/* /usr/local/include/SDL2/SDL_rwops.h */
+static void dao__SDL_ReadU8( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_RWops* src = (SDL_RWops*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_RWops );
+
+  Uint8 _SDL_ReadU8 = SDL_ReadU8( src );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_ReadU8 );
 }
 /* /usr/local/include/SDL2/SDL_rwops.h */
 static void dao__SDL_ReadLE16( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -1244,6 +1886,15 @@ static void dao__SDL_ReadBE64( DaoProcess *_proc, DaoValue *_p[], int _n )
 
   Uint64 _SDL_ReadBE64 = SDL_ReadBE64( src );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_ReadBE64 );
+}
+/* /usr/local/include/SDL2/SDL_rwops.h */
+static void dao__SDL_WriteU8( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_RWops* dst = (SDL_RWops*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_RWops );
+  unsigned char value = (unsigned char) DaoValue_TryGetInteger( _p[1] );
+
+  size_t _SDL_WriteU8 = SDL_WriteU8( dst, value );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_WriteU8 );
 }
 /* /usr/local/include/SDL2/SDL_rwops.h */
 static void dao__SDL_WriteLE16( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -1312,12 +1963,12 @@ static void dao__SDL_GetAudioDriver( DaoProcess *_proc, DaoValue *_p[], int _n )
   int index = (int) DaoValue_TryGetInteger( _p[0] );
 
   const char* _SDL_GetAudioDriver = SDL_GetAudioDriver( index );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetAudioDriver );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetAudioDriver );
 }
 /* /usr/local/include/SDL2/SDL_audio.h */
 static void dao__SDL_AudioInit( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* driver_name = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* driver_name = (const char*) DaoValue_TryGetChars( _p[0] );
 
   int _SDL_AudioInit = SDL_AudioInit( driver_name );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_AudioInit );
@@ -1333,7 +1984,7 @@ static void dao__SDL_GetCurrentAudioDriver( DaoProcess *_proc, DaoValue *_p[], i
 {
 
   const char* _SDL_GetCurrentAudioDriver = SDL_GetCurrentAudioDriver(  );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetCurrentAudioDriver );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetCurrentAudioDriver );
 }
 /* /usr/local/include/SDL2/SDL_audio.h */
 static void dao__SDL_OpenAudio( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -1359,12 +2010,12 @@ static void dao__SDL_GetAudioDeviceName( DaoProcess *_proc, DaoValue *_p[], int 
   int iscapture = (int) DaoValue_TryGetInteger( _p[1] );
 
   const char* _SDL_GetAudioDeviceName = SDL_GetAudioDeviceName( index, iscapture );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetAudioDeviceName );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetAudioDeviceName );
 }
 /* /usr/local/include/SDL2/SDL_audio.h */
 static void dao__SDL_OpenAudioDevice( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* device = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* device = (const char*) DaoValue_TryGetChars( _p[0] );
   int iscapture = (int) DaoValue_TryGetInteger( _p[1] );
   SDL_AudioSpec* desired = (SDL_AudioSpec*) DaoValue_TryCastCdata( _p[2], dao_type_SDL_AudioSpec );
   SDL_AudioSpec* obtained = (SDL_AudioSpec*) DaoValue_TryCastCdata( _p[3], dao_type_SDL_AudioSpec );
@@ -1406,7 +2057,7 @@ static void dao__SDL_PauseAudioDevice( DaoProcess *_proc, DaoValue *_p[], int _n
 /* /usr/local/include/SDL2/SDL_audio.h */
 static void dao__SDL_FreeWAV( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  unsigned char* audio_buf = (unsigned char*) DaoValue_TryGetMBString( _p[0] );
+  unsigned char* audio_buf = (unsigned char*) DaoValue_TryGetChars( _p[0] );
 
   SDL_FreeWAV( audio_buf );
 }
@@ -1435,8 +2086,8 @@ static void dao__SDL_ConvertAudio( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_audio.h */
 static void dao__SDL_MixAudio( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  unsigned char* dst = (unsigned char*) DaoValue_TryGetMBString( _p[0] );
-  const unsigned char* src = (const unsigned char*) DaoValue_TryGetMBString( _p[1] );
+  unsigned char* dst = (unsigned char*) DaoValue_TryGetChars( _p[0] );
+  const unsigned char* src = (const unsigned char*) DaoValue_TryGetChars( _p[1] );
   unsigned int len = (unsigned int) DaoValue_TryGetInteger( _p[2] );
   int volume = (int) DaoValue_TryGetInteger( _p[3] );
 
@@ -1445,8 +2096,8 @@ static void dao__SDL_MixAudio( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_audio.h */
 static void dao__SDL_MixAudioFormat( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  unsigned char* dst = (unsigned char*) DaoValue_TryGetMBString( _p[0] );
-  const unsigned char* src = (const unsigned char*) DaoValue_TryGetMBString( _p[1] );
+  unsigned char* dst = (unsigned char*) DaoValue_TryGetChars( _p[0] );
+  const unsigned char* src = (const unsigned char*) DaoValue_TryGetChars( _p[1] );
   unsigned short format = (unsigned short) DaoValue_TryGetInteger( _p[2] );
   unsigned int len = (unsigned int) DaoValue_TryGetInteger( _p[3] );
   int volume = (int) DaoValue_TryGetInteger( _p[4] );
@@ -1495,7 +2146,7 @@ static void dao__SDL_CloseAudioDevice( DaoProcess *_proc, DaoValue *_p[], int _n
 /* /usr/local/include/SDL2/SDL_clipboard.h */
 static void dao__SDL_SetClipboardText( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* text = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* text = (const char*) DaoValue_TryGetChars( _p[0] );
 
   int _SDL_SetClipboardText = SDL_SetClipboardText( text );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_SetClipboardText );
@@ -1505,7 +2156,7 @@ static void dao__SDL_GetClipboardText( DaoProcess *_proc, DaoValue *_p[], int _n
 {
 
   char* _SDL_GetClipboardText = SDL_GetClipboardText(  );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetClipboardText );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetClipboardText );
 }
 /* /usr/local/include/SDL2/SDL_clipboard.h */
 static void dao__SDL_HasClipboardText( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -1597,7 +2248,7 @@ static void dao__SDL_GetPixelFormatName( DaoProcess *_proc, DaoValue *_p[], int 
   unsigned int format = (unsigned int) DaoValue_TryGetInteger( _p[0] );
 
   const char* _SDL_GetPixelFormatName = SDL_GetPixelFormatName( format );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetPixelFormatName );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetPixelFormatName );
 }
 /* /usr/local/include/SDL2/SDL_pixels.h */
 static void dao__SDL_PixelFormatEnumToMasks( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -1708,9 +2359,9 @@ static void dao__SDL_GetRGB( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   unsigned int pixel = (unsigned int) DaoValue_TryGetInteger( _p[0] );
   SDL_PixelFormat* format = (SDL_PixelFormat*) DaoValue_TryCastCdata( _p[1], dao_type_SDL_PixelFormat );
-  unsigned char* r = (unsigned char*) DaoValue_TryGetMBString( _p[2] );
-  unsigned char* g = (unsigned char*) DaoValue_TryGetMBString( _p[3] );
-  unsigned char* b = (unsigned char*) DaoValue_TryGetMBString( _p[4] );
+  unsigned char* r = (unsigned char*) DaoValue_TryGetChars( _p[2] );
+  unsigned char* g = (unsigned char*) DaoValue_TryGetChars( _p[3] );
+  unsigned char* b = (unsigned char*) DaoValue_TryGetChars( _p[4] );
 
   SDL_GetRGB( pixel, format, r, g, b );
 }
@@ -1719,10 +2370,10 @@ static void dao__SDL_GetRGBA( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   unsigned int pixel = (unsigned int) DaoValue_TryGetInteger( _p[0] );
   SDL_PixelFormat* format = (SDL_PixelFormat*) DaoValue_TryCastCdata( _p[1], dao_type_SDL_PixelFormat );
-  unsigned char* r = (unsigned char*) DaoValue_TryGetMBString( _p[2] );
-  unsigned char* g = (unsigned char*) DaoValue_TryGetMBString( _p[3] );
-  unsigned char* b = (unsigned char*) DaoValue_TryGetMBString( _p[4] );
-  unsigned char* a = (unsigned char*) DaoValue_TryGetMBString( _p[5] );
+  unsigned char* r = (unsigned char*) DaoValue_TryGetChars( _p[2] );
+  unsigned char* g = (unsigned char*) DaoValue_TryGetChars( _p[3] );
+  unsigned char* b = (unsigned char*) DaoValue_TryGetChars( _p[4] );
+  unsigned char* a = (unsigned char*) DaoValue_TryGetChars( _p[5] );
 
   SDL_GetRGBA( pixel, format, r, g, b, a );
 }
@@ -1734,6 +2385,23 @@ static void dao__SDL_CalculateGammaRamp( DaoProcess *_proc, DaoValue *_p[], int 
 
   SDL_CalculateGammaRamp( gamma, &ramp );
   DaoProcess_PutInteger( _proc, (daoint) ramp );
+}
+/* /usr/local/include/SDL2/SDL_rect.h */
+static void dao__SDL_RectEmpty( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Rect* r = (SDL_Rect*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Rect );
+
+  SDL_bool _SDL_RectEmpty = SDL_RectEmpty( r );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_RectEmpty );
+}
+/* /usr/local/include/SDL2/SDL_rect.h */
+static void dao__SDL_RectEquals( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Rect* a = (SDL_Rect*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Rect );
+  SDL_Rect* b = (SDL_Rect*) DaoValue_TryCastCdata( _p[1], dao_type_SDL_Rect );
+
+  SDL_bool _SDL_RectEquals = SDL_RectEquals( a, b );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_RectEquals );
 }
 /* /usr/local/include/SDL2/SDL_rect.h */
 static void dao__SDL_HasIntersection( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -1917,9 +2585,9 @@ static void dao__SDL_SetSurfaceColorMod( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao__SDL_GetSurfaceColorMod( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Surface* surface = (SDL_Surface*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Surface );
-  unsigned char* r = (unsigned char*) DaoValue_TryGetMBString( _p[1] );
-  unsigned char* g = (unsigned char*) DaoValue_TryGetMBString( _p[2] );
-  unsigned char* b = (unsigned char*) DaoValue_TryGetMBString( _p[3] );
+  unsigned char* r = (unsigned char*) DaoValue_TryGetChars( _p[1] );
+  unsigned char* g = (unsigned char*) DaoValue_TryGetChars( _p[2] );
+  unsigned char* b = (unsigned char*) DaoValue_TryGetChars( _p[3] );
 
   int _SDL_GetSurfaceColorMod = SDL_GetSurfaceColorMod( surface, r, g, b );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetSurfaceColorMod );
@@ -1937,7 +2605,7 @@ static void dao__SDL_SetSurfaceAlphaMod( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao__SDL_GetSurfaceAlphaMod( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Surface* surface = (SDL_Surface*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Surface );
-  unsigned char* alpha = (unsigned char*) DaoValue_TryGetMBString( _p[1] );
+  unsigned char* alpha = (unsigned char*) DaoValue_TryGetChars( _p[1] );
 
   int _SDL_GetSurfaceAlphaMod = SDL_GetSurfaceAlphaMod( surface, alpha );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetSurfaceAlphaMod );
@@ -2102,12 +2770,12 @@ static void dao__SDL_GetVideoDriver( DaoProcess *_proc, DaoValue *_p[], int _n )
   int index = (int) DaoValue_TryGetInteger( _p[0] );
 
   const char* _SDL_GetVideoDriver = SDL_GetVideoDriver( index );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetVideoDriver );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetVideoDriver );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_VideoInit( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* driver_name = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* driver_name = (const char*) DaoValue_TryGetChars( _p[0] );
 
   int _SDL_VideoInit = SDL_VideoInit( driver_name );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_VideoInit );
@@ -2123,7 +2791,7 @@ static void dao__SDL_GetCurrentVideoDriver( DaoProcess *_proc, DaoValue *_p[], i
 {
 
   const char* _SDL_GetCurrentVideoDriver = SDL_GetCurrentVideoDriver(  );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetCurrentVideoDriver );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetCurrentVideoDriver );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GetNumVideoDisplays( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2131,6 +2799,14 @@ static void dao__SDL_GetNumVideoDisplays( DaoProcess *_proc, DaoValue *_p[], int
 
   int _SDL_GetNumVideoDisplays = SDL_GetNumVideoDisplays(  );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetNumVideoDisplays );
+}
+/* /usr/local/include/SDL2/SDL_video.h */
+static void dao__SDL_GetDisplayName( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int displayIndex = (int) DaoValue_TryGetInteger( _p[0] );
+
+  const char* _SDL_GetDisplayName = SDL_GetDisplayName( displayIndex );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetDisplayName );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GetDisplayBounds( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2188,12 +2864,12 @@ static void dao__SDL_GetClosestDisplayMode( DaoProcess *_proc, DaoValue *_p[], i
   DaoProcess_WrapCdata( _proc, (void*) _SDL_GetClosestDisplayMode, dao_type_SDL_DisplayMode );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
-static void dao__SDL_GetWindowDisplay( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao__SDL_GetWindowDisplayIndex( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
 
-  int _SDL_GetWindowDisplay = SDL_GetWindowDisplay( window );
-  DaoProcess_PutInteger( _proc, (daoint) _SDL_GetWindowDisplay );
+  int _SDL_GetWindowDisplayIndex = SDL_GetWindowDisplayIndex( window );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_GetWindowDisplayIndex );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_SetWindowDisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2224,7 +2900,7 @@ static void dao__SDL_GetWindowPixelFormat( DaoProcess *_proc, DaoValue *_p[], in
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_CreateWindow( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* title = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* title = (const char*) DaoValue_TryGetChars( _p[0] );
   int x = (int) DaoValue_TryGetInteger( _p[1] );
   int y = (int) DaoValue_TryGetInteger( _p[2] );
   int w = (int) DaoValue_TryGetInteger( _p[3] );
@@ -2270,7 +2946,7 @@ static void dao__SDL_GetWindowFlags( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_SetWindowTitle( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
-  const char* title = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* title = (const char*) DaoValue_TryGetChars( _p[1] );
 
   SDL_SetWindowTitle( window, title );
 }
@@ -2280,7 +2956,7 @@ static void dao__SDL_GetWindowTitle( DaoProcess *_proc, DaoValue *_p[], int _n )
   SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
 
   const char* _SDL_GetWindowTitle = SDL_GetWindowTitle( window );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetWindowTitle );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetWindowTitle );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_SetWindowIcon( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2294,7 +2970,7 @@ static void dao__SDL_SetWindowIcon( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_SetWindowData( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
-  const char* name = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* name = (const char*) DaoValue_TryGetChars( _p[1] );
   void* userdata = (void*) DaoValue_TryGetCdata( _p[2] );
 
   void* _SDL_SetWindowData = SDL_SetWindowData( window, name, userdata );
@@ -2304,7 +2980,7 @@ static void dao__SDL_SetWindowData( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_GetWindowData( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
-  const char* name = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* name = (const char*) DaoValue_TryGetChars( _p[1] );
 
   void* _SDL_GetWindowData = SDL_GetWindowData( window, name );
   DaoProcess_WrapCdata( _proc, (void*) _SDL_GetWindowData, NULL );
@@ -2352,6 +3028,56 @@ static void dao__SDL_GetWindowSize( DaoProcess *_proc, DaoValue *_p[], int _n )
   DaoProcess_PutTuple( _proc, -2 );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
+static void dao__SDL_SetWindowMinimumSize( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
+  int min_w = (int) DaoValue_TryGetInteger( _p[1] );
+  int min_h = (int) DaoValue_TryGetInteger( _p[2] );
+
+  SDL_SetWindowMinimumSize( window, min_w, min_h );
+}
+/* /usr/local/include/SDL2/SDL_video.h */
+static void dao__SDL_GetWindowMinimumSize( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
+  int w = (int) DaoValue_TryGetInteger( _p[1] );
+  int h = (int) DaoValue_TryGetInteger( _p[2] );
+
+  SDL_GetWindowMinimumSize( window, &w, &h );
+  DaoProcess_NewInteger( _proc, (daoint)w );
+  DaoProcess_NewInteger( _proc, (daoint)h );
+  DaoProcess_PutTuple( _proc, -2 );
+}
+/* /usr/local/include/SDL2/SDL_video.h */
+static void dao__SDL_SetWindowMaximumSize( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
+  int max_w = (int) DaoValue_TryGetInteger( _p[1] );
+  int max_h = (int) DaoValue_TryGetInteger( _p[2] );
+
+  SDL_SetWindowMaximumSize( window, max_w, max_h );
+}
+/* /usr/local/include/SDL2/SDL_video.h */
+static void dao__SDL_GetWindowMaximumSize( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
+  int w = (int) DaoValue_TryGetInteger( _p[1] );
+  int h = (int) DaoValue_TryGetInteger( _p[2] );
+
+  SDL_GetWindowMaximumSize( window, &w, &h );
+  DaoProcess_NewInteger( _proc, (daoint)w );
+  DaoProcess_NewInteger( _proc, (daoint)h );
+  DaoProcess_PutTuple( _proc, -2 );
+}
+/* /usr/local/include/SDL2/SDL_video.h */
+static void dao__SDL_SetWindowBordered( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
+  SDL_bool bordered = (SDL_bool) DaoValue_TryGetInteger( _p[1] );
+
+  SDL_SetWindowBordered( window, bordered );
+}
+/* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_ShowWindow( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
@@ -2397,9 +3123,9 @@ static void dao__SDL_RestoreWindow( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_SetWindowFullscreen( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
-  SDL_bool fullscreen = (SDL_bool) DaoValue_TryGetInteger( _p[1] );
+  unsigned int flags = (unsigned int) DaoValue_TryGetInteger( _p[1] );
 
-  int _SDL_SetWindowFullscreen = SDL_SetWindowFullscreen( window, fullscreen );
+  int _SDL_SetWindowFullscreen = SDL_SetWindowFullscreen( window, flags );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_SetWindowFullscreen );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
@@ -2516,7 +3242,7 @@ static void dao__SDL_DisableScreenSaver( DaoProcess *_proc, DaoValue *_p[], int 
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GL_LoadLibrary( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* path = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* path = (const char*) DaoValue_TryGetChars( _p[0] );
 
   int _SDL_GL_LoadLibrary = SDL_GL_LoadLibrary( path );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GL_LoadLibrary );
@@ -2524,7 +3250,7 @@ static void dao__SDL_GL_LoadLibrary( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GL_GetProcAddress( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* proc = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* proc = (const char*) DaoValue_TryGetChars( _p[0] );
 
   void* _SDL_GL_GetProcAddress = SDL_GL_GetProcAddress( proc );
   DaoProcess_WrapCdata( _proc, (void*) _SDL_GL_GetProcAddress, NULL );
@@ -2538,7 +3264,7 @@ static void dao__SDL_GL_UnloadLibrary( DaoProcess *_proc, DaoValue *_p[], int _n
 /* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GL_ExtensionSupported( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* extension = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* extension = (const char*) DaoValue_TryGetChars( _p[0] );
 
   SDL_bool _SDL_GL_ExtensionSupported = SDL_GL_ExtensionSupported( extension );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GL_ExtensionSupported );
@@ -2581,6 +3307,20 @@ static void dao__SDL_GL_MakeCurrent( DaoProcess *_proc, DaoValue *_p[], int _n )
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GL_MakeCurrent );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
+static void dao__SDL_GL_GetCurrentWindow( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+
+  struct SDL_Window* _SDL_GL_GetCurrentWindow = SDL_GL_GetCurrentWindow(  );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_GL_GetCurrentWindow, dao_type_SDL_Window );
+}
+/* /usr/local/include/SDL2/SDL_video.h */
+static void dao__SDL_GL_GetCurrentContext( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+
+  SDL_GLContext _SDL_GL_GetCurrentContext = SDL_GL_GetCurrentContext(  );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_GL_GetCurrentContext, NULL );
+}
+/* /usr/local/include/SDL2/SDL_video.h */
 static void dao__SDL_GL_SetSwapInterval( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int interval = (int) DaoValue_TryGetInteger( _p[0] );
@@ -2621,8 +3361,8 @@ static void dao__SDL_GetKeyboardState( DaoProcess *_proc, DaoValue *_p[], int _n
 {
   int numkeys = (int) DaoValue_TryGetInteger( _p[0] );
 
-  unsigned char* _SDL_GetKeyboardState = SDL_GetKeyboardState( &numkeys );
-  DaoProcess_NewMBString( _proc, (char*) _SDL_GetKeyboardState, -1 );
+  const unsigned char* _SDL_GetKeyboardState = SDL_GetKeyboardState( &numkeys );
+  DaoProcess_NewString( _proc, (char*) _SDL_GetKeyboardState, -1 );
   DaoProcess_NewInteger( _proc, (daoint)numkeys );
   DaoProcess_PutTuple( _proc, -2 );
 }
@@ -2662,12 +3402,12 @@ static void dao__SDL_GetScancodeName( DaoProcess *_proc, DaoValue *_p[], int _n 
   SDL_Scancode scancode = (SDL_Scancode) DaoValue_TryGetInteger( _p[0] );
 
   const char* _SDL_GetScancodeName = SDL_GetScancodeName( scancode );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetScancodeName );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetScancodeName );
 }
 /* /usr/local/include/SDL2/SDL_keyboard.h */
 static void dao__SDL_GetScancodeFromName( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* name = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* name = (const char*) DaoValue_TryGetChars( _p[0] );
 
   SDL_Scancode _SDL_GetScancodeFromName = SDL_GetScancodeFromName( name );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetScancodeFromName );
@@ -2678,12 +3418,12 @@ static void dao__SDL_GetKeyName( DaoProcess *_proc, DaoValue *_p[], int _n )
   int key = (int) DaoValue_TryGetInteger( _p[0] );
 
   const char* _SDL_GetKeyName = SDL_GetKeyName( key );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetKeyName );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetKeyName );
 }
 /* /usr/local/include/SDL2/SDL_keyboard.h */
 static void dao__SDL_GetKeyFromName( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* name = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* name = (const char*) DaoValue_TryGetChars( _p[0] );
 
   SDL_Keycode _SDL_GetKeyFromName = SDL_GetKeyFromName( name );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetKeyFromName );
@@ -2693,6 +3433,13 @@ static void dao__SDL_StartTextInput( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
 
   SDL_StartTextInput(  );
+}
+/* /usr/local/include/SDL2/SDL_keyboard.h */
+static void dao__SDL_IsTextInputActive( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+
+  SDL_bool _SDL_IsTextInputActive = SDL_IsTextInputActive(  );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_IsTextInputActive );
 }
 /* /usr/local/include/SDL2/SDL_keyboard.h */
 static void dao__SDL_StopTextInput( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2707,6 +3454,21 @@ static void dao__SDL_SetTextInputRect( DaoProcess *_proc, DaoValue *_p[], int _n
 
   SDL_SetTextInputRect( rect );
 }
+/* /usr/local/include/SDL2/SDL_keyboard.h */
+static void dao__SDL_HasScreenKeyboardSupport( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+
+  SDL_bool _SDL_HasScreenKeyboardSupport = SDL_HasScreenKeyboardSupport(  );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_HasScreenKeyboardSupport );
+}
+/* /usr/local/include/SDL2/SDL_keyboard.h */
+static void dao__SDL_IsScreenKeyboardShown( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Window* window = (SDL_Window*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Window );
+
+  SDL_bool _SDL_IsScreenKeyboardShown = SDL_IsScreenKeyboardShown( window );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_IsScreenKeyboardShown );
+}
 /* /usr/local/include/SDL2/SDL_mouse.h */
 static void dao__SDL_GetMouseFocus( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2720,7 +3482,7 @@ static void dao__SDL_GetMouseState( DaoProcess *_proc, DaoValue *_p[], int _n )
   int x = (int) DaoValue_TryGetInteger( _p[0] );
   int y = (int) DaoValue_TryGetInteger( _p[1] );
 
-  Uint8 _SDL_GetMouseState = SDL_GetMouseState( &x, &y );
+  Uint32 _SDL_GetMouseState = SDL_GetMouseState( &x, &y );
   DaoProcess_NewInteger( _proc, (daoint) _SDL_GetMouseState );
   DaoProcess_NewInteger( _proc, (daoint)x );
   DaoProcess_NewInteger( _proc, (daoint)y );
@@ -2732,7 +3494,7 @@ static void dao__SDL_GetRelativeMouseState( DaoProcess *_proc, DaoValue *_p[], i
   int x = (int) DaoValue_TryGetInteger( _p[0] );
   int y = (int) DaoValue_TryGetInteger( _p[1] );
 
-  Uint8 _SDL_GetRelativeMouseState = SDL_GetRelativeMouseState( &x, &y );
+  Uint32 _SDL_GetRelativeMouseState = SDL_GetRelativeMouseState( &x, &y );
   DaoProcess_NewInteger( _proc, (daoint) _SDL_GetRelativeMouseState );
   DaoProcess_NewInteger( _proc, (daoint)x );
   DaoProcess_NewInteger( _proc, (daoint)y );
@@ -2765,8 +3527,8 @@ static void dao__SDL_GetRelativeMouseMode( DaoProcess *_proc, DaoValue *_p[], in
 /* /usr/local/include/SDL2/SDL_mouse.h */
 static void dao__SDL_CreateCursor( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const unsigned char* data = (const unsigned char*) DaoValue_TryGetMBString( _p[0] );
-  const unsigned char* mask = (const unsigned char*) DaoValue_TryGetMBString( _p[1] );
+  const unsigned char* data = (const unsigned char*) DaoValue_TryGetChars( _p[0] );
+  const unsigned char* mask = (const unsigned char*) DaoValue_TryGetChars( _p[1] );
   int w = (int) DaoValue_TryGetInteger( _p[2] );
   int h = (int) DaoValue_TryGetInteger( _p[3] );
   int hot_x = (int) DaoValue_TryGetInteger( _p[4] );
@@ -2786,6 +3548,14 @@ static void dao__SDL_CreateColorCursor( DaoProcess *_proc, DaoValue *_p[], int _
   DaoProcess_WrapCdata( _proc, (void*) _SDL_CreateColorCursor, dao_type_SDL_Cursor );
 }
 /* /usr/local/include/SDL2/SDL_mouse.h */
+static void dao__SDL_CreateSystemCursor( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_SystemCursor id = (SDL_SystemCursor) DaoValue_TryGetInteger( _p[0] );
+
+  struct SDL_Cursor* _SDL_CreateSystemCursor = SDL_CreateSystemCursor( id );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_CreateSystemCursor, dao_type_SDL_Cursor );
+}
+/* /usr/local/include/SDL2/SDL_mouse.h */
 static void dao__SDL_SetCursor( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Cursor* cursor = (SDL_Cursor*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Cursor );
@@ -2798,6 +3568,13 @@ static void dao__SDL_GetCursor( DaoProcess *_proc, DaoValue *_p[], int _n )
 
   struct SDL_Cursor* _SDL_GetCursor = SDL_GetCursor(  );
   DaoProcess_WrapCdata( _proc, (void*) _SDL_GetCursor, dao_type_SDL_Cursor );
+}
+/* /usr/local/include/SDL2/SDL_mouse.h */
+static void dao__SDL_GetDefaultCursor( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+
+  struct SDL_Cursor* _SDL_GetDefaultCursor = SDL_GetDefaultCursor(  );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_GetDefaultCursor, dao_type_SDL_Cursor );
 }
 /* /usr/local/include/SDL2/SDL_mouse.h */
 static void dao__SDL_FreeCursor( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2822,12 +3599,12 @@ static void dao__SDL_NumJoysticks( DaoProcess *_proc, DaoValue *_p[], int _n )
   DaoProcess_PutInteger( _proc, (daoint) _SDL_NumJoysticks );
 }
 /* /usr/local/include/SDL2/SDL_joystick.h */
-static void dao__SDL_JoystickName( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao__SDL_JoystickNameForIndex( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int device_index = (int) DaoValue_TryGetInteger( _p[0] );
 
-  const char* _SDL_JoystickName = SDL_JoystickName( device_index );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_JoystickName );
+  const char* _SDL_JoystickNameForIndex = SDL_JoystickNameForIndex( device_index );
+  DaoProcess_PutChars( _proc, (char*) _SDL_JoystickNameForIndex );
 }
 /* /usr/local/include/SDL2/SDL_joystick.h */
 static void dao__SDL_JoystickOpen( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2838,20 +3615,61 @@ static void dao__SDL_JoystickOpen( DaoProcess *_proc, DaoValue *_p[], int _n )
   DaoProcess_WrapCdata( _proc, (void*) _SDL_JoystickOpen, dao_type__SDL_Joystick );
 }
 /* /usr/local/include/SDL2/SDL_joystick.h */
-static void dao__SDL_JoystickOpened( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  int device_index = (int) DaoValue_TryGetInteger( _p[0] );
-
-  int _SDL_JoystickOpened = SDL_JoystickOpened( device_index );
-  DaoProcess_PutInteger( _proc, (daoint) _SDL_JoystickOpened );
-}
-/* /usr/local/include/SDL2/SDL_joystick.h */
-static void dao__SDL_JoystickIndex( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao__SDL_JoystickName( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   struct _SDL_Joystick* joystick = (struct _SDL_Joystick*) DaoValue_TryCastCdata( _p[0], dao_type__SDL_Joystick );
 
-  int _SDL_JoystickIndex = SDL_JoystickIndex( joystick );
-  DaoProcess_PutInteger( _proc, (daoint) _SDL_JoystickIndex );
+  const char* _SDL_JoystickName = SDL_JoystickName( joystick );
+  DaoProcess_PutChars( _proc, (char*) _SDL_JoystickName );
+}
+/* /usr/local/include/SDL2/SDL_joystick.h */
+static void dao__SDL_JoystickGetDeviceGUID( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  int device_index = (int) DaoValue_TryGetInteger( _p[0] );
+
+  SDL_JoystickGUID _SDL_JoystickGetDeviceGUID = SDL_JoystickGetDeviceGUID( device_index );
+  DaoProcess_CopyCdata( _proc, (void*)&_SDL_JoystickGetDeviceGUID, sizeof(SDL_JoystickGUID), dao_type_SDL_JoystickGUID );
+}
+/* /usr/local/include/SDL2/SDL_joystick.h */
+static void dao__SDL_JoystickGetGUID( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  struct _SDL_Joystick* joystick = (struct _SDL_Joystick*) DaoValue_TryCastCdata( _p[0], dao_type__SDL_Joystick );
+
+  SDL_JoystickGUID _SDL_JoystickGetGUID = SDL_JoystickGetGUID( joystick );
+  DaoProcess_CopyCdata( _proc, (void*)&_SDL_JoystickGetGUID, sizeof(SDL_JoystickGUID), dao_type_SDL_JoystickGUID );
+}
+/* /usr/local/include/SDL2/SDL_joystick.h */
+static void dao__SDL_JoystickGetGUIDString( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_JoystickGUID* guid = (SDL_JoystickGUID*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_JoystickGUID );
+  char* pszGUID = (char*) DaoValue_TryGetChars( _p[1] );
+  int cbGUID = (int) DaoValue_TryGetInteger( _p[2] );
+
+  SDL_JoystickGetGUIDString( *guid, pszGUID, cbGUID );
+}
+/* /usr/local/include/SDL2/SDL_joystick.h */
+static void dao__SDL_JoystickGetGUIDFromString( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  const char* pchGUID = (const char*) DaoValue_TryGetChars( _p[0] );
+
+  SDL_JoystickGUID _SDL_JoystickGetGUIDFromString = SDL_JoystickGetGUIDFromString( pchGUID );
+  DaoProcess_CopyCdata( _proc, (void*)&_SDL_JoystickGetGUIDFromString, sizeof(SDL_JoystickGUID), dao_type_SDL_JoystickGUID );
+}
+/* /usr/local/include/SDL2/SDL_joystick.h */
+static void dao__SDL_JoystickGetAttached( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  struct _SDL_Joystick* joystick = (struct _SDL_Joystick*) DaoValue_TryCastCdata( _p[0], dao_type__SDL_Joystick );
+
+  SDL_bool _SDL_JoystickGetAttached = SDL_JoystickGetAttached( joystick );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_JoystickGetAttached );
+}
+/* /usr/local/include/SDL2/SDL_joystick.h */
+static void dao__SDL_JoystickInstanceID( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  struct _SDL_Joystick* joystick = (struct _SDL_Joystick*) DaoValue_TryCastCdata( _p[0], dao_type__SDL_Joystick );
+
+  SDL_JoystickID _SDL_JoystickInstanceID = SDL_JoystickInstanceID( joystick );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_JoystickInstanceID );
 }
 /* /usr/local/include/SDL2/SDL_joystick.h */
 static void dao__SDL_JoystickNumAxes( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -2948,21 +3766,36 @@ static void dao__SDL_JoystickClose( DaoProcess *_proc, DaoValue *_p[], int _n )
   SDL_JoystickClose( joystick );
 }
 /* /usr/local/include/SDL2/SDL_touch.h */
-static void dao__SDL_GetTouch( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao__SDL_GetNumTouchDevices( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  long long id = (long long) DaoValue_TryGetInteger( _p[0] );
 
-  struct SDL_Touch* _SDL_GetTouch = SDL_GetTouch( id );
-  DaoProcess_WrapCdata( _proc, (void*) _SDL_GetTouch, dao_type_SDL_Touch );
+  int _SDL_GetNumTouchDevices = SDL_GetNumTouchDevices(  );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_GetNumTouchDevices );
 }
 /* /usr/local/include/SDL2/SDL_touch.h */
-static void dao__SDL_GetFinger( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao__SDL_GetTouchDevice( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  struct SDL_Touch* touch = (struct SDL_Touch*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Touch );
-  long long id = (long long) DaoValue_TryGetInteger( _p[1] );
+  int index = (int) DaoValue_TryGetInteger( _p[0] );
 
-  struct SDL_Finger* _SDL_GetFinger = SDL_GetFinger( touch, id );
-  DaoProcess_WrapCdata( _proc, (void*) _SDL_GetFinger, dao_type_SDL_Finger );
+  SDL_TouchID _SDL_GetTouchDevice = SDL_GetTouchDevice( index );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_GetTouchDevice );
+}
+/* /usr/local/include/SDL2/SDL_touch.h */
+static void dao__SDL_GetNumTouchFingers( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  long long touchID = (long long) DaoValue_TryGetInteger( _p[0] );
+
+  int _SDL_GetNumTouchFingers = SDL_GetNumTouchFingers( touchID );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_GetNumTouchFingers );
+}
+/* /usr/local/include/SDL2/SDL_touch.h */
+static void dao__SDL_GetTouchFinger( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  long long touchID = (long long) DaoValue_TryGetInteger( _p[0] );
+  int index = (int) DaoValue_TryGetInteger( _p[1] );
+
+  struct SDL_Finger* _SDL_GetTouchFinger = SDL_GetTouchFinger( touchID, index );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_GetTouchFinger, dao_type_SDL_Finger );
 }
 /* /usr/local/include/SDL2/SDL_gesture.h */
 static void dao__SDL_RecordGesture( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -3101,8 +3934,8 @@ static void dao__SDL_RegisterEvents( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_hints.h */
 static void dao__SDL_SetHintWithPriority( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* name = (const char*) DaoValue_TryGetMBString( _p[0] );
-  const char* value = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* name = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* value = (const char*) DaoValue_TryGetChars( _p[1] );
   SDL_HintPriority priority = (SDL_HintPriority) DaoValue_TryGetInteger( _p[2] );
 
   SDL_bool _SDL_SetHintWithPriority = SDL_SetHintWithPriority( name, value, priority );
@@ -3111,8 +3944,8 @@ static void dao__SDL_SetHintWithPriority( DaoProcess *_proc, DaoValue *_p[], int
 /* /usr/local/include/SDL2/SDL_hints.h */
 static void dao__SDL_SetHint( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* name = (const char*) DaoValue_TryGetMBString( _p[0] );
-  const char* value = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* name = (const char*) DaoValue_TryGetChars( _p[0] );
+  const char* value = (const char*) DaoValue_TryGetChars( _p[1] );
 
   SDL_bool _SDL_SetHint = SDL_SetHint( name, value );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_SetHint );
@@ -3120,10 +3953,10 @@ static void dao__SDL_SetHint( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_hints.h */
 static void dao__SDL_GetHint( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* name = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* name = (const char*) DaoValue_TryGetChars( _p[0] );
 
   const char* _SDL_GetHint = SDL_GetHint( name );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetHint );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetHint );
 }
 /* /usr/local/include/SDL2/SDL_hints.h */
 static void dao__SDL_ClearHints( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -3134,7 +3967,7 @@ static void dao__SDL_ClearHints( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_loadso.h */
 static void dao__SDL_LoadObject( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* sofile = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* sofile = (const char*) DaoValue_TryGetChars( _p[0] );
 
   void* _SDL_LoadObject = SDL_LoadObject( sofile );
   DaoProcess_WrapCdata( _proc, (void*) _SDL_LoadObject, NULL );
@@ -3143,7 +3976,7 @@ static void dao__SDL_LoadObject( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_LoadFunction( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   void* handle = (void*) DaoValue_TryGetCdata( _p[0] );
-  const char* name = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* name = (const char*) DaoValue_TryGetChars( _p[1] );
 
   void* _SDL_LoadFunction = SDL_LoadFunction( handle, name );
   DaoProcess_WrapCdata( _proc, (void*) _SDL_LoadFunction, NULL );
@@ -3187,7 +4020,7 @@ static void dao__SDL_LogResetPriorities( DaoProcess *_proc, DaoValue *_p[], int 
 /* /usr/local/include/SDL2/SDL_log.h */
 static void dao__SDL_Log( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[0] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[0] );
 
   SDL_Log( fmt );
 }
@@ -3195,7 +4028,7 @@ static void dao__SDL_Log( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_LogVerbose( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int category = (int) DaoValue_TryGetInteger( _p[0] );
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[1] );
 
   SDL_LogVerbose( category, fmt );
 }
@@ -3203,7 +4036,7 @@ static void dao__SDL_LogVerbose( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_LogDebug( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int category = (int) DaoValue_TryGetInteger( _p[0] );
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[1] );
 
   SDL_LogDebug( category, fmt );
 }
@@ -3211,7 +4044,7 @@ static void dao__SDL_LogDebug( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_LogInfo( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int category = (int) DaoValue_TryGetInteger( _p[0] );
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[1] );
 
   SDL_LogInfo( category, fmt );
 }
@@ -3219,7 +4052,7 @@ static void dao__SDL_LogInfo( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_LogWarn( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int category = (int) DaoValue_TryGetInteger( _p[0] );
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[1] );
 
   SDL_LogWarn( category, fmt );
 }
@@ -3227,7 +4060,7 @@ static void dao__SDL_LogWarn( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_LogError( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int category = (int) DaoValue_TryGetInteger( _p[0] );
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[1] );
 
   SDL_LogError( category, fmt );
 }
@@ -3235,7 +4068,7 @@ static void dao__SDL_LogError( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao__SDL_LogCritical( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int category = (int) DaoValue_TryGetInteger( _p[0] );
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[1] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[1] );
 
   SDL_LogCritical( category, fmt );
 }
@@ -3244,19 +4077,9 @@ static void dao__SDL_LogMessage( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   int category = (int) DaoValue_TryGetInteger( _p[0] );
   SDL_LogPriority priority = (SDL_LogPriority) DaoValue_TryGetInteger( _p[1] );
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[2] );
+  const char* fmt = (const char*) DaoValue_TryGetChars( _p[2] );
 
   SDL_LogMessage( category, priority, fmt );
-}
-/* /usr/local/include/SDL2/SDL_log.h */
-static void dao__SDL_LogMessageV( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  int category = (int) DaoValue_TryGetInteger( _p[0] );
-  SDL_LogPriority priority = (SDL_LogPriority) DaoValue_TryGetInteger( _p[1] );
-  const char* fmt = (const char*) DaoValue_TryGetMBString( _p[2] );
-  char* ap = (char*) DaoValue_TryGetMBString( _p[3] );
-
-  SDL_LogMessageV( category, priority, fmt, ap );
 }
 /* /usr/local/include/SDL2/SDL_power.h */
 static void dao__SDL_GetPowerInfo( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -3335,6 +4158,19 @@ static void dao__SDL_GetRendererInfo( DaoProcess *_proc, DaoValue *_p[], int _n 
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetRendererInfo );
 }
 /* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_GetRendererOutputSize( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+  int w = (int) DaoValue_TryGetInteger( _p[1] );
+  int h = (int) DaoValue_TryGetInteger( _p[2] );
+
+  int _SDL_GetRendererOutputSize = SDL_GetRendererOutputSize( renderer, &w, &h );
+  DaoProcess_NewInteger( _proc, (daoint) _SDL_GetRendererOutputSize );
+  DaoProcess_NewInteger( _proc, (daoint)w );
+  DaoProcess_NewInteger( _proc, (daoint)h );
+  DaoProcess_PutTuple( _proc, -3 );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
 static void dao__SDL_CreateTexture( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
@@ -3387,9 +4223,9 @@ static void dao__SDL_SetTextureColorMod( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao__SDL_GetTextureColorMod( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Texture* texture = (SDL_Texture*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Texture );
-  unsigned char* r = (unsigned char*) DaoValue_TryGetMBString( _p[1] );
-  unsigned char* g = (unsigned char*) DaoValue_TryGetMBString( _p[2] );
-  unsigned char* b = (unsigned char*) DaoValue_TryGetMBString( _p[3] );
+  unsigned char* r = (unsigned char*) DaoValue_TryGetChars( _p[1] );
+  unsigned char* g = (unsigned char*) DaoValue_TryGetChars( _p[2] );
+  unsigned char* b = (unsigned char*) DaoValue_TryGetChars( _p[3] );
 
   int _SDL_GetTextureColorMod = SDL_GetTextureColorMod( texture, r, g, b );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetTextureColorMod );
@@ -3407,7 +4243,7 @@ static void dao__SDL_SetTextureAlphaMod( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao__SDL_GetTextureAlphaMod( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Texture* texture = (SDL_Texture*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Texture );
-  unsigned char* alpha = (unsigned char*) DaoValue_TryGetMBString( _p[1] );
+  unsigned char* alpha = (unsigned char*) DaoValue_TryGetChars( _p[1] );
 
   int _SDL_GetTextureAlphaMod = SDL_GetTextureAlphaMod( texture, alpha );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetTextureAlphaMod );
@@ -3467,6 +4303,36 @@ static void dao__SDL_SetRenderTarget( DaoProcess *_proc, DaoValue *_p[], int _n 
   DaoProcess_PutInteger( _proc, (daoint) _SDL_SetRenderTarget );
 }
 /* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_GetRenderTarget( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+
+  struct SDL_Texture* _SDL_GetRenderTarget = SDL_GetRenderTarget( renderer );
+  DaoProcess_WrapCdata( _proc, (void*) _SDL_GetRenderTarget, dao_type_SDL_Texture );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_RenderSetLogicalSize( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+  int w = (int) DaoValue_TryGetInteger( _p[1] );
+  int h = (int) DaoValue_TryGetInteger( _p[2] );
+
+  int _SDL_RenderSetLogicalSize = SDL_RenderSetLogicalSize( renderer, w, h );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_RenderSetLogicalSize );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_RenderGetLogicalSize( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+  int w = (int) DaoValue_TryGetInteger( _p[1] );
+  int h = (int) DaoValue_TryGetInteger( _p[2] );
+
+  SDL_RenderGetLogicalSize( renderer, &w, &h );
+  DaoProcess_NewInteger( _proc, (daoint)w );
+  DaoProcess_NewInteger( _proc, (daoint)h );
+  DaoProcess_PutTuple( _proc, -2 );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
 static void dao__SDL_RenderSetViewport( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
@@ -3484,6 +4350,45 @@ static void dao__SDL_RenderGetViewport( DaoProcess *_proc, DaoValue *_p[], int _
   SDL_RenderGetViewport( renderer, rect );
 }
 /* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_RenderSetClipRect( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+  SDL_Rect* rect = (SDL_Rect*) DaoValue_TryCastCdata( _p[1], dao_type_SDL_Rect );
+
+  int _SDL_RenderSetClipRect = SDL_RenderSetClipRect( renderer, rect );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_RenderSetClipRect );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_RenderGetClipRect( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+  SDL_Rect* rect = (SDL_Rect*) DaoValue_TryCastCdata( _p[1], dao_type_SDL_Rect );
+
+  SDL_RenderGetClipRect( renderer, rect );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_RenderSetScale( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+  float scaleX = (float) DaoValue_TryGetFloat( _p[1] );
+  float scaleY = (float) DaoValue_TryGetFloat( _p[2] );
+
+  int _SDL_RenderSetScale = SDL_RenderSetScale( renderer, scaleX, scaleY );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_RenderSetScale );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_RenderGetScale( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+  float scaleX = (float) DaoValue_TryGetFloat( _p[1] );
+  float scaleY = (float) DaoValue_TryGetFloat( _p[2] );
+
+  SDL_RenderGetScale( renderer, &scaleX, &scaleY );
+  DaoProcess_NewFloat( _proc, (float)scaleX );
+  DaoProcess_NewFloat( _proc, (float)scaleY );
+  DaoProcess_PutTuple( _proc, -2 );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
 static void dao__SDL_SetRenderDrawColor( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
@@ -3499,10 +4404,10 @@ static void dao__SDL_SetRenderDrawColor( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao__SDL_GetRenderDrawColor( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
-  unsigned char* r = (unsigned char*) DaoValue_TryGetMBString( _p[1] );
-  unsigned char* g = (unsigned char*) DaoValue_TryGetMBString( _p[2] );
-  unsigned char* b = (unsigned char*) DaoValue_TryGetMBString( _p[3] );
-  unsigned char* a = (unsigned char*) DaoValue_TryGetMBString( _p[4] );
+  unsigned char* r = (unsigned char*) DaoValue_TryGetChars( _p[1] );
+  unsigned char* g = (unsigned char*) DaoValue_TryGetChars( _p[2] );
+  unsigned char* b = (unsigned char*) DaoValue_TryGetChars( _p[3] );
+  unsigned char* a = (unsigned char*) DaoValue_TryGetChars( _p[4] );
 
   int _SDL_GetRenderDrawColor = SDL_GetRenderDrawColor( renderer, r, g, b, a );
   DaoProcess_PutInteger( _proc, (daoint) _SDL_GetRenderDrawColor );
@@ -3626,6 +4531,20 @@ static void dao__SDL_RenderCopy( DaoProcess *_proc, DaoValue *_p[], int _n )
   DaoProcess_PutInteger( _proc, (daoint) dao_SDL_RenderCopy );
 }
 /* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_RenderCopyEx( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
+  SDL_Texture* texture = (SDL_Texture*) DaoValue_TryCastCdata( _p[1], dao_type_SDL_Texture );
+  SDL_Rect* srcrect = (SDL_Rect*) DaoValue_TryCastCdata( _p[2], dao_type_SDL_Rect );
+  SDL_Rect* dstrect = (SDL_Rect*) DaoValue_TryCastCdata( _p[3], dao_type_SDL_Rect );
+  const double angle = (const double) DaoValue_TryGetDouble( _p[4] );
+  SDL_Point* center = (SDL_Point*) DaoValue_TryCastCdata( _p[5], dao_type_SDL_Point );
+  const SDL_RendererFlip flip = (const SDL_RendererFlip) DaoValue_TryGetInteger( _p[6] );
+
+  int _SDL_RenderCopyEx = SDL_RenderCopyEx( renderer, texture, srcrect, dstrect, angle, center, flip );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_RenderCopyEx );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
 static void dao__SDL_RenderReadPixels( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
@@ -3657,6 +4576,27 @@ static void dao__SDL_DestroyRenderer( DaoProcess *_proc, DaoValue *_p[], int _n 
   SDL_Renderer* renderer = (SDL_Renderer*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Renderer );
 
   SDL_DestroyRenderer( renderer );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_GL_BindTexture( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Texture* texture = (SDL_Texture*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Texture );
+  float texw = (float) DaoValue_TryGetFloat( _p[1] );
+  float texh = (float) DaoValue_TryGetFloat( _p[2] );
+
+  int _SDL_GL_BindTexture = SDL_GL_BindTexture( texture, &texw, &texh );
+  DaoProcess_NewInteger( _proc, (daoint) _SDL_GL_BindTexture );
+  DaoProcess_NewFloat( _proc, (float)texw );
+  DaoProcess_NewFloat( _proc, (float)texh );
+  DaoProcess_PutTuple( _proc, -3 );
+}
+/* /usr/local/include/SDL2/SDL_render.h */
+static void dao__SDL_GL_UnbindTexture( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Texture* texture = (SDL_Texture*) DaoValue_TryCastCdata( _p[0], dao_type_SDL_Texture );
+
+  int _SDL_GL_UnbindTexture = SDL_GL_UnbindTexture( texture );
+  DaoProcess_PutInteger( _proc, (daoint) _SDL_GL_UnbindTexture );
 }
 /* /usr/local/include/SDL2/SDL_timer.h */
 static void dao__SDL_GetTicks( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -3706,7 +4646,7 @@ static void dao__SDL_GetRevision( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
 
   const char* _SDL_GetRevision = SDL_GetRevision(  );
-  DaoProcess_PutMBString( _proc, (char*) _SDL_GetRevision );
+  DaoProcess_PutChars( _proc, (char*) _SDL_GetRevision );
 }
 /* /usr/local/include/SDL2/SDL_version.h */
 static void dao__SDL_GetRevisionNumber( DaoProcess *_proc, DaoValue *_p[], int _n )
@@ -3794,6 +4734,9 @@ static DaoNumItem dao__Nums[] =
   {  "FPE_INTOVF", DAO_DOUBLE, FPE_INTOVF},
   {  "FPE_NOOP", DAO_DOUBLE, FPE_NOOP},
   {  "FP_CHOP", DAO_DOUBLE, FP_CHOP},
+  {  "FP_INFINITE", DAO_DOUBLE, FP_INFINITE},
+  {  "FP_NAN", DAO_DOUBLE, FP_NAN},
+  {  "FP_NORMAL", DAO_DOUBLE, FP_NORMAL},
   {  "FP_PREC_24B", DAO_DOUBLE, FP_PREC_24B},
   {  "FP_PREC_53B", DAO_DOUBLE, FP_PREC_53B},
   {  "FP_PREC_64B", DAO_DOUBLE, FP_PREC_64B},
@@ -3801,6 +4744,9 @@ static DaoNumItem dao__Nums[] =
   {  "FP_RND_NEAR", DAO_DOUBLE, FP_RND_NEAR},
   {  "FP_RND_UP", DAO_DOUBLE, FP_RND_UP},
   {  "FP_STATE_BYTES", DAO_DOUBLE, FP_STATE_BYTES},
+  {  "FP_SUBNORMAL", DAO_DOUBLE, FP_SUBNORMAL},
+  {  "FP_SUPERNORMAL", DAO_DOUBLE, FP_SUPERNORMAL},
+  {  "FP_ZERO", DAO_DOUBLE, FP_ZERO},
   {  "HAVE_ABS", DAO_DOUBLE, HAVE_ABS},
   {  "HAVE_ALLOCA", DAO_DOUBLE, HAVE_ALLOCA},
   {  "HAVE_ALLOCA_H", DAO_DOUBLE, HAVE_ALLOCA_H},
@@ -3818,6 +4764,8 @@ static DaoNumItem dao__Nums[] =
   {  "HAVE_FABS", DAO_DOUBLE, HAVE_FABS},
   {  "HAVE_FLOOR", DAO_DOUBLE, HAVE_FLOOR},
   {  "HAVE_FREE", DAO_DOUBLE, HAVE_FREE},
+  {  "HAVE_FSEEKO", DAO_DOUBLE, HAVE_FSEEKO},
+  {  "HAVE_GCC_ATOMICS", DAO_DOUBLE, HAVE_GCC_ATOMICS},
   {  "HAVE_GETENV", DAO_DOUBLE, HAVE_GETENV},
   {  "HAVE_ICONV", DAO_DOUBLE, HAVE_ICONV},
   {  "HAVE_ICONV_H", DAO_DOUBLE, HAVE_ICONV_H},
@@ -3834,6 +4782,7 @@ static DaoNumItem dao__Nums[] =
   {  "HAVE_MPROTECT", DAO_DOUBLE, HAVE_MPROTECT},
   {  "HAVE_NANOSLEEP", DAO_DOUBLE, HAVE_NANOSLEEP},
   {  "HAVE_POW", DAO_DOUBLE, HAVE_POW},
+  {  "HAVE_PTHREAD_SETNAME_NP", DAO_DOUBLE, HAVE_PTHREAD_SETNAME_NP},
   {  "HAVE_PUTENV", DAO_DOUBLE, HAVE_PUTENV},
   {  "HAVE_QSORT", DAO_DOUBLE, HAVE_QSORT},
   {  "HAVE_REALLOC", DAO_DOUBLE, HAVE_REALLOC},
@@ -3902,6 +4851,7 @@ static DaoNumItem dao__Nums[] =
   {  "IOPOL_SCOPE_THREAD", DAO_DOUBLE, IOPOL_SCOPE_THREAD},
   {  "IOPOL_THROTTLE", DAO_DOUBLE, IOPOL_THROTTLE},
   {  "IOPOL_TYPE_DISK", DAO_DOUBLE, IOPOL_TYPE_DISK},
+  {  "IOPOL_UTILITY", DAO_DOUBLE, IOPOL_UTILITY},
   {  "L_ctermid", DAO_DOUBLE, L_ctermid},
   {  "L_tmpnam", DAO_DOUBLE, L_tmpnam},
   {  "MAC_OS_X_VERSION_10_0", DAO_DOUBLE, MAC_OS_X_VERSION_10_0},
@@ -3910,8 +4860,12 @@ static DaoNumItem dao__Nums[] =
   {  "MAC_OS_X_VERSION_10_3", DAO_DOUBLE, MAC_OS_X_VERSION_10_3},
   {  "MAC_OS_X_VERSION_10_4", DAO_DOUBLE, MAC_OS_X_VERSION_10_4},
   {  "MAC_OS_X_VERSION_10_5", DAO_DOUBLE, MAC_OS_X_VERSION_10_5},
+  {  "MAC_OS_X_VERSION_10_6", DAO_DOUBLE, MAC_OS_X_VERSION_10_6},
+  {  "MAC_OS_X_VERSION_10_7", DAO_DOUBLE, MAC_OS_X_VERSION_10_7},
+  {  "MAC_OS_X_VERSION_10_8", DAO_DOUBLE, MAC_OS_X_VERSION_10_8},
   {  "MATH_ERREXCEPT", DAO_DOUBLE, MATH_ERREXCEPT},
   {  "MATH_ERRNO", DAO_DOUBLE, MATH_ERRNO},
+  {  "MAXFLOAT", DAO_DOUBLE, MAXFLOAT},
   {  "MINSIGSTKSZ", DAO_DOUBLE, MINSIGSTKSZ},
   {  "M_1_PI", DAO_DOUBLE, M_1_PI},
   {  "M_2_PI", DAO_DOUBLE, M_2_PI},
@@ -3937,6 +4891,8 @@ static DaoNumItem dao__Nums[] =
   {  "POLL_OUT", DAO_DOUBLE, POLL_OUT},
   {  "POLL_PRI", DAO_DOUBLE, POLL_PRI},
   {  "PRIO_DARWIN_BG", DAO_DOUBLE, PRIO_DARWIN_BG},
+  {  "PRIO_DARWIN_NONUI", DAO_DOUBLE, PRIO_DARWIN_NONUI},
+  {  "PRIO_DARWIN_PROCESS", DAO_DOUBLE, PRIO_DARWIN_PROCESS},
   {  "PRIO_DARWIN_THREAD", DAO_DOUBLE, PRIO_DARWIN_THREAD},
   {  "PRIO_MAX", DAO_DOUBLE, PRIO_MAX},
   {  "PRIO_PGRP", DAO_DOUBLE, PRIO_PGRP},
@@ -3986,7 +4942,11 @@ static DaoNumItem dao__Nums[] =
   {  "SDL_DISABLE", DAO_DOUBLE, SDL_DISABLE},
   {  "SDL_DONTFREE", DAO_DOUBLE, SDL_DONTFREE},
   {  "SDL_ENABLE", DAO_DOUBLE, SDL_ENABLE},
+  {  "SDL_HAPTIC_CARTESIAN", DAO_DOUBLE, SDL_HAPTIC_CARTESIAN},
+  {  "SDL_HAPTIC_INFINITY", DAO_DOUBLE, SDL_HAPTIC_INFINITY},
   {  "SDL_HAPTIC_IOKIT", DAO_DOUBLE, SDL_HAPTIC_IOKIT},
+  {  "SDL_HAPTIC_POLAR", DAO_DOUBLE, SDL_HAPTIC_POLAR},
+  {  "SDL_HAPTIC_SPHERICAL", DAO_DOUBLE, SDL_HAPTIC_SPHERICAL},
   {  "SDL_HAT_CENTERED", DAO_DOUBLE, SDL_HAT_CENTERED},
   {  "SDL_HAT_DOWN", DAO_DOUBLE, SDL_HAT_DOWN},
   {  "SDL_HAT_LEFT", DAO_DOUBLE, SDL_HAT_LEFT},
@@ -3994,7 +4954,8 @@ static DaoNumItem dao__Nums[] =
   {  "SDL_HAT_UP", DAO_DOUBLE, SDL_HAT_UP},
   {  "SDL_IGNORE", DAO_DOUBLE, SDL_IGNORE},
   {  "SDL_INIT_AUDIO", DAO_DOUBLE, SDL_INIT_AUDIO},
-  {  "SDL_INIT_EVERYTHING", DAO_DOUBLE, SDL_INIT_EVERYTHING},
+  {  "SDL_INIT_EVENTS", DAO_DOUBLE, SDL_INIT_EVENTS},
+  {  "SDL_INIT_GAMECONTROLLER", DAO_DOUBLE, SDL_INIT_GAMECONTROLLER},
   {  "SDL_INIT_HAPTIC", DAO_DOUBLE, SDL_INIT_HAPTIC},
   {  "SDL_INIT_JOYSTICK", DAO_DOUBLE, SDL_INIT_JOYSTICK},
   {  "SDL_INIT_NOPARACHUTE", DAO_DOUBLE, SDL_INIT_NOPARACHUTE},
@@ -4014,23 +4975,20 @@ static DaoNumItem dao__Nums[] =
   {  "SDL_PRESSED", DAO_DOUBLE, SDL_PRESSED},
   {  "SDL_RELEASED", DAO_DOUBLE, SDL_RELEASED},
   {  "SDL_RLEACCEL", DAO_DOUBLE, SDL_RLEACCEL},
+  {  "SDL_RWOPS_JNIFILE", DAO_DOUBLE, SDL_RWOPS_JNIFILE},
+  {  "SDL_RWOPS_MEMORY", DAO_DOUBLE, SDL_RWOPS_MEMORY},
+  {  "SDL_RWOPS_MEMORY_RO", DAO_DOUBLE, SDL_RWOPS_MEMORY_RO},
+  {  "SDL_RWOPS_STDFILE", DAO_DOUBLE, SDL_RWOPS_STDFILE},
+  {  "SDL_RWOPS_UNKNOWN", DAO_DOUBLE, SDL_RWOPS_UNKNOWN},
+  {  "SDL_RWOPS_WINFILE", DAO_DOUBLE, SDL_RWOPS_WINFILE},
   {  "SDL_SWSURFACE", DAO_DOUBLE, SDL_SWSURFACE},
   {  "SDL_THREAD_PTHREAD", DAO_DOUBLE, SDL_THREAD_PTHREAD},
   {  "SDL_THREAD_PTHREAD_RECURSIVE_MUTEX", DAO_DOUBLE, SDL_THREAD_PTHREAD_RECURSIVE_MUTEX},
   {  "SDL_TIMER_UNIX", DAO_DOUBLE, SDL_TIMER_UNIX},
   {  "SDL_VIDEO_DRIVER_COCOA", DAO_DOUBLE, SDL_VIDEO_DRIVER_COCOA},
   {  "SDL_VIDEO_DRIVER_DUMMY", DAO_DOUBLE, SDL_VIDEO_DRIVER_DUMMY},
-  {  "SDL_VIDEO_DRIVER_X11", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11},
-  {  "SDL_VIDEO_DRIVER_X11_XCURSOR", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XCURSOR},
-  {  "SDL_VIDEO_DRIVER_X11_XINERAMA", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XINERAMA},
-  {  "SDL_VIDEO_DRIVER_X11_XINPUT", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XINPUT},
-  {  "SDL_VIDEO_DRIVER_X11_XRANDR", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XRANDR},
-  {  "SDL_VIDEO_DRIVER_X11_XSCRNSAVER", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XSCRNSAVER},
-  {  "SDL_VIDEO_DRIVER_X11_XSHAPE", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XSHAPE},
-  {  "SDL_VIDEO_DRIVER_X11_XVIDMODE", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XVIDMODE},
   {  "SDL_VIDEO_OPENGL", DAO_DOUBLE, SDL_VIDEO_OPENGL},
   {  "SDL_VIDEO_OPENGL_CGL", DAO_DOUBLE, SDL_VIDEO_OPENGL_CGL},
-  {  "SDL_VIDEO_OPENGL_GLX", DAO_DOUBLE, SDL_VIDEO_OPENGL_GLX},
   {  "SDL_VIDEO_RENDER_OGL", DAO_DOUBLE, SDL_VIDEO_RENDER_OGL},
   {  "SDL_WINDOWPOS_CENTERED_MASK", DAO_DOUBLE, SDL_WINDOWPOS_CENTERED_MASK},
   {  "SDL_WINDOWPOS_UNDEFINED_MASK", DAO_DOUBLE, SDL_WINDOWPOS_UNDEFINED_MASK},
@@ -4090,13 +5048,16 @@ static DaoNumItem dao__Nums[] =
   {  "STDC_HEADERS", DAO_DOUBLE, STDC_HEADERS},
   {  "TARGET_CPU_68K", DAO_DOUBLE, TARGET_CPU_68K},
   {  "TARGET_CPU_ALPHA", DAO_DOUBLE, TARGET_CPU_ALPHA},
+  {  "TARGET_CPU_ARM", DAO_DOUBLE, TARGET_CPU_ARM},
   {  "TARGET_CPU_MIPS", DAO_DOUBLE, TARGET_CPU_MIPS},
   {  "TARGET_CPU_PPC", DAO_DOUBLE, TARGET_CPU_PPC},
   {  "TARGET_CPU_PPC64", DAO_DOUBLE, TARGET_CPU_PPC64},
   {  "TARGET_CPU_SPARC", DAO_DOUBLE, TARGET_CPU_SPARC},
   {  "TARGET_CPU_X86", DAO_DOUBLE, TARGET_CPU_X86},
   {  "TARGET_CPU_X86_64", DAO_DOUBLE, TARGET_CPU_X86_64},
+  {  "TARGET_IPHONE_SIMULATOR", DAO_DOUBLE, TARGET_IPHONE_SIMULATOR},
   {  "TARGET_OS_EMBEDDED", DAO_DOUBLE, TARGET_OS_EMBEDDED},
+  {  "TARGET_OS_IPHONE", DAO_DOUBLE, TARGET_OS_IPHONE},
   {  "TARGET_OS_MAC", DAO_DOUBLE, TARGET_OS_MAC},
   {  "TARGET_OS_UNIX", DAO_DOUBLE, TARGET_OS_UNIX},
   {  "TARGET_OS_WIN32", DAO_DOUBLE, TARGET_OS_WIN32},
@@ -4124,7 +5085,6 @@ static DaoNumItem dao__Nums[] =
   {  "WUNTRACED", DAO_DOUBLE, WUNTRACED},
   {  "X_TLOSS", DAO_DOUBLE, X_TLOSS},
   {  "false", DAO_DOUBLE, false},
-  {  "i386", DAO_DOUBLE, i386},
   {  "true", DAO_DOUBLE, true},
   { "SDL_FALSE", DAO_INTEGER, SDL_FALSE },
   { "SDL_TRUE", DAO_INTEGER, SDL_TRUE },
@@ -4237,6 +5197,7 @@ static DaoNumItem dao__Nums[] =
   { "SDL_WINDOW_INPUT_GRABBED", DAO_INTEGER, SDL_WINDOW_INPUT_GRABBED },
   { "SDL_WINDOW_INPUT_FOCUS", DAO_INTEGER, SDL_WINDOW_INPUT_FOCUS },
   { "SDL_WINDOW_MOUSE_FOCUS", DAO_INTEGER, SDL_WINDOW_MOUSE_FOCUS },
+  { "SDL_WINDOW_FULLSCREEN_DESKTOP", DAO_INTEGER, SDL_WINDOW_FULLSCREEN_DESKTOP },
   { "SDL_WINDOW_FOREIGN", DAO_INTEGER, SDL_WINDOW_FOREIGN },
   { "SDL_WINDOWEVENT_NONE", DAO_INTEGER, SDL_WINDOWEVENT_NONE },
   { "SDL_WINDOWEVENT_SHOWN", DAO_INTEGER, SDL_WINDOWEVENT_SHOWN },
@@ -4272,14 +5233,17 @@ static DaoNumItem dao__Nums[] =
   { "SDL_GL_RETAINED_BACKING", DAO_INTEGER, SDL_GL_RETAINED_BACKING },
   { "SDL_GL_CONTEXT_MAJOR_VERSION", DAO_INTEGER, SDL_GL_CONTEXT_MAJOR_VERSION },
   { "SDL_GL_CONTEXT_MINOR_VERSION", DAO_INTEGER, SDL_GL_CONTEXT_MINOR_VERSION },
+  { "SDL_GL_CONTEXT_EGL", DAO_INTEGER, SDL_GL_CONTEXT_EGL },
   { "SDL_GL_CONTEXT_FLAGS", DAO_INTEGER, SDL_GL_CONTEXT_FLAGS },
   { "SDL_GL_CONTEXT_PROFILE_MASK", DAO_INTEGER, SDL_GL_CONTEXT_PROFILE_MASK },
+  { "SDL_GL_SHARE_WITH_CURRENT_CONTEXT", DAO_INTEGER, SDL_GL_SHARE_WITH_CURRENT_CONTEXT },
   { "SDL_GL_CONTEXT_PROFILE_CORE", DAO_INTEGER, SDL_GL_CONTEXT_PROFILE_CORE },
   { "SDL_GL_CONTEXT_PROFILE_COMPATIBILITY", DAO_INTEGER, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY },
-  { "SDL_GL_CONTEXT_PROFILE_ES2", DAO_INTEGER, SDL_GL_CONTEXT_PROFILE_ES2 },
+  { "SDL_GL_CONTEXT_PROFILE_ES", DAO_INTEGER, SDL_GL_CONTEXT_PROFILE_ES },
   { "SDL_GL_CONTEXT_DEBUG_FLAG", DAO_INTEGER, SDL_GL_CONTEXT_DEBUG_FLAG },
   { "SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG", DAO_INTEGER, SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG },
   { "SDL_GL_CONTEXT_ROBUST_ACCESS_FLAG", DAO_INTEGER, SDL_GL_CONTEXT_ROBUST_ACCESS_FLAG },
+  { "SDL_GL_CONTEXT_RESET_ISOLATION_FLAG", DAO_INTEGER, SDL_GL_CONTEXT_RESET_ISOLATION_FLAG },
   { "SDL_SCANCODE_UNKNOWN", DAO_INTEGER, SDL_SCANCODE_UNKNOWN },
   { "SDL_SCANCODE_A", DAO_INTEGER, SDL_SCANCODE_A },
   { "SDL_SCANCODE_B", DAO_INTEGER, SDL_SCANCODE_B },
@@ -4519,6 +5483,8 @@ static DaoNumItem dao__Nums[] =
   { "SDL_SCANCODE_KBDILLUMUP", DAO_INTEGER, SDL_SCANCODE_KBDILLUMUP },
   { "SDL_SCANCODE_EJECT", DAO_INTEGER, SDL_SCANCODE_EJECT },
   { "SDL_SCANCODE_SLEEP", DAO_INTEGER, SDL_SCANCODE_SLEEP },
+  { "SDL_SCANCODE_APP1", DAO_INTEGER, SDL_SCANCODE_APP1 },
+  { "SDL_SCANCODE_APP2", DAO_INTEGER, SDL_SCANCODE_APP2 },
   { "SDL_NUM_SCANCODES", DAO_INTEGER, SDL_NUM_SCANCODES },
   { "SDLK_UNKNOWN", DAO_INTEGER, SDLK_UNKNOWN },
   { "SDLK_RETURN", DAO_INTEGER, SDLK_RETURN },
@@ -4769,8 +5735,27 @@ static DaoNumItem dao__Nums[] =
   { "KMOD_CAPS", DAO_INTEGER, KMOD_CAPS },
   { "KMOD_MODE", DAO_INTEGER, KMOD_MODE },
   { "KMOD_RESERVED", DAO_INTEGER, KMOD_RESERVED },
+  { "SDL_SYSTEM_CURSOR_ARROW", DAO_INTEGER, SDL_SYSTEM_CURSOR_ARROW },
+  { "SDL_SYSTEM_CURSOR_IBEAM", DAO_INTEGER, SDL_SYSTEM_CURSOR_IBEAM },
+  { "SDL_SYSTEM_CURSOR_WAIT", DAO_INTEGER, SDL_SYSTEM_CURSOR_WAIT },
+  { "SDL_SYSTEM_CURSOR_CROSSHAIR", DAO_INTEGER, SDL_SYSTEM_CURSOR_CROSSHAIR },
+  { "SDL_SYSTEM_CURSOR_WAITARROW", DAO_INTEGER, SDL_SYSTEM_CURSOR_WAITARROW },
+  { "SDL_SYSTEM_CURSOR_SIZENWSE", DAO_INTEGER, SDL_SYSTEM_CURSOR_SIZENWSE },
+  { "SDL_SYSTEM_CURSOR_SIZENESW", DAO_INTEGER, SDL_SYSTEM_CURSOR_SIZENESW },
+  { "SDL_SYSTEM_CURSOR_SIZEWE", DAO_INTEGER, SDL_SYSTEM_CURSOR_SIZEWE },
+  { "SDL_SYSTEM_CURSOR_SIZENS", DAO_INTEGER, SDL_SYSTEM_CURSOR_SIZENS },
+  { "SDL_SYSTEM_CURSOR_SIZEALL", DAO_INTEGER, SDL_SYSTEM_CURSOR_SIZEALL },
+  { "SDL_SYSTEM_CURSOR_NO", DAO_INTEGER, SDL_SYSTEM_CURSOR_NO },
+  { "SDL_SYSTEM_CURSOR_HAND", DAO_INTEGER, SDL_SYSTEM_CURSOR_HAND },
+  { "SDL_NUM_SYSTEM_CURSORS", DAO_INTEGER, SDL_NUM_SYSTEM_CURSORS },
   { "SDL_FIRSTEVENT", DAO_INTEGER, SDL_FIRSTEVENT },
   { "SDL_QUIT", DAO_INTEGER, SDL_QUIT },
+  { "SDL_APP_TERMINATING", DAO_INTEGER, SDL_APP_TERMINATING },
+  { "SDL_APP_LOWMEMORY", DAO_INTEGER, SDL_APP_LOWMEMORY },
+  { "SDL_APP_WILLENTERBACKGROUND", DAO_INTEGER, SDL_APP_WILLENTERBACKGROUND },
+  { "SDL_APP_DIDENTERBACKGROUND", DAO_INTEGER, SDL_APP_DIDENTERBACKGROUND },
+  { "SDL_APP_WILLENTERFOREGROUND", DAO_INTEGER, SDL_APP_WILLENTERFOREGROUND },
+  { "SDL_APP_DIDENTERFOREGROUND", DAO_INTEGER, SDL_APP_DIDENTERFOREGROUND },
   { "SDL_WINDOWEVENT", DAO_INTEGER, SDL_WINDOWEVENT },
   { "SDL_SYSWMEVENT", DAO_INTEGER, SDL_SYSWMEVENT },
   { "SDL_KEYDOWN", DAO_INTEGER, SDL_KEYDOWN },
@@ -4781,22 +5766,22 @@ static DaoNumItem dao__Nums[] =
   { "SDL_MOUSEBUTTONDOWN", DAO_INTEGER, SDL_MOUSEBUTTONDOWN },
   { "SDL_MOUSEBUTTONUP", DAO_INTEGER, SDL_MOUSEBUTTONUP },
   { "SDL_MOUSEWHEEL", DAO_INTEGER, SDL_MOUSEWHEEL },
-  { "SDL_INPUTMOTION", DAO_INTEGER, SDL_INPUTMOTION },
-  { "SDL_INPUTBUTTONDOWN", DAO_INTEGER, SDL_INPUTBUTTONDOWN },
-  { "SDL_INPUTBUTTONUP", DAO_INTEGER, SDL_INPUTBUTTONUP },
-  { "SDL_INPUTWHEEL", DAO_INTEGER, SDL_INPUTWHEEL },
-  { "SDL_INPUTPROXIMITYIN", DAO_INTEGER, SDL_INPUTPROXIMITYIN },
-  { "SDL_INPUTPROXIMITYOUT", DAO_INTEGER, SDL_INPUTPROXIMITYOUT },
   { "SDL_JOYAXISMOTION", DAO_INTEGER, SDL_JOYAXISMOTION },
   { "SDL_JOYBALLMOTION", DAO_INTEGER, SDL_JOYBALLMOTION },
   { "SDL_JOYHATMOTION", DAO_INTEGER, SDL_JOYHATMOTION },
   { "SDL_JOYBUTTONDOWN", DAO_INTEGER, SDL_JOYBUTTONDOWN },
   { "SDL_JOYBUTTONUP", DAO_INTEGER, SDL_JOYBUTTONUP },
+  { "SDL_JOYDEVICEADDED", DAO_INTEGER, SDL_JOYDEVICEADDED },
+  { "SDL_JOYDEVICEREMOVED", DAO_INTEGER, SDL_JOYDEVICEREMOVED },
+  { "SDL_CONTROLLERAXISMOTION", DAO_INTEGER, SDL_CONTROLLERAXISMOTION },
+  { "SDL_CONTROLLERBUTTONDOWN", DAO_INTEGER, SDL_CONTROLLERBUTTONDOWN },
+  { "SDL_CONTROLLERBUTTONUP", DAO_INTEGER, SDL_CONTROLLERBUTTONUP },
+  { "SDL_CONTROLLERDEVICEADDED", DAO_INTEGER, SDL_CONTROLLERDEVICEADDED },
+  { "SDL_CONTROLLERDEVICEREMOVED", DAO_INTEGER, SDL_CONTROLLERDEVICEREMOVED },
+  { "SDL_CONTROLLERDEVICEREMAPPED", DAO_INTEGER, SDL_CONTROLLERDEVICEREMAPPED },
   { "SDL_FINGERDOWN", DAO_INTEGER, SDL_FINGERDOWN },
   { "SDL_FINGERUP", DAO_INTEGER, SDL_FINGERUP },
   { "SDL_FINGERMOTION", DAO_INTEGER, SDL_FINGERMOTION },
-  { "SDL_TOUCHBUTTONDOWN", DAO_INTEGER, SDL_TOUCHBUTTONDOWN },
-  { "SDL_TOUCHBUTTONUP", DAO_INTEGER, SDL_TOUCHBUTTONUP },
   { "SDL_DOLLARGESTURE", DAO_INTEGER, SDL_DOLLARGESTURE },
   { "SDL_DOLLARRECORD", DAO_INTEGER, SDL_DOLLARRECORD },
   { "SDL_MULTIGESTURE", DAO_INTEGER, SDL_MULTIGESTURE },
@@ -4812,11 +5797,13 @@ static DaoNumItem dao__Nums[] =
   { "SDL_HINT_OVERRIDE", DAO_INTEGER, SDL_HINT_OVERRIDE },
   { "SDL_LOG_CATEGORY_APPLICATION", DAO_INTEGER, SDL_LOG_CATEGORY_APPLICATION },
   { "SDL_LOG_CATEGORY_ERROR", DAO_INTEGER, SDL_LOG_CATEGORY_ERROR },
+  { "SDL_LOG_CATEGORY_ASSERT", DAO_INTEGER, SDL_LOG_CATEGORY_ASSERT },
   { "SDL_LOG_CATEGORY_SYSTEM", DAO_INTEGER, SDL_LOG_CATEGORY_SYSTEM },
   { "SDL_LOG_CATEGORY_AUDIO", DAO_INTEGER, SDL_LOG_CATEGORY_AUDIO },
   { "SDL_LOG_CATEGORY_VIDEO", DAO_INTEGER, SDL_LOG_CATEGORY_VIDEO },
   { "SDL_LOG_CATEGORY_RENDER", DAO_INTEGER, SDL_LOG_CATEGORY_RENDER },
   { "SDL_LOG_CATEGORY_INPUT", DAO_INTEGER, SDL_LOG_CATEGORY_INPUT },
+  { "SDL_LOG_CATEGORY_TEST", DAO_INTEGER, SDL_LOG_CATEGORY_TEST },
   { "SDL_LOG_CATEGORY_RESERVED1", DAO_INTEGER, SDL_LOG_CATEGORY_RESERVED1 },
   { "SDL_LOG_CATEGORY_RESERVED2", DAO_INTEGER, SDL_LOG_CATEGORY_RESERVED2 },
   { "SDL_LOG_CATEGORY_RESERVED3", DAO_INTEGER, SDL_LOG_CATEGORY_RESERVED3 },
@@ -4850,6 +5837,9 @@ static DaoNumItem dao__Nums[] =
   { "SDL_TEXTUREMODULATE_NONE", DAO_INTEGER, SDL_TEXTUREMODULATE_NONE },
   { "SDL_TEXTUREMODULATE_COLOR", DAO_INTEGER, SDL_TEXTUREMODULATE_COLOR },
   { "SDL_TEXTUREMODULATE_ALPHA", DAO_INTEGER, SDL_TEXTUREMODULATE_ALPHA },
+  { "SDL_FLIP_NONE", DAO_INTEGER, SDL_FLIP_NONE },
+  { "SDL_FLIP_HORIZONTAL", DAO_INTEGER, SDL_FLIP_HORIZONTAL },
+  { "SDL_FLIP_VERTICAL", DAO_INTEGER, SDL_FLIP_VERTICAL },
   { NULL, 0, 0 }
 };
 static const char *dao__Aliases[] = 
@@ -4868,6 +5858,7 @@ static const char *dao__Aliases[] =
 	"int", "SDL_SpinLock",
 	"int", "SDL_errorcode",
 	"int", "SDL_threadID",
+	"int", "SDL_TLSID",
 	"int", "SDL_ThreadPriority",
 	"int", "SDL_AudioFormat",
 	"int", "SDL_AudioDeviceID",
@@ -4881,6 +5872,8 @@ static const char *dao__Aliases[] =
 	"int", "SDL_Scancode",
 	"int", "SDL_Keycode",
 	"int", "SDL_Keymod",
+	"int", "SDL_SystemCursor",
+	"int", "SDL_JoystickID",
 	"int", "SDL_TouchID",
 	"int", "SDL_FingerID",
 	"int", "SDL_GestureID",
@@ -4892,6 +5885,7 @@ static const char *dao__Aliases[] =
 	"int", "SDL_RendererFlags",
 	"int", "SDL_TextureAccess",
 	"int", "SDL_TextureModulate",
+	"int", "SDL_RendererFlip",
 	"int", "SDL_TimerID",
 	NULL
 };
@@ -4917,8 +5911,10 @@ int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 	dao_type_lldiv_t = DaoNamespace_WrapType( ns, dao_lldiv_t_Typer, 1 );
 	dao_type_imaxdiv_t = DaoNamespace_WrapType( ns, dao_imaxdiv_t_Typer, 1 );
 	dao_type_exception = DaoNamespace_WrapType( ns, dao_exception_Typer, 1 );
+	dao_type__SDL_iconv_t = DaoNamespace_WrapType( ns, dao__SDL_iconv_t_Typer, 1 );
 	dao_type_SDL_assert_data = DaoNamespace_WrapType( ns, dao_SDL_assert_data_Typer, 1 );
 	dao_type_OSQueueHead = DaoNamespace_WrapType( ns, dao_OSQueueHead_Typer, 1 );
+	dao_type_OSFifoQueueHead = DaoNamespace_WrapType( ns, dao_OSFifoQueueHead_Typer, 1 );
 	dao_type_SDL_atomic_t = DaoNamespace_WrapType( ns, dao_SDL_atomic_t_Typer, 1 );
 	dao_type_SDL_mutex = DaoNamespace_WrapType( ns, dao_SDL_mutex_Typer, 1 );
 	dao_type_SDL_semaphore = DaoNamespace_WrapType( ns, dao_SDL_semaphore_Typer, 1 );
@@ -4939,8 +5935,11 @@ int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 	dao_type_SDL_Keysym = DaoNamespace_WrapType( ns, dao_SDL_Keysym_Typer, 1 );
 	dao_type_SDL_Cursor = DaoNamespace_WrapType( ns, dao_SDL_Cursor_Typer, 1 );
 	dao_type__SDL_Joystick = DaoNamespace_WrapType( ns, dao__SDL_Joystick_Typer, 1 );
+	dao_type_SDL_JoystickGUID = DaoNamespace_WrapType( ns, dao_SDL_JoystickGUID_Typer, 1 );
+	dao_type__SDL_GameController = DaoNamespace_WrapType( ns, dao__SDL_GameController_Typer, 1 );
+	dao_type_SDL_GameControllerButtonBind = DaoNamespace_WrapType( ns, dao_SDL_GameControllerButtonBind_Typer, 1 );
 	dao_type_SDL_Finger = DaoNamespace_WrapType( ns, dao_SDL_Finger_Typer, 1 );
-	dao_type_SDL_Touch = DaoNamespace_WrapType( ns, dao_SDL_Touch_Typer, 1 );
+	dao_type_SDL_CommonEvent = DaoNamespace_WrapType( ns, dao_SDL_CommonEvent_Typer, 1 );
 	dao_type_SDL_WindowEvent = DaoNamespace_WrapType( ns, dao_SDL_WindowEvent_Typer, 1 );
 	dao_type_SDL_KeyboardEvent = DaoNamespace_WrapType( ns, dao_SDL_KeyboardEvent_Typer, 1 );
 	dao_type_SDL_TextEditingEvent = DaoNamespace_WrapType( ns, dao_SDL_TextEditingEvent_Typer, 1 );
@@ -4952,16 +5951,30 @@ int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 	dao_type_SDL_JoyBallEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyBallEvent_Typer, 1 );
 	dao_type_SDL_JoyHatEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyHatEvent_Typer, 1 );
 	dao_type_SDL_JoyButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyButtonEvent_Typer, 1 );
+	dao_type_SDL_JoyDeviceEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyDeviceEvent_Typer, 1 );
+	dao_type_SDL_ControllerAxisEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerAxisEvent_Typer, 1 );
+	dao_type_SDL_ControllerButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerButtonEvent_Typer, 1 );
+	dao_type_SDL_ControllerDeviceEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerDeviceEvent_Typer, 1 );
 	dao_type_SDL_TouchFingerEvent = DaoNamespace_WrapType( ns, dao_SDL_TouchFingerEvent_Typer, 1 );
-	dao_type_SDL_TouchButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_TouchButtonEvent_Typer, 1 );
 	dao_type_SDL_MultiGestureEvent = DaoNamespace_WrapType( ns, dao_SDL_MultiGestureEvent_Typer, 1 );
 	dao_type_SDL_DollarGestureEvent = DaoNamespace_WrapType( ns, dao_SDL_DollarGestureEvent_Typer, 1 );
 	dao_type_SDL_DropEvent = DaoNamespace_WrapType( ns, dao_SDL_DropEvent_Typer, 1 );
 	dao_type_SDL_QuitEvent = DaoNamespace_WrapType( ns, dao_SDL_QuitEvent_Typer, 1 );
+	dao_type_SDL_OSEvent = DaoNamespace_WrapType( ns, dao_SDL_OSEvent_Typer, 1 );
 	dao_type_SDL_UserEvent = DaoNamespace_WrapType( ns, dao_SDL_UserEvent_Typer, 1 );
 	dao_type_SDL_SysWMmsg = DaoNamespace_WrapType( ns, dao_SDL_SysWMmsg_Typer, 1 );
 	dao_type_SDL_SysWMEvent = DaoNamespace_WrapType( ns, dao_SDL_SysWMEvent_Typer, 1 );
 	dao_type_SDL_Event = DaoNamespace_WrapType( ns, dao_SDL_Event_Typer, 1 );
+	dao_type__SDL_Haptic = DaoNamespace_WrapType( ns, dao__SDL_Haptic_Typer, 1 );
+	dao_type_SDL_HapticDirection = DaoNamespace_WrapType( ns, dao_SDL_HapticDirection_Typer, 1 );
+	dao_type_SDL_HapticConstant = DaoNamespace_WrapType( ns, dao_SDL_HapticConstant_Typer, 1 );
+	dao_type_SDL_HapticPeriodic = DaoNamespace_WrapType( ns, dao_SDL_HapticPeriodic_Typer, 1 );
+	dao_type_SDL_HapticCondition = DaoNamespace_WrapType( ns, dao_SDL_HapticCondition_Typer, 1 );
+	dao_type_SDL_HapticRamp = DaoNamespace_WrapType( ns, dao_SDL_HapticRamp_Typer, 1 );
+	dao_type_SDL_HapticLeftRight = DaoNamespace_WrapType( ns, dao_SDL_HapticLeftRight_Typer, 1 );
+	dao_type_SDL_HapticCustom = DaoNamespace_WrapType( ns, dao_SDL_HapticCustom_Typer, 1 );
+	dao_type_SDL_HapticEffect = DaoNamespace_WrapType( ns, dao_SDL_HapticEffect_Typer, 1 );
+	dao_type_SDL_MessageBoxData = DaoNamespace_WrapType( ns, dao_SDL_MessageBoxData_Typer, 1 );
 	dao_type_SDL_RendererInfo = DaoNamespace_WrapType( ns, dao_SDL_RendererInfo_Typer, 1 );
 	dao_type_SDL_Renderer = DaoNamespace_WrapType( ns, dao_SDL_Renderer_Typer, 1 );
 	dao_type_SDL_Texture = DaoNamespace_WrapType( ns, dao_SDL_Texture_Typer, 1 );

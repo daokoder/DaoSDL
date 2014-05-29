@@ -14,32 +14,32 @@
 # Simple program:  Move N sprites around on the screen as fast as possible 
 
 load sys;
-load DaoSDL;
-load DaoSDL_Test;
+load sdl;
+load sdl_test;
 
 const WINDOW_WIDTH  = 640
 const WINDOW_HEIGHT = 480
 const NUM_SPRITES = 100
 const MAX_SPEED = 1
 
-global sprite : SDL_Texture;
-global positions = std.list( NUM_SPRITES )::{ SDL_Rect() }
-global velocities = std.list( NUM_SPRITES )::{ SDL_Rect() }
-global sprite_w = 0;
-global sprite_h = 0;
+var sprite: SDL_Texture;
+var positions = list<SDL_Rect>( NUM_SPRITES ){ SDL_Rect() }
+var velocities = list<SDL_Rect>( NUM_SPRITES ){ SDL_Rect() }
+var sprite_w = 0;
+var sprite_h = 0;
 
 # Call this instead of exit(), so we can clean up SDL: atexit() is evil. 
-routine quit( rc :int )
+routine quit( rc: int )
 {
     sys.exit(rc);
 }
 
-routine SDL_LoadBMP( file :string )
+routine SDL_LoadBMP( file: string )
 {
     return SDL_LoadBMP_RW(SDL_RWFromFile(file, "rb"), 1);
 }
 
-routine LoadSprite( file :string, renderer :SDL_Renderer )
+routine LoadSprite( file: string, renderer: SDL_Renderer )
 {
     # Load the sprite image 
     temp = SDL_LoadBMP(file);
@@ -75,7 +75,7 @@ routine LoadSprite( file :string, renderer :SDL_Renderer )
     return (0);
 }
 
-routine MoveSprites(window :SDL_Window, renderer :SDL_Renderer, sprite :SDL_Texture)
+routine MoveSprites(window: SDL_Window, renderer: SDL_Renderer, sprite: SDL_Texture)
 {
     window_w = WINDOW_WIDTH;
     window_h = WINDOW_HEIGHT;
@@ -107,11 +107,14 @@ routine MoveSprites(window :SDL_Window, renderer :SDL_Renderer, sprite :SDL_Text
     SDL_RenderPresent(renderer);
 }
 
-routine main()
+routine main( ... as argtuple )
 {
+	argv = (list<string>) argtuple;
+	argv.push( "testdraw", $front )
+
     event = SDL_Event();
 
-    window = SDL_CreateWindow( ARGV[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0 );
+    window = SDL_CreateWindow( argv[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0 );
     if( window == none ) quit(2);
     renderer = SDL_CreateRenderer( window, 0, 0 );
     if( renderer == none ) quit(2);

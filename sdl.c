@@ -1,5 +1,5 @@
 
-#define module_name SDL
+#define module_name sdl
 #undef module_name
 
 #define X_dao_hint_unsupported() sigevent
@@ -50,6 +50,10 @@
 // hints for image pixel data: dao_hint_pixels_pitch_width_height
 #define pixels_dao_hint_pixels_pitch_w_h() SDL_Surface::pixels
 #undef  pixels_dao_hint_pixels_pitch_w_h
+
+#define X_dao_hint_unsupported() SDL_RendererInfo::texture_formats
+#undef X_dao_hint_unsupported
+
 
 #include"SDL.h"
 

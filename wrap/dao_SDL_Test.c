@@ -1,83 +1,85 @@
-#include"dao_SDL_Test.h"
+#include"dao_sdl_test.h"
 
 DaoVmSpace *__daoVmSpace = NULL;
 extern char** DaoStringList_ToStaticCStringArray( DaoList *slist );
 #ifdef __cplusplus
 extern "C"{
 #endif
-static void dao__CommonCreateState( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__CommonArg( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__CommonUsage( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__CommonInit( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__CommonEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao__CommonQuit( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDLTest_CommonCreateState( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDLTest_CommonArg( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDLTest_CommonUsage( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDLTest_CommonInit( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDLTest_CommonEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao__SDLTest_CommonQuit( DaoProcess *_proc, DaoValue *_p[], int _n );
 static DaoFuncItem dao__Funcs[] = 
 {
-  { dao__CommonCreateState, "CommonCreateState( argv:list<string>, flags :int )=>CommonState" },
-  { dao__CommonArg, "CommonArg( state :CommonState, index :int )=>int" },
-  { dao__CommonUsage, "CommonUsage( state :CommonState )=>string" },
-  { dao__CommonInit, "CommonInit( state :CommonState )=>int" },
-  { dao__CommonEvent, "CommonEvent( state :CommonState, event :SDL_Event, done :int )=>int" },
-  { dao__CommonQuit, "CommonQuit( state :CommonState )" },
+  { dao__SDLTest_CommonCreateState, "SDLTest_CommonCreateState( argv:list<string>, flags: int )=>SDLTest_CommonState" },
+  { dao__SDLTest_CommonArg, "SDLTest_CommonArg( state: SDLTest_CommonState, index: int )=>int" },
+  { dao__SDLTest_CommonUsage, "SDLTest_CommonUsage( state: SDLTest_CommonState )=>string" },
+  { dao__SDLTest_CommonInit, "SDLTest_CommonInit( state: SDLTest_CommonState )=>int" },
+  { dao__SDLTest_CommonEvent, "SDLTest_CommonEvent( state: SDLTest_CommonState, event: SDL_Event, done: int )=>int" },
+  { dao__SDLTest_CommonQuit, "SDLTest_CommonQuit( state: SDLTest_CommonState )" },
   { NULL, NULL }
 };
-/* ../test/common.h */
-static void dao__CommonCreateState( DaoProcess *_proc, DaoValue *_p[], int _n )
+/* /usr/local/include/SDL2/SDL_test_common.h */
+static void dao__SDLTest_CommonCreateState( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   static char **__argv = NULL;
   char **argv = __argv ? __argv : (__argv = DaoStringList_ToStaticCStringArray( (DaoList*)_p[0] ));
   unsigned int flags = (unsigned int) DaoValue_TryGetInteger( _p[1] );
 
-  CommonState* _CommonCreateState = CommonCreateState( argv, flags );
-  DaoProcess_WrapCdata( _proc, (void*) _CommonCreateState, dao_type_CommonState );
+  SDLTest_CommonState* _CommonCreateState = SDLTest_CommonCreateState( argv, flags );
+  DaoProcess_WrapCdata( _proc, (void*) _CommonCreateState, dao_type_SDLTest_CommonState );
 }
-/* ../test/common.h */
-static void dao__CommonArg( DaoProcess *_proc, DaoValue *_p[], int _n )
+/* /usr/local/include/SDL2/SDL_test_common.h */
+static void dao__SDLTest_CommonArg( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  CommonState* state = (CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_CommonState );
+  SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
   int index = (int) DaoValue_TryGetInteger( _p[1] );
 
-  int _CommonArg = CommonArg( state, index );
-  DaoProcess_PutInteger( _proc, (daoint) _CommonArg );
+  int _SDLTest_CommonArg = SDLTest_CommonArg( state, index );
+  DaoProcess_PutInteger( _proc, (daoint) _SDLTest_CommonArg );
 }
-/* ../test/common.h */
-static void dao__CommonUsage( DaoProcess *_proc, DaoValue *_p[], int _n )
+/* /usr/local/include/SDL2/SDL_test_common.h */
+static void dao__SDLTest_CommonUsage( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  CommonState* state = (CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_CommonState );
+  SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
 
-  const char* _CommonUsage = CommonUsage( state );
-  DaoProcess_PutMBString( _proc, (char*) _CommonUsage );
+  const char* _SDLTest_CommonUsage = SDLTest_CommonUsage( state );
+  DaoProcess_PutChars( _proc, (char*) _SDLTest_CommonUsage );
 }
-/* ../test/common.h */
-static void dao__CommonInit( DaoProcess *_proc, DaoValue *_p[], int _n )
+/* /usr/local/include/SDL2/SDL_test_common.h */
+static void dao__SDLTest_CommonInit( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  CommonState* state = (CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_CommonState );
+  SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
 
-  SDL_bool _CommonInit = CommonInit( state );
-  DaoProcess_PutInteger( _proc, (daoint) _CommonInit );
+  SDL_bool _SDLTest_CommonInit = SDLTest_CommonInit( state );
+  DaoProcess_PutInteger( _proc, (daoint) _SDLTest_CommonInit );
 }
-/* ../test/common.h */
-static void dao__CommonEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
+/* /usr/local/include/SDL2/SDL_test_common.h */
+static void dao__SDLTest_CommonEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  CommonState* state = (CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_CommonState );
+  SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
   SDL_Event* event = (SDL_Event*) DaoValue_TryCastCdata( _p[1], dao_type_SDL_Event );
   int done = (int) DaoValue_TryGetInteger( _p[2] );
 
-  CommonEvent( state, event, &done );
+  SDLTest_CommonEvent( state, event, &done );
   DaoProcess_PutInteger( _proc, (daoint) done );
 }
-/* ../test/common.h */
-static void dao__CommonQuit( DaoProcess *_proc, DaoValue *_p[], int _n )
+/* /usr/local/include/SDL2/SDL_test_common.h */
+static void dao__SDLTest_CommonQuit( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  CommonState* state = (CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_CommonState );
+  SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
 
-  CommonQuit( state );
+  SDLTest_CommonQuit( state );
 }
 #ifdef __cplusplus
 }
 #endif
 static DaoNumItem dao__Nums[] = 
 {
+  {  "ASSERT_FAIL", DAO_DOUBLE, ASSERT_FAIL},
+  {  "ASSERT_PASS", DAO_DOUBLE, ASSERT_PASS},
   {  "AUDIO_F32LSB", DAO_DOUBLE, AUDIO_F32LSB},
   {  "AUDIO_F32MSB", DAO_DOUBLE, AUDIO_F32MSB},
   {  "AUDIO_S16LSB", DAO_DOUBLE, AUDIO_S16LSB},
@@ -100,6 +102,7 @@ static DaoNumItem dao__Nums[] =
   {  "CLD_NOOP", DAO_DOUBLE, CLD_NOOP},
   {  "CLD_STOPPED", DAO_DOUBLE, CLD_STOPPED},
   {  "CLD_TRAPPED", DAO_DOUBLE, CLD_TRAPPED},
+  {  "CRC32_POLY", DAO_DOUBLE, CRC32_POLY},
   {  "DEFAULT_WINDOW_HEIGHT", DAO_DOUBLE, DEFAULT_WINDOW_HEIGHT},
   {  "DEFAULT_WINDOW_WIDTH", DAO_DOUBLE, DEFAULT_WINDOW_WIDTH},
   {  "DOMAIN", DAO_DOUBLE, DOMAIN},
@@ -117,6 +120,9 @@ static DaoNumItem dao__Nums[] =
   {  "FPE_INTOVF", DAO_DOUBLE, FPE_INTOVF},
   {  "FPE_NOOP", DAO_DOUBLE, FPE_NOOP},
   {  "FP_CHOP", DAO_DOUBLE, FP_CHOP},
+  {  "FP_INFINITE", DAO_DOUBLE, FP_INFINITE},
+  {  "FP_NAN", DAO_DOUBLE, FP_NAN},
+  {  "FP_NORMAL", DAO_DOUBLE, FP_NORMAL},
   {  "FP_PREC_24B", DAO_DOUBLE, FP_PREC_24B},
   {  "FP_PREC_53B", DAO_DOUBLE, FP_PREC_53B},
   {  "FP_PREC_64B", DAO_DOUBLE, FP_PREC_64B},
@@ -124,6 +130,9 @@ static DaoNumItem dao__Nums[] =
   {  "FP_RND_NEAR", DAO_DOUBLE, FP_RND_NEAR},
   {  "FP_RND_UP", DAO_DOUBLE, FP_RND_UP},
   {  "FP_STATE_BYTES", DAO_DOUBLE, FP_STATE_BYTES},
+  {  "FP_SUBNORMAL", DAO_DOUBLE, FP_SUBNORMAL},
+  {  "FP_SUPERNORMAL", DAO_DOUBLE, FP_SUPERNORMAL},
+  {  "FP_ZERO", DAO_DOUBLE, FP_ZERO},
   {  "HAVE_ABS", DAO_DOUBLE, HAVE_ABS},
   {  "HAVE_ALLOCA", DAO_DOUBLE, HAVE_ALLOCA},
   {  "HAVE_ALLOCA_H", DAO_DOUBLE, HAVE_ALLOCA_H},
@@ -141,6 +150,8 @@ static DaoNumItem dao__Nums[] =
   {  "HAVE_FABS", DAO_DOUBLE, HAVE_FABS},
   {  "HAVE_FLOOR", DAO_DOUBLE, HAVE_FLOOR},
   {  "HAVE_FREE", DAO_DOUBLE, HAVE_FREE},
+  {  "HAVE_FSEEKO", DAO_DOUBLE, HAVE_FSEEKO},
+  {  "HAVE_GCC_ATOMICS", DAO_DOUBLE, HAVE_GCC_ATOMICS},
   {  "HAVE_GETENV", DAO_DOUBLE, HAVE_GETENV},
   {  "HAVE_ICONV", DAO_DOUBLE, HAVE_ICONV},
   {  "HAVE_ICONV_H", DAO_DOUBLE, HAVE_ICONV_H},
@@ -157,6 +168,7 @@ static DaoNumItem dao__Nums[] =
   {  "HAVE_MPROTECT", DAO_DOUBLE, HAVE_MPROTECT},
   {  "HAVE_NANOSLEEP", DAO_DOUBLE, HAVE_NANOSLEEP},
   {  "HAVE_POW", DAO_DOUBLE, HAVE_POW},
+  {  "HAVE_PTHREAD_SETNAME_NP", DAO_DOUBLE, HAVE_PTHREAD_SETNAME_NP},
   {  "HAVE_PUTENV", DAO_DOUBLE, HAVE_PUTENV},
   {  "HAVE_QSORT", DAO_DOUBLE, HAVE_QSORT},
   {  "HAVE_REALLOC", DAO_DOUBLE, HAVE_REALLOC},
@@ -225,6 +237,7 @@ static DaoNumItem dao__Nums[] =
   {  "IOPOL_SCOPE_THREAD", DAO_DOUBLE, IOPOL_SCOPE_THREAD},
   {  "IOPOL_THROTTLE", DAO_DOUBLE, IOPOL_THROTTLE},
   {  "IOPOL_TYPE_DISK", DAO_DOUBLE, IOPOL_TYPE_DISK},
+  {  "IOPOL_UTILITY", DAO_DOUBLE, IOPOL_UTILITY},
   {  "L_ctermid", DAO_DOUBLE, L_ctermid},
   {  "L_tmpnam", DAO_DOUBLE, L_tmpnam},
   {  "MAC_OS_X_VERSION_10_0", DAO_DOUBLE, MAC_OS_X_VERSION_10_0},
@@ -233,8 +246,12 @@ static DaoNumItem dao__Nums[] =
   {  "MAC_OS_X_VERSION_10_3", DAO_DOUBLE, MAC_OS_X_VERSION_10_3},
   {  "MAC_OS_X_VERSION_10_4", DAO_DOUBLE, MAC_OS_X_VERSION_10_4},
   {  "MAC_OS_X_VERSION_10_5", DAO_DOUBLE, MAC_OS_X_VERSION_10_5},
+  {  "MAC_OS_X_VERSION_10_6", DAO_DOUBLE, MAC_OS_X_VERSION_10_6},
+  {  "MAC_OS_X_VERSION_10_7", DAO_DOUBLE, MAC_OS_X_VERSION_10_7},
+  {  "MAC_OS_X_VERSION_10_8", DAO_DOUBLE, MAC_OS_X_VERSION_10_8},
   {  "MATH_ERREXCEPT", DAO_DOUBLE, MATH_ERREXCEPT},
   {  "MATH_ERRNO", DAO_DOUBLE, MATH_ERRNO},
+  {  "MAXFLOAT", DAO_DOUBLE, MAXFLOAT},
   {  "MINSIGSTKSZ", DAO_DOUBLE, MINSIGSTKSZ},
   {  "M_1_PI", DAO_DOUBLE, M_1_PI},
   {  "M_2_PI", DAO_DOUBLE, M_2_PI},
@@ -260,6 +277,8 @@ static DaoNumItem dao__Nums[] =
   {  "POLL_OUT", DAO_DOUBLE, POLL_OUT},
   {  "POLL_PRI", DAO_DOUBLE, POLL_PRI},
   {  "PRIO_DARWIN_BG", DAO_DOUBLE, PRIO_DARWIN_BG},
+  {  "PRIO_DARWIN_NONUI", DAO_DOUBLE, PRIO_DARWIN_NONUI},
+  {  "PRIO_DARWIN_PROCESS", DAO_DOUBLE, PRIO_DARWIN_PROCESS},
   {  "PRIO_DARWIN_THREAD", DAO_DOUBLE, PRIO_DARWIN_THREAD},
   {  "PRIO_MAX", DAO_DOUBLE, PRIO_MAX},
   {  "PRIO_PGRP", DAO_DOUBLE, PRIO_PGRP},
@@ -289,6 +308,7 @@ static DaoNumItem dao__Nums[] =
   {  "SA_RESTART", DAO_DOUBLE, SA_RESTART},
   {  "SA_SIGINFO", DAO_DOUBLE, SA_SIGINFO},
   {  "SA_USERTRAMP", DAO_DOUBLE, SA_USERTRAMP},
+  {  "SDLTEST_MAX_LOGMESSAGE_LENGTH", DAO_DOUBLE, SDLTEST_MAX_LOGMESSAGE_LENGTH},
   {  "SDL_ALPHA_OPAQUE", DAO_DOUBLE, SDL_ALPHA_OPAQUE},
   {  "SDL_ALPHA_TRANSPARENT", DAO_DOUBLE, SDL_ALPHA_TRANSPARENT},
   {  "SDL_ASSEMBLY_ROUTINES", DAO_DOUBLE, SDL_ASSEMBLY_ROUTINES},
@@ -309,7 +329,11 @@ static DaoNumItem dao__Nums[] =
   {  "SDL_DISABLE", DAO_DOUBLE, SDL_DISABLE},
   {  "SDL_DONTFREE", DAO_DOUBLE, SDL_DONTFREE},
   {  "SDL_ENABLE", DAO_DOUBLE, SDL_ENABLE},
+  {  "SDL_HAPTIC_CARTESIAN", DAO_DOUBLE, SDL_HAPTIC_CARTESIAN},
+  {  "SDL_HAPTIC_INFINITY", DAO_DOUBLE, SDL_HAPTIC_INFINITY},
   {  "SDL_HAPTIC_IOKIT", DAO_DOUBLE, SDL_HAPTIC_IOKIT},
+  {  "SDL_HAPTIC_POLAR", DAO_DOUBLE, SDL_HAPTIC_POLAR},
+  {  "SDL_HAPTIC_SPHERICAL", DAO_DOUBLE, SDL_HAPTIC_SPHERICAL},
   {  "SDL_HAT_CENTERED", DAO_DOUBLE, SDL_HAT_CENTERED},
   {  "SDL_HAT_DOWN", DAO_DOUBLE, SDL_HAT_DOWN},
   {  "SDL_HAT_LEFT", DAO_DOUBLE, SDL_HAT_LEFT},
@@ -317,7 +341,8 @@ static DaoNumItem dao__Nums[] =
   {  "SDL_HAT_UP", DAO_DOUBLE, SDL_HAT_UP},
   {  "SDL_IGNORE", DAO_DOUBLE, SDL_IGNORE},
   {  "SDL_INIT_AUDIO", DAO_DOUBLE, SDL_INIT_AUDIO},
-  {  "SDL_INIT_EVERYTHING", DAO_DOUBLE, SDL_INIT_EVERYTHING},
+  {  "SDL_INIT_EVENTS", DAO_DOUBLE, SDL_INIT_EVENTS},
+  {  "SDL_INIT_GAMECONTROLLER", DAO_DOUBLE, SDL_INIT_GAMECONTROLLER},
   {  "SDL_INIT_HAPTIC", DAO_DOUBLE, SDL_INIT_HAPTIC},
   {  "SDL_INIT_JOYSTICK", DAO_DOUBLE, SDL_INIT_JOYSTICK},
   {  "SDL_INIT_NOPARACHUTE", DAO_DOUBLE, SDL_INIT_NOPARACHUTE},
@@ -337,23 +362,20 @@ static DaoNumItem dao__Nums[] =
   {  "SDL_PRESSED", DAO_DOUBLE, SDL_PRESSED},
   {  "SDL_RELEASED", DAO_DOUBLE, SDL_RELEASED},
   {  "SDL_RLEACCEL", DAO_DOUBLE, SDL_RLEACCEL},
+  {  "SDL_RWOPS_JNIFILE", DAO_DOUBLE, SDL_RWOPS_JNIFILE},
+  {  "SDL_RWOPS_MEMORY", DAO_DOUBLE, SDL_RWOPS_MEMORY},
+  {  "SDL_RWOPS_MEMORY_RO", DAO_DOUBLE, SDL_RWOPS_MEMORY_RO},
+  {  "SDL_RWOPS_STDFILE", DAO_DOUBLE, SDL_RWOPS_STDFILE},
+  {  "SDL_RWOPS_UNKNOWN", DAO_DOUBLE, SDL_RWOPS_UNKNOWN},
+  {  "SDL_RWOPS_WINFILE", DAO_DOUBLE, SDL_RWOPS_WINFILE},
   {  "SDL_SWSURFACE", DAO_DOUBLE, SDL_SWSURFACE},
   {  "SDL_THREAD_PTHREAD", DAO_DOUBLE, SDL_THREAD_PTHREAD},
   {  "SDL_THREAD_PTHREAD_RECURSIVE_MUTEX", DAO_DOUBLE, SDL_THREAD_PTHREAD_RECURSIVE_MUTEX},
   {  "SDL_TIMER_UNIX", DAO_DOUBLE, SDL_TIMER_UNIX},
   {  "SDL_VIDEO_DRIVER_COCOA", DAO_DOUBLE, SDL_VIDEO_DRIVER_COCOA},
   {  "SDL_VIDEO_DRIVER_DUMMY", DAO_DOUBLE, SDL_VIDEO_DRIVER_DUMMY},
-  {  "SDL_VIDEO_DRIVER_X11", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11},
-  {  "SDL_VIDEO_DRIVER_X11_XCURSOR", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XCURSOR},
-  {  "SDL_VIDEO_DRIVER_X11_XINERAMA", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XINERAMA},
-  {  "SDL_VIDEO_DRIVER_X11_XINPUT", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XINPUT},
-  {  "SDL_VIDEO_DRIVER_X11_XRANDR", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XRANDR},
-  {  "SDL_VIDEO_DRIVER_X11_XSCRNSAVER", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XSCRNSAVER},
-  {  "SDL_VIDEO_DRIVER_X11_XSHAPE", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XSHAPE},
-  {  "SDL_VIDEO_DRIVER_X11_XVIDMODE", DAO_DOUBLE, SDL_VIDEO_DRIVER_X11_XVIDMODE},
   {  "SDL_VIDEO_OPENGL", DAO_DOUBLE, SDL_VIDEO_OPENGL},
   {  "SDL_VIDEO_OPENGL_CGL", DAO_DOUBLE, SDL_VIDEO_OPENGL_CGL},
-  {  "SDL_VIDEO_OPENGL_GLX", DAO_DOUBLE, SDL_VIDEO_OPENGL_GLX},
   {  "SDL_VIDEO_RENDER_OGL", DAO_DOUBLE, SDL_VIDEO_RENDER_OGL},
   {  "SDL_WINDOWPOS_CENTERED_MASK", DAO_DOUBLE, SDL_WINDOWPOS_CENTERED_MASK},
   {  "SDL_WINDOWPOS_UNDEFINED_MASK", DAO_DOUBLE, SDL_WINDOWPOS_UNDEFINED_MASK},
@@ -413,13 +435,16 @@ static DaoNumItem dao__Nums[] =
   {  "STDC_HEADERS", DAO_DOUBLE, STDC_HEADERS},
   {  "TARGET_CPU_68K", DAO_DOUBLE, TARGET_CPU_68K},
   {  "TARGET_CPU_ALPHA", DAO_DOUBLE, TARGET_CPU_ALPHA},
+  {  "TARGET_CPU_ARM", DAO_DOUBLE, TARGET_CPU_ARM},
   {  "TARGET_CPU_MIPS", DAO_DOUBLE, TARGET_CPU_MIPS},
   {  "TARGET_CPU_PPC", DAO_DOUBLE, TARGET_CPU_PPC},
   {  "TARGET_CPU_PPC64", DAO_DOUBLE, TARGET_CPU_PPC64},
   {  "TARGET_CPU_SPARC", DAO_DOUBLE, TARGET_CPU_SPARC},
   {  "TARGET_CPU_X86", DAO_DOUBLE, TARGET_CPU_X86},
   {  "TARGET_CPU_X86_64", DAO_DOUBLE, TARGET_CPU_X86_64},
+  {  "TARGET_IPHONE_SIMULATOR", DAO_DOUBLE, TARGET_IPHONE_SIMULATOR},
   {  "TARGET_OS_EMBEDDED", DAO_DOUBLE, TARGET_OS_EMBEDDED},
+  {  "TARGET_OS_IPHONE", DAO_DOUBLE, TARGET_OS_IPHONE},
   {  "TARGET_OS_MAC", DAO_DOUBLE, TARGET_OS_MAC},
   {  "TARGET_OS_UNIX", DAO_DOUBLE, TARGET_OS_UNIX},
   {  "TARGET_OS_WIN32", DAO_DOUBLE, TARGET_OS_WIN32},
@@ -428,6 +453,16 @@ static DaoNumItem dao__Nums[] =
   {  "TARGET_RT_LITTLE_ENDIAN", DAO_DOUBLE, TARGET_RT_LITTLE_ENDIAN},
   {  "TARGET_RT_MAC_CFM", DAO_DOUBLE, TARGET_RT_MAC_CFM},
   {  "TARGET_RT_MAC_MACHO", DAO_DOUBLE, TARGET_RT_MAC_MACHO},
+  {  "TEST_COMPLETED", DAO_DOUBLE, TEST_COMPLETED},
+  {  "TEST_DISABLED", DAO_DOUBLE, TEST_DISABLED},
+  {  "TEST_ENABLED", DAO_DOUBLE, TEST_ENABLED},
+  {  "TEST_RESULT_FAILED", DAO_DOUBLE, TEST_RESULT_FAILED},
+  {  "TEST_RESULT_NO_ASSERT", DAO_DOUBLE, TEST_RESULT_NO_ASSERT},
+  {  "TEST_RESULT_PASSED", DAO_DOUBLE, TEST_RESULT_PASSED},
+  {  "TEST_RESULT_SETUP_FAILURE", DAO_DOUBLE, TEST_RESULT_SETUP_FAILURE},
+  {  "TEST_RESULT_SKIPPED", DAO_DOUBLE, TEST_RESULT_SKIPPED},
+  {  "TEST_SKIPPED", DAO_DOUBLE, TEST_SKIPPED},
+  {  "TEST_STARTED", DAO_DOUBLE, TEST_STARTED},
   {  "TLOSS", DAO_DOUBLE, TLOSS},
   {  "TMP_MAX", DAO_DOUBLE, TMP_MAX},
   {  "TRAP_BRKPT", DAO_DOUBLE, TRAP_BRKPT},
@@ -452,7 +487,6 @@ static DaoNumItem dao__Nums[] =
   {  "WUNTRACED", DAO_DOUBLE, WUNTRACED},
   {  "X_TLOSS", DAO_DOUBLE, X_TLOSS},
   {  "false", DAO_DOUBLE, false},
-  {  "i386", DAO_DOUBLE, i386},
   {  "true", DAO_DOUBLE, true},
   { NULL, 0, 0 }
 };
@@ -466,11 +500,14 @@ extern "C"{
 int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 {
 	__daoVmSpace = vms;
-	DaoNamespace *SDL = DaoVmSpace_LinkModule( vms, ns, "SDL" );
-	if( SDL == NULL ) SDL = DaoVmSpace_LinkModule( vms, ns, "DaoSDL" );
-	if( SDL == NULL ) return 1;
+	DaoNamespace *sdl = DaoVmSpace_LinkModule( vms, ns, "sdl" );
+	if( sdl == NULL ) sdl = DaoVmSpace_LinkModule( vms, ns, "Daosdl" );
+	if( sdl == NULL ) return 1;
 	DaoNamespace_AddConstNumbers( ns, dao__Nums );
-	dao_type_CommonState = DaoNamespace_WrapType( ns, dao_CommonState_Typer, 1 );
+	dao_type_SDLTest_CommonState = DaoNamespace_WrapType( ns, dao_SDLTest_CommonState_Typer, 1 );
+	dao_type_SDLTest_RandomContext = DaoNamespace_WrapType( ns, dao_SDLTest_RandomContext_Typer, 1 );
+	dao_type_SDLTest_Crc32Context = DaoNamespace_WrapType( ns, dao_SDLTest_Crc32Context_Typer, 1 );
+	dao_type_SDLTest_Md5Context = DaoNamespace_WrapType( ns, dao_SDLTest_Md5Context_Typer, 1 );
 	DaoNamespace_TypeDefines( ns, dao__Aliases );
 	DaoNamespace_WrapFunctions( ns, dao__Funcs );
 	return 0;
