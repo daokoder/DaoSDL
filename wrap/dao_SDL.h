@@ -8,6 +8,8 @@
 #ifdef __cplusplus
 extern "C"{
 #endif
+#include<modules/auxlib/dao_aux.h>
+
 #include<daoArray.h>
 
 #ifdef __cplusplus
@@ -15,20 +17,21 @@ extern "C"{
 #endif
 #include"SDL.h"
 #include"SDL_main.h"
-#include"SDL_atomic.h"
 #include"SDL_stdinc.h"
 #include"SDL_assert.h"
+#include"SDL_endian.h"
+#include"SDL_atomic.h"
 #include"SDL_audio.h"
 #include"SDL_error.h"
-#include"SDL_endian.h"
 #include"SDL_mutex.h"
 #include"SDL_thread.h"
 #include"SDL_rwops.h"
 #include"SDL_clipboard.h"
 #include"SDL_cpuinfo.h"
-#include"SDL_video.h"
-#include"SDL_pixels.h"
 #include"SDL_events.h"
+#include"SDL_video.h"
+#include"SDL_joystick.h"
+#include"SDL_pixels.h"
 #include"SDL_rect.h"
 #include"SDL_surface.h"
 #include"SDL_blendmode.h"
@@ -36,7 +39,6 @@ extern "C"{
 #include"SDL_keycode.h"
 #include"SDL_scancode.h"
 #include"SDL_mouse.h"
-#include"SDL_joystick.h"
 #include"SDL_quit.h"
 #include"SDL_touch.h"
 #include"SDL_gesture.h"

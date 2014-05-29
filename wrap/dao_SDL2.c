@@ -5067,6 +5067,8 @@ static void dao_SDL_RendererInfo_GETF_flags( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_RendererInfo_SETF_flags( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_RendererInfo_GETF_num_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_RendererInfo_SETF_num_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_RendererInfo_GETF_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_RendererInfo_SETF_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_RendererInfo_GETF_max_texture_width( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_RendererInfo_SETF_max_texture_width( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_RendererInfo_GETF_max_texture_height( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -5080,6 +5082,8 @@ static DaoFuncItem dao_SDL_RendererInfo_Meths[] =
   { dao_SDL_RendererInfo_SETF_flags, ".flags=( self :SDL_RendererInfo, flags :int )" },
   { dao_SDL_RendererInfo_GETF_num_texture_formats, ".num_texture_formats( self :SDL_RendererInfo )=>int" },
   { dao_SDL_RendererInfo_SETF_num_texture_formats, ".num_texture_formats=( self :SDL_RendererInfo, num_texture_formats :int )" },
+  { dao_SDL_RendererInfo_GETF_texture_formats, ".texture_formats( self :SDL_RendererInfo )=>array<int>" },
+  { dao_SDL_RendererInfo_SETF_texture_formats, ".texture_formats=( self :SDL_RendererInfo, texture_formats :array<int> )" },
   { dao_SDL_RendererInfo_GETF_max_texture_width, ".max_texture_width( self :SDL_RendererInfo )=>int" },
   { dao_SDL_RendererInfo_SETF_max_texture_width, ".max_texture_width=( self :SDL_RendererInfo, max_texture_width :int )" },
   { dao_SDL_RendererInfo_GETF_max_texture_height, ".max_texture_height( self :SDL_RendererInfo )=>int" },
@@ -5127,6 +5131,20 @@ static void dao_SDL_RendererInfo_SETF_num_texture_formats( DaoProcess *_proc, Da
 {
   SDL_RendererInfo *self = (SDL_RendererInfo*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_RendererInfo);
   self->num_texture_formats = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_RendererInfo_GETF_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_RendererInfo *self = (SDL_RendererInfo*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_RendererInfo);
+  DaoProcess_PutVectorUI( _proc, (unsigned int*) self->texture_formats, 16 );
+}
+static void dao_SDL_RendererInfo_SETF_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_RendererInfo *self = (SDL_RendererInfo*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_RendererInfo);
+  DaoArray *array = (DaoArray*) _p[1];
+  int size = DaoArray_Size( array );
+  if( size > 16 ) size = 16;
+  memmove( self->texture_formats, DaoArray_ToUInt( array ), size*sizeof(unsigned int) );
+  DaoArray_FromUInt( array );
 }
 static void dao_SDL_RendererInfo_GETF_max_texture_width( DaoProcess *_proc, DaoValue *_p[], int _n )
 {

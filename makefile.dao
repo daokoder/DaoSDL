@@ -2,9 +2,10 @@
 project = DaoMake::Project( "DaoSDL" ) 
 
 daovm = DaoMake::FindPackage( "Dao", $REQUIRED )
-sdl2  = DaoMake::FindPackage( "SDL", $REQUIRED )
+daoaux = DaoMake::FindPackage( "DaoAux", $REQUIRED )
+sdl2  = DaoMake::FindPackage( "SDL", $OPTIONAL )
 
-if( daovm == none or sdl2 == none ) return
+if( daovm == none or daoaux == none or sdl2 == none ) return
 
 cflags = sdl2.GetFlags( "SDL", $cflags )
 
@@ -15,9 +16,11 @@ bind2.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl_test.c -o wr
 
 
 project.UseImportLibrary( daovm, "dao" )
+project.UseSharedLibrary( daoaux, "dao_aux" )
 
 project.AddIncludePath( "." )
 project.AddIncludePath( "../../kernel" )
+project.AddIncludePath( "../../" )
 
 sources = { "wrap/dao_SDL.c", "wrap/dao_SDL2.c", "wrap/dao_SDL3.c" }
 sources2 = { "wrap/dao_SDL_Test.c", "wrap/dao_SDL_Test2.c", "wrap/dao_SDL_Test3.c" }
