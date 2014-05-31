@@ -1,5 +1,5 @@
 
-#define module_name SDL_Test
+#define module_name sdl_test
 #undef module_name
 
 #define _CommonCreateState( argv_dao_hint_argv, flags ) SDLTest_CommonCreateState(char**,Uint32)

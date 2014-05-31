@@ -1,5 +1,5 @@
 
-#define module_name SDL
+#define module_name sdl
 #undef module_name
 
 #define X_dao_hint_unsupported() sigevent
