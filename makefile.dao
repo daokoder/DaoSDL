@@ -9,10 +9,12 @@ if( daovm == none or daoaux == none or sdl2 == none ) return
 
 cflags = sdl2.GetFlags( "SDL", $cflags )
 
-bind = project.AddCommand( 'wrap/dao_SDL.h: sdl.c', '@$(DAOMAKE) mkdir2 ./wrap/' )
-bind2 = project.AddCommand( 'wrap/dao_SDL_Test.h: sdl_test.c', '@$(DAOMAKE) mkdir2 ./wrap/' )
-bind.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl.c -o wrap/' )
-bind2.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl_test.c -o wrap/' )
+if( DaoMake::IsFile( '../../tools/clangdao/clangdao' ) ){
+	bind = project.AddCommand( 'wrap/dao_SDL.h: sdl.c', '@$(DAOMAKE) mkdir2 ./wrap' )
+	bind2 = project.AddCommand( 'wrap/dao_SDL_Test.h: sdl_test.c', '@$(DAOMAKE) mkdir2 ./wrap' )
+	bind.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl.c -o wrap/' )
+	bind2.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl_test.c -o wrap/' )
+}
 
 
 project.UseImportLibrary( daovm, "dao" )

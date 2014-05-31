@@ -666,21 +666,6 @@ static void dao_SDLTest_CommonState_SDLTest_CommonState( DaoProcess *_proc, DaoV
 	SDLTest_CommonState *self = Dao_SDLTest_CommonState_New();
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDLTest_CommonState );
 }
-/* /usr/local/include/SDL2/SDL_test_random.h */
-static DaoTypeBase SDLTest_RandomContext_Typer = 
-{ "SDLTest_RandomContext", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL_TEST *dao_SDLTest_RandomContext_Typer = & SDLTest_RandomContext_Typer;
-DaoType *dao_type_SDLTest_RandomContext = NULL;
-/* /usr/local/include/SDL2/SDL_test_crc32.h */
-static DaoTypeBase SDLTest_Crc32Context_Typer = 
-{ "SDLTest_Crc32Context", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL_TEST *dao_SDLTest_Crc32Context_Typer = & SDLTest_Crc32Context_Typer;
-DaoType *dao_type_SDLTest_Crc32Context = NULL;
-/* /usr/local/include/SDL2/SDL_test_md5.h */
-static DaoTypeBase SDLTest_Md5Context_Typer = 
-{ "SDLTest_Md5Context", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL_TEST *dao_SDLTest_Md5Context_Typer = & SDLTest_Md5Context_Typer;
-DaoType *dao_type_SDLTest_Md5Context = NULL;
 #ifdef __cplusplus
 }
 #endif

@@ -10,7 +10,7 @@ DaoRoutine* Dao_Get_Object_Method( DaoCdata *cd, DaoObject **obj, const char *na
   if( DaoRoutine_IsWrapper( meth ) ) return NULL; /*do not call C function*/
   return meth;
 }
-static int DaoPF100EA( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context )
+static int DaoPF10006( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
   DaoValue *_res, **_dp;
@@ -28,7 +28,7 @@ EndCall:
   DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
   return X;
 }
-static size_t DaoPF100E9( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, const void* ptr, size_t size, size_t maxnum )
+static size_t DaoPF10005( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, const void* ptr, size_t size, size_t maxnum )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
   DaoValue *_res, **_dp;
@@ -49,7 +49,7 @@ EndCall:
   DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
   return X;
 }
-static size_t DaoPF100E8( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, void* ptr, size_t size, size_t maxnum )
+static size_t DaoPF10004( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, void* ptr, size_t size, size_t maxnum )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
   DaoValue *_res, **_dp;
@@ -90,7 +90,7 @@ static size_t Dao_SDL_RWops_read( struct SDL_RWops* context, void* ptr, size_t s
   DaoRoutine *_ro = Dao_Get_Object_Method( _cdata, & _obj, "read" );
   size_t X = (size_t) 0;
   if( _ro == NULL || _obj == NULL ) return X;
-  return (size_t)DaoPF100E8( & _cs, _ro, _obj, (DaoValue*)_cdata, ptr, size, maxnum );
+  return (size_t)DaoPF10004( & _cs, _ro, _obj, (DaoValue*)_cdata, ptr, size, maxnum );
 }
 static size_t Dao_SDL_RWops_write( struct SDL_RWops* context, const void* ptr, size_t size, size_t maxnum )
 {
@@ -102,7 +102,7 @@ static size_t Dao_SDL_RWops_write( struct SDL_RWops* context, const void* ptr, s
   DaoRoutine *_ro = Dao_Get_Object_Method( _cdata, & _obj, "write" );
   size_t X = (size_t) 0;
   if( _ro == NULL || _obj == NULL ) return X;
-  return (size_t)DaoPF100E9( & _cs, _ro, _obj, (DaoValue*)_cdata, ptr, size, maxnum );
+  return (size_t)DaoPF10005( & _cs, _ro, _obj, (DaoValue*)_cdata, ptr, size, maxnum );
 }
 static int Dao_SDL_RWops_close( struct SDL_RWops* context )
 {
@@ -114,7 +114,7 @@ static int Dao_SDL_RWops_close( struct SDL_RWops* context )
   DaoRoutine *_ro = Dao_Get_Object_Method( _cdata, & _obj, "close" );
   int X = (int) 0;
   if( _ro == NULL || _obj == NULL ) return X;
-  return (int)DaoPF100EA( & _cs, _ro, _obj, (DaoValue*)_cdata );
+  return (int)DaoPF10006( & _cs, _ro, _obj, (DaoValue*)_cdata );
 }
 Dao_SDL_RWops* Dao_SDL_RWops_New()
 {

@@ -7,11 +7,6 @@ static DaoTypeBase _opaque_pthread_attr_t_Typer =
 { "_opaque_pthread_attr_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
 DaoTypeBase DAO_DLL_SDL *dao__opaque_pthread_attr_t_Typer = & _opaque_pthread_attr_t_Typer;
 DaoType *dao_type__opaque_pthread_attr_t = NULL;
-/* /usr/include/sys/_structs.h */
-static DaoTypeBase fd_set_Typer = 
-{ "fd_set", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_fd_set_Typer = & fd_set_Typer;
-DaoType *dao_type_fd_set = NULL;
 /* /usr/include/stdio.h */
 static DaoTypeBase __sFILE_Typer = 
 { "__sFILE", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
@@ -22,61 +17,11 @@ static DaoTypeBase sigval_Typer =
 { "sigval", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
 DaoTypeBase DAO_DLL_SDL *dao_sigval_Typer = & sigval_Typer;
 DaoType *dao_type_sigval = NULL;
-/* /usr/include/sys/signal.h */
-static DaoTypeBase sigevent_Typer = 
-{ "sigevent", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_sigevent_Typer = & sigevent_Typer;
-DaoType *dao_type_sigevent = NULL;
-/* /usr/include/sys/signal.h */
-static DaoTypeBase __siginfo_Typer = 
-{ "__siginfo", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao___siginfo_Typer = & __siginfo_Typer;
-DaoType *dao_type___siginfo = NULL;
-/* /usr/include/sys/signal.h */
-static DaoTypeBase sigvec_Typer = 
-{ "sigvec", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_sigvec_Typer = & sigvec_Typer;
-DaoType *dao_type_sigvec = NULL;
 /* /usr/include/sys/_structs.h */
 static DaoTypeBase timeval_Typer = 
 { "timeval", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
 DaoTypeBase DAO_DLL_SDL *dao_timeval_Typer = & timeval_Typer;
 DaoType *dao_type_timeval = NULL;
-/* /usr/include/sys/resource.h */
-static DaoTypeBase rusage_Typer = 
-{ "rusage", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_rusage_Typer = & rusage_Typer;
-DaoType *dao_type_rusage = NULL;
-/* /usr/include/sys/resource.h */
-static DaoTypeBase rlimit_Typer = 
-{ "rlimit", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_rlimit_Typer = & rlimit_Typer;
-DaoType *dao_type_rlimit = NULL;
-/* /usr/include/stdlib.h */
-static DaoTypeBase div_t_Typer = 
-{ "div_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_div_t_Typer = & div_t_Typer;
-DaoType *dao_type_div_t = NULL;
-/* /usr/include/stdlib.h */
-static DaoTypeBase ldiv_t_Typer = 
-{ "ldiv_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_ldiv_t_Typer = & ldiv_t_Typer;
-DaoType *dao_type_ldiv_t = NULL;
-/* /usr/include/stdlib.h */
-static DaoTypeBase lldiv_t_Typer = 
-{ "lldiv_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_lldiv_t_Typer = & lldiv_t_Typer;
-DaoType *dao_type_lldiv_t = NULL;
-/* /usr/include/inttypes.h */
-static DaoTypeBase imaxdiv_t_Typer = 
-{ "imaxdiv_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_imaxdiv_t_Typer = & imaxdiv_t_Typer;
-DaoType *dao_type_imaxdiv_t = NULL;
-/* /usr/include/math.h */
-static DaoTypeBase exception_Typer = 
-{ "exception", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_exception_Typer = & exception_Typer;
-DaoType *dao_type_exception = NULL;
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static DaoTypeBase _SDL_iconv_t_Typer = 
 { "_SDL_iconv_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
@@ -189,16 +134,6 @@ static void dao_SDL_assert_data_SDL_assert_data( DaoProcess *_proc, DaoValue *_p
 	SDL_assert_data *self = Dao_SDL_assert_data_New();
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_assert_data );
 }
-/* /usr/include/libkern/OSAtomic.h */
-static DaoTypeBase OSQueueHead_Typer = 
-{ "OSQueueHead", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_OSQueueHead_Typer = & OSQueueHead_Typer;
-DaoType *dao_type_OSQueueHead = NULL;
-/* /usr/include/libkern/OSAtomic.h */
-static DaoTypeBase OSFifoQueueHead_Typer = 
-{ "OSFifoQueueHead", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_OSFifoQueueHead_Typer = & OSFifoQueueHead_Typer;
-DaoType *dao_type_OSFifoQueueHead = NULL;
 /* /usr/local/include/SDL2/SDL_atomic.h */
 
 
@@ -1710,16 +1645,6 @@ static void dao_SDL_JoystickGUID_SDL_JoystickGUID( DaoProcess *_proc, DaoValue *
 	SDL_JoystickGUID *self = Dao_SDL_JoystickGUID_New();
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_JoystickGUID );
 }
-/* /usr/local/include/SDL2/SDL_gamecontroller.h */
-static DaoTypeBase _SDL_GameController_Typer = 
-{ "_SDL_GameController", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao__SDL_GameController_Typer = & _SDL_GameController_Typer;
-DaoType *dao_type__SDL_GameController = NULL;
-/* /usr/local/include/SDL2/SDL_gamecontroller.h */
-static DaoTypeBase SDL_GameControllerButtonBind_Typer = 
-{ "SDL_GameControllerButtonBind", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_GameControllerButtonBind_Typer = & SDL_GameControllerButtonBind_Typer;
-DaoType *dao_type_SDL_GameControllerButtonBind = NULL;
 /* /usr/local/include/SDL2/SDL_touch.h */
 
 
@@ -5004,11 +4929,6 @@ static void dao_SDL_Event_SDL_Event( DaoProcess *_proc, DaoValue *_p[], int _n )
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_Event );
 }
 /* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase _SDL_Haptic_Typer = 
-{ "_SDL_Haptic", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao__SDL_Haptic_Typer = & _SDL_Haptic_Typer;
-DaoType *dao_type__SDL_Haptic = NULL;
-/* /usr/local/include/SDL2/SDL_haptic.h */
 static DaoTypeBase SDL_HapticDirection_Typer = 
 { "SDL_HapticDirection", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
 DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticDirection_Typer = & SDL_HapticDirection_Typer;
@@ -5043,16 +4963,6 @@ static DaoTypeBase SDL_HapticCustom_Typer =
 { "SDL_HapticCustom", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
 DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticCustom_Typer = & SDL_HapticCustom_Typer;
 DaoType *dao_type_SDL_HapticCustom = NULL;
-/* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase SDL_HapticEffect_Typer = 
-{ "SDL_HapticEffect", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticEffect_Typer = & SDL_HapticEffect_Typer;
-DaoType *dao_type_SDL_HapticEffect = NULL;
-/* /usr/local/include/SDL2/SDL_messagebox.h */
-static DaoTypeBase SDL_MessageBoxData_Typer = 
-{ "SDL_MessageBoxData", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_MessageBoxData_Typer = & SDL_MessageBoxData_Typer;
-DaoType *dao_type_SDL_MessageBoxData = NULL;
 /* /usr/local/include/SDL2/SDL_render.h */
 
 
