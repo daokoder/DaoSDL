@@ -20,10 +20,10 @@ extern "C"{
 
 #ifndef DAO_SDL_STATIC
 #define DAO_DLL_SDL DAO_DLL_IMPORT
-#include"dao_sdl.h"
+#include"dao_SDL.h"
 #else
 #define DAO_DLL_SDL
-#include"dao_sdl.h"
+#include"dao_SDL.h"
 #endif
 
 #ifndef DAO_SDL_TEST_STATIC

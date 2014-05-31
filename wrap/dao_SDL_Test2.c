@@ -1,4 +1,4 @@
-#include"dao_sdl_test.h"
+#include"dao_SDL_Test.h"
 extern char** DaoStringList_ToStaticCStringArray( DaoList *slist );
 #ifdef __cplusplus
 extern "C"{

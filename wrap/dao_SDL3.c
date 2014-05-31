@@ -1,4 +1,4 @@
-#include"dao_sdl.h"
+#include"dao_SDL.h"
 DaoRoutine* Dao_Get_Object_Method( DaoCdata *cd, DaoObject **obj, const char *name )
 {
   DaoRoutine *meth;

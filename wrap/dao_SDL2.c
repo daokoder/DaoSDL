@@ -1,4 +1,4 @@
-#include"dao_sdl.h"
+#include"dao_SDL.h"
 #ifdef __cplusplus
 extern "C"{
 #endif

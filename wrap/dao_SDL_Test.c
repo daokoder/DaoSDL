@@ -1,4 +1,4 @@
-#include"dao_sdl_test.h"
+#include"dao_SDL_Test.h"
 
 DaoVmSpace *__daoVmSpace = NULL;
 extern char** DaoStringList_ToStaticCStringArray( DaoList *slist );
@@ -91,9 +91,9 @@ extern "C"{
 int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 {
 	__daoVmSpace = vms;
-	DaoNamespace *sdl = DaoVmSpace_LinkModule( vms, ns, "sdl" );
-	if( sdl == NULL ) sdl = DaoVmSpace_LinkModule( vms, ns, "Daosdl" );
-	if( sdl == NULL ) return 1;
+	DaoNamespace *SDL = DaoVmSpace_LinkModule( vms, ns, "SDL" );
+	if( SDL == NULL ) SDL = DaoVmSpace_LinkModule( vms, ns, "DaoSDL" );
+	if( SDL == NULL ) return 1;
 	DaoNamespace_AddConstNumbers( ns, dao__Nums );
 	dao_type_SDLTest_CommonState = DaoNamespace_WrapType( ns, dao_SDLTest_CommonState_Typer, 1 );
 	DaoNamespace_TypeDefines( ns, dao__Aliases );
