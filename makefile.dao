@@ -31,9 +31,9 @@ daosdl_objs = project.AddObjects( sources, { "wrap/dao_sdl.h" } )
 daosdl_objs2 = project.AddObjects( sources2, { "wrap/dao_sdl_test.h" } )
 daosdl_dll = project.AddSharedLibrary( "dao_sdl", daosdl_objs )
 daosdl_dll2 = project.AddSharedLibrary( "dao_sdl_test", daosdl_objs2 )
-daosdl_dll2.AddLinkingFlag( "-lSDL2_test" );
 daosdl_dll.UseSharedLibrary( sdl2 )
 daosdl_dll2.UseSharedLibrary( sdl2 )
+daosdl_dll2.AddLinkingFlag( "-lSDL2_test" );
 
 project.Install( daovm.GetPath( "MOD-PATH" ), daosdl_dll );
 

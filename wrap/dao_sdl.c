@@ -5492,6 +5492,8 @@ extern "C"{
 int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 {
 	__daoVmSpace = vms;
+	DaoNamespace *aux = DaoVmSpace_LinkModule( vms, ns, "aux" );
+	if( aux == NULL ) return 1;
 	DaoNamespace_AddConstNumbers( ns, dao__Nums );
 	dao_type__opaque_pthread_attr_t = DaoNamespace_WrapType( ns, dao__opaque_pthread_attr_t_Typer, 1 );
 	dao_type___sFILE = DaoNamespace_WrapType( ns, dao___sFILE_Typer, 1 );

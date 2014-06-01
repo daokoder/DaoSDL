@@ -91,8 +91,9 @@ extern "C"{
 int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 {
 	__daoVmSpace = vms;
+	DaoNamespace *aux = DaoVmSpace_LinkModule( vms, ns, "aux" );
+	if( aux == NULL ) return 1;
 	DaoNamespace *sdl = DaoVmSpace_LinkModule( vms, ns, "sdl" );
-	if( sdl == NULL ) sdl = DaoVmSpace_LinkModule( vms, ns, "Daosdl" );
 	if( sdl == NULL ) return 1;
 	DaoNamespace_AddConstNumbers( ns, dao__Nums );
 	dao_type_SDLTest_CommonState = DaoNamespace_WrapType( ns, dao_SDLTest_CommonState_Typer, 1 );
