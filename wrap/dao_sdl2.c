@@ -275,8 +275,6 @@ static void dao_SDL_AudioSpec_GETF_silence( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_AudioSpec_SETF_silence( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AudioSpec_GETF_samples( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AudioSpec_SETF_samples( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_AudioSpec_GETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_AudioSpec_SETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AudioSpec_GETF_size( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AudioSpec_SETF_size( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AudioSpec_GETF_userdata( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -294,8 +292,6 @@ static DaoFuncItem dao_SDL_AudioSpec_Meths[] =
   { dao_SDL_AudioSpec_SETF_silence, ".silence=( self :SDL_AudioSpec, silence :int )" },
   { dao_SDL_AudioSpec_GETF_samples, ".samples( self :SDL_AudioSpec )=>int" },
   { dao_SDL_AudioSpec_SETF_samples, ".samples=( self :SDL_AudioSpec, samples :int )" },
-  { dao_SDL_AudioSpec_GETF_padding, ".padding( self :SDL_AudioSpec )=>int" },
-  { dao_SDL_AudioSpec_SETF_padding, ".padding=( self :SDL_AudioSpec, padding :int )" },
   { dao_SDL_AudioSpec_GETF_size, ".size( self :SDL_AudioSpec )=>int" },
   { dao_SDL_AudioSpec_SETF_size, ".size=( self :SDL_AudioSpec, size :int )" },
   { dao_SDL_AudioSpec_GETF_userdata, ".userdata( self :SDL_AudioSpec )=>cdata" },
@@ -367,16 +363,6 @@ static void dao_SDL_AudioSpec_SETF_samples( DaoProcess *_proc, DaoValue *_p[], i
 {
   SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
   self->samples = (unsigned short) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_AudioSpec_GETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding );
-}
-static void dao_SDL_AudioSpec_SETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
-  self->padding = (unsigned short) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_AudioSpec_GETF_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -763,8 +749,6 @@ static void dao_SDL_PixelFormat_GETF_BitsPerPixel( DaoProcess *_proc, DaoValue *
 static void dao_SDL_PixelFormat_SETF_BitsPerPixel( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_PixelFormat_GETF_BytesPerPixel( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_PixelFormat_SETF_BytesPerPixel( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_PixelFormat_GETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_PixelFormat_SETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_PixelFormat_GETF_Rmask( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_PixelFormat_SETF_Rmask( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_PixelFormat_GETF_Gmask( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -803,8 +787,6 @@ static DaoFuncItem dao_SDL_PixelFormat_Meths[] =
   { dao_SDL_PixelFormat_SETF_BitsPerPixel, ".BitsPerPixel=( self :SDL_PixelFormat, BitsPerPixel :int )" },
   { dao_SDL_PixelFormat_GETF_BytesPerPixel, ".BytesPerPixel( self :SDL_PixelFormat )=>int" },
   { dao_SDL_PixelFormat_SETF_BytesPerPixel, ".BytesPerPixel=( self :SDL_PixelFormat, BytesPerPixel :int )" },
-  { dao_SDL_PixelFormat_GETF_padding, ".padding( self :SDL_PixelFormat )=>array<int>" },
-  { dao_SDL_PixelFormat_SETF_padding, ".padding=( self :SDL_PixelFormat, padding :array<int> )" },
   { dao_SDL_PixelFormat_GETF_Rmask, ".Rmask( self :SDL_PixelFormat )=>int" },
   { dao_SDL_PixelFormat_SETF_Rmask, ".Rmask=( self :SDL_PixelFormat, Rmask :int )" },
   { dao_SDL_PixelFormat_GETF_Gmask, ".Gmask( self :SDL_PixelFormat )=>int" },
@@ -885,18 +867,6 @@ static void dao_SDL_PixelFormat_SETF_BytesPerPixel( DaoProcess *_proc, DaoValue 
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
   self->BytesPerPixel = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_PixelFormat_GETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  DaoProcess_PutBytes( _proc, (char*) self->padding, 2 );
-}
-static void dao_SDL_PixelFormat_SETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  int size = DaoString_Size( (DaoString*)_p[1] );
-  if( size > 2 ) size = 2;
-  memmove( self->padding, DaoValue_TryGetChars( _p[1] ), size );
 }
 static void dao_SDL_PixelFormat_GETF_Rmask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1820,12 +1790,6 @@ static void dao_SDL_WindowEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_WindowEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_WindowEvent_GETF_event( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_WindowEvent_SETF_event( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_WindowEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_WindowEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_WindowEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_WindowEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_WindowEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_WindowEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_WindowEvent_GETF_data1( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_WindowEvent_SETF_data1( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_WindowEvent_GETF_data2( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -1842,12 +1806,6 @@ static DaoFuncItem dao_SDL_WindowEvent_Meths[] =
   { dao_SDL_WindowEvent_SETF_windowID, ".windowID=( self :SDL_WindowEvent, windowID :int )" },
   { dao_SDL_WindowEvent_GETF_event, ".event( self :SDL_WindowEvent )=>int" },
   { dao_SDL_WindowEvent_SETF_event, ".event=( self :SDL_WindowEvent, event :int )" },
-  { dao_SDL_WindowEvent_GETF_padding1, ".padding1( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_padding1, ".padding1=( self :SDL_WindowEvent, padding1 :int )" },
-  { dao_SDL_WindowEvent_GETF_padding2, ".padding2( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_padding2, ".padding2=( self :SDL_WindowEvent, padding2 :int )" },
-  { dao_SDL_WindowEvent_GETF_padding3, ".padding3( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_padding3, ".padding3=( self :SDL_WindowEvent, padding3 :int )" },
   { dao_SDL_WindowEvent_GETF_data1, ".data1( self :SDL_WindowEvent )=>int" },
   { dao_SDL_WindowEvent_SETF_data1, ".data1=( self :SDL_WindowEvent, data1 :int )" },
   { dao_SDL_WindowEvent_GETF_data2, ".data2( self :SDL_WindowEvent )=>int" },
@@ -1911,36 +1869,6 @@ static void dao_SDL_WindowEvent_SETF_event( DaoProcess *_proc, DaoValue *_p[], i
   SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
   self->event = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
-static void dao_SDL_WindowEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding1 );
-}
-static void dao_SDL_WindowEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  self->padding1 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_WindowEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_WindowEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_WindowEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding3 );
-}
-static void dao_SDL_WindowEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  self->padding3 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
 static void dao_SDL_WindowEvent_GETF_data1( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
@@ -1985,10 +1913,6 @@ static void dao_SDL_KeyboardEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_KeyboardEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_KeyboardEvent_GETF_repeat( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_KeyboardEvent_SETF_repeat( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_KeyboardEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_KeyboardEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_KeyboardEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_KeyboardEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_KeyboardEvent_GETF_keysym( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_KeyboardEvent_SDL_KeyboardEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
@@ -2004,10 +1928,6 @@ static DaoFuncItem dao_SDL_KeyboardEvent_Meths[] =
   { dao_SDL_KeyboardEvent_SETF_state, ".state=( self :SDL_KeyboardEvent, state :int )" },
   { dao_SDL_KeyboardEvent_GETF_repeat, ".repeat( self :SDL_KeyboardEvent )=>int" },
   { dao_SDL_KeyboardEvent_SETF_repeat, ".repeat=( self :SDL_KeyboardEvent, repeat :int )" },
-  { dao_SDL_KeyboardEvent_GETF_padding2, ".padding2( self :SDL_KeyboardEvent )=>int" },
-  { dao_SDL_KeyboardEvent_SETF_padding2, ".padding2=( self :SDL_KeyboardEvent, padding2 :int )" },
-  { dao_SDL_KeyboardEvent_GETF_padding3, ".padding3( self :SDL_KeyboardEvent )=>int" },
-  { dao_SDL_KeyboardEvent_SETF_padding3, ".padding3=( self :SDL_KeyboardEvent, padding3 :int )" },
   { dao_SDL_KeyboardEvent_GETF_keysym, ".keysym( self :SDL_KeyboardEvent )=>SDL_Keysym" },
   { dao_SDL_KeyboardEvent_SDL_KeyboardEvent, "SDL_KeyboardEvent(  )=>SDL_KeyboardEvent" },
   { NULL, NULL }
@@ -2077,26 +1997,6 @@ static void dao_SDL_KeyboardEvent_SETF_repeat( DaoProcess *_proc, DaoValue *_p[]
 {
   SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
   self->repeat = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_KeyboardEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_KeyboardEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_KeyboardEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding3 );
-}
-static void dao_SDL_KeyboardEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  self->padding3 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_KeyboardEvent_GETF_keysym( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2510,10 +2410,6 @@ static void dao_SDL_MouseButtonEvent_GETF_button( DaoProcess *_proc, DaoValue *_
 static void dao_SDL_MouseButtonEvent_SETF_button( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_MouseButtonEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_MouseButtonEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_MouseButtonEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_MouseButtonEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_SETF_x( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_GETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -2534,10 +2430,6 @@ static DaoFuncItem dao_SDL_MouseButtonEvent_Meths[] =
   { dao_SDL_MouseButtonEvent_SETF_button, ".button=( self :SDL_MouseButtonEvent, button :int )" },
   { dao_SDL_MouseButtonEvent_GETF_state, ".state( self :SDL_MouseButtonEvent )=>int" },
   { dao_SDL_MouseButtonEvent_SETF_state, ".state=( self :SDL_MouseButtonEvent, state :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_padding1, ".padding1( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_padding1, ".padding1=( self :SDL_MouseButtonEvent, padding1 :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_padding2, ".padding2( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_padding2, ".padding2=( self :SDL_MouseButtonEvent, padding2 :int )" },
   { dao_SDL_MouseButtonEvent_GETF_x, ".x( self :SDL_MouseButtonEvent )=>int" },
   { dao_SDL_MouseButtonEvent_SETF_x, ".x=( self :SDL_MouseButtonEvent, x :int )" },
   { dao_SDL_MouseButtonEvent_GETF_y, ".y( self :SDL_MouseButtonEvent )=>int" },
@@ -2620,26 +2512,6 @@ static void dao_SDL_MouseButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p
 {
   SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
   self->state = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_MouseButtonEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding1 );
-}
-static void dao_SDL_MouseButtonEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  self->padding1 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_MouseButtonEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_MouseButtonEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseButtonEvent_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2804,16 +2676,8 @@ static void dao_SDL_JoyAxisEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_JoyAxisEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyAxisEvent_GETF_axis( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyAxisEvent_SETF_axis( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyAxisEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyAxisEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyAxisEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyAxisEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyAxisEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyAxisEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyAxisEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyAxisEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyAxisEvent_GETF_padding4( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyAxisEvent_SETF_padding4( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyAxisEvent_SDL_JoyAxisEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDL_JoyAxisEvent_Meths[] = 
@@ -2826,16 +2690,8 @@ static DaoFuncItem dao_SDL_JoyAxisEvent_Meths[] =
   { dao_SDL_JoyAxisEvent_SETF_which, ".which=( self :SDL_JoyAxisEvent, which :int )" },
   { dao_SDL_JoyAxisEvent_GETF_axis, ".axis( self :SDL_JoyAxisEvent )=>int" },
   { dao_SDL_JoyAxisEvent_SETF_axis, ".axis=( self :SDL_JoyAxisEvent, axis :int )" },
-  { dao_SDL_JoyAxisEvent_GETF_padding1, ".padding1( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_padding1, ".padding1=( self :SDL_JoyAxisEvent, padding1 :int )" },
-  { dao_SDL_JoyAxisEvent_GETF_padding2, ".padding2( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_padding2, ".padding2=( self :SDL_JoyAxisEvent, padding2 :int )" },
-  { dao_SDL_JoyAxisEvent_GETF_padding3, ".padding3( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_padding3, ".padding3=( self :SDL_JoyAxisEvent, padding3 :int )" },
   { dao_SDL_JoyAxisEvent_GETF_value, ".value( self :SDL_JoyAxisEvent )=>int" },
   { dao_SDL_JoyAxisEvent_SETF_value, ".value=( self :SDL_JoyAxisEvent, value :int )" },
-  { dao_SDL_JoyAxisEvent_GETF_padding4, ".padding4( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_padding4, ".padding4=( self :SDL_JoyAxisEvent, padding4 :int )" },
   { dao_SDL_JoyAxisEvent_SDL_JoyAxisEvent, "SDL_JoyAxisEvent(  )=>SDL_JoyAxisEvent" },
   { NULL, NULL }
 };
@@ -2895,36 +2751,6 @@ static void dao_SDL_JoyAxisEvent_SETF_axis( DaoProcess *_proc, DaoValue *_p[], i
   SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
   self->axis = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
-static void dao_SDL_JoyAxisEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding1 );
-}
-static void dao_SDL_JoyAxisEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  self->padding1 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_JoyAxisEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_JoyAxisEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_JoyAxisEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding3 );
-}
-static void dao_SDL_JoyAxisEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  self->padding3 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
 static void dao_SDL_JoyAxisEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
@@ -2934,16 +2760,6 @@ static void dao_SDL_JoyAxisEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], 
 {
   SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
   self->value = (short) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_JoyAxisEvent_GETF_padding4( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding4 );
-}
-static void dao_SDL_JoyAxisEvent_SETF_padding4( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  self->padding4 = (unsigned short) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyAxisEvent_SDL_JoyAxisEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2967,12 +2783,6 @@ static void dao_SDL_JoyBallEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_JoyBallEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyBallEvent_GETF_ball( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyBallEvent_SETF_ball( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyBallEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyBallEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyBallEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyBallEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyBallEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyBallEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyBallEvent_GETF_xrel( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyBallEvent_SETF_xrel( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyBallEvent_GETF_yrel( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -2989,12 +2799,6 @@ static DaoFuncItem dao_SDL_JoyBallEvent_Meths[] =
   { dao_SDL_JoyBallEvent_SETF_which, ".which=( self :SDL_JoyBallEvent, which :int )" },
   { dao_SDL_JoyBallEvent_GETF_ball, ".ball( self :SDL_JoyBallEvent )=>int" },
   { dao_SDL_JoyBallEvent_SETF_ball, ".ball=( self :SDL_JoyBallEvent, ball :int )" },
-  { dao_SDL_JoyBallEvent_GETF_padding1, ".padding1( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_padding1, ".padding1=( self :SDL_JoyBallEvent, padding1 :int )" },
-  { dao_SDL_JoyBallEvent_GETF_padding2, ".padding2( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_padding2, ".padding2=( self :SDL_JoyBallEvent, padding2 :int )" },
-  { dao_SDL_JoyBallEvent_GETF_padding3, ".padding3( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_padding3, ".padding3=( self :SDL_JoyBallEvent, padding3 :int )" },
   { dao_SDL_JoyBallEvent_GETF_xrel, ".xrel( self :SDL_JoyBallEvent )=>int" },
   { dao_SDL_JoyBallEvent_SETF_xrel, ".xrel=( self :SDL_JoyBallEvent, xrel :int )" },
   { dao_SDL_JoyBallEvent_GETF_yrel, ".yrel( self :SDL_JoyBallEvent )=>int" },
@@ -3058,36 +2862,6 @@ static void dao_SDL_JoyBallEvent_SETF_ball( DaoProcess *_proc, DaoValue *_p[], i
   SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
   self->ball = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
-static void dao_SDL_JoyBallEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding1 );
-}
-static void dao_SDL_JoyBallEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  self->padding1 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_JoyBallEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_JoyBallEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_JoyBallEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding3 );
-}
-static void dao_SDL_JoyBallEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  self->padding3 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
 static void dao_SDL_JoyBallEvent_GETF_xrel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
@@ -3132,10 +2906,6 @@ static void dao_SDL_JoyHatEvent_GETF_hat( DaoProcess *_proc, DaoValue *_p[], int
 static void dao_SDL_JoyHatEvent_SETF_hat( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyHatEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyHatEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyHatEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyHatEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyHatEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyHatEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyHatEvent_SDL_JoyHatEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDL_JoyHatEvent_Meths[] = 
@@ -3150,10 +2920,6 @@ static DaoFuncItem dao_SDL_JoyHatEvent_Meths[] =
   { dao_SDL_JoyHatEvent_SETF_hat, ".hat=( self :SDL_JoyHatEvent, hat :int )" },
   { dao_SDL_JoyHatEvent_GETF_value, ".value( self :SDL_JoyHatEvent )=>int" },
   { dao_SDL_JoyHatEvent_SETF_value, ".value=( self :SDL_JoyHatEvent, value :int )" },
-  { dao_SDL_JoyHatEvent_GETF_padding1, ".padding1( self :SDL_JoyHatEvent )=>int" },
-  { dao_SDL_JoyHatEvent_SETF_padding1, ".padding1=( self :SDL_JoyHatEvent, padding1 :int )" },
-  { dao_SDL_JoyHatEvent_GETF_padding2, ".padding2( self :SDL_JoyHatEvent )=>int" },
-  { dao_SDL_JoyHatEvent_SETF_padding2, ".padding2=( self :SDL_JoyHatEvent, padding2 :int )" },
   { dao_SDL_JoyHatEvent_SDL_JoyHatEvent, "SDL_JoyHatEvent(  )=>SDL_JoyHatEvent" },
   { NULL, NULL }
 };
@@ -3223,26 +2989,6 @@ static void dao_SDL_JoyHatEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], i
   SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
   self->value = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
-static void dao_SDL_JoyHatEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding1 );
-}
-static void dao_SDL_JoyHatEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
-  self->padding1 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_JoyHatEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_JoyHatEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
 static void dao_SDL_JoyHatEvent_SDL_JoyHatEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
 	SDL_JoyHatEvent *self = Dao_SDL_JoyHatEvent_New();
@@ -3267,10 +3013,6 @@ static void dao_SDL_JoyButtonEvent_GETF_button( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_JoyButtonEvent_SETF_button( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyButtonEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyButtonEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyButtonEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_JoyButtonEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyButtonEvent_SDL_JoyButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDL_JoyButtonEvent_Meths[] = 
@@ -3285,10 +3027,6 @@ static DaoFuncItem dao_SDL_JoyButtonEvent_Meths[] =
   { dao_SDL_JoyButtonEvent_SETF_button, ".button=( self :SDL_JoyButtonEvent, button :int )" },
   { dao_SDL_JoyButtonEvent_GETF_state, ".state( self :SDL_JoyButtonEvent )=>int" },
   { dao_SDL_JoyButtonEvent_SETF_state, ".state=( self :SDL_JoyButtonEvent, state :int )" },
-  { dao_SDL_JoyButtonEvent_GETF_padding1, ".padding1( self :SDL_JoyButtonEvent )=>int" },
-  { dao_SDL_JoyButtonEvent_SETF_padding1, ".padding1=( self :SDL_JoyButtonEvent, padding1 :int )" },
-  { dao_SDL_JoyButtonEvent_GETF_padding2, ".padding2( self :SDL_JoyButtonEvent )=>int" },
-  { dao_SDL_JoyButtonEvent_SETF_padding2, ".padding2=( self :SDL_JoyButtonEvent, padding2 :int )" },
   { dao_SDL_JoyButtonEvent_SDL_JoyButtonEvent, "SDL_JoyButtonEvent(  )=>SDL_JoyButtonEvent" },
   { NULL, NULL }
 };
@@ -3357,26 +3095,6 @@ static void dao_SDL_JoyButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[]
 {
   SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
   self->state = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_JoyButtonEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding1 );
-}
-static void dao_SDL_JoyButtonEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
-  self->padding1 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_JoyButtonEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_JoyButtonEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyButtonEvent_SDL_JoyButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3479,16 +3197,8 @@ static void dao_SDL_ControllerAxisEvent_GETF_which( DaoProcess *_proc, DaoValue 
 static void dao_SDL_ControllerAxisEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerAxisEvent_GETF_axis( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerAxisEvent_SETF_axis( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerAxisEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerAxisEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerAxisEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerAxisEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerAxisEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerAxisEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerAxisEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerAxisEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerAxisEvent_GETF_padding4( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerAxisEvent_SETF_padding4( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerAxisEvent_SDL_ControllerAxisEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDL_ControllerAxisEvent_Meths[] = 
@@ -3501,16 +3211,8 @@ static DaoFuncItem dao_SDL_ControllerAxisEvent_Meths[] =
   { dao_SDL_ControllerAxisEvent_SETF_which, ".which=( self :SDL_ControllerAxisEvent, which :int )" },
   { dao_SDL_ControllerAxisEvent_GETF_axis, ".axis( self :SDL_ControllerAxisEvent )=>int" },
   { dao_SDL_ControllerAxisEvent_SETF_axis, ".axis=( self :SDL_ControllerAxisEvent, axis :int )" },
-  { dao_SDL_ControllerAxisEvent_GETF_padding1, ".padding1( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_padding1, ".padding1=( self :SDL_ControllerAxisEvent, padding1 :int )" },
-  { dao_SDL_ControllerAxisEvent_GETF_padding2, ".padding2( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_padding2, ".padding2=( self :SDL_ControllerAxisEvent, padding2 :int )" },
-  { dao_SDL_ControllerAxisEvent_GETF_padding3, ".padding3( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_padding3, ".padding3=( self :SDL_ControllerAxisEvent, padding3 :int )" },
   { dao_SDL_ControllerAxisEvent_GETF_value, ".value( self :SDL_ControllerAxisEvent )=>int" },
   { dao_SDL_ControllerAxisEvent_SETF_value, ".value=( self :SDL_ControllerAxisEvent, value :int )" },
-  { dao_SDL_ControllerAxisEvent_GETF_padding4, ".padding4( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_padding4, ".padding4=( self :SDL_ControllerAxisEvent, padding4 :int )" },
   { dao_SDL_ControllerAxisEvent_SDL_ControllerAxisEvent, "SDL_ControllerAxisEvent(  )=>SDL_ControllerAxisEvent" },
   { NULL, NULL }
 };
@@ -3570,36 +3272,6 @@ static void dao_SDL_ControllerAxisEvent_SETF_axis( DaoProcess *_proc, DaoValue *
   SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
   self->axis = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
-static void dao_SDL_ControllerAxisEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding1 );
-}
-static void dao_SDL_ControllerAxisEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  self->padding1 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_ControllerAxisEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_ControllerAxisEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_ControllerAxisEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding3 );
-}
-static void dao_SDL_ControllerAxisEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  self->padding3 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
 static void dao_SDL_ControllerAxisEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
@@ -3609,16 +3281,6 @@ static void dao_SDL_ControllerAxisEvent_SETF_value( DaoProcess *_proc, DaoValue 
 {
   SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
   self->value = (short) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_ControllerAxisEvent_GETF_padding4( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding4 );
-}
-static void dao_SDL_ControllerAxisEvent_SETF_padding4( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  self->padding4 = (unsigned short) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerAxisEvent_SDL_ControllerAxisEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3644,10 +3306,6 @@ static void dao_SDL_ControllerButtonEvent_GETF_button( DaoProcess *_proc, DaoVal
 static void dao_SDL_ControllerButtonEvent_SETF_button( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerButtonEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerButtonEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerButtonEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_ControllerButtonEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerButtonEvent_SDL_ControllerButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDL_ControllerButtonEvent_Meths[] = 
@@ -3662,10 +3320,6 @@ static DaoFuncItem dao_SDL_ControllerButtonEvent_Meths[] =
   { dao_SDL_ControllerButtonEvent_SETF_button, ".button=( self :SDL_ControllerButtonEvent, button :int )" },
   { dao_SDL_ControllerButtonEvent_GETF_state, ".state( self :SDL_ControllerButtonEvent )=>int" },
   { dao_SDL_ControllerButtonEvent_SETF_state, ".state=( self :SDL_ControllerButtonEvent, state :int )" },
-  { dao_SDL_ControllerButtonEvent_GETF_padding1, ".padding1( self :SDL_ControllerButtonEvent )=>int" },
-  { dao_SDL_ControllerButtonEvent_SETF_padding1, ".padding1=( self :SDL_ControllerButtonEvent, padding1 :int )" },
-  { dao_SDL_ControllerButtonEvent_GETF_padding2, ".padding2( self :SDL_ControllerButtonEvent )=>int" },
-  { dao_SDL_ControllerButtonEvent_SETF_padding2, ".padding2=( self :SDL_ControllerButtonEvent, padding2 :int )" },
   { dao_SDL_ControllerButtonEvent_SDL_ControllerButtonEvent, "SDL_ControllerButtonEvent(  )=>SDL_ControllerButtonEvent" },
   { NULL, NULL }
 };
@@ -3734,26 +3388,6 @@ static void dao_SDL_ControllerButtonEvent_SETF_state( DaoProcess *_proc, DaoValu
 {
   SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
   self->state = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_ControllerButtonEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding1 );
-}
-static void dao_SDL_ControllerButtonEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
-  self->padding1 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_ControllerButtonEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding2 );
-}
-static void dao_SDL_ControllerButtonEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
-  self->padding2 = (unsigned char) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerButtonEvent_SDL_ControllerButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4027,8 +3661,6 @@ static void dao_SDL_MultiGestureEvent_GETF_y( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_MultiGestureEvent_SETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MultiGestureEvent_GETF_numFingers( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MultiGestureEvent_SETF_numFingers( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_MultiGestureEvent_GETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_MultiGestureEvent_SETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MultiGestureEvent_SDL_MultiGestureEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDL_MultiGestureEvent_Meths[] = 
@@ -4049,8 +3681,6 @@ static DaoFuncItem dao_SDL_MultiGestureEvent_Meths[] =
   { dao_SDL_MultiGestureEvent_SETF_y, ".y=( self :SDL_MultiGestureEvent, y :float )" },
   { dao_SDL_MultiGestureEvent_GETF_numFingers, ".numFingers( self :SDL_MultiGestureEvent )=>int" },
   { dao_SDL_MultiGestureEvent_SETF_numFingers, ".numFingers=( self :SDL_MultiGestureEvent, numFingers :int )" },
-  { dao_SDL_MultiGestureEvent_GETF_padding, ".padding( self :SDL_MultiGestureEvent )=>int" },
-  { dao_SDL_MultiGestureEvent_SETF_padding, ".padding=( self :SDL_MultiGestureEvent, padding :int )" },
   { dao_SDL_MultiGestureEvent_SDL_MultiGestureEvent, "SDL_MultiGestureEvent(  )=>SDL_MultiGestureEvent" },
   { NULL, NULL }
 };
@@ -4149,16 +3779,6 @@ static void dao_SDL_MultiGestureEvent_SETF_numFingers( DaoProcess *_proc, DaoVal
 {
   SDL_MultiGestureEvent *self = (SDL_MultiGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MultiGestureEvent);
   self->numFingers = (unsigned short) DaoValue_TryGetInteger(_p[1]);
-}
-static void dao_SDL_MultiGestureEvent_GETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_MultiGestureEvent *self = (SDL_MultiGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MultiGestureEvent);
-  DaoProcess_PutInteger( _proc, (daoint) self->padding );
-}
-static void dao_SDL_MultiGestureEvent_SETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_MultiGestureEvent *self = (SDL_MultiGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MultiGestureEvent);
-  self->padding = (unsigned short) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MultiGestureEvent_SDL_MultiGestureEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4734,8 +4354,6 @@ static void dao_SDL_Event_GETF_tfinger( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_Event_GETF_mgesture( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_GETF_dgesture( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_GETF_drop( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_Event_GETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_Event_SETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_SDL_Event( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDL_Event_Meths[] = 
@@ -4765,8 +4383,6 @@ static DaoFuncItem dao_SDL_Event_Meths[] =
   { dao_SDL_Event_GETF_mgesture, ".mgesture( self :SDL_Event )=>SDL_MultiGestureEvent" },
   { dao_SDL_Event_GETF_dgesture, ".dgesture( self :SDL_Event )=>SDL_DollarGestureEvent" },
   { dao_SDL_Event_GETF_drop, ".drop( self :SDL_Event )=>SDL_DropEvent" },
-  { dao_SDL_Event_GETF_padding, ".padding( self :SDL_Event )=>array<int>" },
-  { dao_SDL_Event_SETF_padding, ".padding=( self :SDL_Event, padding :array<int> )" },
   { dao_SDL_Event_SDL_Event, "SDL_Event(  )=>SDL_Event" },
   { NULL, NULL }
 };
@@ -4910,18 +4526,6 @@ static void dao_SDL_Event_GETF_drop( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Event *self = (SDL_Event*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Event);
   DaoProcess_WrapCdata( _proc, (void*)&self->drop, dao_type_SDL_DropEvent );
-}
-static void dao_SDL_Event_GETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_Event *self = (SDL_Event*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Event);
-  DaoProcess_PutBytes( _proc, (char*) self->padding, 56 );
-}
-static void dao_SDL_Event_SETF_padding( DaoProcess *_proc, DaoValue *_p[], int _n )
-{
-  SDL_Event *self = (SDL_Event*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Event);
-  int size = DaoString_Size( (DaoString*)_p[1] );
-  if( size > 56 ) size = 56;
-  memmove( self->padding, DaoValue_TryGetChars( _p[1] ), size );
 }
 static void dao_SDL_Event_SDL_Event( DaoProcess *_proc, DaoValue *_p[], int _n )
 {

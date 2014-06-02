@@ -47,6 +47,90 @@
 #define refcount_dao_hint_readonly() SDL_Surface::refcount
 #undef  refcount_dao_hint_readonly
 
+#define X_dao_hint_unsupported() SDL_WindowEvent::padding1
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_WindowEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_WindowEvent::padding3
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_KeyboardEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_KeyboardEvent::padding3
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_MouseButtonEvent::padding1
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_MouseButtonEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyAxisEvent::padding1
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyAxisEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyAxisEvent::padding3
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyAxisEvent::padding4
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyBallEvent::padding1
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyBallEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyBallEvent::padding3
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyHatEvent::padding1
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyHatEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyButtonEvent::padding1
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_JoyButtonEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_ControllerAxisEvent::padding1
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_ControllerAxisEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_ControllerAxisEvent::padding3
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_ControllerAxisEvent::padding4
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_ControllerButtonEvent::padding1
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_ControllerButtonEvent::padding2
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_MultiGestureEvent::padding
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_Event::padding
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_AudioSpec::padding
+#undef X_dao_hint_unsupported
+
+#define X_dao_hint_unsupported() SDL_PixelFormat::padding
+#undef X_dao_hint_unsupported
+
 // hints for image pixel data: dao_hint_pixels_pitch_width_height
 #define pixels_dao_hint_pixels_pitch_w_h() SDL_Surface::pixels
 #undef  pixels_dao_hint_pixels_pitch_w_h
