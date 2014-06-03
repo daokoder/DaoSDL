@@ -5,15 +5,21 @@ daovm = DaoMake::FindPackage( "Dao", $REQUIRED )
 daoaux = DaoMake::FindPackage( "DaoAux", $REQUIRED )
 sdl2  = DaoMake::FindPackage( "SDL", $OPTIONAL )
 
+code = "int main(void){ return 0; }"
+sdltest = DaoMake::TestCompile( code, '-lSDL2_test' ) != 0;
+
 if( daovm == none or daoaux == none or sdl2 == none ) return
 
 cflags = sdl2.GetFlags( "SDL", $cflags )
 
 if( DaoMake::IsFile( '../../tools/clangdao/clangdao' ) ){
-	bind = project.AddCommand( 'wrap/dao_sdl.h: sdl.c', '@$(DAOMAKE) mkdir2 ./wrap' )
-	bind2 = project.AddCommand( 'wrap/dao_sdl_test.h: sdl_test.c', '@$(DAOMAKE) mkdir2 ./wrap' )
+	mkdir = '@$(DAOMAKE) mkdir2 ./wrap'
+	bind = project.AddCommand( 'wrap/dao_sdl.h: sdl.c', mkdir )
 	bind.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl.c -o wrap/' )
-	bind2.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl_test.c -o wrap/' )
+	if( sdltest ){
+		bind2 = project.AddCommand( 'wrap/dao_sdl_test.h: sdl_test.c', mkdir )
+		bind2.AddCommand( '../../tools/clangdao/clangdao ' + cflags + ' sdl_test.c -o wrap/' )
+	}
 }
 
 
@@ -25,15 +31,18 @@ project.AddIncludePath( "../../kernel" )
 project.AddIncludePath( "../../" )
 
 sources = { "wrap/dao_sdl.c", "wrap/dao_sdl2.c", "wrap/dao_sdl3.c" }
-sources2 = { "wrap/dao_sdl_test.c", "wrap/dao_sdl_test2.c", "wrap/dao_sdl_test3.c" }
 
 daosdl_objs = project.AddObjects( sources, { "wrap/dao_sdl.h" } )
-daosdl_objs2 = project.AddObjects( sources2, { "wrap/dao_sdl_test.h" } )
 daosdl_dll = project.AddSharedLibrary( "dao_sdl", daosdl_objs )
-daosdl_dll2 = project.AddSharedLibrary( "dao_sdl_test", daosdl_objs2 )
 daosdl_dll.UseSharedLibrary( sdl2 )
-daosdl_dll2.UseSharedLibrary( sdl2 )
-daosdl_dll2.AddLinkingFlag( "-lSDL2_test" );
+
+if( sdltest ){
+	sources2 = { "wrap/dao_sdl_test.c", "wrap/dao_sdl_test2.c", "wrap/dao_sdl_test3.c" }
+	daosdl_objs2 = project.AddObjects( sources2, { "wrap/dao_sdl_test.h" } )
+	daosdl_dll2 = project.AddSharedLibrary( "dao_sdl_test", daosdl_objs2 )
+	daosdl_dll2.UseSharedLibrary( sdl2 )
+	daosdl_dll2.AddLinkingFlag( "-lSDL2_test" );
+}
 
 project.Install( daovm.GetPath( "MOD-PATH" ), daosdl_dll );
 
