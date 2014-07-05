@@ -200,7 +200,7 @@ routine main( ... as argtuple )
                 consumed = 1;
             # } else if (SDL_isdigit(*argv[i])) {
 			}else{
-                num_objects = frame(0){ (int)argv[i] }
+                num_objects = std.exec(0){ (int)argv[i] }
                 consumed = 1;
             }
         }

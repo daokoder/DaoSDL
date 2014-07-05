@@ -41,6 +41,7 @@ routine SDL_LoadBMP( file: string )
 
 routine LoadSprite( file: string, renderer: SDL_Renderer )
 {
+	io.writeln( file )
     # Load the sprite image 
     temp = SDL_LoadBMP(file);
     if (temp == none) {
@@ -51,19 +52,20 @@ routine LoadSprite( file: string, renderer: SDL_Renderer )
     sprite_h = temp.h;
 
     # Set transparent pixel as the pixel at (0,0) 
-    if (temp.format.palette) {
+    if (temp.format.palette != none) {
         SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint8]);
     } else {
         switch (temp.format.BitsPerPixel) {
-        case 15: SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint8] & 0x00007FFF); break;
-        case 16: SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint16]);; break;
-        case 24: SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint32] & 0x00FFFFFF); break;
-        case 32: SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint32]);; break;
+        case 15: SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint8] & 0x00007FFF);
+        case 16: SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint16]);
+        case 24: SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint32] & 0x00FFFFFF);
+        case 32: SDL_SetColorKey(temp, SDL_TRUE, temp[0,0,$uint32]);
         }
     }
 
     # Create textures from the image 
     sprite = SDL_CreateTextureFromSurface(renderer, temp);
+	io.writeln( std.about(sprite) )
     if (sprite == none) {
         io.writef( "Couldn't create texture: %s\n", SDL_GetError());
         SDL_FreeSurface(temp);
