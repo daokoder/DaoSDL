@@ -36,7 +36,9 @@ routine quit( rc: int )
 
 routine SDL_LoadBMP( file: string )
 {
-    return SDL_LoadBMP_RW(SDL_RWFromFile(file, "rb"), 1);
+	dir = std::path( $loading )
+	io.writeln( dir )
+    return SDL_LoadBMP_RW(SDL_RWFromFile(dir + file, "rb"), 1);
 }
 
 routine LoadSprite( file: string, renderer: SDL_Renderer )

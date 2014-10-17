@@ -37,8 +37,8 @@ static size_t DaoPF10005( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *c
   if( _ro == NULL ) goto EndCall;
   DaoProcess_CacheValue( _proc, context );
   DaoProcess_NewCdata( _proc, NULL, (void*) ptr, 0 );
-  DaoProcess_NewInteger( _proc, (daoint) size );
-  DaoProcess_NewInteger( _proc, (daoint) maxnum );
+  DaoProcess_NewInteger( _proc, (dao_integer) size );
+  DaoProcess_NewInteger( _proc, (dao_integer) maxnum );
   _dp = DaoProcess_GetLastValues( _proc, 4 );
   _ro = DaoRoutine_ResolveByValue( _ro, (DaoValue*) _ob, _dp, 4 );
   if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
@@ -58,8 +58,8 @@ static size_t DaoPF10004( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *c
   if( _ro == NULL ) goto EndCall;
   DaoProcess_CacheValue( _proc, context );
   DaoProcess_NewCdata( _proc, NULL, (void*) ptr, 0 );
-  DaoProcess_NewInteger( _proc, (daoint) size );
-  DaoProcess_NewInteger( _proc, (daoint) maxnum );
+  DaoProcess_NewInteger( _proc, (dao_integer) size );
+  DaoProcess_NewInteger( _proc, (dao_integer) maxnum );
   _dp = DaoProcess_GetLastValues( _proc, 4 );
   _ro = DaoRoutine_ResolveByValue( _ro, (DaoValue*) _ob, _dp, 4 );
   if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
