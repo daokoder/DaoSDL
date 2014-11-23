@@ -2,11 +2,17 @@
 #define module_name sdl
 #undef module_name
 
+#define module_onload DaoSDL_OnLoad
+#undef module_onload
+
 #define X_dao_hint_unsupported() sigevent
 #undef X_dao_hint_unsupported
 
 #define X_dao_hint_unsupported() sigvec
 #undef X_dao_hint_unsupported
+
+#define X_dao_hint_callbackdata_userdata( userdata, event ) SDL_EventFilter(void*,SDL_Event*)
+#undef X_dao_hint_callbackdata_userdata
 
 #define X_dao_hint_callbackdata_context( context, offset, whence ) SDL_RWops::seek(SDL_RWops*,long,int)
 #undef X_dao_hint_callbackdata_context

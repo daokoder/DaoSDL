@@ -13,9 +13,7 @@
 #
 # Simple program:  Move N sprites around on the screen as fast as possible 
 
-load sys;
 load sdl;
-load sdl_test;
 
 const WINDOW_WIDTH  = 640
 const WINDOW_HEIGHT = 480
@@ -29,9 +27,9 @@ var sprite_w = 0;
 var sprite_h = 0;
 
 # Call this instead of exit(), so we can clean up SDL: atexit() is evil. 
-routine quit( rc: int )
+routine Abort( message: string )
 {
-    sys.exit(rc);
+    std.error( message )
 }
 
 routine SDL_LoadBMP( file: string )
@@ -46,10 +44,8 @@ routine LoadSprite( file: string, renderer: SDL_Renderer )
 	io.writeln( file )
     # Load the sprite image 
     temp = SDL_LoadBMP(file);
-    if (temp == none) {
-        io.writef( "Couldn't load %s: %s\n", file, SDL_GetError());
-        return (-1);
-    }
+    if (temp == none) std.error( "Couldn't load %s: %s\n" )#, file, SDL_GetError());
+
     sprite_w = temp.w;
     sprite_h = temp.h;
 
@@ -69,14 +65,10 @@ routine LoadSprite( file: string, renderer: SDL_Renderer )
     sprite = SDL_CreateTextureFromSurface(renderer, temp);
 	io.writeln( std.about(sprite) )
     if (sprite == none) {
-        io.writef( "Couldn't create texture: %s\n", SDL_GetError());
         SDL_FreeSurface(temp);
-        return (-1);
+        std.error( "Couldn't create texture: %s\n" )#, SDL_GetError());
     }
     SDL_FreeSurface(temp);
-
-    # We're ready to roll. :) 
-    return (0);
 }
 
 routine MoveSprites(window: SDL_Window, renderer: SDL_Renderer, sprite: SDL_Texture)
@@ -119,21 +111,14 @@ routine main( ... as argtuple )
     event = SDL_Event();
 
     window = SDL_CreateWindow( argv[0], 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, 0 );
-    if( window == none ) quit(2);
-    renderer = SDL_CreateRenderer( window, 0, 0 );
-    if( renderer == none ) quit(2);
-#{
-    if (SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window, &renderer) < 0) {
-        quit(2);
-    }
-#}
+    if( window == none ) Abort( "Window creation failed" );
 
-    if (LoadSprite("icon.bmp", renderer) < 0) {
-        quit(2);
-    }
+    renderer = SDL_CreateRenderer( window, 0, 0 );
+    if( renderer == none ) Abort( "Renderer creation failed" );
+
+	LoadSprite("icon.bmp", renderer);
 
     # Initialize the sprite positions 
-    # srand(time(NULL));
     for (i = 0; i < NUM_SPRITES; ++i) {
         positions[i].x = rand(100000) % (WINDOW_WIDTH - sprite_w);
         positions[i].y = rand(100000) % (WINDOW_HEIGHT - sprite_h);
@@ -158,7 +143,5 @@ routine main( ... as argtuple )
         }
         MoveSprites(window, renderer, sprite);
     }
-
-    quit(0);
 }
 

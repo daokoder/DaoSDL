@@ -1036,6 +1036,7 @@ static void dao__SDL_wcslen( DaoProcess *_proc, DaoValue *_p[], int _n )
   const int* wstr = (const int*) DaoArray_ToSInt32( (DaoArray*)_p[0] );
 
   size_t _SDL_wcslen = SDL_wcslen( wstr );
+  DaoArray_FromSInt32( (DaoArray*)_p[0] );
   DaoProcess_PutInteger( _proc, (dao_integer) _SDL_wcslen );
 }
 /* /usr/local/include/SDL2/SDL_stdinc.h */
@@ -1046,6 +1047,7 @@ static void dao__SDL_wcslcpy( DaoProcess *_proc, DaoValue *_p[], int _n )
   const int* src = (const int*) DaoArray_ToSInt32( (DaoArray*)_p[1] );
 
   size_t _SDL_wcslcpy = SDL_wcslcpy( &dst, src, maxlen );
+  DaoArray_FromSInt32( (DaoArray*)_p[1] );
   DaoProcess_NewInteger( _proc, (dao_integer) _SDL_wcslcpy );
   DaoProcess_NewInteger( _proc, (dao_integer)dst );
   DaoProcess_PutTuple( _proc, -2 );
@@ -1058,6 +1060,7 @@ static void dao__SDL_wcslcat( DaoProcess *_proc, DaoValue *_p[], int _n )
   const int* src = (const int*) DaoArray_ToSInt32( (DaoArray*)_p[1] );
 
   size_t _SDL_wcslcat = SDL_wcslcat( &dst, src, maxlen );
+  DaoArray_FromSInt32( (DaoArray*)_p[1] );
   DaoProcess_NewInteger( _proc, (dao_integer) _SDL_wcslcat );
   DaoProcess_NewInteger( _proc, (dao_integer)dst );
   DaoProcess_PutTuple( _proc, -2 );
@@ -3174,6 +3177,9 @@ static void dao__SDL_SetWindowGammaRamp( DaoProcess *_proc, DaoValue *_p[], int 
   const unsigned short* red = (const unsigned short*) DaoArray_ToUInt16( (DaoArray*)_p[1] );
 
   int _SDL_SetWindowGammaRamp = SDL_SetWindowGammaRamp( window, red, green, blue );
+  DaoArray_FromUInt16( (DaoArray*)_p[1] );
+  DaoArray_FromUInt16( (DaoArray*)_p[2] );
+  DaoArray_FromUInt16( (DaoArray*)_p[3] );
   DaoProcess_PutInteger( _proc, (dao_integer) _SDL_SetWindowGammaRamp );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
@@ -5489,7 +5495,7 @@ static const char *dao__Aliases[] =
 #ifdef __cplusplus
 extern "C"{
 #endif
-int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
+int DaoSDL_OnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 {
 	__daoVmSpace = vms;
 	DaoNamespace *aux = DaoVmSpace_LinkModule( vms, ns, "aux" );
