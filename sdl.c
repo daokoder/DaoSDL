@@ -11,8 +11,9 @@
 #define X_dao_hint_unsupported() sigvec
 #undef X_dao_hint_unsupported
 
-#define X_dao_hint_callbackdata_userdata( userdata, event ) SDL_EventFilter(void*,SDL_Event*)
-#undef X_dao_hint_callbackdata_userdata
+
+#define dao_SDL_SetEventFilter_dao_hint_userwrapper( filter_dao_hint_daotype_routine_LT_any_COMMA_SDL_UNDERSCORE_Event_FIELD_bool_GT, userdata_dao_hint_daotype_any ) SDL_SetEventFilter
+#undef dao_SDL_SetEventFilter_dao_hint_userwrapper
 
 #define X_dao_hint_callbackdata_context( context, offset, whence ) SDL_RWops::seek(SDL_RWops*,long,int)
 #undef X_dao_hint_callbackdata_context

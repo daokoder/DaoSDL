@@ -354,6 +354,7 @@ static void dao__SDL_PollEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_WaitEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_WaitEventTimeout( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_PushEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
+extern void dao__SDL_SetEventFilter( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_EventState( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_RegisterEvents( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_SetHintWithPriority( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -792,6 +793,7 @@ static DaoFuncItem dao__Funcs[] =
   { dao__SDL_WaitEvent, "SDL_WaitEvent( event: SDL_Event )=>int" },
   { dao__SDL_WaitEventTimeout, "SDL_WaitEventTimeout( event: SDL_Event, timeout: int )=>int" },
   { dao__SDL_PushEvent, "SDL_PushEvent( event: SDL_Event )=>int" },
+  { dao__SDL_SetEventFilter, "SDL_SetEventFilter( filter :routine<any,SDL_Event=>bool>, userdata :any )" },
   { dao__SDL_EventState, "SDL_EventState( type: int, state: int )=>int" },
   { dao__SDL_RegisterEvents, "SDL_RegisterEvents( numevents: int )=>int" },
   { dao__SDL_SetHintWithPriority, "SDL_SetHintWithPriority( name: string, value: string, priority: int )=>int" },

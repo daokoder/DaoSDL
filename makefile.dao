@@ -37,7 +37,7 @@ project.AddIncludePath( "." )
 project.AddIncludePath( "../../kernel" )
 project.AddIncludePath( "../../" )
 
-sources = { "wrap/dao_sdl.c", "wrap/dao_sdl2.c", "wrap/dao_sdl3.c" }
+sources = { "wrap/dao_sdl.c", "wrap/dao_sdl2.c", "wrap/dao_sdl3.c", "dao_SDLx.c" }
 
 daosdl_objs = project.AddObjects( sources, { "wrap/dao_sdl.h" } )
 daosdl_dll = project.AddSharedLibrary( "dao_sdl", daosdl_objs )
