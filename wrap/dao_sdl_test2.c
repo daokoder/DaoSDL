@@ -100,6 +100,8 @@ static void dao_SDLTest_CommonState_GETF_gl_minor_version( DaoProcess *_proc, Da
 static void dao_SDLTest_CommonState_SETF_gl_minor_version( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDLTest_CommonState_GETF_gl_debug( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDLTest_CommonState_SETF_gl_debug( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDLTest_CommonState_GETF_gl_profile_mask( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDLTest_CommonState_SETF_gl_profile_mask( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDLTest_CommonState_SDLTest_CommonState( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDLTest_CommonState_Meths[] = 
@@ -192,6 +194,8 @@ static DaoFuncItem dao_SDLTest_CommonState_Meths[] =
   { dao_SDLTest_CommonState_SETF_gl_minor_version, ".gl_minor_version=( self :SDLTest_CommonState, gl_minor_version :int )" },
   { dao_SDLTest_CommonState_GETF_gl_debug, ".gl_debug( self :SDLTest_CommonState )=>int" },
   { dao_SDLTest_CommonState_SETF_gl_debug, ".gl_debug=( self :SDLTest_CommonState, gl_debug :int )" },
+  { dao_SDLTest_CommonState_GETF_gl_profile_mask, ".gl_profile_mask( self :SDLTest_CommonState )=>int" },
+  { dao_SDLTest_CommonState_SETF_gl_profile_mask, ".gl_profile_mask=( self :SDLTest_CommonState, gl_profile_mask :int )" },
   { dao_SDLTest_CommonState_SDLTest_CommonState, "SDLTest_CommonState(  )=>SDLTest_CommonState" },
   { NULL, NULL }
 };
@@ -209,7 +213,7 @@ static DaoTypeBase SDLTest_CommonState_Typer =
   Dao_SDLTest_CommonState_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL_TEST *dao_SDLTest_CommonState_Typer = & SDLTest_CommonState_Typer;
+DaoTypeBase *dao_SDLTest_CommonState_Typer = & SDLTest_CommonState_Typer;
 DaoType *dao_type_SDLTest_CommonState = NULL;
 static void dao_SDLTest_CommonState_GETF_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -219,7 +223,7 @@ static void dao_SDLTest_CommonState_GETF_flags( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDLTest_CommonState_SETF_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState *self = (SDLTest_CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_SDLTest_CommonState);
-  self->flags = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->flags = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDLTest_CommonState_GETF_verbose( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -229,7 +233,7 @@ static void dao_SDLTest_CommonState_GETF_verbose( DaoProcess *_proc, DaoValue *_
 static void dao_SDLTest_CommonState_SETF_verbose( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState *self = (SDLTest_CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_SDLTest_CommonState);
-  self->verbose = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->verbose = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDLTest_CommonState_GETF_videodriver( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -264,7 +268,7 @@ static void dao_SDLTest_CommonState_GETF_window_flags( DaoProcess *_proc, DaoVal
 static void dao_SDLTest_CommonState_SETF_window_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState *self = (SDLTest_CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_SDLTest_CommonState);
-  self->window_flags = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->window_flags = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDLTest_CommonState_GETF_window_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -429,7 +433,7 @@ static void dao_SDLTest_CommonState_GETF_render_flags( DaoProcess *_proc, DaoVal
 static void dao_SDLTest_CommonState_SETF_render_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState *self = (SDLTest_CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_SDLTest_CommonState);
-  self->render_flags = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->render_flags = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDLTest_CommonState_GETF_skip_renderer( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -660,6 +664,16 @@ static void dao_SDLTest_CommonState_SETF_gl_debug( DaoProcess *_proc, DaoValue *
 {
   SDLTest_CommonState *self = (SDLTest_CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_SDLTest_CommonState);
   self->gl_debug = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDLTest_CommonState_GETF_gl_profile_mask( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDLTest_CommonState *self = (SDLTest_CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_SDLTest_CommonState);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->gl_profile_mask );
+}
+static void dao_SDLTest_CommonState_SETF_gl_profile_mask( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDLTest_CommonState *self = (SDLTest_CommonState*)DaoValue_TryCastCdata(_p[0],dao_type_SDLTest_CommonState);
+  self->gl_profile_mask = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDLTest_CommonState_SDLTest_CommonState( DaoProcess *_proc, DaoValue *_p[], int _n )
 {

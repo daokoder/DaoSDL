@@ -2,137 +2,117 @@
 #ifdef __cplusplus
 extern "C"{
 #endif
-/* /usr/include/sys/_types.h */
-static DaoTypeBase _opaque_pthread_attr_t_Typer = 
-{ "_opaque_pthread_attr_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao__opaque_pthread_attr_t_Typer = & _opaque_pthread_attr_t_Typer;
-DaoType *dao_type__opaque_pthread_attr_t = NULL;
-/* /usr/include/stdio.h */
-static DaoTypeBase __sFILE_Typer = 
-{ "__sFILE", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao___sFILE_Typer = & __sFILE_Typer;
-DaoType *dao_type___sFILE = NULL;
-/* /usr/include/sys/signal.h */
-static DaoTypeBase sigval_Typer = 
-{ "sigval", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_sigval_Typer = & sigval_Typer;
-DaoType *dao_type_sigval = NULL;
-/* /usr/include/sys/_structs.h */
-static DaoTypeBase timeval_Typer = 
-{ "timeval", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_timeval_Typer = & timeval_Typer;
-DaoType *dao_type_timeval = NULL;
 /* /usr/local/include/SDL2/SDL_stdinc.h */
 static DaoTypeBase _SDL_iconv_t_Typer = 
 { "_SDL_iconv_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao__SDL_iconv_t_Typer = & _SDL_iconv_t_Typer;
+DaoTypeBase *dao__SDL_iconv_t_Typer = & _SDL_iconv_t_Typer;
 DaoType *dao_type__SDL_iconv_t = NULL;
 /* /usr/local/include/SDL2/SDL_assert.h */
 
 
-static DaoNumItem dao_SDL_assert_data_Nums[] = 
+static DaoNumItem dao_SDL_AssertData_Nums[] = 
 {
   { NULL, 0, 0 }
 };
 
 
-static void dao_SDL_assert_data_GETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_SETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_GETF_trigger_count( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_SETF_trigger_count( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_GETF_condition( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_GETF_filename( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_GETF_linenum( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_SETF_linenum( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_GETF_function( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_GETF_next( DaoProcess *_proc, DaoValue *_p[], int _n );
-static void dao_SDL_assert_data_SDL_assert_data( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_GETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_SETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_GETF_trigger_count( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_SETF_trigger_count( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_GETF_condition( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_GETF_filename( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_GETF_linenum( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_SETF_linenum( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_GETF_function( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_GETF_next( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AssertData_SDL_AssertData( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_assert_data_Meths[] = 
+static DaoFuncItem dao_SDL_AssertData_Meths[] = 
 {
-  { dao_SDL_assert_data_GETF_always_ignore, ".always_ignore( self :SDL_assert_data )=>int" },
-  { dao_SDL_assert_data_SETF_always_ignore, ".always_ignore=( self :SDL_assert_data, always_ignore :int )" },
-  { dao_SDL_assert_data_GETF_trigger_count, ".trigger_count( self :SDL_assert_data )=>int" },
-  { dao_SDL_assert_data_SETF_trigger_count, ".trigger_count=( self :SDL_assert_data, trigger_count :int )" },
-  { dao_SDL_assert_data_GETF_condition, ".condition( self :SDL_assert_data )=>string" },
-  { dao_SDL_assert_data_GETF_filename, ".filename( self :SDL_assert_data )=>string" },
-  { dao_SDL_assert_data_GETF_linenum, ".linenum( self :SDL_assert_data )=>int" },
-  { dao_SDL_assert_data_SETF_linenum, ".linenum=( self :SDL_assert_data, linenum :int )" },
-  { dao_SDL_assert_data_GETF_function, ".function( self :SDL_assert_data )=>string" },
-  { dao_SDL_assert_data_GETF_next, ".next( self :SDL_assert_data )=>SDL_assert_data" },
-  { dao_SDL_assert_data_SDL_assert_data, "SDL_assert_data(  )=>SDL_assert_data" },
+  { dao_SDL_AssertData_GETF_always_ignore, ".always_ignore( self :SDL_AssertData )=>int" },
+  { dao_SDL_AssertData_SETF_always_ignore, ".always_ignore=( self :SDL_AssertData, always_ignore :int )" },
+  { dao_SDL_AssertData_GETF_trigger_count, ".trigger_count( self :SDL_AssertData )=>int" },
+  { dao_SDL_AssertData_SETF_trigger_count, ".trigger_count=( self :SDL_AssertData, trigger_count :int )" },
+  { dao_SDL_AssertData_GETF_condition, ".condition( self :SDL_AssertData )=>string" },
+  { dao_SDL_AssertData_GETF_filename, ".filename( self :SDL_AssertData )=>string" },
+  { dao_SDL_AssertData_GETF_linenum, ".linenum( self :SDL_AssertData )=>int" },
+  { dao_SDL_AssertData_SETF_linenum, ".linenum=( self :SDL_AssertData, linenum :int )" },
+  { dao_SDL_AssertData_GETF_function, ".function( self :SDL_AssertData )=>string" },
+  { dao_SDL_AssertData_GETF_next, ".next( self :SDL_AssertData )=>SDL_AssertData" },
+  { dao_SDL_AssertData_SDL_AssertData, "SDL_AssertData(  )=>SDL_AssertData" },
   { NULL, NULL }
 };
-static void Dao_SDL_assert_data_Delete( void *self )
+static void Dao_SDL_AssertData_Delete( void *self )
 {
 	free( self );
 }
 
-static DaoTypeBase SDL_assert_data_Typer = 
-{ "SDL_assert_data", NULL,
-  dao_SDL_assert_data_Nums,
-  dao_SDL_assert_data_Meths,
+static DaoTypeBase SDL_AssertData_Typer = 
+{ "SDL_AssertData", NULL,
+  dao_SDL_AssertData_Nums,
+  dao_SDL_AssertData_Meths,
   { NULL },
   { NULL },
-  Dao_SDL_assert_data_Delete,
+  Dao_SDL_AssertData_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_assert_data_Typer = & SDL_assert_data_Typer;
-DaoType *dao_type_SDL_assert_data = NULL;
-static void dao_SDL_assert_data_GETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n )
+DaoTypeBase *dao_SDL_AssertData_Typer = & SDL_AssertData_Typer;
+DaoType *dao_type_SDL_AssertData = NULL;
+static void dao_SDL_AssertData_GETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   DaoProcess_PutInteger( _proc, (dao_integer) self->always_ignore );
 }
-static void dao_SDL_assert_data_SETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_SETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   self->always_ignore = (int) DaoValue_TryGetInteger(_p[1]);
 }
-static void dao_SDL_assert_data_GETF_trigger_count( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_GETF_trigger_count( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   DaoProcess_PutInteger( _proc, (dao_integer) self->trigger_count );
 }
-static void dao_SDL_assert_data_SETF_trigger_count( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_SETF_trigger_count( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   self->trigger_count = (unsigned int) DaoValue_TryGetInteger(_p[1]);
 }
-static void dao_SDL_assert_data_GETF_condition( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_GETF_condition( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   DaoProcess_PutChars( _proc, (char*) self->condition );
 }
-static void dao_SDL_assert_data_GETF_filename( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_GETF_filename( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   DaoProcess_PutChars( _proc, (char*) self->filename );
 }
-static void dao_SDL_assert_data_GETF_linenum( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_GETF_linenum( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   DaoProcess_PutInteger( _proc, (dao_integer) self->linenum );
 }
-static void dao_SDL_assert_data_SETF_linenum( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_SETF_linenum( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   self->linenum = (int) DaoValue_TryGetInteger(_p[1]);
 }
-static void dao_SDL_assert_data_GETF_function( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_GETF_function( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
   DaoProcess_PutChars( _proc, (char*) self->function );
 }
-static void dao_SDL_assert_data_GETF_next( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_GETF_next( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-  SDL_assert_data *self = (SDL_assert_data*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_assert_data);
-  DaoProcess_WrapCdata( _proc, (void*) self->next, dao_type_SDL_assert_data );
+  SDL_AssertData *self = (SDL_AssertData*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AssertData);
+  DaoProcess_WrapCdata( _proc, (void*) self->next, dao_type_SDL_AssertData );
 }
-static void dao_SDL_assert_data_SDL_assert_data( DaoProcess *_proc, DaoValue *_p[], int _n )
+static void dao_SDL_AssertData_SDL_AssertData( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
-	SDL_assert_data *self = Dao_SDL_assert_data_New();
-	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_assert_data );
+	SDL_AssertData *self = Dao_SDL_AssertData_New();
+	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_AssertData );
 }
 /* /usr/local/include/SDL2/SDL_atomic.h */
 
@@ -168,7 +148,7 @@ static DaoTypeBase SDL_atomic_t_Typer =
   Dao_SDL_atomic_t_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_atomic_t_Typer = & SDL_atomic_t_Typer;
+DaoTypeBase *dao_SDL_atomic_t_Typer = & SDL_atomic_t_Typer;
 DaoType *dao_type_SDL_atomic_t = NULL;
 static void dao_SDL_atomic_t_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -188,22 +168,22 @@ static void dao_SDL_atomic_t_SDL_atomic_t( DaoProcess *_proc, DaoValue *_p[], in
 /* /usr/local/include/SDL2/SDL_mutex.h */
 static DaoTypeBase SDL_mutex_Typer = 
 { "SDL_mutex", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_mutex_Typer = & SDL_mutex_Typer;
+DaoTypeBase *dao_SDL_mutex_Typer = & SDL_mutex_Typer;
 DaoType *dao_type_SDL_mutex = NULL;
 /* /usr/local/include/SDL2/SDL_mutex.h */
 static DaoTypeBase SDL_semaphore_Typer = 
 { "SDL_semaphore", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_semaphore_Typer = & SDL_semaphore_Typer;
+DaoTypeBase *dao_SDL_semaphore_Typer = & SDL_semaphore_Typer;
 DaoType *dao_type_SDL_semaphore = NULL;
 /* /usr/local/include/SDL2/SDL_mutex.h */
 static DaoTypeBase SDL_cond_Typer = 
 { "SDL_cond", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_cond_Typer = & SDL_cond_Typer;
+DaoTypeBase *dao_SDL_cond_Typer = & SDL_cond_Typer;
 DaoType *dao_type_SDL_cond = NULL;
 /* /usr/local/include/SDL2/SDL_thread.h */
 static DaoTypeBase SDL_Thread_Typer = 
 { "SDL_Thread", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Thread_Typer = & SDL_Thread_Typer;
+DaoTypeBase *dao_SDL_Thread_Typer = & SDL_Thread_Typer;
 DaoType *dao_type_SDL_Thread = NULL;
 /* /usr/local/include/SDL2/SDL_rwops.h */
 
@@ -239,7 +219,7 @@ static DaoTypeBase SDL_RWops_Typer =
   Dao_SDL_RWops_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_RWops_Typer = & SDL_RWops_Typer;
+DaoTypeBase *dao_SDL_RWops_Typer = & SDL_RWops_Typer;
 DaoType *dao_type_SDL_RWops = NULL;
 static void dao_SDL_RWops_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -249,7 +229,7 @@ static void dao_SDL_RWops_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_RWops_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_RWops *self = (SDL_RWops*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_RWops);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_RWops_SDL_RWops( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -312,7 +292,7 @@ static DaoTypeBase SDL_AudioSpec_Typer =
   Dao_SDL_AudioSpec_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_AudioSpec_Typer = & SDL_AudioSpec_Typer;
+DaoTypeBase *dao_SDL_AudioSpec_Typer = & SDL_AudioSpec_Typer;
 DaoType *dao_type_SDL_AudioSpec = NULL;
 static void dao_SDL_AudioSpec_GETF_freq( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -332,7 +312,7 @@ static void dao_SDL_AudioSpec_GETF_format( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_SDL_AudioSpec_SETF_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
-  self->format = (unsigned short) DaoValue_TryGetInteger(_p[1]);
+  self->format = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_AudioSpec_GETF_channels( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -342,7 +322,7 @@ static void dao_SDL_AudioSpec_GETF_channels( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_AudioSpec_SETF_channels( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
-  self->channels = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->channels = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_AudioSpec_GETF_silence( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -352,7 +332,7 @@ static void dao_SDL_AudioSpec_GETF_silence( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_AudioSpec_SETF_silence( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
-  self->silence = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->silence = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_AudioSpec_GETF_samples( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -362,7 +342,7 @@ static void dao_SDL_AudioSpec_GETF_samples( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_AudioSpec_SETF_samples( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
-  self->samples = (unsigned short) DaoValue_TryGetInteger(_p[1]);
+  self->samples = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_AudioSpec_GETF_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -372,7 +352,7 @@ static void dao_SDL_AudioSpec_GETF_size( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_AudioSpec_SETF_size( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioSpec *self = (SDL_AudioSpec*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioSpec);
-  self->size = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->size = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_AudioSpec_GETF_userdata( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -424,7 +404,7 @@ static DaoFuncItem dao_SDL_AudioCVT_Meths[] =
   { dao_SDL_AudioCVT_SETF_dst_format, ".dst_format=( self :SDL_AudioCVT, dst_format :int )" },
   { dao_SDL_AudioCVT_GETF_rate_incr, ".rate_incr( self :SDL_AudioCVT )=>float" },
   { dao_SDL_AudioCVT_SETF_rate_incr, ".rate_incr=( self :SDL_AudioCVT, rate_incr :float )" },
-  { dao_SDL_AudioCVT_GETF_buf, ".buf( self :SDL_AudioCVT )=>string" },
+  { dao_SDL_AudioCVT_GETF_buf, ".buf( self :SDL_AudioCVT )=>int" },
   { dao_SDL_AudioCVT_GETF_len, ".len( self :SDL_AudioCVT )=>int" },
   { dao_SDL_AudioCVT_SETF_len, ".len=( self :SDL_AudioCVT, len :int )" },
   { dao_SDL_AudioCVT_GETF_len_cvt, ".len_cvt( self :SDL_AudioCVT )=>int" },
@@ -452,7 +432,7 @@ static DaoTypeBase SDL_AudioCVT_Typer =
   Dao_SDL_AudioCVT_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_AudioCVT_Typer = & SDL_AudioCVT_Typer;
+DaoTypeBase *dao_SDL_AudioCVT_Typer = & SDL_AudioCVT_Typer;
 DaoType *dao_type_SDL_AudioCVT = NULL;
 static void dao_SDL_AudioCVT_GETF_needed( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -472,7 +452,7 @@ static void dao_SDL_AudioCVT_GETF_src_format( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_AudioCVT_SETF_src_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioCVT *self = (SDL_AudioCVT*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioCVT);
-  self->src_format = (unsigned short) DaoValue_TryGetInteger(_p[1]);
+  self->src_format = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_AudioCVT_GETF_dst_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -482,7 +462,7 @@ static void dao_SDL_AudioCVT_GETF_dst_format( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_AudioCVT_SETF_dst_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioCVT *self = (SDL_AudioCVT*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioCVT);
-  self->dst_format = (unsigned short) DaoValue_TryGetInteger(_p[1]);
+  self->dst_format = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_AudioCVT_GETF_rate_incr( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -497,7 +477,7 @@ static void dao_SDL_AudioCVT_SETF_rate_incr( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_AudioCVT_GETF_buf( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_AudioCVT *self = (SDL_AudioCVT*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioCVT);
-  DaoProcess_PutChars( _proc, (char*) self->buf );
+  DaoProcess_PutVectorSInt32( _proc, (signed int*) self->buf, 0 );
 }
 static void dao_SDL_AudioCVT_GETF_len( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -600,7 +580,7 @@ static DaoTypeBase SDL_Color_Typer =
   Dao_SDL_Color_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Color_Typer = & SDL_Color_Typer;
+DaoTypeBase *dao_SDL_Color_Typer = & SDL_Color_Typer;
 DaoType *dao_type_SDL_Color = NULL;
 static void dao_SDL_Color_GETF_r( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -610,7 +590,7 @@ static void dao_SDL_Color_GETF_r( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_Color_SETF_r( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Color *self = (SDL_Color*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Color);
-  self->r = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->r = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Color_GETF_g( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -620,7 +600,7 @@ static void dao_SDL_Color_GETF_g( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_Color_SETF_g( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Color *self = (SDL_Color*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Color);
-  self->g = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->g = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Color_GETF_b( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -630,7 +610,7 @@ static void dao_SDL_Color_GETF_b( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_Color_SETF_b( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Color *self = (SDL_Color*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Color);
-  self->b = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->b = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Color_GETF_a( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -640,7 +620,7 @@ static void dao_SDL_Color_GETF_a( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_Color_SETF_a( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Color *self = (SDL_Color*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Color);
-  self->a = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->a = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Color_SDL_Color( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -691,7 +671,7 @@ static DaoTypeBase SDL_Palette_Typer =
   Dao_SDL_Palette_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Palette_Typer = & SDL_Palette_Typer;
+DaoTypeBase *dao_SDL_Palette_Typer = & SDL_Palette_Typer;
 DaoType *dao_type_SDL_Palette = NULL;
 static void dao_SDL_Palette_GETF_ncolors( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -716,7 +696,7 @@ static void dao_SDL_Palette_GETF_version( DaoProcess *_proc, DaoValue *_p[], int
 static void dao_SDL_Palette_SETF_version( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Palette *self = (SDL_Palette*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Palette);
-  self->version = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->version = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Palette_GETF_refcount( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -831,7 +811,7 @@ static DaoTypeBase SDL_PixelFormat_Typer =
   Dao_SDL_PixelFormat_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_PixelFormat_Typer = & SDL_PixelFormat_Typer;
+DaoTypeBase *dao_SDL_PixelFormat_Typer = & SDL_PixelFormat_Typer;
 DaoType *dao_type_SDL_PixelFormat = NULL;
 static void dao_SDL_PixelFormat_GETF_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -841,7 +821,7 @@ static void dao_SDL_PixelFormat_GETF_format( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_PixelFormat_SETF_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->format = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->format = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_palette( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -856,7 +836,7 @@ static void dao_SDL_PixelFormat_GETF_BitsPerPixel( DaoProcess *_proc, DaoValue *
 static void dao_SDL_PixelFormat_SETF_BitsPerPixel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->BitsPerPixel = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->BitsPerPixel = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_BytesPerPixel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -866,7 +846,7 @@ static void dao_SDL_PixelFormat_GETF_BytesPerPixel( DaoProcess *_proc, DaoValue 
 static void dao_SDL_PixelFormat_SETF_BytesPerPixel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->BytesPerPixel = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->BytesPerPixel = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Rmask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -876,7 +856,7 @@ static void dao_SDL_PixelFormat_GETF_Rmask( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_PixelFormat_SETF_Rmask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Rmask = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->Rmask = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Gmask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -886,7 +866,7 @@ static void dao_SDL_PixelFormat_GETF_Gmask( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_PixelFormat_SETF_Gmask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Gmask = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->Gmask = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Bmask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -896,7 +876,7 @@ static void dao_SDL_PixelFormat_GETF_Bmask( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_PixelFormat_SETF_Bmask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Bmask = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->Bmask = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Amask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -906,7 +886,7 @@ static void dao_SDL_PixelFormat_GETF_Amask( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_PixelFormat_SETF_Amask( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Amask = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->Amask = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Rloss( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -916,7 +896,7 @@ static void dao_SDL_PixelFormat_GETF_Rloss( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_PixelFormat_SETF_Rloss( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Rloss = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->Rloss = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Gloss( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -926,7 +906,7 @@ static void dao_SDL_PixelFormat_GETF_Gloss( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_PixelFormat_SETF_Gloss( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Gloss = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->Gloss = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Bloss( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -936,7 +916,7 @@ static void dao_SDL_PixelFormat_GETF_Bloss( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_PixelFormat_SETF_Bloss( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Bloss = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->Bloss = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Aloss( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -946,7 +926,7 @@ static void dao_SDL_PixelFormat_GETF_Aloss( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_PixelFormat_SETF_Aloss( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Aloss = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->Aloss = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Rshift( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -956,7 +936,7 @@ static void dao_SDL_PixelFormat_GETF_Rshift( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_PixelFormat_SETF_Rshift( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Rshift = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->Rshift = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Gshift( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -966,7 +946,7 @@ static void dao_SDL_PixelFormat_GETF_Gshift( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_PixelFormat_SETF_Gshift( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Gshift = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->Gshift = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Bshift( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -976,7 +956,7 @@ static void dao_SDL_PixelFormat_GETF_Bshift( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_PixelFormat_SETF_Bshift( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Bshift = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->Bshift = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_Ashift( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -986,7 +966,7 @@ static void dao_SDL_PixelFormat_GETF_Ashift( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_PixelFormat_SETF_Ashift( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_PixelFormat *self = (SDL_PixelFormat*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_PixelFormat);
-  self->Ashift = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->Ashift = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_PixelFormat_GETF_refcount( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1046,7 +1026,7 @@ static DaoTypeBase SDL_Point_Typer =
   Dao_SDL_Point_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Point_Typer = & SDL_Point_Typer;
+DaoTypeBase *dao_SDL_Point_Typer = & SDL_Point_Typer;
 DaoType *dao_type_SDL_Point = NULL;
 static void dao_SDL_Point_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1119,7 +1099,7 @@ static DaoTypeBase SDL_Rect_Typer =
   Dao_SDL_Rect_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Rect_Typer = & SDL_Rect_Typer;
+DaoTypeBase *dao_SDL_Rect_Typer = & SDL_Rect_Typer;
 DaoType *dao_type_SDL_Rect = NULL;
 static void dao_SDL_Rect_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1224,7 +1204,7 @@ static DaoTypeBase SDL_Surface_Typer =
   Dao_SDL_Surface_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Surface_Typer = & SDL_Surface_Typer;
+DaoTypeBase *dao_SDL_Surface_Typer = & SDL_Surface_Typer;
 DaoType *dao_type_SDL_Surface = NULL;
 static void dao_SDL_Surface_GETF_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1352,7 +1332,7 @@ static void dao_SDL_Surface_SDL_Surface( DaoProcess *_proc, DaoValue *_p[], int 
 /* /usr/local/include/SDL2/SDL_surface.h */
 static DaoTypeBase SDL_BlitMap_Typer = 
 { "SDL_BlitMap", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_BlitMap_Typer = & SDL_BlitMap_Typer;
+DaoTypeBase *dao_SDL_BlitMap_Typer = & SDL_BlitMap_Typer;
 DaoType *dao_type_SDL_BlitMap = NULL;
 /* /usr/local/include/SDL2/SDL_video.h */
 
@@ -1402,7 +1382,7 @@ static DaoTypeBase SDL_DisplayMode_Typer =
   Dao_SDL_DisplayMode_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_DisplayMode_Typer = & SDL_DisplayMode_Typer;
+DaoTypeBase *dao_SDL_DisplayMode_Typer = & SDL_DisplayMode_Typer;
 DaoType *dao_type_SDL_DisplayMode = NULL;
 static void dao_SDL_DisplayMode_GETF_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1412,7 +1392,7 @@ static void dao_SDL_DisplayMode_GETF_format( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_DisplayMode_SETF_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DisplayMode *self = (SDL_DisplayMode*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DisplayMode);
-  self->format = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->format = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_DisplayMode_GETF_w( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1457,7 +1437,7 @@ static void dao_SDL_DisplayMode_SDL_DisplayMode( DaoProcess *_proc, DaoValue *_p
 /* /usr/local/include/SDL2/SDL_video.h */
 static DaoTypeBase SDL_Window_Typer = 
 { "SDL_Window", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Window_Typer = & SDL_Window_Typer;
+DaoTypeBase *dao_SDL_Window_Typer = & SDL_Window_Typer;
 DaoType *dao_type_SDL_Window = NULL;
 /* /usr/local/include/SDL2/SDL_keyboard.h */
 
@@ -1505,7 +1485,7 @@ static DaoTypeBase SDL_Keysym_Typer =
   Dao_SDL_Keysym_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Keysym_Typer = & SDL_Keysym_Typer;
+DaoTypeBase *dao_SDL_Keysym_Typer = & SDL_Keysym_Typer;
 DaoType *dao_type_SDL_Keysym = NULL;
 static void dao_SDL_Keysym_GETF_scancode( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1535,7 +1515,7 @@ static void dao_SDL_Keysym_GETF_mod( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_Keysym_SETF_mod( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Keysym *self = (SDL_Keysym*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Keysym);
-  self->mod = (unsigned short) DaoValue_TryGetInteger(_p[1]);
+  self->mod = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Keysym_GETF_unused( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1545,7 +1525,7 @@ static void dao_SDL_Keysym_GETF_unused( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_Keysym_SETF_unused( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Keysym *self = (SDL_Keysym*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Keysym);
-  self->unused = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->unused = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Keysym_SDL_Keysym( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1555,12 +1535,12 @@ static void dao_SDL_Keysym_SDL_Keysym( DaoProcess *_proc, DaoValue *_p[], int _n
 /* /usr/local/include/SDL2/SDL_mouse.h */
 static DaoTypeBase SDL_Cursor_Typer = 
 { "SDL_Cursor", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Cursor_Typer = & SDL_Cursor_Typer;
+DaoTypeBase *dao_SDL_Cursor_Typer = & SDL_Cursor_Typer;
 DaoType *dao_type_SDL_Cursor = NULL;
 /* /usr/local/include/SDL2/SDL_joystick.h */
 static DaoTypeBase _SDL_Joystick_Typer = 
 { "_SDL_Joystick", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao__SDL_Joystick_Typer = & _SDL_Joystick_Typer;
+DaoTypeBase *dao__SDL_Joystick_Typer = & _SDL_Joystick_Typer;
 DaoType *dao_type__SDL_Joystick = NULL;
 /* /usr/local/include/SDL2/SDL_joystick.h */
 
@@ -1596,19 +1576,21 @@ static DaoTypeBase SDL_JoystickGUID_Typer =
   Dao_SDL_JoystickGUID_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_JoystickGUID_Typer = & SDL_JoystickGUID_Typer;
+DaoTypeBase *dao_SDL_JoystickGUID_Typer = & SDL_JoystickGUID_Typer;
 DaoType *dao_type_SDL_JoystickGUID = NULL;
 static void dao_SDL_JoystickGUID_GETF_data( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoystickGUID *self = (SDL_JoystickGUID*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoystickGUID);
-  DaoProcess_PutBytes( _proc, (char*) self->data, 16 );
+  DaoProcess_PutVectorSInt32( _proc, (signed int*) self->data, 16 );
 }
 static void dao_SDL_JoystickGUID_SETF_data( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoystickGUID *self = (SDL_JoystickGUID*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoystickGUID);
-  int size = DaoString_Size( (DaoString*)_p[1] );
+  DaoArray *array = (DaoArray*) _p[1];
+  int size = DaoArray_Size( array );
   if( size > 16 ) size = 16;
-  memmove( self->data, DaoValue_TryGetChars( _p[1] ), size );
+  memmove( self->data, DaoArray_ToSInt32( array ), size*sizeof(signed int) );
+  DaoArray_FromSInt32( array );
 }
 static void dao_SDL_JoystickGUID_SDL_JoystickGUID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1661,7 +1643,7 @@ static DaoTypeBase SDL_Finger_Typer =
   Dao_SDL_Finger_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Finger_Typer = & SDL_Finger_Typer;
+DaoTypeBase *dao_SDL_Finger_Typer = & SDL_Finger_Typer;
 DaoType *dao_type_SDL_Finger = NULL;
 static void dao_SDL_Finger_GETF_id( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1671,7 +1653,7 @@ static void dao_SDL_Finger_GETF_id( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_Finger_SETF_id( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Finger *self = (SDL_Finger*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Finger);
-  self->id = (long long) DaoValue_TryGetInteger(_p[1]);
+  self->id = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Finger_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1746,7 +1728,7 @@ static DaoTypeBase SDL_CommonEvent_Typer =
   Dao_SDL_CommonEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_CommonEvent_Typer = & SDL_CommonEvent_Typer;
+DaoTypeBase *dao_SDL_CommonEvent_Typer = & SDL_CommonEvent_Typer;
 DaoType *dao_type_SDL_CommonEvent = NULL;
 static void dao_SDL_CommonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1756,7 +1738,7 @@ static void dao_SDL_CommonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_SDL_CommonEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_CommonEvent *self = (SDL_CommonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_CommonEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_CommonEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1766,7 +1748,7 @@ static void dao_SDL_CommonEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_CommonEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_CommonEvent *self = (SDL_CommonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_CommonEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_CommonEvent_SDL_CommonEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1827,7 +1809,7 @@ static DaoTypeBase SDL_WindowEvent_Typer =
   Dao_SDL_WindowEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_WindowEvent_Typer = & SDL_WindowEvent_Typer;
+DaoTypeBase *dao_SDL_WindowEvent_Typer = & SDL_WindowEvent_Typer;
 DaoType *dao_type_SDL_WindowEvent = NULL;
 static void dao_SDL_WindowEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1837,7 +1819,7 @@ static void dao_SDL_WindowEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_SDL_WindowEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_WindowEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1847,7 +1829,7 @@ static void dao_SDL_WindowEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_WindowEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_WindowEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1857,7 +1839,7 @@ static void dao_SDL_WindowEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_WindowEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  self->windowID = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->windowID = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_WindowEvent_GETF_event( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1867,7 +1849,7 @@ static void dao_SDL_WindowEvent_GETF_event( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_WindowEvent_SETF_event( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_WindowEvent *self = (SDL_WindowEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_WindowEvent);
-  self->event = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->event = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_WindowEvent_GETF_data1( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1946,7 +1928,7 @@ static DaoTypeBase SDL_KeyboardEvent_Typer =
   Dao_SDL_KeyboardEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_KeyboardEvent_Typer = & SDL_KeyboardEvent_Typer;
+DaoTypeBase *dao_SDL_KeyboardEvent_Typer = & SDL_KeyboardEvent_Typer;
 DaoType *dao_type_SDL_KeyboardEvent = NULL;
 static void dao_SDL_KeyboardEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1956,7 +1938,7 @@ static void dao_SDL_KeyboardEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_KeyboardEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_KeyboardEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1966,7 +1948,7 @@ static void dao_SDL_KeyboardEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_
 static void dao_SDL_KeyboardEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_KeyboardEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1976,7 +1958,7 @@ static void dao_SDL_KeyboardEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p
 static void dao_SDL_KeyboardEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  self->windowID = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->windowID = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_KeyboardEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1986,7 +1968,7 @@ static void dao_SDL_KeyboardEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_KeyboardEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  self->state = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->state = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_KeyboardEvent_GETF_repeat( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1996,7 +1978,7 @@ static void dao_SDL_KeyboardEvent_GETF_repeat( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_KeyboardEvent_SETF_repeat( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_KeyboardEvent *self = (SDL_KeyboardEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_KeyboardEvent);
-  self->repeat = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->repeat = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_KeyboardEvent_GETF_keysym( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2062,7 +2044,7 @@ static DaoTypeBase SDL_TextEditingEvent_Typer =
   Dao_SDL_TextEditingEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_TextEditingEvent_Typer = & SDL_TextEditingEvent_Typer;
+DaoTypeBase *dao_SDL_TextEditingEvent_Typer = & SDL_TextEditingEvent_Typer;
 DaoType *dao_type_SDL_TextEditingEvent = NULL;
 static void dao_SDL_TextEditingEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2072,7 +2054,7 @@ static void dao_SDL_TextEditingEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_TextEditingEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TextEditingEvent *self = (SDL_TextEditingEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TextEditingEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TextEditingEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2082,7 +2064,7 @@ static void dao_SDL_TextEditingEvent_GETF_timestamp( DaoProcess *_proc, DaoValue
 static void dao_SDL_TextEditingEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TextEditingEvent *self = (SDL_TextEditingEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TextEditingEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TextEditingEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2092,7 +2074,7 @@ static void dao_SDL_TextEditingEvent_GETF_windowID( DaoProcess *_proc, DaoValue 
 static void dao_SDL_TextEditingEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TextEditingEvent *self = (SDL_TextEditingEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TextEditingEvent);
-  self->windowID = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->windowID = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TextEditingEvent_GETF_text( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2177,7 +2159,7 @@ static DaoTypeBase SDL_TextInputEvent_Typer =
   Dao_SDL_TextInputEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_TextInputEvent_Typer = & SDL_TextInputEvent_Typer;
+DaoTypeBase *dao_SDL_TextInputEvent_Typer = & SDL_TextInputEvent_Typer;
 DaoType *dao_type_SDL_TextInputEvent = NULL;
 static void dao_SDL_TextInputEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2187,7 +2169,7 @@ static void dao_SDL_TextInputEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_TextInputEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TextInputEvent *self = (SDL_TextInputEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TextInputEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TextInputEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2197,7 +2179,7 @@ static void dao_SDL_TextInputEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *
 static void dao_SDL_TextInputEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TextInputEvent *self = (SDL_TextInputEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TextInputEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TextInputEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2207,7 +2189,7 @@ static void dao_SDL_TextInputEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_
 static void dao_SDL_TextInputEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TextInputEvent *self = (SDL_TextInputEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TextInputEvent);
-  self->windowID = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->windowID = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TextInputEvent_GETF_text( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2292,7 +2274,7 @@ static DaoTypeBase SDL_MouseMotionEvent_Typer =
   Dao_SDL_MouseMotionEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_MouseMotionEvent_Typer = & SDL_MouseMotionEvent_Typer;
+DaoTypeBase *dao_SDL_MouseMotionEvent_Typer = & SDL_MouseMotionEvent_Typer;
 DaoType *dao_type_SDL_MouseMotionEvent = NULL;
 static void dao_SDL_MouseMotionEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2302,7 +2284,7 @@ static void dao_SDL_MouseMotionEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_MouseMotionEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseMotionEvent *self = (SDL_MouseMotionEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseMotionEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseMotionEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2312,7 +2294,7 @@ static void dao_SDL_MouseMotionEvent_GETF_timestamp( DaoProcess *_proc, DaoValue
 static void dao_SDL_MouseMotionEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseMotionEvent *self = (SDL_MouseMotionEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseMotionEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseMotionEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2322,7 +2304,7 @@ static void dao_SDL_MouseMotionEvent_GETF_windowID( DaoProcess *_proc, DaoValue 
 static void dao_SDL_MouseMotionEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseMotionEvent *self = (SDL_MouseMotionEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseMotionEvent);
-  self->windowID = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->windowID = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseMotionEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2332,7 +2314,7 @@ static void dao_SDL_MouseMotionEvent_GETF_which( DaoProcess *_proc, DaoValue *_p
 static void dao_SDL_MouseMotionEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseMotionEvent *self = (SDL_MouseMotionEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseMotionEvent);
-  self->which = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->which = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseMotionEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2342,7 +2324,7 @@ static void dao_SDL_MouseMotionEvent_GETF_state( DaoProcess *_proc, DaoValue *_p
 static void dao_SDL_MouseMotionEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseMotionEvent *self = (SDL_MouseMotionEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseMotionEvent);
-  self->state = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->state = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseMotionEvent_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2410,6 +2392,8 @@ static void dao_SDL_MouseButtonEvent_GETF_button( DaoProcess *_proc, DaoValue *_
 static void dao_SDL_MouseButtonEvent_SETF_button( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_MouseButtonEvent_GETF_clicks( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_MouseButtonEvent_SETF_clicks( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_SETF_x( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_GETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -2430,6 +2414,8 @@ static DaoFuncItem dao_SDL_MouseButtonEvent_Meths[] =
   { dao_SDL_MouseButtonEvent_SETF_button, ".button=( self :SDL_MouseButtonEvent, button :int )" },
   { dao_SDL_MouseButtonEvent_GETF_state, ".state( self :SDL_MouseButtonEvent )=>int" },
   { dao_SDL_MouseButtonEvent_SETF_state, ".state=( self :SDL_MouseButtonEvent, state :int )" },
+  { dao_SDL_MouseButtonEvent_GETF_clicks, ".clicks( self :SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_clicks, ".clicks=( self :SDL_MouseButtonEvent, clicks :int )" },
   { dao_SDL_MouseButtonEvent_GETF_x, ".x( self :SDL_MouseButtonEvent )=>int" },
   { dao_SDL_MouseButtonEvent_SETF_x, ".x=( self :SDL_MouseButtonEvent, x :int )" },
   { dao_SDL_MouseButtonEvent_GETF_y, ".y( self :SDL_MouseButtonEvent )=>int" },
@@ -2451,7 +2437,7 @@ static DaoTypeBase SDL_MouseButtonEvent_Typer =
   Dao_SDL_MouseButtonEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_MouseButtonEvent_Typer = & SDL_MouseButtonEvent_Typer;
+DaoTypeBase *dao_SDL_MouseButtonEvent_Typer = & SDL_MouseButtonEvent_Typer;
 DaoType *dao_type_SDL_MouseButtonEvent = NULL;
 static void dao_SDL_MouseButtonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2461,7 +2447,7 @@ static void dao_SDL_MouseButtonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_MouseButtonEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseButtonEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2471,7 +2457,7 @@ static void dao_SDL_MouseButtonEvent_GETF_timestamp( DaoProcess *_proc, DaoValue
 static void dao_SDL_MouseButtonEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseButtonEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2481,7 +2467,7 @@ static void dao_SDL_MouseButtonEvent_GETF_windowID( DaoProcess *_proc, DaoValue 
 static void dao_SDL_MouseButtonEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  self->windowID = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->windowID = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseButtonEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2491,7 +2477,7 @@ static void dao_SDL_MouseButtonEvent_GETF_which( DaoProcess *_proc, DaoValue *_p
 static void dao_SDL_MouseButtonEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  self->which = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->which = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseButtonEvent_GETF_button( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2501,7 +2487,7 @@ static void dao_SDL_MouseButtonEvent_GETF_button( DaoProcess *_proc, DaoValue *_
 static void dao_SDL_MouseButtonEvent_SETF_button( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  self->button = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->button = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2511,7 +2497,17 @@ static void dao_SDL_MouseButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p
 static void dao_SDL_MouseButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
-  self->state = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->state = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_MouseButtonEvent_GETF_clicks( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->clicks );
+}
+static void dao_SDL_MouseButtonEvent_SETF_clicks( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_MouseButtonEvent *self = (SDL_MouseButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseButtonEvent);
+  self->clicks = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseButtonEvent_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2559,6 +2555,8 @@ static void dao_SDL_MouseWheelEvent_GETF_x( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_MouseWheelEvent_SETF_x( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseWheelEvent_GETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseWheelEvent_SETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_MouseWheelEvent_GETF_direction( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_MouseWheelEvent_SETF_direction( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseWheelEvent_SDL_MouseWheelEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
 static DaoFuncItem dao_SDL_MouseWheelEvent_Meths[] = 
@@ -2575,6 +2573,8 @@ static DaoFuncItem dao_SDL_MouseWheelEvent_Meths[] =
   { dao_SDL_MouseWheelEvent_SETF_x, ".x=( self :SDL_MouseWheelEvent, x :int )" },
   { dao_SDL_MouseWheelEvent_GETF_y, ".y( self :SDL_MouseWheelEvent )=>int" },
   { dao_SDL_MouseWheelEvent_SETF_y, ".y=( self :SDL_MouseWheelEvent, y :int )" },
+  { dao_SDL_MouseWheelEvent_GETF_direction, ".direction( self :SDL_MouseWheelEvent )=>int" },
+  { dao_SDL_MouseWheelEvent_SETF_direction, ".direction=( self :SDL_MouseWheelEvent, direction :int )" },
   { dao_SDL_MouseWheelEvent_SDL_MouseWheelEvent, "SDL_MouseWheelEvent(  )=>SDL_MouseWheelEvent" },
   { NULL, NULL }
 };
@@ -2592,7 +2592,7 @@ static DaoTypeBase SDL_MouseWheelEvent_Typer =
   Dao_SDL_MouseWheelEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_MouseWheelEvent_Typer = & SDL_MouseWheelEvent_Typer;
+DaoTypeBase *dao_SDL_MouseWheelEvent_Typer = & SDL_MouseWheelEvent_Typer;
 DaoType *dao_type_SDL_MouseWheelEvent = NULL;
 static void dao_SDL_MouseWheelEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2602,7 +2602,7 @@ static void dao_SDL_MouseWheelEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_MouseWheelEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseWheelEvent *self = (SDL_MouseWheelEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseWheelEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseWheelEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2612,7 +2612,7 @@ static void dao_SDL_MouseWheelEvent_GETF_timestamp( DaoProcess *_proc, DaoValue 
 static void dao_SDL_MouseWheelEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseWheelEvent *self = (SDL_MouseWheelEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseWheelEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseWheelEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2622,7 +2622,7 @@ static void dao_SDL_MouseWheelEvent_GETF_windowID( DaoProcess *_proc, DaoValue *
 static void dao_SDL_MouseWheelEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseWheelEvent *self = (SDL_MouseWheelEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseWheelEvent);
-  self->windowID = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->windowID = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseWheelEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2632,7 +2632,7 @@ static void dao_SDL_MouseWheelEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_MouseWheelEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MouseWheelEvent *self = (SDL_MouseWheelEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseWheelEvent);
-  self->which = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->which = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseWheelEvent_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2653,6 +2653,16 @@ static void dao_SDL_MouseWheelEvent_SETF_y( DaoProcess *_proc, DaoValue *_p[], i
 {
   SDL_MouseWheelEvent *self = (SDL_MouseWheelEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseWheelEvent);
   self->y = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_MouseWheelEvent_GETF_direction( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_MouseWheelEvent *self = (SDL_MouseWheelEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseWheelEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->direction );
+}
+static void dao_SDL_MouseWheelEvent_SETF_direction( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_MouseWheelEvent *self = (SDL_MouseWheelEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MouseWheelEvent);
+  self->direction = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MouseWheelEvent_SDL_MouseWheelEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2709,7 +2719,7 @@ static DaoTypeBase SDL_JoyAxisEvent_Typer =
   Dao_SDL_JoyAxisEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_JoyAxisEvent_Typer = & SDL_JoyAxisEvent_Typer;
+DaoTypeBase *dao_SDL_JoyAxisEvent_Typer = & SDL_JoyAxisEvent_Typer;
 DaoType *dao_type_SDL_JoyAxisEvent = NULL;
 static void dao_SDL_JoyAxisEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2719,7 +2729,7 @@ static void dao_SDL_JoyAxisEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyAxisEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyAxisEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2729,7 +2739,7 @@ static void dao_SDL_JoyAxisEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p
 static void dao_SDL_JoyAxisEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyAxisEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2749,7 +2759,7 @@ static void dao_SDL_JoyAxisEvent_GETF_axis( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyAxisEvent_SETF_axis( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  self->axis = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->axis = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyAxisEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2759,7 +2769,7 @@ static void dao_SDL_JoyAxisEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_JoyAxisEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyAxisEvent *self = (SDL_JoyAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyAxisEvent);
-  self->value = (short) DaoValue_TryGetInteger(_p[1]);
+  self->value = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyAxisEvent_SDL_JoyAxisEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2820,7 +2830,7 @@ static DaoTypeBase SDL_JoyBallEvent_Typer =
   Dao_SDL_JoyBallEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_JoyBallEvent_Typer = & SDL_JoyBallEvent_Typer;
+DaoTypeBase *dao_SDL_JoyBallEvent_Typer = & SDL_JoyBallEvent_Typer;
 DaoType *dao_type_SDL_JoyBallEvent = NULL;
 static void dao_SDL_JoyBallEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2830,7 +2840,7 @@ static void dao_SDL_JoyBallEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyBallEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyBallEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2840,7 +2850,7 @@ static void dao_SDL_JoyBallEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p
 static void dao_SDL_JoyBallEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyBallEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2860,7 +2870,7 @@ static void dao_SDL_JoyBallEvent_GETF_ball( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyBallEvent_SETF_ball( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  self->ball = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->ball = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyBallEvent_GETF_xrel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2870,7 +2880,7 @@ static void dao_SDL_JoyBallEvent_GETF_xrel( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyBallEvent_SETF_xrel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  self->xrel = (short) DaoValue_TryGetInteger(_p[1]);
+  self->xrel = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyBallEvent_GETF_yrel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2880,7 +2890,7 @@ static void dao_SDL_JoyBallEvent_GETF_yrel( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyBallEvent_SETF_yrel( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyBallEvent *self = (SDL_JoyBallEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyBallEvent);
-  self->yrel = (short) DaoValue_TryGetInteger(_p[1]);
+  self->yrel = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyBallEvent_SDL_JoyBallEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2937,7 +2947,7 @@ static DaoTypeBase SDL_JoyHatEvent_Typer =
   Dao_SDL_JoyHatEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_JoyHatEvent_Typer = & SDL_JoyHatEvent_Typer;
+DaoTypeBase *dao_SDL_JoyHatEvent_Typer = & SDL_JoyHatEvent_Typer;
 DaoType *dao_type_SDL_JoyHatEvent = NULL;
 static void dao_SDL_JoyHatEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2947,7 +2957,7 @@ static void dao_SDL_JoyHatEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_SDL_JoyHatEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyHatEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2957,7 +2967,7 @@ static void dao_SDL_JoyHatEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_JoyHatEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyHatEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2977,7 +2987,7 @@ static void dao_SDL_JoyHatEvent_GETF_hat( DaoProcess *_proc, DaoValue *_p[], int
 static void dao_SDL_JoyHatEvent_SETF_hat( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
-  self->hat = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->hat = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyHatEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2987,7 +2997,7 @@ static void dao_SDL_JoyHatEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyHatEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyHatEvent *self = (SDL_JoyHatEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyHatEvent);
-  self->value = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->value = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyHatEvent_SDL_JoyHatEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3044,7 +3054,7 @@ static DaoTypeBase SDL_JoyButtonEvent_Typer =
   Dao_SDL_JoyButtonEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_JoyButtonEvent_Typer = & SDL_JoyButtonEvent_Typer;
+DaoTypeBase *dao_SDL_JoyButtonEvent_Typer = & SDL_JoyButtonEvent_Typer;
 DaoType *dao_type_SDL_JoyButtonEvent = NULL;
 static void dao_SDL_JoyButtonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3054,7 +3064,7 @@ static void dao_SDL_JoyButtonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_JoyButtonEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyButtonEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3064,7 +3074,7 @@ static void dao_SDL_JoyButtonEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *
 static void dao_SDL_JoyButtonEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyButtonEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3084,7 +3094,7 @@ static void dao_SDL_JoyButtonEvent_GETF_button( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_JoyButtonEvent_SETF_button( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
-  self->button = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->button = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3094,7 +3104,7 @@ static void dao_SDL_JoyButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_JoyButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyButtonEvent *self = (SDL_JoyButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyButtonEvent);
-  self->state = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->state = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyButtonEvent_SDL_JoyButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3143,7 +3153,7 @@ static DaoTypeBase SDL_JoyDeviceEvent_Typer =
   Dao_SDL_JoyDeviceEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_JoyDeviceEvent_Typer = & SDL_JoyDeviceEvent_Typer;
+DaoTypeBase *dao_SDL_JoyDeviceEvent_Typer = & SDL_JoyDeviceEvent_Typer;
 DaoType *dao_type_SDL_JoyDeviceEvent = NULL;
 static void dao_SDL_JoyDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3153,7 +3163,7 @@ static void dao_SDL_JoyDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_JoyDeviceEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyDeviceEvent *self = (SDL_JoyDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyDeviceEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyDeviceEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3163,7 +3173,7 @@ static void dao_SDL_JoyDeviceEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *
 static void dao_SDL_JoyDeviceEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_JoyDeviceEvent *self = (SDL_JoyDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_JoyDeviceEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_JoyDeviceEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3230,7 +3240,7 @@ static DaoTypeBase SDL_ControllerAxisEvent_Typer =
   Dao_SDL_ControllerAxisEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_ControllerAxisEvent_Typer = & SDL_ControllerAxisEvent_Typer;
+DaoTypeBase *dao_SDL_ControllerAxisEvent_Typer = & SDL_ControllerAxisEvent_Typer;
 DaoType *dao_type_SDL_ControllerAxisEvent = NULL;
 static void dao_SDL_ControllerAxisEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3240,7 +3250,7 @@ static void dao_SDL_ControllerAxisEvent_GETF_type( DaoProcess *_proc, DaoValue *
 static void dao_SDL_ControllerAxisEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerAxisEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3250,7 +3260,7 @@ static void dao_SDL_ControllerAxisEvent_GETF_timestamp( DaoProcess *_proc, DaoVa
 static void dao_SDL_ControllerAxisEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerAxisEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3270,7 +3280,7 @@ static void dao_SDL_ControllerAxisEvent_GETF_axis( DaoProcess *_proc, DaoValue *
 static void dao_SDL_ControllerAxisEvent_SETF_axis( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  self->axis = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->axis = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerAxisEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3280,7 +3290,7 @@ static void dao_SDL_ControllerAxisEvent_GETF_value( DaoProcess *_proc, DaoValue 
 static void dao_SDL_ControllerAxisEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerAxisEvent *self = (SDL_ControllerAxisEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerAxisEvent);
-  self->value = (short) DaoValue_TryGetInteger(_p[1]);
+  self->value = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerAxisEvent_SDL_ControllerAxisEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3337,7 +3347,7 @@ static DaoTypeBase SDL_ControllerButtonEvent_Typer =
   Dao_SDL_ControllerButtonEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_ControllerButtonEvent_Typer = & SDL_ControllerButtonEvent_Typer;
+DaoTypeBase *dao_SDL_ControllerButtonEvent_Typer = & SDL_ControllerButtonEvent_Typer;
 DaoType *dao_type_SDL_ControllerButtonEvent = NULL;
 static void dao_SDL_ControllerButtonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3347,7 +3357,7 @@ static void dao_SDL_ControllerButtonEvent_GETF_type( DaoProcess *_proc, DaoValue
 static void dao_SDL_ControllerButtonEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerButtonEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3357,7 +3367,7 @@ static void dao_SDL_ControllerButtonEvent_GETF_timestamp( DaoProcess *_proc, Dao
 static void dao_SDL_ControllerButtonEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerButtonEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3377,7 +3387,7 @@ static void dao_SDL_ControllerButtonEvent_GETF_button( DaoProcess *_proc, DaoVal
 static void dao_SDL_ControllerButtonEvent_SETF_button( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
-  self->button = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->button = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3387,7 +3397,7 @@ static void dao_SDL_ControllerButtonEvent_GETF_state( DaoProcess *_proc, DaoValu
 static void dao_SDL_ControllerButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerButtonEvent *self = (SDL_ControllerButtonEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerButtonEvent);
-  self->state = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->state = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerButtonEvent_SDL_ControllerButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3436,7 +3446,7 @@ static DaoTypeBase SDL_ControllerDeviceEvent_Typer =
   Dao_SDL_ControllerDeviceEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_ControllerDeviceEvent_Typer = & SDL_ControllerDeviceEvent_Typer;
+DaoTypeBase *dao_SDL_ControllerDeviceEvent_Typer = & SDL_ControllerDeviceEvent_Typer;
 DaoType *dao_type_SDL_ControllerDeviceEvent = NULL;
 static void dao_SDL_ControllerDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3446,7 +3456,7 @@ static void dao_SDL_ControllerDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue
 static void dao_SDL_ControllerDeviceEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerDeviceEvent *self = (SDL_ControllerDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerDeviceEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerDeviceEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3456,7 +3466,7 @@ static void dao_SDL_ControllerDeviceEvent_GETF_timestamp( DaoProcess *_proc, Dao
 static void dao_SDL_ControllerDeviceEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_ControllerDeviceEvent *self = (SDL_ControllerDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_ControllerDeviceEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_ControllerDeviceEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3472,6 +3482,141 @@ static void dao_SDL_ControllerDeviceEvent_SDL_ControllerDeviceEvent( DaoProcess 
 {
 	SDL_ControllerDeviceEvent *self = Dao_SDL_ControllerDeviceEvent_New();
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_ControllerDeviceEvent );
+}
+/* /usr/local/include/SDL2/SDL_events.h */
+
+
+static DaoNumItem dao_SDL_AudioDeviceEvent_Nums[] = 
+{
+  { NULL, 0, 0 }
+};
+
+
+static void dao_SDL_AudioDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_GETF_iscapture( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_SETF_iscapture( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_AudioDeviceEvent_SDL_AudioDeviceEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
+
+static DaoFuncItem dao_SDL_AudioDeviceEvent_Meths[] = 
+{
+  { dao_SDL_AudioDeviceEvent_GETF_type, ".type( self :SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_type, ".type=( self :SDL_AudioDeviceEvent, type :int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_timestamp, ".timestamp( self :SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_timestamp, ".timestamp=( self :SDL_AudioDeviceEvent, timestamp :int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_which, ".which( self :SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_which, ".which=( self :SDL_AudioDeviceEvent, which :int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_iscapture, ".iscapture( self :SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_iscapture, ".iscapture=( self :SDL_AudioDeviceEvent, iscapture :int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_padding1, ".padding1( self :SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_padding1, ".padding1=( self :SDL_AudioDeviceEvent, padding1 :int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_padding2, ".padding2( self :SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_padding2, ".padding2=( self :SDL_AudioDeviceEvent, padding2 :int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_padding3, ".padding3( self :SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_padding3, ".padding3=( self :SDL_AudioDeviceEvent, padding3 :int )" },
+  { dao_SDL_AudioDeviceEvent_SDL_AudioDeviceEvent, "SDL_AudioDeviceEvent(  )=>SDL_AudioDeviceEvent" },
+  { NULL, NULL }
+};
+static void Dao_SDL_AudioDeviceEvent_Delete( void *self )
+{
+	free( self );
+}
+
+static DaoTypeBase SDL_AudioDeviceEvent_Typer = 
+{ "SDL_AudioDeviceEvent", NULL,
+  dao_SDL_AudioDeviceEvent_Nums,
+  dao_SDL_AudioDeviceEvent_Meths,
+  { NULL },
+  { NULL },
+  Dao_SDL_AudioDeviceEvent_Delete,
+  NULL
+};
+DaoTypeBase *dao_SDL_AudioDeviceEvent_Typer = & SDL_AudioDeviceEvent_Typer;
+DaoType *dao_type_SDL_AudioDeviceEvent = NULL;
+static void dao_SDL_AudioDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->type );
+}
+static void dao_SDL_AudioDeviceEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_AudioDeviceEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->timestamp );
+}
+static void dao_SDL_AudioDeviceEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_AudioDeviceEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->which );
+}
+static void dao_SDL_AudioDeviceEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  self->which = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_AudioDeviceEvent_GETF_iscapture( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->iscapture );
+}
+static void dao_SDL_AudioDeviceEvent_SETF_iscapture( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  self->iscapture = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_AudioDeviceEvent_GETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->padding1 );
+}
+static void dao_SDL_AudioDeviceEvent_SETF_padding1( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  self->padding1 = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_AudioDeviceEvent_GETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->padding2 );
+}
+static void dao_SDL_AudioDeviceEvent_SETF_padding2( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  self->padding2 = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_AudioDeviceEvent_GETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  DaoProcess_PutInteger( _proc, (dao_integer) self->padding3 );
+}
+static void dao_SDL_AudioDeviceEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_AudioDeviceEvent);
+  self->padding3 = (int) DaoValue_TryGetInteger(_p[1]);
+}
+static void dao_SDL_AudioDeviceEvent_SDL_AudioDeviceEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+	SDL_AudioDeviceEvent *self = Dao_SDL_AudioDeviceEvent_New();
+	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_AudioDeviceEvent );
 }
 /* /usr/local/include/SDL2/SDL_events.h */
 
@@ -3539,7 +3684,7 @@ static DaoTypeBase SDL_TouchFingerEvent_Typer =
   Dao_SDL_TouchFingerEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_TouchFingerEvent_Typer = & SDL_TouchFingerEvent_Typer;
+DaoTypeBase *dao_SDL_TouchFingerEvent_Typer = & SDL_TouchFingerEvent_Typer;
 DaoType *dao_type_SDL_TouchFingerEvent = NULL;
 static void dao_SDL_TouchFingerEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3549,7 +3694,7 @@ static void dao_SDL_TouchFingerEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_TouchFingerEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TouchFingerEvent *self = (SDL_TouchFingerEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TouchFingerEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TouchFingerEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3559,7 +3704,7 @@ static void dao_SDL_TouchFingerEvent_GETF_timestamp( DaoProcess *_proc, DaoValue
 static void dao_SDL_TouchFingerEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TouchFingerEvent *self = (SDL_TouchFingerEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TouchFingerEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TouchFingerEvent_GETF_touchId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3569,7 +3714,7 @@ static void dao_SDL_TouchFingerEvent_GETF_touchId( DaoProcess *_proc, DaoValue *
 static void dao_SDL_TouchFingerEvent_SETF_touchId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TouchFingerEvent *self = (SDL_TouchFingerEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TouchFingerEvent);
-  self->touchId = (long long) DaoValue_TryGetInteger(_p[1]);
+  self->touchId = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TouchFingerEvent_GETF_fingerId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3579,7 +3724,7 @@ static void dao_SDL_TouchFingerEvent_GETF_fingerId( DaoProcess *_proc, DaoValue 
 static void dao_SDL_TouchFingerEvent_SETF_fingerId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_TouchFingerEvent *self = (SDL_TouchFingerEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_TouchFingerEvent);
-  self->fingerId = (long long) DaoValue_TryGetInteger(_p[1]);
+  self->fingerId = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_TouchFingerEvent_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3698,7 +3843,7 @@ static DaoTypeBase SDL_MultiGestureEvent_Typer =
   Dao_SDL_MultiGestureEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_MultiGestureEvent_Typer = & SDL_MultiGestureEvent_Typer;
+DaoTypeBase *dao_SDL_MultiGestureEvent_Typer = & SDL_MultiGestureEvent_Typer;
 DaoType *dao_type_SDL_MultiGestureEvent = NULL;
 static void dao_SDL_MultiGestureEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3708,7 +3853,7 @@ static void dao_SDL_MultiGestureEvent_GETF_type( DaoProcess *_proc, DaoValue *_p
 static void dao_SDL_MultiGestureEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MultiGestureEvent *self = (SDL_MultiGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MultiGestureEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MultiGestureEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3718,7 +3863,7 @@ static void dao_SDL_MultiGestureEvent_GETF_timestamp( DaoProcess *_proc, DaoValu
 static void dao_SDL_MultiGestureEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MultiGestureEvent *self = (SDL_MultiGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MultiGestureEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MultiGestureEvent_GETF_touchId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3728,7 +3873,7 @@ static void dao_SDL_MultiGestureEvent_GETF_touchId( DaoProcess *_proc, DaoValue 
 static void dao_SDL_MultiGestureEvent_SETF_touchId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MultiGestureEvent *self = (SDL_MultiGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MultiGestureEvent);
-  self->touchId = (long long) DaoValue_TryGetInteger(_p[1]);
+  self->touchId = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MultiGestureEvent_GETF_dTheta( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3778,7 +3923,7 @@ static void dao_SDL_MultiGestureEvent_GETF_numFingers( DaoProcess *_proc, DaoVal
 static void dao_SDL_MultiGestureEvent_SETF_numFingers( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_MultiGestureEvent *self = (SDL_MultiGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_MultiGestureEvent);
-  self->numFingers = (unsigned short) DaoValue_TryGetInteger(_p[1]);
+  self->numFingers = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_MultiGestureEvent_SDL_MultiGestureEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3847,7 +3992,7 @@ static DaoTypeBase SDL_DollarGestureEvent_Typer =
   Dao_SDL_DollarGestureEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_DollarGestureEvent_Typer = & SDL_DollarGestureEvent_Typer;
+DaoTypeBase *dao_SDL_DollarGestureEvent_Typer = & SDL_DollarGestureEvent_Typer;
 DaoType *dao_type_SDL_DollarGestureEvent = NULL;
 static void dao_SDL_DollarGestureEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3857,7 +4002,7 @@ static void dao_SDL_DollarGestureEvent_GETF_type( DaoProcess *_proc, DaoValue *_
 static void dao_SDL_DollarGestureEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DollarGestureEvent *self = (SDL_DollarGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DollarGestureEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_DollarGestureEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3867,7 +4012,7 @@ static void dao_SDL_DollarGestureEvent_GETF_timestamp( DaoProcess *_proc, DaoVal
 static void dao_SDL_DollarGestureEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DollarGestureEvent *self = (SDL_DollarGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DollarGestureEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_DollarGestureEvent_GETF_touchId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3877,7 +4022,7 @@ static void dao_SDL_DollarGestureEvent_GETF_touchId( DaoProcess *_proc, DaoValue
 static void dao_SDL_DollarGestureEvent_SETF_touchId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DollarGestureEvent *self = (SDL_DollarGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DollarGestureEvent);
-  self->touchId = (long long) DaoValue_TryGetInteger(_p[1]);
+  self->touchId = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_DollarGestureEvent_GETF_gestureId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3887,7 +4032,7 @@ static void dao_SDL_DollarGestureEvent_GETF_gestureId( DaoProcess *_proc, DaoVal
 static void dao_SDL_DollarGestureEvent_SETF_gestureId( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DollarGestureEvent *self = (SDL_DollarGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DollarGestureEvent);
-  self->gestureId = (long long) DaoValue_TryGetInteger(_p[1]);
+  self->gestureId = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_DollarGestureEvent_GETF_numFingers( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3897,7 +4042,7 @@ static void dao_SDL_DollarGestureEvent_GETF_numFingers( DaoProcess *_proc, DaoVa
 static void dao_SDL_DollarGestureEvent_SETF_numFingers( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DollarGestureEvent *self = (SDL_DollarGestureEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DollarGestureEvent);
-  self->numFingers = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->numFingers = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_DollarGestureEvent_GETF_error( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3974,7 +4119,7 @@ static DaoTypeBase SDL_DropEvent_Typer =
   Dao_SDL_DropEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_DropEvent_Typer = & SDL_DropEvent_Typer;
+DaoTypeBase *dao_SDL_DropEvent_Typer = & SDL_DropEvent_Typer;
 DaoType *dao_type_SDL_DropEvent = NULL;
 static void dao_SDL_DropEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3984,7 +4129,7 @@ static void dao_SDL_DropEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_DropEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DropEvent *self = (SDL_DropEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DropEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_DropEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3994,7 +4139,7 @@ static void dao_SDL_DropEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_DropEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_DropEvent *self = (SDL_DropEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_DropEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_DropEvent_GETF_file( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4044,7 +4189,7 @@ static DaoTypeBase SDL_QuitEvent_Typer =
   Dao_SDL_QuitEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_QuitEvent_Typer = & SDL_QuitEvent_Typer;
+DaoTypeBase *dao_SDL_QuitEvent_Typer = & SDL_QuitEvent_Typer;
 DaoType *dao_type_SDL_QuitEvent = NULL;
 static void dao_SDL_QuitEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4054,7 +4199,7 @@ static void dao_SDL_QuitEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_QuitEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_QuitEvent *self = (SDL_QuitEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_QuitEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_QuitEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4064,7 +4209,7 @@ static void dao_SDL_QuitEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_QuitEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_QuitEvent *self = (SDL_QuitEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_QuitEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_QuitEvent_SDL_QuitEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4109,7 +4254,7 @@ static DaoTypeBase SDL_OSEvent_Typer =
   Dao_SDL_OSEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_OSEvent_Typer = & SDL_OSEvent_Typer;
+DaoTypeBase *dao_SDL_OSEvent_Typer = & SDL_OSEvent_Typer;
 DaoType *dao_type_SDL_OSEvent = NULL;
 static void dao_SDL_OSEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4119,7 +4264,7 @@ static void dao_SDL_OSEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n
 static void dao_SDL_OSEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_OSEvent *self = (SDL_OSEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_OSEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_OSEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4129,7 +4274,7 @@ static void dao_SDL_OSEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_OSEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_OSEvent *self = (SDL_OSEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_OSEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_OSEvent_SDL_OSEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4186,7 +4331,7 @@ static DaoTypeBase SDL_UserEvent_Typer =
   Dao_SDL_UserEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_UserEvent_Typer = & SDL_UserEvent_Typer;
+DaoTypeBase *dao_SDL_UserEvent_Typer = & SDL_UserEvent_Typer;
 DaoType *dao_type_SDL_UserEvent = NULL;
 static void dao_SDL_UserEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4196,7 +4341,7 @@ static void dao_SDL_UserEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_UserEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_UserEvent *self = (SDL_UserEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_UserEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_UserEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4206,7 +4351,7 @@ static void dao_SDL_UserEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_UserEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_UserEvent *self = (SDL_UserEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_UserEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_UserEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4216,7 +4361,7 @@ static void dao_SDL_UserEvent_GETF_windowID( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_UserEvent_SETF_windowID( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_UserEvent *self = (SDL_UserEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_UserEvent);
-  self->windowID = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->windowID = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_UserEvent_GETF_code( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4246,7 +4391,7 @@ static void dao_SDL_UserEvent_SDL_UserEvent( DaoProcess *_proc, DaoValue *_p[], 
 /* /usr/local/include/SDL2/SDL_events.h */
 static DaoTypeBase SDL_SysWMmsg_Typer = 
 { "SDL_SysWMmsg", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_SysWMmsg_Typer = & SDL_SysWMmsg_Typer;
+DaoTypeBase *dao_SDL_SysWMmsg_Typer = & SDL_SysWMmsg_Typer;
 DaoType *dao_type_SDL_SysWMmsg = NULL;
 /* /usr/local/include/SDL2/SDL_events.h */
 
@@ -4288,7 +4433,7 @@ static DaoTypeBase SDL_SysWMEvent_Typer =
   Dao_SDL_SysWMEvent_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_SysWMEvent_Typer = & SDL_SysWMEvent_Typer;
+DaoTypeBase *dao_SDL_SysWMEvent_Typer = & SDL_SysWMEvent_Typer;
 DaoType *dao_type_SDL_SysWMEvent = NULL;
 static void dao_SDL_SysWMEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4298,7 +4443,7 @@ static void dao_SDL_SysWMEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int
 static void dao_SDL_SysWMEvent_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_SysWMEvent *self = (SDL_SysWMEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_SysWMEvent);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_SysWMEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4308,7 +4453,7 @@ static void dao_SDL_SysWMEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_SysWMEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_SysWMEvent *self = (SDL_SysWMEvent*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_SysWMEvent);
-  self->timestamp = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->timestamp = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_SysWMEvent_GETF_msg( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4347,6 +4492,7 @@ static void dao_SDL_Event_GETF_jdevice( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_Event_GETF_caxis( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_GETF_cbutton( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_GETF_cdevice( DaoProcess *_proc, DaoValue *_p[], int _n );
+static void dao_SDL_Event_GETF_adevice( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_GETF_quit( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_GETF_user( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_GETF_syswm( DaoProcess *_proc, DaoValue *_p[], int _n );
@@ -4376,6 +4522,7 @@ static DaoFuncItem dao_SDL_Event_Meths[] =
   { dao_SDL_Event_GETF_caxis, ".caxis( self :SDL_Event )=>SDL_ControllerAxisEvent" },
   { dao_SDL_Event_GETF_cbutton, ".cbutton( self :SDL_Event )=>SDL_ControllerButtonEvent" },
   { dao_SDL_Event_GETF_cdevice, ".cdevice( self :SDL_Event )=>SDL_ControllerDeviceEvent" },
+  { dao_SDL_Event_GETF_adevice, ".adevice( self :SDL_Event )=>SDL_AudioDeviceEvent" },
   { dao_SDL_Event_GETF_quit, ".quit( self :SDL_Event )=>SDL_QuitEvent" },
   { dao_SDL_Event_GETF_user, ".user( self :SDL_Event )=>SDL_UserEvent" },
   { dao_SDL_Event_GETF_syswm, ".syswm( self :SDL_Event )=>SDL_SysWMEvent" },
@@ -4400,7 +4547,7 @@ static DaoTypeBase SDL_Event_Typer =
   Dao_SDL_Event_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Event_Typer = & SDL_Event_Typer;
+DaoTypeBase *dao_SDL_Event_Typer = & SDL_Event_Typer;
 DaoType *dao_type_SDL_Event = NULL;
 static void dao_SDL_Event_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4410,7 +4557,7 @@ static void dao_SDL_Event_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_Event_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Event *self = (SDL_Event*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Event);
-  self->type = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->type = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_Event_GETF_common( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4492,6 +4639,11 @@ static void dao_SDL_Event_GETF_cdevice( DaoProcess *_proc, DaoValue *_p[], int _
   SDL_Event *self = (SDL_Event*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Event);
   DaoProcess_WrapCdata( _proc, (void*)&self->cdevice, dao_type_SDL_ControllerDeviceEvent );
 }
+static void dao_SDL_Event_GETF_adevice( DaoProcess *_proc, DaoValue *_p[], int _n )
+{
+  SDL_Event *self = (SDL_Event*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Event);
+  DaoProcess_WrapCdata( _proc, (void*)&self->adevice, dao_type_SDL_AudioDeviceEvent );
+}
 static void dao_SDL_Event_GETF_quit( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_Event *self = (SDL_Event*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_Event);
@@ -4535,37 +4687,37 @@ static void dao_SDL_Event_SDL_Event( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_haptic.h */
 static DaoTypeBase SDL_HapticDirection_Typer = 
 { "SDL_HapticDirection", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticDirection_Typer = & SDL_HapticDirection_Typer;
+DaoTypeBase *dao_SDL_HapticDirection_Typer = & SDL_HapticDirection_Typer;
 DaoType *dao_type_SDL_HapticDirection = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
 static DaoTypeBase SDL_HapticConstant_Typer = 
 { "SDL_HapticConstant", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticConstant_Typer = & SDL_HapticConstant_Typer;
+DaoTypeBase *dao_SDL_HapticConstant_Typer = & SDL_HapticConstant_Typer;
 DaoType *dao_type_SDL_HapticConstant = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
 static DaoTypeBase SDL_HapticPeriodic_Typer = 
 { "SDL_HapticPeriodic", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticPeriodic_Typer = & SDL_HapticPeriodic_Typer;
+DaoTypeBase *dao_SDL_HapticPeriodic_Typer = & SDL_HapticPeriodic_Typer;
 DaoType *dao_type_SDL_HapticPeriodic = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
 static DaoTypeBase SDL_HapticCondition_Typer = 
 { "SDL_HapticCondition", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticCondition_Typer = & SDL_HapticCondition_Typer;
+DaoTypeBase *dao_SDL_HapticCondition_Typer = & SDL_HapticCondition_Typer;
 DaoType *dao_type_SDL_HapticCondition = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
 static DaoTypeBase SDL_HapticRamp_Typer = 
 { "SDL_HapticRamp", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticRamp_Typer = & SDL_HapticRamp_Typer;
+DaoTypeBase *dao_SDL_HapticRamp_Typer = & SDL_HapticRamp_Typer;
 DaoType *dao_type_SDL_HapticRamp = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
 static DaoTypeBase SDL_HapticLeftRight_Typer = 
 { "SDL_HapticLeftRight", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticLeftRight_Typer = & SDL_HapticLeftRight_Typer;
+DaoTypeBase *dao_SDL_HapticLeftRight_Typer = & SDL_HapticLeftRight_Typer;
 DaoType *dao_type_SDL_HapticLeftRight = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
 static DaoTypeBase SDL_HapticCustom_Typer = 
 { "SDL_HapticCustom", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_HapticCustom_Typer = & SDL_HapticCustom_Typer;
+DaoTypeBase *dao_SDL_HapticCustom_Typer = & SDL_HapticCustom_Typer;
 DaoType *dao_type_SDL_HapticCustom = NULL;
 /* /usr/local/include/SDL2/SDL_render.h */
 
@@ -4619,7 +4771,7 @@ static DaoTypeBase SDL_RendererInfo_Typer =
   Dao_SDL_RendererInfo_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_RendererInfo_Typer = & SDL_RendererInfo_Typer;
+DaoTypeBase *dao_SDL_RendererInfo_Typer = & SDL_RendererInfo_Typer;
 DaoType *dao_type_SDL_RendererInfo = NULL;
 static void dao_SDL_RendererInfo_GETF_name( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4634,7 +4786,7 @@ static void dao_SDL_RendererInfo_GETF_flags( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_RendererInfo_SETF_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_RendererInfo *self = (SDL_RendererInfo*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_RendererInfo);
-  self->flags = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->flags = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_RendererInfo_GETF_num_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4644,12 +4796,12 @@ static void dao_SDL_RendererInfo_GETF_num_texture_formats( DaoProcess *_proc, Da
 static void dao_SDL_RendererInfo_SETF_num_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_RendererInfo *self = (SDL_RendererInfo*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_RendererInfo);
-  self->num_texture_formats = (unsigned int) DaoValue_TryGetInteger(_p[1]);
+  self->num_texture_formats = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_RendererInfo_GETF_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_RendererInfo *self = (SDL_RendererInfo*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_RendererInfo);
-  DaoProcess_PutVectorUInt32( _proc, (unsigned int*) self->texture_formats, 16 );
+  DaoProcess_PutVectorSInt32( _proc, (signed int*) self->texture_formats, 16 );
 }
 static void dao_SDL_RendererInfo_SETF_texture_formats( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4657,8 +4809,8 @@ static void dao_SDL_RendererInfo_SETF_texture_formats( DaoProcess *_proc, DaoVal
   DaoArray *array = (DaoArray*) _p[1];
   int size = DaoArray_Size( array );
   if( size > 16 ) size = 16;
-  memmove( self->texture_formats, DaoArray_ToUInt32( array ), size*sizeof(unsigned int) );
-  DaoArray_FromUInt32( array );
+  memmove( self->texture_formats, DaoArray_ToSInt32( array ), size*sizeof(signed int) );
+  DaoArray_FromSInt32( array );
 }
 static void dao_SDL_RendererInfo_GETF_max_texture_width( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4688,12 +4840,12 @@ static void dao_SDL_RendererInfo_SDL_RendererInfo( DaoProcess *_proc, DaoValue *
 /* /usr/local/include/SDL2/SDL_render.h */
 static DaoTypeBase SDL_Renderer_Typer = 
 { "SDL_Renderer", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Renderer_Typer = & SDL_Renderer_Typer;
+DaoTypeBase *dao_SDL_Renderer_Typer = & SDL_Renderer_Typer;
 DaoType *dao_type_SDL_Renderer = NULL;
 /* /usr/local/include/SDL2/SDL_render.h */
 static DaoTypeBase SDL_Texture_Typer = 
 { "SDL_Texture", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_Texture_Typer = & SDL_Texture_Typer;
+DaoTypeBase *dao_SDL_Texture_Typer = & SDL_Texture_Typer;
 DaoType *dao_type_SDL_Texture = NULL;
 /* /usr/local/include/SDL2/SDL_version.h */
 
@@ -4737,7 +4889,7 @@ static DaoTypeBase SDL_version_Typer =
   Dao_SDL_version_Delete,
   NULL
 };
-DaoTypeBase DAO_DLL_SDL *dao_SDL_version_Typer = & SDL_version_Typer;
+DaoTypeBase *dao_SDL_version_Typer = & SDL_version_Typer;
 DaoType *dao_type_SDL_version = NULL;
 static void dao_SDL_version_GETF_major( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4747,7 +4899,7 @@ static void dao_SDL_version_GETF_major( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_version_SETF_major( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_version *self = (SDL_version*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_version);
-  self->major = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->major = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_version_GETF_minor( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4757,7 +4909,7 @@ static void dao_SDL_version_GETF_minor( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_version_SETF_minor( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_version *self = (SDL_version*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_version);
-  self->minor = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->minor = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_version_GETF_patch( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4767,7 +4919,7 @@ static void dao_SDL_version_GETF_patch( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_version_SETF_patch( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDL_version *self = (SDL_version*)DaoValue_TryCastCdata(_p[0],dao_type_SDL_version);
-  self->patch = (unsigned char) DaoValue_TryGetInteger(_p[1]);
+  self->patch = (int) DaoValue_TryGetInteger(_p[1]);
 }
 static void dao_SDL_version_SDL_version( DaoProcess *_proc, DaoValue *_p[], int _n )
 {

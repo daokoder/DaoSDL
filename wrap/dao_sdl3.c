@@ -10,7 +10,7 @@ DaoRoutine* Dao_Get_Object_Method( DaoCdata *cd, DaoObject **obj, const char *na
   if( DaoRoutine_IsWrapper( meth ) ) return NULL; /*do not call C function*/
   return meth;
 }
-static int DaoPF10006( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context )
+static int DaoPF10004( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context )
 {
   DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
   DaoValue *_res, **_dp;
@@ -28,81 +28,15 @@ EndCall:
   DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
   return X;
 }
-static size_t DaoPF10005( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, const void* ptr, size_t size, size_t maxnum )
+SDL_AssertData* Dao_SDL_AssertData_New()
 {
-  DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
-  DaoValue *_res, **_dp;
-  DaoCdata *_cd;
-  size_t X = (size_t) 0;
-  if( _ro == NULL ) goto EndCall;
-  DaoProcess_CacheValue( _proc, context );
-  DaoProcess_NewCdata( _proc, NULL, (void*) ptr, 0 );
-  DaoProcess_NewInteger( _proc, (dao_integer) size );
-  DaoProcess_NewInteger( _proc, (dao_integer) maxnum );
-  _dp = DaoProcess_GetLastValues( _proc, 4 );
-  _ro = DaoRoutine_ResolveByValue( _ro, (DaoValue*) _ob, _dp, 4 );
-  if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
-  if( (*_cs = DaoProcess_Call( _proc, _ro, (DaoValue*)_ob, _dp, 4 )) ) goto EndCall;
-  _res = DaoProcess_GetReturned( _proc );
-  if(DaoValue_CastInteger(_res)) X=(unsigned long)DaoValue_TryGetInteger(_res);
-EndCall:
-  DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
-  return X;
-}
-static size_t DaoPF10004( int *_cs, DaoRoutine *_ro, DaoObject *_ob, DaoValue *context, void* ptr, size_t size, size_t maxnum )
-{
-  DaoProcess *_proc = DaoVmSpace_AcquireProcess( __daoVmSpace );
-  DaoValue *_res, **_dp;
-  DaoCdata *_cd;
-  size_t X = (size_t) 0;
-  if( _ro == NULL ) goto EndCall;
-  DaoProcess_CacheValue( _proc, context );
-  DaoProcess_NewCdata( _proc, NULL, (void*) ptr, 0 );
-  DaoProcess_NewInteger( _proc, (dao_integer) size );
-  DaoProcess_NewInteger( _proc, (dao_integer) maxnum );
-  _dp = DaoProcess_GetLastValues( _proc, 4 );
-  _ro = DaoRoutine_ResolveByValue( _ro, (DaoValue*) _ob, _dp, 4 );
-  if( _ro == NULL || DaoRoutine_IsWrapper( _ro ) ) goto EndCall;
-  if( (*_cs = DaoProcess_Call( _proc, _ro, (DaoValue*)_ob, _dp, 4 )) ) goto EndCall;
-  _res = DaoProcess_GetReturned( _proc );
-  if(DaoValue_CastInteger(_res)) X=(unsigned long)DaoValue_TryGetInteger(_res);
-EndCall:
-  DaoVmSpace_ReleaseProcess( __daoVmSpace, _proc );
-  return X;
-}
-SDL_assert_data* Dao_SDL_assert_data_New()
-{
-	SDL_assert_data *self = (SDL_assert_data*) calloc( 1, sizeof(SDL_assert_data) );
+	SDL_AssertData *self = (SDL_AssertData*) calloc( 1, sizeof(SDL_AssertData) );
 	return self;
 }
 SDL_atomic_t* Dao_SDL_atomic_t_New()
 {
 	SDL_atomic_t *self = (SDL_atomic_t*) calloc( 1, sizeof(SDL_atomic_t) );
 	return self;
-}
-static size_t Dao_SDL_RWops_read( struct SDL_RWops* context, void* ptr, size_t size, size_t maxnum )
-{
-  Dao_SDL_RWops *_self = (Dao_SDL_RWops*) context;
-  SDL_RWops *_self2 = _self->object;
-  DaoCdata *_cdata = _self->_cdata;
-  int _cs = 1;
-  DaoObject *_obj = NULL;
-  DaoRoutine *_ro = Dao_Get_Object_Method( _cdata, & _obj, "read" );
-  size_t X = (size_t) 0;
-  if( _ro == NULL || _obj == NULL ) return X;
-  return (size_t)DaoPF10004( & _cs, _ro, _obj, (DaoValue*)_cdata, ptr, size, maxnum );
-}
-static size_t Dao_SDL_RWops_write( struct SDL_RWops* context, const void* ptr, size_t size, size_t maxnum )
-{
-  Dao_SDL_RWops *_self = (Dao_SDL_RWops*) context;
-  SDL_RWops *_self2 = _self->object;
-  DaoCdata *_cdata = _self->_cdata;
-  int _cs = 1;
-  DaoObject *_obj = NULL;
-  DaoRoutine *_ro = Dao_Get_Object_Method( _cdata, & _obj, "write" );
-  size_t X = (size_t) 0;
-  if( _ro == NULL || _obj == NULL ) return X;
-  return (size_t)DaoPF10005( & _cs, _ro, _obj, (DaoValue*)_cdata, ptr, size, maxnum );
 }
 static int Dao_SDL_RWops_close( struct SDL_RWops* context )
 {
@@ -114,7 +48,7 @@ static int Dao_SDL_RWops_close( struct SDL_RWops* context )
   DaoRoutine *_ro = Dao_Get_Object_Method( _cdata, & _obj, "close" );
   int X = (int) 0;
   if( _ro == NULL || _obj == NULL ) return X;
-  return (int)DaoPF10006( & _cs, _ro, _obj, (DaoValue*)_cdata );
+  return (int)DaoPF10004( & _cs, _ro, _obj, (DaoValue*)_cdata );
 }
 Dao_SDL_RWops* Dao_SDL_RWops_New()
 {
@@ -122,8 +56,6 @@ Dao_SDL_RWops* Dao_SDL_RWops_New()
 	SDL_RWops *self = (SDL_RWops*) wrap;
 	wrap->_cdata = DaoCdata_New( dao_type_SDL_RWops, wrap );
 	wrap->object = self;
-	self->read = Dao_SDL_RWops_read;
-	self->write = Dao_SDL_RWops_write;
 	self->close = Dao_SDL_RWops_close;
 	return wrap;
 }
@@ -265,6 +197,11 @@ SDL_ControllerButtonEvent* Dao_SDL_ControllerButtonEvent_New()
 SDL_ControllerDeviceEvent* Dao_SDL_ControllerDeviceEvent_New()
 {
 	SDL_ControllerDeviceEvent *self = (SDL_ControllerDeviceEvent*) calloc( 1, sizeof(SDL_ControllerDeviceEvent) );
+	return self;
+}
+SDL_AudioDeviceEvent* Dao_SDL_AudioDeviceEvent_New()
+{
+	SDL_AudioDeviceEvent *self = (SDL_AudioDeviceEvent*) calloc( 1, sizeof(SDL_AudioDeviceEvent) );
 	return self;
 }
 SDL_TouchFingerEvent* Dao_SDL_TouchFingerEvent_New()

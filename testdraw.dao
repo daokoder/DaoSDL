@@ -15,10 +15,12 @@
 
 load sdl;
 load sdl_test;
+load random
+
+const rand = random::rand
 
 const NUM_OBJECTS = 100
 
-var state: SDLTest_CommonState;
 var num_objects = 0;
 var cycle_color = 1;
 var cycle_alpha = 1;

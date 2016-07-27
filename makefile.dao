@@ -2,20 +2,25 @@
 project = DaoMake::Project( "DaoSDL" ) 
 
 daovm = DaoMake::FindPackage( "Dao", $REQUIRED )
-daoaux = DaoMake::FindPackage( "DaoAux", $REQUIRED )
+#daoaux = DaoMake::FindPackage( "DaoAux", $REQUIRED )
 sdl2  = DaoMake::FindPackage( "SDL", $OPTIONAL )
+
+if( daovm == none or sdl2 == none ) return
+
+lflags = sdl2.MakeLinkingFlags()
+cflags = sdl2.MakeCompilingFlags()
 
 code = 
 @[code]
-#include<SDL2/SDL_test.h>
+#include<SDL_test.h>
 int main(void){ return 0; }
 @[code]
 
-sdltest = DaoMake::TestCompile( code, "-lSDL2_test" ) != 0;
+sdltest = DaoMake::TestCompile( code, lflags + " -L/usr/local/lib -lSDL2_test", cflags ) != 0;
 
-if( daovm == none or daoaux == none or sdl2 == none ) return
+#return
 
-cflags = sdl2.MakeCompilingFlags()
+#if( daovm == none or daoaux == none or sdl2 == none ) return
 
 clangdao = project.MakeBuildPath( "../../bin/clangdao" )
 if( DaoMake::IsFile( clangdao ) && DaoMake::IsOutOfSourceBuild() == 0 ){
@@ -31,7 +36,7 @@ project.SetTargetPath( "../../lib/dao/modules" )
 
 
 project.UseImportLibrary( daovm, "dao" )
-project.UseSharedLibrary( daoaux, "dao_aux" )
+#project.UseSharedLibrary( daoaux, "dao_aux" )
 
 project.AddIncludePath( "." )
 project.AddIncludePath( "../../kernel" )
@@ -43,17 +48,17 @@ daosdl_objs = project.AddObjects( sources, { "wrap/dao_sdl.h" } )
 daosdl_dll = project.AddSharedLibrary( "dao_sdl", daosdl_objs )
 daosdl_lib = project.AddStaticLibrary( "dao_sdl", daosdl_objs )
 if( DaoMake::IsPlatform( "IOS" ) ){
-	daosdl_dll.UseStaticLibrary( sdl2 )
+	project.UseStaticLibrary( sdl2 )
 }else{
-	daosdl_dll.UseSharedLibrary( sdl2 )
+	project.UseSharedLibrary( sdl2 )
 }
-daosdl_lib.UseStaticLibrary( sdl2 )
+project.UseStaticLibrary( sdl2 )
 
 if( sdltest and not DaoMake::IsPlatform( "IOS" ) ){
 	sources2 = { "wrap/dao_sdl_test.c", "wrap/dao_sdl_test2.c", "wrap/dao_sdl_test3.c" }
 	daosdl_objs2 = project.AddObjects( sources2, { "wrap/dao_sdl_test.h" } )
 	daosdl_dll2 = project.AddSharedLibrary( "dao_sdl_test", daosdl_objs2 )
-	daosdl_dll2.UseSharedLibrary( sdl2 )
+	project.UseSharedLibrary( sdl2 )
 	daosdl_dll2.AddLinkingFlag( "-lSDL2_test" );
 }
 

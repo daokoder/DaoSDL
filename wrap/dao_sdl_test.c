@@ -21,17 +21,17 @@ static DaoFuncItem dao__Funcs[] =
   { dao__SDLTest_CommonQuit, "SDLTest_CommonQuit( state: SDLTest_CommonState )" },
   { NULL, NULL }
 };
-/* /usr/local/include/SDL2/SDL_test_common.h */
+/* SDL_test_common.h */
 static void dao__SDLTest_CommonCreateState( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   static char **__argv = NULL;
   char **argv = __argv ? __argv : (__argv = DaoStringList_ToStaticCStringArray( (DaoList*)_p[0] ));
-  unsigned int flags = (unsigned int) DaoValue_TryGetInteger( _p[1] );
+  int flags = (int) DaoValue_TryGetInteger( _p[1] );
 
   SDLTest_CommonState* _CommonCreateState = SDLTest_CommonCreateState( argv, flags );
   DaoProcess_WrapCdata( _proc, (void*) _CommonCreateState, dao_type_SDLTest_CommonState );
 }
-/* /usr/local/include/SDL2/SDL_test_common.h */
+/* SDL_test_common.h */
 static void dao__SDLTest_CommonArg( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
@@ -40,7 +40,7 @@ static void dao__SDLTest_CommonArg( DaoProcess *_proc, DaoValue *_p[], int _n )
   int _SDLTest_CommonArg = SDLTest_CommonArg( state, index );
   DaoProcess_PutInteger( _proc, (dao_integer) _SDLTest_CommonArg );
 }
-/* /usr/local/include/SDL2/SDL_test_common.h */
+/* SDL_test_common.h */
 static void dao__SDLTest_CommonUsage( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
@@ -48,7 +48,7 @@ static void dao__SDLTest_CommonUsage( DaoProcess *_proc, DaoValue *_p[], int _n 
   const char* _SDLTest_CommonUsage = SDLTest_CommonUsage( state );
   DaoProcess_PutChars( _proc, (char*) _SDLTest_CommonUsage );
 }
-/* /usr/local/include/SDL2/SDL_test_common.h */
+/* SDL_test_common.h */
 static void dao__SDLTest_CommonInit( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
@@ -56,7 +56,7 @@ static void dao__SDLTest_CommonInit( DaoProcess *_proc, DaoValue *_p[], int _n )
   SDL_bool _SDLTest_CommonInit = SDLTest_CommonInit( state );
   DaoProcess_PutInteger( _proc, (dao_integer) _SDLTest_CommonInit );
 }
-/* /usr/local/include/SDL2/SDL_test_common.h */
+/* SDL_test_common.h */
 static void dao__SDLTest_CommonEvent( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
@@ -66,7 +66,7 @@ static void dao__SDLTest_CommonEvent( DaoProcess *_proc, DaoValue *_p[], int _n 
   SDLTest_CommonEvent( state, event, &done );
   DaoProcess_PutInteger( _proc, (dao_integer) done );
 }
-/* /usr/local/include/SDL2/SDL_test_common.h */
+/* SDL_test_common.h */
 static void dao__SDLTest_CommonQuit( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
   SDLTest_CommonState* state = (SDLTest_CommonState*) DaoValue_TryCastCdata( _p[0], dao_type_SDLTest_CommonState );
@@ -88,7 +88,7 @@ static const char *dao__Aliases[] =
 #ifdef __cplusplus
 extern "C"{
 #endif
-int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
+int DaoSDL_TEST_OnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 {
 	__daoVmSpace = vms;
 	DaoNamespace *aux = DaoVmSpace_LinkModule( vms, ns, "aux" );
@@ -96,7 +96,7 @@ int DaoOnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 	DaoNamespace *sdl = DaoVmSpace_LinkModule( vms, ns, "sdl" );
 	if( sdl == NULL ) return 1;
 	DaoNamespace_AddConstNumbers( ns, dao__Nums );
-	dao_type_SDLTest_CommonState = DaoNamespace_WrapType( ns, dao_SDLTest_CommonState_Typer, 1 );
+	dao_type_SDLTest_CommonState = DaoNamespace_WrapType( ns, dao_SDLTest_CommonState_Typer, DAO_CDATA, 0 );
 	DaoNamespace_AliasTypes( ns, dao__Aliases );
 	DaoNamespace_WrapFunctions( ns, dao__Funcs );
 	return 0;

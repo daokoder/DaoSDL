@@ -10,6 +10,8 @@ extern "C"{
 #endif
 #include<modules/auxlib/dao_aux.h>
 
+#include<modules/stream/dao_stream.h>
+
 #include<daoList.h>
 
 #ifdef __cplusplus
@@ -17,38 +19,38 @@ extern "C"{
 #endif
 #include"SDL.h"
 #include"SDL_main.h"
-#include"SDL_assert.h"
 #include"SDL_stdinc.h"
-#include"SDL_audio.h"
+#include"SDL_assert.h"
 #include"SDL_atomic.h"
+#include"SDL_audio.h"
 #include"SDL_clipboard.h"
-#include"SDL_error.h"
-#include"SDL_endian.h"
-#include"SDL_mutex.h"
-#include"SDL_thread.h"
-#include"SDL_rwops.h"
 #include"SDL_cpuinfo.h"
+#include"SDL_endian.h"
+#include"SDL_error.h"
 #include"SDL_events.h"
-#include"SDL_video.h"
-#include"SDL_keyboard.h"
-#include"SDL_pixels.h"
-#include"SDL_rect.h"
-#include"SDL_surface.h"
-#include"SDL_blendmode.h"
-#include"SDL_mouse.h"
-#include"SDL_keycode.h"
-#include"SDL_scancode.h"
-#include"SDL_joystick.h"
-#include"SDL_gesture.h"
-#include"SDL_quit.h"
-#include"SDL_touch.h"
 #include"SDL_hints.h"
 #include"SDL_loadso.h"
 #include"SDL_log.h"
+#include"SDL_mutex.h"
 #include"SDL_power.h"
 #include"SDL_render.h"
+#include"SDL_rwops.h"
+#include"SDL_thread.h"
 #include"SDL_timer.h"
 #include"SDL_version.h"
+#include"SDL_video.h"
+#include"SDL_rect.h"
+#include"SDL_surface.h"
+#include"SDL_keycode.h"
+#include"SDL_keyboard.h"
+#include"SDL_mouse.h"
+#include"SDL_joystick.h"
+#include"SDL_gesture.h"
+#include"SDL_touch.h"
+#include"SDL_scancode.h"
+#include"SDL_quit.h"
+#include"SDL_blendmode.h"
+#include"SDL_pixels.h"
 
 
 #ifndef DAO_SDL_STATIC
@@ -59,16 +61,18 @@ extern "C"{
 #define DAO_DLL_SDL
 #endif
 
+#ifdef WIN32
+#define DAO_DLL2_SDL DAO_DLL_SDL
+#else
+#define DAO_DLL2_SDL
+#endif
+
 extern DaoVmSpace *__daoVmSpace;
 #ifdef __cplusplus
 extern "C"{
 #endif
-extern DaoTypeBase *dao__opaque_pthread_attr_t_Typer;
-extern DaoTypeBase *dao___sFILE_Typer;
-extern DaoTypeBase *dao_sigval_Typer;
-extern DaoTypeBase *dao_timeval_Typer;
 extern DaoTypeBase *dao__SDL_iconv_t_Typer;
-extern DaoTypeBase *dao_SDL_assert_data_Typer;
+extern DaoTypeBase *dao_SDL_AssertData_Typer;
 extern DaoTypeBase *dao_SDL_atomic_t_Typer;
 extern DaoTypeBase *dao_SDL_mutex_Typer;
 extern DaoTypeBase *dao_SDL_semaphore_Typer;
@@ -107,6 +111,7 @@ extern DaoTypeBase *dao_SDL_JoyDeviceEvent_Typer;
 extern DaoTypeBase *dao_SDL_ControllerAxisEvent_Typer;
 extern DaoTypeBase *dao_SDL_ControllerButtonEvent_Typer;
 extern DaoTypeBase *dao_SDL_ControllerDeviceEvent_Typer;
+extern DaoTypeBase *dao_SDL_AudioDeviceEvent_Typer;
 extern DaoTypeBase *dao_SDL_TouchFingerEvent_Typer;
 extern DaoTypeBase *dao_SDL_MultiGestureEvent_Typer;
 extern DaoTypeBase *dao_SDL_DollarGestureEvent_Typer;
@@ -128,12 +133,8 @@ extern DaoTypeBase *dao_SDL_RendererInfo_Typer;
 extern DaoTypeBase *dao_SDL_Renderer_Typer;
 extern DaoTypeBase *dao_SDL_Texture_Typer;
 extern DaoTypeBase *dao_SDL_version_Typer;
-extern DaoType *dao_type__opaque_pthread_attr_t;
-extern DaoType *dao_type___sFILE;
-extern DaoType *dao_type_sigval;
-extern DaoType *dao_type_timeval;
 extern DaoType *dao_type__SDL_iconv_t;
-extern DaoType *dao_type_SDL_assert_data;
+extern DaoType *dao_type_SDL_AssertData;
 extern DaoType *dao_type_SDL_atomic_t;
 extern DaoType *dao_type_SDL_mutex;
 extern DaoType *dao_type_SDL_semaphore;
@@ -172,6 +173,7 @@ extern DaoType *dao_type_SDL_JoyDeviceEvent;
 extern DaoType *dao_type_SDL_ControllerAxisEvent;
 extern DaoType *dao_type_SDL_ControllerButtonEvent;
 extern DaoType *dao_type_SDL_ControllerDeviceEvent;
+extern DaoType *dao_type_SDL_AudioDeviceEvent;
 extern DaoType *dao_type_SDL_TouchFingerEvent;
 extern DaoType *dao_type_SDL_MultiGestureEvent;
 extern DaoType *dao_type_SDL_DollarGestureEvent;
@@ -196,58 +198,57 @@ extern DaoType *dao_type_SDL_version;
 #ifdef __cplusplus
 }
 #endif
-SDL_assert_data* DAO_DLL_SDL Dao_SDL_assert_data_New();
-SDL_atomic_t* DAO_DLL_SDL Dao_SDL_atomic_t_New();
-static size_t Dao_SDL_RWops_read( struct SDL_RWops* context, void* ptr, size_t size, size_t maxnum );
-static size_t Dao_SDL_RWops_write( struct SDL_RWops* context, const void* ptr, size_t size, size_t maxnum );
+DAO_DLL_SDL SDL_AssertData* Dao_SDL_AssertData_New();
+DAO_DLL_SDL SDL_atomic_t* Dao_SDL_atomic_t_New();
 static int Dao_SDL_RWops_close( struct SDL_RWops* context );
 typedef struct Dao_SDL_RWops Dao_SDL_RWops;
-struct DAO_DLL_SDL Dao_SDL_RWops
+struct DAO_DLL2_SDL Dao_SDL_RWops
 {
 	SDL_RWops  nested;
 	SDL_RWops *object;
 	DaoCdata *_cdata;
 };
-Dao_SDL_RWops* DAO_DLL_SDL Dao_SDL_RWops_New();
-SDL_AudioSpec* DAO_DLL_SDL Dao_SDL_AudioSpec_New();
-SDL_AudioCVT* DAO_DLL_SDL Dao_SDL_AudioCVT_New();
-SDL_Color* DAO_DLL_SDL Dao_SDL_Color_New();
-SDL_Palette* DAO_DLL_SDL Dao_SDL_Palette_New();
-SDL_PixelFormat* DAO_DLL_SDL Dao_SDL_PixelFormat_New();
-SDL_Point* DAO_DLL_SDL Dao_SDL_Point_New();
-SDL_Rect* DAO_DLL_SDL Dao_SDL_Rect_New();
-SDL_Surface* DAO_DLL_SDL Dao_SDL_Surface_New();
-SDL_DisplayMode* DAO_DLL_SDL Dao_SDL_DisplayMode_New();
-SDL_Keysym* DAO_DLL_SDL Dao_SDL_Keysym_New();
-SDL_JoystickGUID* DAO_DLL_SDL Dao_SDL_JoystickGUID_New();
-SDL_Finger* DAO_DLL_SDL Dao_SDL_Finger_New();
-SDL_CommonEvent* DAO_DLL_SDL Dao_SDL_CommonEvent_New();
-SDL_WindowEvent* DAO_DLL_SDL Dao_SDL_WindowEvent_New();
-SDL_KeyboardEvent* DAO_DLL_SDL Dao_SDL_KeyboardEvent_New();
-SDL_TextEditingEvent* DAO_DLL_SDL Dao_SDL_TextEditingEvent_New();
-SDL_TextInputEvent* DAO_DLL_SDL Dao_SDL_TextInputEvent_New();
-SDL_MouseMotionEvent* DAO_DLL_SDL Dao_SDL_MouseMotionEvent_New();
-SDL_MouseButtonEvent* DAO_DLL_SDL Dao_SDL_MouseButtonEvent_New();
-SDL_MouseWheelEvent* DAO_DLL_SDL Dao_SDL_MouseWheelEvent_New();
-SDL_JoyAxisEvent* DAO_DLL_SDL Dao_SDL_JoyAxisEvent_New();
-SDL_JoyBallEvent* DAO_DLL_SDL Dao_SDL_JoyBallEvent_New();
-SDL_JoyHatEvent* DAO_DLL_SDL Dao_SDL_JoyHatEvent_New();
-SDL_JoyButtonEvent* DAO_DLL_SDL Dao_SDL_JoyButtonEvent_New();
-SDL_JoyDeviceEvent* DAO_DLL_SDL Dao_SDL_JoyDeviceEvent_New();
-SDL_ControllerAxisEvent* DAO_DLL_SDL Dao_SDL_ControllerAxisEvent_New();
-SDL_ControllerButtonEvent* DAO_DLL_SDL Dao_SDL_ControllerButtonEvent_New();
-SDL_ControllerDeviceEvent* DAO_DLL_SDL Dao_SDL_ControllerDeviceEvent_New();
-SDL_TouchFingerEvent* DAO_DLL_SDL Dao_SDL_TouchFingerEvent_New();
-SDL_MultiGestureEvent* DAO_DLL_SDL Dao_SDL_MultiGestureEvent_New();
-SDL_DollarGestureEvent* DAO_DLL_SDL Dao_SDL_DollarGestureEvent_New();
-SDL_DropEvent* DAO_DLL_SDL Dao_SDL_DropEvent_New();
-SDL_QuitEvent* DAO_DLL_SDL Dao_SDL_QuitEvent_New();
-SDL_OSEvent* DAO_DLL_SDL Dao_SDL_OSEvent_New();
-SDL_UserEvent* DAO_DLL_SDL Dao_SDL_UserEvent_New();
-SDL_SysWMEvent* DAO_DLL_SDL Dao_SDL_SysWMEvent_New();
-SDL_Event* DAO_DLL_SDL Dao_SDL_Event_New();
-SDL_RendererInfo* DAO_DLL_SDL Dao_SDL_RendererInfo_New();
-SDL_version* DAO_DLL_SDL Dao_SDL_version_New();
+DAO_DLL_SDL Dao_SDL_RWops* Dao_SDL_RWops_New();
+DAO_DLL_SDL SDL_AudioSpec* Dao_SDL_AudioSpec_New();
+DAO_DLL_SDL SDL_AudioCVT* Dao_SDL_AudioCVT_New();
+DAO_DLL_SDL SDL_Color* Dao_SDL_Color_New();
+DAO_DLL_SDL SDL_Palette* Dao_SDL_Palette_New();
+DAO_DLL_SDL SDL_PixelFormat* Dao_SDL_PixelFormat_New();
+DAO_DLL_SDL SDL_Point* Dao_SDL_Point_New();
+DAO_DLL_SDL SDL_Rect* Dao_SDL_Rect_New();
+DAO_DLL_SDL SDL_Surface* Dao_SDL_Surface_New();
+DAO_DLL_SDL SDL_DisplayMode* Dao_SDL_DisplayMode_New();
+DAO_DLL_SDL SDL_Keysym* Dao_SDL_Keysym_New();
+DAO_DLL_SDL SDL_JoystickGUID* Dao_SDL_JoystickGUID_New();
+DAO_DLL_SDL SDL_Finger* Dao_SDL_Finger_New();
+DAO_DLL_SDL SDL_CommonEvent* Dao_SDL_CommonEvent_New();
+DAO_DLL_SDL SDL_WindowEvent* Dao_SDL_WindowEvent_New();
+DAO_DLL_SDL SDL_KeyboardEvent* Dao_SDL_KeyboardEvent_New();
+DAO_DLL_SDL SDL_TextEditingEvent* Dao_SDL_TextEditingEvent_New();
+DAO_DLL_SDL SDL_TextInputEvent* Dao_SDL_TextInputEvent_New();
+DAO_DLL_SDL SDL_MouseMotionEvent* Dao_SDL_MouseMotionEvent_New();
+DAO_DLL_SDL SDL_MouseButtonEvent* Dao_SDL_MouseButtonEvent_New();
+DAO_DLL_SDL SDL_MouseWheelEvent* Dao_SDL_MouseWheelEvent_New();
+DAO_DLL_SDL SDL_JoyAxisEvent* Dao_SDL_JoyAxisEvent_New();
+DAO_DLL_SDL SDL_JoyBallEvent* Dao_SDL_JoyBallEvent_New();
+DAO_DLL_SDL SDL_JoyHatEvent* Dao_SDL_JoyHatEvent_New();
+DAO_DLL_SDL SDL_JoyButtonEvent* Dao_SDL_JoyButtonEvent_New();
+DAO_DLL_SDL SDL_JoyDeviceEvent* Dao_SDL_JoyDeviceEvent_New();
+DAO_DLL_SDL SDL_ControllerAxisEvent* Dao_SDL_ControllerAxisEvent_New();
+DAO_DLL_SDL SDL_ControllerButtonEvent* Dao_SDL_ControllerButtonEvent_New();
+DAO_DLL_SDL SDL_ControllerDeviceEvent* Dao_SDL_ControllerDeviceEvent_New();
+DAO_DLL_SDL SDL_AudioDeviceEvent* Dao_SDL_AudioDeviceEvent_New();
+DAO_DLL_SDL SDL_TouchFingerEvent* Dao_SDL_TouchFingerEvent_New();
+DAO_DLL_SDL SDL_MultiGestureEvent* Dao_SDL_MultiGestureEvent_New();
+DAO_DLL_SDL SDL_DollarGestureEvent* Dao_SDL_DollarGestureEvent_New();
+DAO_DLL_SDL SDL_DropEvent* Dao_SDL_DropEvent_New();
+DAO_DLL_SDL SDL_QuitEvent* Dao_SDL_QuitEvent_New();
+DAO_DLL_SDL SDL_OSEvent* Dao_SDL_OSEvent_New();
+DAO_DLL_SDL SDL_UserEvent* Dao_SDL_UserEvent_New();
+DAO_DLL_SDL SDL_SysWMEvent* Dao_SDL_SysWMEvent_New();
+DAO_DLL_SDL SDL_Event* Dao_SDL_Event_New();
+DAO_DLL_SDL SDL_RendererInfo* Dao_SDL_RendererInfo_New();
+DAO_DLL_SDL SDL_version* Dao_SDL_version_New();
 #ifdef __cplusplus
 extern "C"{
 #endif

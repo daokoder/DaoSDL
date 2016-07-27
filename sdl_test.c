@@ -2,6 +2,9 @@
 #define module_name sdl_test
 #undef module_name
 
+#define module_onload DaoSDL_TEST_OnLoad
+#undef module_onload
+
 #define _CommonCreateState( argv_dao_hint_argv, flags ) SDLTest_CommonCreateState(char**,Uint32)
 #undef _CommonCreateState
 

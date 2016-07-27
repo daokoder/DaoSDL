@@ -10,6 +10,8 @@ extern "C"{
 #endif
 #include<modules/auxlib/dao_aux.h>
 
+#include<modules/stream/dao_stream.h>
+
 #include<daoList.h>
 
 #ifdef __cplusplus
@@ -20,9 +22,16 @@ extern "C"{
 
 #ifndef DAO_SDL_STATIC
 #define DAO_DLL_SDL DAO_DLL_IMPORT
+#ifdef WIN32
+#define DAO_DLL2_SDL DAO_DLL_IMPORT
+#else
+#define DAO_DLL2_SDL
+#endif
+
 #include"dao_sdl.h"
 #else
 #define DAO_DLL_SDL
+#define DAO_DLL2_SDL
 #include"dao_sdl.h"
 #endif
 
@@ -34,14 +43,17 @@ extern "C"{
 #define DAO_DLL_SDL_TEST
 #endif
 
+#ifdef WIN32
+#define DAO_DLL2_SDL_TEST DAO_DLL_SDL_TEST
+#else
+#define DAO_DLL2_SDL_TEST
+#endif
+
 extern DaoVmSpace *__daoVmSpace;
 #ifdef __cplusplus
 extern "C"{
 #endif
-extern DaoTypeBase *dao__opaque_pthread_attr_t_Typer;
-extern DaoTypeBase *dao_sigval_Typer;
-extern DaoTypeBase *dao_timeval_Typer;
-extern DaoTypeBase *dao_SDL_assert_data_Typer;
+extern DaoTypeBase *dao_SDL_AssertData_Typer;
 extern DaoTypeBase *dao_SDL_atomic_t_Typer;
 extern DaoTypeBase *dao_SDL_RWops_Typer;
 extern DaoTypeBase *dao_SDL_AudioSpec_Typer;
@@ -74,6 +86,7 @@ extern DaoTypeBase *dao_SDL_JoyDeviceEvent_Typer;
 extern DaoTypeBase *dao_SDL_ControllerAxisEvent_Typer;
 extern DaoTypeBase *dao_SDL_ControllerButtonEvent_Typer;
 extern DaoTypeBase *dao_SDL_ControllerDeviceEvent_Typer;
+extern DaoTypeBase *dao_SDL_AudioDeviceEvent_Typer;
 extern DaoTypeBase *dao_SDL_TouchFingerEvent_Typer;
 extern DaoTypeBase *dao_SDL_MultiGestureEvent_Typer;
 extern DaoTypeBase *dao_SDL_DollarGestureEvent_Typer;
@@ -95,10 +108,7 @@ extern DaoTypeBase *dao_SDL_RendererInfo_Typer;
 extern DaoTypeBase *dao_SDL_Renderer_Typer;
 extern DaoTypeBase *dao_SDL_version_Typer;
 extern DaoTypeBase *dao_SDLTest_CommonState_Typer;
-extern DaoType *dao_type__opaque_pthread_attr_t;
-extern DaoType *dao_type_sigval;
-extern DaoType *dao_type_timeval;
-extern DaoType *dao_type_SDL_assert_data;
+extern DaoType *dao_type_SDL_AssertData;
 extern DaoType *dao_type_SDL_atomic_t;
 extern DaoType *dao_type_SDL_RWops;
 extern DaoType *dao_type_SDL_AudioSpec;
@@ -131,6 +141,7 @@ extern DaoType *dao_type_SDL_JoyDeviceEvent;
 extern DaoType *dao_type_SDL_ControllerAxisEvent;
 extern DaoType *dao_type_SDL_ControllerButtonEvent;
 extern DaoType *dao_type_SDL_ControllerDeviceEvent;
+extern DaoType *dao_type_SDL_AudioDeviceEvent;
 extern DaoType *dao_type_SDL_TouchFingerEvent;
 extern DaoType *dao_type_SDL_MultiGestureEvent;
 extern DaoType *dao_type_SDL_DollarGestureEvent;
@@ -155,7 +166,7 @@ extern DaoType *dao_type_SDLTest_CommonState;
 #ifdef __cplusplus
 }
 #endif
-SDLTest_CommonState* DAO_DLL_SDL_TEST Dao_SDLTest_CommonState_New();
+DAO_DLL_SDL_TEST SDLTest_CommonState* Dao_SDLTest_CommonState_New();
 #ifdef __cplusplus
 extern "C"{
 #endif
