@@ -3,14 +3,37 @@
 extern "C"{
 #endif
 /* /usr/local/include/SDL2/SDL_stdinc.h */
-static DaoTypeBase _SDL_iconv_t_Typer = 
-{ "_SDL_iconv_t", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao__SDL_iconv_t_Typer = & _SDL_iconv_t_Typer;
+static DaoTypeCore _SDL_iconv_t_Core = 
+{
+  "_SDL_iconv_t",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao__SDL_iconv_t_Core = & _SDL_iconv_t_Core;
 DaoType *dao_type__SDL_iconv_t = NULL;
 /* /usr/local/include/SDL2/SDL_assert.h */
 
 
-static DaoNumItem dao_SDL_AssertData_Nums[] = 
+static DaoNumberEntry dao_SDL_AssertData_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -28,36 +51,52 @@ static void dao_SDL_AssertData_GETF_function( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_AssertData_GETF_next( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AssertData_SDL_AssertData( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_AssertData_Meths[] = 
+static DaoFunctionEntry dao_SDL_AssertData_Meths[] = 
 {
-  { dao_SDL_AssertData_GETF_always_ignore, ".always_ignore( self :SDL_AssertData )=>int" },
-  { dao_SDL_AssertData_SETF_always_ignore, ".always_ignore=( self :SDL_AssertData, always_ignore :int )" },
-  { dao_SDL_AssertData_GETF_trigger_count, ".trigger_count( self :SDL_AssertData )=>int" },
-  { dao_SDL_AssertData_SETF_trigger_count, ".trigger_count=( self :SDL_AssertData, trigger_count :int )" },
-  { dao_SDL_AssertData_GETF_condition, ".condition( self :SDL_AssertData )=>string" },
-  { dao_SDL_AssertData_GETF_filename, ".filename( self :SDL_AssertData )=>string" },
-  { dao_SDL_AssertData_GETF_linenum, ".linenum( self :SDL_AssertData )=>int" },
-  { dao_SDL_AssertData_SETF_linenum, ".linenum=( self :SDL_AssertData, linenum :int )" },
-  { dao_SDL_AssertData_GETF_function, ".function( self :SDL_AssertData )=>string" },
-  { dao_SDL_AssertData_GETF_next, ".next( self :SDL_AssertData )=>SDL_AssertData" },
+  { dao_SDL_AssertData_GETF_always_ignore, ".always_ignore( self: SDL_AssertData )=>int" },
+  { dao_SDL_AssertData_SETF_always_ignore, ".always_ignore=( self: SDL_AssertData, always_ignore: int )" },
+  { dao_SDL_AssertData_GETF_trigger_count, ".trigger_count( self: SDL_AssertData )=>int" },
+  { dao_SDL_AssertData_SETF_trigger_count, ".trigger_count=( self: SDL_AssertData, trigger_count: int )" },
+  { dao_SDL_AssertData_GETF_condition, ".condition( self: SDL_AssertData )=>string" },
+  { dao_SDL_AssertData_GETF_filename, ".filename( self: SDL_AssertData )=>string" },
+  { dao_SDL_AssertData_GETF_linenum, ".linenum( self: SDL_AssertData )=>int" },
+  { dao_SDL_AssertData_SETF_linenum, ".linenum=( self: SDL_AssertData, linenum: int )" },
+  { dao_SDL_AssertData_GETF_function, ".function( self: SDL_AssertData )=>string" },
+  { dao_SDL_AssertData_GETF_next, ".next( self: SDL_AssertData )=>SDL_AssertData" },
   { dao_SDL_AssertData_SDL_AssertData, "SDL_AssertData(  )=>SDL_AssertData" },
   { NULL, NULL }
 };
-static void Dao_SDL_AssertData_Delete( void *self )
+static void Dao_SDL_AssertData_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_AssertData_Typer = 
-{ "SDL_AssertData", NULL,
+static DaoTypeCore SDL_AssertData_Core = 
+{
+  "SDL_AssertData",
+  sizeof(SDL_AssertData),
+  { NULL },
   dao_SDL_AssertData_Nums,
   dao_SDL_AssertData_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_AssertData_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_AssertData_Typer = & SDL_AssertData_Typer;
+DaoTypeCore *dao_SDL_AssertData_Core = & SDL_AssertData_Core;
 DaoType *dao_type_SDL_AssertData = NULL;
 static void dao_SDL_AssertData_GETF_always_ignore( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -117,7 +156,7 @@ static void dao_SDL_AssertData_SDL_AssertData( DaoProcess *_proc, DaoValue *_p[]
 /* /usr/local/include/SDL2/SDL_atomic.h */
 
 
-static DaoNumItem dao_SDL_atomic_t_Nums[] = 
+static DaoNumberEntry dao_SDL_atomic_t_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -127,28 +166,44 @@ static void dao_SDL_atomic_t_GETF_value( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_atomic_t_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_atomic_t_SDL_atomic_t( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_atomic_t_Meths[] = 
+static DaoFunctionEntry dao_SDL_atomic_t_Meths[] = 
 {
-  { dao_SDL_atomic_t_GETF_value, ".value( self :SDL_atomic_t )=>int" },
-  { dao_SDL_atomic_t_SETF_value, ".value=( self :SDL_atomic_t, value :int )" },
+  { dao_SDL_atomic_t_GETF_value, ".value( self: SDL_atomic_t )=>int" },
+  { dao_SDL_atomic_t_SETF_value, ".value=( self: SDL_atomic_t, value: int )" },
   { dao_SDL_atomic_t_SDL_atomic_t, "SDL_atomic_t(  )=>SDL_atomic_t" },
   { NULL, NULL }
 };
-static void Dao_SDL_atomic_t_Delete( void *self )
+static void Dao_SDL_atomic_t_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_atomic_t_Typer = 
-{ "SDL_atomic_t", NULL,
+static DaoTypeCore SDL_atomic_t_Core = 
+{
+  "SDL_atomic_t",
+  sizeof(SDL_atomic_t),
+  { NULL },
   dao_SDL_atomic_t_Nums,
   dao_SDL_atomic_t_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_atomic_t_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_atomic_t_Typer = & SDL_atomic_t_Typer;
+DaoTypeCore *dao_SDL_atomic_t_Core = & SDL_atomic_t_Core;
 DaoType *dao_type_SDL_atomic_t = NULL;
 static void dao_SDL_atomic_t_GETF_value( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -166,29 +221,121 @@ static void dao_SDL_atomic_t_SDL_atomic_t( DaoProcess *_proc, DaoValue *_p[], in
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_atomic_t );
 }
 /* /usr/local/include/SDL2/SDL_mutex.h */
-static DaoTypeBase SDL_mutex_Typer = 
-{ "SDL_mutex", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_mutex_Typer = & SDL_mutex_Typer;
+static DaoTypeCore SDL_mutex_Core = 
+{
+  "SDL_mutex",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_mutex_Core = & SDL_mutex_Core;
 DaoType *dao_type_SDL_mutex = NULL;
 /* /usr/local/include/SDL2/SDL_mutex.h */
-static DaoTypeBase SDL_semaphore_Typer = 
-{ "SDL_semaphore", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_semaphore_Typer = & SDL_semaphore_Typer;
+static DaoTypeCore SDL_semaphore_Core = 
+{
+  "SDL_semaphore",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_semaphore_Core = & SDL_semaphore_Core;
 DaoType *dao_type_SDL_semaphore = NULL;
 /* /usr/local/include/SDL2/SDL_mutex.h */
-static DaoTypeBase SDL_cond_Typer = 
-{ "SDL_cond", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_cond_Typer = & SDL_cond_Typer;
+static DaoTypeCore SDL_cond_Core = 
+{
+  "SDL_cond",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_cond_Core = & SDL_cond_Core;
 DaoType *dao_type_SDL_cond = NULL;
 /* /usr/local/include/SDL2/SDL_thread.h */
-static DaoTypeBase SDL_Thread_Typer = 
-{ "SDL_Thread", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_Thread_Typer = & SDL_Thread_Typer;
+static DaoTypeCore SDL_Thread_Core = 
+{
+  "SDL_Thread",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_Thread_Core = & SDL_Thread_Core;
 DaoType *dao_type_SDL_Thread = NULL;
 /* /usr/local/include/SDL2/SDL_rwops.h */
 
 
-static DaoNumItem dao_SDL_RWops_Nums[] = 
+static DaoNumberEntry dao_SDL_RWops_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -198,28 +345,44 @@ static void dao_SDL_RWops_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 static void dao_SDL_RWops_SETF_type( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_RWops_SDL_RWops( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_RWops_Meths[] = 
+static DaoFunctionEntry dao_SDL_RWops_Meths[] = 
 {
-  { dao_SDL_RWops_GETF_type, ".type( self :SDL_RWops )=>int" },
-  { dao_SDL_RWops_SETF_type, ".type=( self :SDL_RWops, type :int )" },
+  { dao_SDL_RWops_GETF_type, ".type( self: SDL_RWops )=>int" },
+  { dao_SDL_RWops_SETF_type, ".type=( self: SDL_RWops, type: int )" },
   { dao_SDL_RWops_SDL_RWops, "SDL_RWops(  )=>SDL_RWops" },
   { NULL, NULL }
 };
-static void Dao_SDL_RWops_Delete( void *self )
+static void Dao_SDL_RWops_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_RWops_Typer = 
-{ "SDL_RWops", NULL,
+static DaoTypeCore SDL_RWops_Core = 
+{
+  "SDL_RWops",
+  sizeof(SDL_RWops),
+  { NULL },
   dao_SDL_RWops_Nums,
   dao_SDL_RWops_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_RWops_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_RWops_Typer = & SDL_RWops_Typer;
+DaoTypeCore *dao_SDL_RWops_Core = & SDL_RWops_Core;
 DaoType *dao_type_SDL_RWops = NULL;
 static void dao_SDL_RWops_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -239,7 +402,7 @@ static void dao_SDL_RWops_SDL_RWops( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_audio.h */
 
 
-static DaoNumItem dao_SDL_AudioSpec_Nums[] = 
+static DaoNumberEntry dao_SDL_AudioSpec_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -260,39 +423,55 @@ static void dao_SDL_AudioSpec_SETF_size( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_AudioSpec_GETF_userdata( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AudioSpec_SDL_AudioSpec( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_AudioSpec_Meths[] = 
+static DaoFunctionEntry dao_SDL_AudioSpec_Meths[] = 
 {
-  { dao_SDL_AudioSpec_GETF_freq, ".freq( self :SDL_AudioSpec )=>int" },
-  { dao_SDL_AudioSpec_SETF_freq, ".freq=( self :SDL_AudioSpec, freq :int )" },
-  { dao_SDL_AudioSpec_GETF_format, ".format( self :SDL_AudioSpec )=>int" },
-  { dao_SDL_AudioSpec_SETF_format, ".format=( self :SDL_AudioSpec, format :int )" },
-  { dao_SDL_AudioSpec_GETF_channels, ".channels( self :SDL_AudioSpec )=>int" },
-  { dao_SDL_AudioSpec_SETF_channels, ".channels=( self :SDL_AudioSpec, channels :int )" },
-  { dao_SDL_AudioSpec_GETF_silence, ".silence( self :SDL_AudioSpec )=>int" },
-  { dao_SDL_AudioSpec_SETF_silence, ".silence=( self :SDL_AudioSpec, silence :int )" },
-  { dao_SDL_AudioSpec_GETF_samples, ".samples( self :SDL_AudioSpec )=>int" },
-  { dao_SDL_AudioSpec_SETF_samples, ".samples=( self :SDL_AudioSpec, samples :int )" },
-  { dao_SDL_AudioSpec_GETF_size, ".size( self :SDL_AudioSpec )=>int" },
-  { dao_SDL_AudioSpec_SETF_size, ".size=( self :SDL_AudioSpec, size :int )" },
-  { dao_SDL_AudioSpec_GETF_userdata, ".userdata( self :SDL_AudioSpec )=>cdata" },
+  { dao_SDL_AudioSpec_GETF_freq, ".freq( self: SDL_AudioSpec )=>int" },
+  { dao_SDL_AudioSpec_SETF_freq, ".freq=( self: SDL_AudioSpec, freq: int )" },
+  { dao_SDL_AudioSpec_GETF_format, ".format( self: SDL_AudioSpec )=>int" },
+  { dao_SDL_AudioSpec_SETF_format, ".format=( self: SDL_AudioSpec, format: int )" },
+  { dao_SDL_AudioSpec_GETF_channels, ".channels( self: SDL_AudioSpec )=>int" },
+  { dao_SDL_AudioSpec_SETF_channels, ".channels=( self: SDL_AudioSpec, channels: int )" },
+  { dao_SDL_AudioSpec_GETF_silence, ".silence( self: SDL_AudioSpec )=>int" },
+  { dao_SDL_AudioSpec_SETF_silence, ".silence=( self: SDL_AudioSpec, silence: int )" },
+  { dao_SDL_AudioSpec_GETF_samples, ".samples( self: SDL_AudioSpec )=>int" },
+  { dao_SDL_AudioSpec_SETF_samples, ".samples=( self: SDL_AudioSpec, samples: int )" },
+  { dao_SDL_AudioSpec_GETF_size, ".size( self: SDL_AudioSpec )=>int" },
+  { dao_SDL_AudioSpec_SETF_size, ".size=( self: SDL_AudioSpec, size: int )" },
+  { dao_SDL_AudioSpec_GETF_userdata, ".userdata( self: SDL_AudioSpec )=>cdata" },
   { dao_SDL_AudioSpec_SDL_AudioSpec, "SDL_AudioSpec(  )=>SDL_AudioSpec" },
   { NULL, NULL }
 };
-static void Dao_SDL_AudioSpec_Delete( void *self )
+static void Dao_SDL_AudioSpec_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_AudioSpec_Typer = 
-{ "SDL_AudioSpec", NULL,
+static DaoTypeCore SDL_AudioSpec_Core = 
+{
+  "SDL_AudioSpec",
+  sizeof(SDL_AudioSpec),
+  { NULL },
   dao_SDL_AudioSpec_Nums,
   dao_SDL_AudioSpec_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_AudioSpec_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_AudioSpec_Typer = & SDL_AudioSpec_Typer;
+DaoTypeCore *dao_SDL_AudioSpec_Core = & SDL_AudioSpec_Core;
 DaoType *dao_type_SDL_AudioSpec = NULL;
 static void dao_SDL_AudioSpec_GETF_freq( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -367,7 +546,7 @@ static void dao_SDL_AudioSpec_SDL_AudioSpec( DaoProcess *_proc, DaoValue *_p[], 
 /* /usr/local/include/SDL2/SDL_audio.h */
 
 
-static DaoNumItem dao_SDL_AudioCVT_Nums[] = 
+static DaoNumberEntry dao_SDL_AudioCVT_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -394,45 +573,61 @@ static void dao_SDL_AudioCVT_GETF_filter_index( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_AudioCVT_SETF_filter_index( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AudioCVT_SDL_AudioCVT( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_AudioCVT_Meths[] = 
+static DaoFunctionEntry dao_SDL_AudioCVT_Meths[] = 
 {
-  { dao_SDL_AudioCVT_GETF_needed, ".needed( self :SDL_AudioCVT )=>int" },
-  { dao_SDL_AudioCVT_SETF_needed, ".needed=( self :SDL_AudioCVT, needed :int )" },
-  { dao_SDL_AudioCVT_GETF_src_format, ".src_format( self :SDL_AudioCVT )=>int" },
-  { dao_SDL_AudioCVT_SETF_src_format, ".src_format=( self :SDL_AudioCVT, src_format :int )" },
-  { dao_SDL_AudioCVT_GETF_dst_format, ".dst_format( self :SDL_AudioCVT )=>int" },
-  { dao_SDL_AudioCVT_SETF_dst_format, ".dst_format=( self :SDL_AudioCVT, dst_format :int )" },
-  { dao_SDL_AudioCVT_GETF_rate_incr, ".rate_incr( self :SDL_AudioCVT )=>float" },
-  { dao_SDL_AudioCVT_SETF_rate_incr, ".rate_incr=( self :SDL_AudioCVT, rate_incr :float )" },
-  { dao_SDL_AudioCVT_GETF_buf, ".buf( self :SDL_AudioCVT )=>int" },
-  { dao_SDL_AudioCVT_GETF_len, ".len( self :SDL_AudioCVT )=>int" },
-  { dao_SDL_AudioCVT_SETF_len, ".len=( self :SDL_AudioCVT, len :int )" },
-  { dao_SDL_AudioCVT_GETF_len_cvt, ".len_cvt( self :SDL_AudioCVT )=>int" },
-  { dao_SDL_AudioCVT_SETF_len_cvt, ".len_cvt=( self :SDL_AudioCVT, len_cvt :int )" },
-  { dao_SDL_AudioCVT_GETF_len_mult, ".len_mult( self :SDL_AudioCVT )=>int" },
-  { dao_SDL_AudioCVT_SETF_len_mult, ".len_mult=( self :SDL_AudioCVT, len_mult :int )" },
-  { dao_SDL_AudioCVT_GETF_len_ratio, ".len_ratio( self :SDL_AudioCVT )=>float" },
-  { dao_SDL_AudioCVT_SETF_len_ratio, ".len_ratio=( self :SDL_AudioCVT, len_ratio :float )" },
-  { dao_SDL_AudioCVT_GETF_filter_index, ".filter_index( self :SDL_AudioCVT )=>int" },
-  { dao_SDL_AudioCVT_SETF_filter_index, ".filter_index=( self :SDL_AudioCVT, filter_index :int )" },
+  { dao_SDL_AudioCVT_GETF_needed, ".needed( self: SDL_AudioCVT )=>int" },
+  { dao_SDL_AudioCVT_SETF_needed, ".needed=( self: SDL_AudioCVT, needed: int )" },
+  { dao_SDL_AudioCVT_GETF_src_format, ".src_format( self: SDL_AudioCVT )=>int" },
+  { dao_SDL_AudioCVT_SETF_src_format, ".src_format=( self: SDL_AudioCVT, src_format: int )" },
+  { dao_SDL_AudioCVT_GETF_dst_format, ".dst_format( self: SDL_AudioCVT )=>int" },
+  { dao_SDL_AudioCVT_SETF_dst_format, ".dst_format=( self: SDL_AudioCVT, dst_format: int )" },
+  { dao_SDL_AudioCVT_GETF_rate_incr, ".rate_incr( self: SDL_AudioCVT )=>float" },
+  { dao_SDL_AudioCVT_SETF_rate_incr, ".rate_incr=( self: SDL_AudioCVT, rate_incr: float )" },
+  { dao_SDL_AudioCVT_GETF_buf, ".buf( self: SDL_AudioCVT )=>int" },
+  { dao_SDL_AudioCVT_GETF_len, ".len( self: SDL_AudioCVT )=>int" },
+  { dao_SDL_AudioCVT_SETF_len, ".len=( self: SDL_AudioCVT, len: int )" },
+  { dao_SDL_AudioCVT_GETF_len_cvt, ".len_cvt( self: SDL_AudioCVT )=>int" },
+  { dao_SDL_AudioCVT_SETF_len_cvt, ".len_cvt=( self: SDL_AudioCVT, len_cvt: int )" },
+  { dao_SDL_AudioCVT_GETF_len_mult, ".len_mult( self: SDL_AudioCVT )=>int" },
+  { dao_SDL_AudioCVT_SETF_len_mult, ".len_mult=( self: SDL_AudioCVT, len_mult: int )" },
+  { dao_SDL_AudioCVT_GETF_len_ratio, ".len_ratio( self: SDL_AudioCVT )=>float" },
+  { dao_SDL_AudioCVT_SETF_len_ratio, ".len_ratio=( self: SDL_AudioCVT, len_ratio: float )" },
+  { dao_SDL_AudioCVT_GETF_filter_index, ".filter_index( self: SDL_AudioCVT )=>int" },
+  { dao_SDL_AudioCVT_SETF_filter_index, ".filter_index=( self: SDL_AudioCVT, filter_index: int )" },
   { dao_SDL_AudioCVT_SDL_AudioCVT, "SDL_AudioCVT(  )=>SDL_AudioCVT" },
   { NULL, NULL }
 };
-static void Dao_SDL_AudioCVT_Delete( void *self )
+static void Dao_SDL_AudioCVT_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_AudioCVT_Typer = 
-{ "SDL_AudioCVT", NULL,
+static DaoTypeCore SDL_AudioCVT_Core = 
+{
+  "SDL_AudioCVT",
+  sizeof(SDL_AudioCVT),
+  { NULL },
   dao_SDL_AudioCVT_Nums,
   dao_SDL_AudioCVT_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_AudioCVT_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_AudioCVT_Typer = & SDL_AudioCVT_Typer;
+DaoTypeCore *dao_SDL_AudioCVT_Core = & SDL_AudioCVT_Core;
 DaoType *dao_type_SDL_AudioCVT = NULL;
 static void dao_SDL_AudioCVT_GETF_needed( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -537,7 +732,7 @@ static void dao_SDL_AudioCVT_SDL_AudioCVT( DaoProcess *_proc, DaoValue *_p[], in
 /* /usr/local/include/SDL2/SDL_pixels.h */
 
 
-static DaoNumItem dao_SDL_Color_Nums[] = 
+static DaoNumberEntry dao_SDL_Color_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -553,34 +748,50 @@ static void dao_SDL_Color_GETF_a( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Color_SETF_a( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Color_SDL_Color( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_Color_Meths[] = 
+static DaoFunctionEntry dao_SDL_Color_Meths[] = 
 {
-  { dao_SDL_Color_GETF_r, ".r( self :SDL_Color )=>int" },
-  { dao_SDL_Color_SETF_r, ".r=( self :SDL_Color, r :int )" },
-  { dao_SDL_Color_GETF_g, ".g( self :SDL_Color )=>int" },
-  { dao_SDL_Color_SETF_g, ".g=( self :SDL_Color, g :int )" },
-  { dao_SDL_Color_GETF_b, ".b( self :SDL_Color )=>int" },
-  { dao_SDL_Color_SETF_b, ".b=( self :SDL_Color, b :int )" },
-  { dao_SDL_Color_GETF_a, ".a( self :SDL_Color )=>int" },
-  { dao_SDL_Color_SETF_a, ".a=( self :SDL_Color, a :int )" },
+  { dao_SDL_Color_GETF_r, ".r( self: SDL_Color )=>int" },
+  { dao_SDL_Color_SETF_r, ".r=( self: SDL_Color, r: int )" },
+  { dao_SDL_Color_GETF_g, ".g( self: SDL_Color )=>int" },
+  { dao_SDL_Color_SETF_g, ".g=( self: SDL_Color, g: int )" },
+  { dao_SDL_Color_GETF_b, ".b( self: SDL_Color )=>int" },
+  { dao_SDL_Color_SETF_b, ".b=( self: SDL_Color, b: int )" },
+  { dao_SDL_Color_GETF_a, ".a( self: SDL_Color )=>int" },
+  { dao_SDL_Color_SETF_a, ".a=( self: SDL_Color, a: int )" },
   { dao_SDL_Color_SDL_Color, "SDL_Color(  )=>SDL_Color" },
   { NULL, NULL }
 };
-static void Dao_SDL_Color_Delete( void *self )
+static void Dao_SDL_Color_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_Color_Typer = 
-{ "SDL_Color", NULL,
+static DaoTypeCore SDL_Color_Core = 
+{
+  "SDL_Color",
+  sizeof(SDL_Color),
+  { NULL },
   dao_SDL_Color_Nums,
   dao_SDL_Color_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_Color_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_Color_Typer = & SDL_Color_Typer;
+DaoTypeCore *dao_SDL_Color_Core = & SDL_Color_Core;
 DaoType *dao_type_SDL_Color = NULL;
 static void dao_SDL_Color_GETF_r( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -630,7 +841,7 @@ static void dao_SDL_Color_SDL_Color( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_pixels.h */
 
 
-static DaoNumItem dao_SDL_Palette_Nums[] = 
+static DaoNumberEntry dao_SDL_Palette_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -645,33 +856,49 @@ static void dao_SDL_Palette_GETF_refcount( DaoProcess *_proc, DaoValue *_p[], in
 static void dao_SDL_Palette_SETF_refcount( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Palette_SDL_Palette( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_Palette_Meths[] = 
+static DaoFunctionEntry dao_SDL_Palette_Meths[] = 
 {
-  { dao_SDL_Palette_GETF_ncolors, ".ncolors( self :SDL_Palette )=>int" },
-  { dao_SDL_Palette_SETF_ncolors, ".ncolors=( self :SDL_Palette, ncolors :int )" },
-  { dao_SDL_Palette_GETF_colors, ".colors( self :SDL_Palette )=>SDL_Color" },
-  { dao_SDL_Palette_GETF_version, ".version( self :SDL_Palette )=>int" },
-  { dao_SDL_Palette_SETF_version, ".version=( self :SDL_Palette, version :int )" },
-  { dao_SDL_Palette_GETF_refcount, ".refcount( self :SDL_Palette )=>int" },
-  { dao_SDL_Palette_SETF_refcount, ".refcount=( self :SDL_Palette, refcount :int )" },
+  { dao_SDL_Palette_GETF_ncolors, ".ncolors( self: SDL_Palette )=>int" },
+  { dao_SDL_Palette_SETF_ncolors, ".ncolors=( self: SDL_Palette, ncolors: int )" },
+  { dao_SDL_Palette_GETF_colors, ".colors( self: SDL_Palette )=>SDL_Color" },
+  { dao_SDL_Palette_GETF_version, ".version( self: SDL_Palette )=>int" },
+  { dao_SDL_Palette_SETF_version, ".version=( self: SDL_Palette, version: int )" },
+  { dao_SDL_Palette_GETF_refcount, ".refcount( self: SDL_Palette )=>int" },
+  { dao_SDL_Palette_SETF_refcount, ".refcount=( self: SDL_Palette, refcount: int )" },
   { dao_SDL_Palette_SDL_Palette, "SDL_Palette(  )=>SDL_Palette" },
   { NULL, NULL }
 };
-static void Dao_SDL_Palette_Delete( void *self )
+static void Dao_SDL_Palette_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_Palette_Typer = 
-{ "SDL_Palette", NULL,
+static DaoTypeCore SDL_Palette_Core = 
+{
+  "SDL_Palette",
+  sizeof(SDL_Palette),
+  { NULL },
   dao_SDL_Palette_Nums,
   dao_SDL_Palette_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_Palette_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_Palette_Typer = & SDL_Palette_Typer;
+DaoTypeCore *dao_SDL_Palette_Core = & SDL_Palette_Core;
 DaoType *dao_type_SDL_Palette = NULL;
 static void dao_SDL_Palette_GETF_ncolors( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -716,7 +943,7 @@ static void dao_SDL_Palette_SDL_Palette( DaoProcess *_proc, DaoValue *_p[], int 
 /* /usr/local/include/SDL2/SDL_pixels.h */
 
 
-static DaoNumItem dao_SDL_PixelFormat_Nums[] = 
+static DaoNumberEntry dao_SDL_PixelFormat_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -758,60 +985,76 @@ static void dao_SDL_PixelFormat_SETF_refcount( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_PixelFormat_GETF_next( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_PixelFormat_SDL_PixelFormat( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_PixelFormat_Meths[] = 
+static DaoFunctionEntry dao_SDL_PixelFormat_Meths[] = 
 {
-  { dao_SDL_PixelFormat_GETF_format, ".format( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_format, ".format=( self :SDL_PixelFormat, format :int )" },
-  { dao_SDL_PixelFormat_GETF_palette, ".palette( self :SDL_PixelFormat )=>SDL_Palette" },
-  { dao_SDL_PixelFormat_GETF_BitsPerPixel, ".BitsPerPixel( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_BitsPerPixel, ".BitsPerPixel=( self :SDL_PixelFormat, BitsPerPixel :int )" },
-  { dao_SDL_PixelFormat_GETF_BytesPerPixel, ".BytesPerPixel( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_BytesPerPixel, ".BytesPerPixel=( self :SDL_PixelFormat, BytesPerPixel :int )" },
-  { dao_SDL_PixelFormat_GETF_Rmask, ".Rmask( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Rmask, ".Rmask=( self :SDL_PixelFormat, Rmask :int )" },
-  { dao_SDL_PixelFormat_GETF_Gmask, ".Gmask( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Gmask, ".Gmask=( self :SDL_PixelFormat, Gmask :int )" },
-  { dao_SDL_PixelFormat_GETF_Bmask, ".Bmask( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Bmask, ".Bmask=( self :SDL_PixelFormat, Bmask :int )" },
-  { dao_SDL_PixelFormat_GETF_Amask, ".Amask( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Amask, ".Amask=( self :SDL_PixelFormat, Amask :int )" },
-  { dao_SDL_PixelFormat_GETF_Rloss, ".Rloss( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Rloss, ".Rloss=( self :SDL_PixelFormat, Rloss :int )" },
-  { dao_SDL_PixelFormat_GETF_Gloss, ".Gloss( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Gloss, ".Gloss=( self :SDL_PixelFormat, Gloss :int )" },
-  { dao_SDL_PixelFormat_GETF_Bloss, ".Bloss( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Bloss, ".Bloss=( self :SDL_PixelFormat, Bloss :int )" },
-  { dao_SDL_PixelFormat_GETF_Aloss, ".Aloss( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Aloss, ".Aloss=( self :SDL_PixelFormat, Aloss :int )" },
-  { dao_SDL_PixelFormat_GETF_Rshift, ".Rshift( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Rshift, ".Rshift=( self :SDL_PixelFormat, Rshift :int )" },
-  { dao_SDL_PixelFormat_GETF_Gshift, ".Gshift( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Gshift, ".Gshift=( self :SDL_PixelFormat, Gshift :int )" },
-  { dao_SDL_PixelFormat_GETF_Bshift, ".Bshift( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Bshift, ".Bshift=( self :SDL_PixelFormat, Bshift :int )" },
-  { dao_SDL_PixelFormat_GETF_Ashift, ".Ashift( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_Ashift, ".Ashift=( self :SDL_PixelFormat, Ashift :int )" },
-  { dao_SDL_PixelFormat_GETF_refcount, ".refcount( self :SDL_PixelFormat )=>int" },
-  { dao_SDL_PixelFormat_SETF_refcount, ".refcount=( self :SDL_PixelFormat, refcount :int )" },
-  { dao_SDL_PixelFormat_GETF_next, ".next( self :SDL_PixelFormat )=>SDL_PixelFormat" },
+  { dao_SDL_PixelFormat_GETF_format, ".format( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_format, ".format=( self: SDL_PixelFormat, format: int )" },
+  { dao_SDL_PixelFormat_GETF_palette, ".palette( self: SDL_PixelFormat )=>SDL_Palette" },
+  { dao_SDL_PixelFormat_GETF_BitsPerPixel, ".BitsPerPixel( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_BitsPerPixel, ".BitsPerPixel=( self: SDL_PixelFormat, BitsPerPixel: int )" },
+  { dao_SDL_PixelFormat_GETF_BytesPerPixel, ".BytesPerPixel( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_BytesPerPixel, ".BytesPerPixel=( self: SDL_PixelFormat, BytesPerPixel: int )" },
+  { dao_SDL_PixelFormat_GETF_Rmask, ".Rmask( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Rmask, ".Rmask=( self: SDL_PixelFormat, Rmask: int )" },
+  { dao_SDL_PixelFormat_GETF_Gmask, ".Gmask( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Gmask, ".Gmask=( self: SDL_PixelFormat, Gmask: int )" },
+  { dao_SDL_PixelFormat_GETF_Bmask, ".Bmask( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Bmask, ".Bmask=( self: SDL_PixelFormat, Bmask: int )" },
+  { dao_SDL_PixelFormat_GETF_Amask, ".Amask( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Amask, ".Amask=( self: SDL_PixelFormat, Amask: int )" },
+  { dao_SDL_PixelFormat_GETF_Rloss, ".Rloss( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Rloss, ".Rloss=( self: SDL_PixelFormat, Rloss: int )" },
+  { dao_SDL_PixelFormat_GETF_Gloss, ".Gloss( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Gloss, ".Gloss=( self: SDL_PixelFormat, Gloss: int )" },
+  { dao_SDL_PixelFormat_GETF_Bloss, ".Bloss( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Bloss, ".Bloss=( self: SDL_PixelFormat, Bloss: int )" },
+  { dao_SDL_PixelFormat_GETF_Aloss, ".Aloss( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Aloss, ".Aloss=( self: SDL_PixelFormat, Aloss: int )" },
+  { dao_SDL_PixelFormat_GETF_Rshift, ".Rshift( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Rshift, ".Rshift=( self: SDL_PixelFormat, Rshift: int )" },
+  { dao_SDL_PixelFormat_GETF_Gshift, ".Gshift( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Gshift, ".Gshift=( self: SDL_PixelFormat, Gshift: int )" },
+  { dao_SDL_PixelFormat_GETF_Bshift, ".Bshift( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Bshift, ".Bshift=( self: SDL_PixelFormat, Bshift: int )" },
+  { dao_SDL_PixelFormat_GETF_Ashift, ".Ashift( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_Ashift, ".Ashift=( self: SDL_PixelFormat, Ashift: int )" },
+  { dao_SDL_PixelFormat_GETF_refcount, ".refcount( self: SDL_PixelFormat )=>int" },
+  { dao_SDL_PixelFormat_SETF_refcount, ".refcount=( self: SDL_PixelFormat, refcount: int )" },
+  { dao_SDL_PixelFormat_GETF_next, ".next( self: SDL_PixelFormat )=>SDL_PixelFormat" },
   { dao_SDL_PixelFormat_SDL_PixelFormat, "SDL_PixelFormat(  )=>SDL_PixelFormat" },
   { NULL, NULL }
 };
-static void Dao_SDL_PixelFormat_Delete( void *self )
+static void Dao_SDL_PixelFormat_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_PixelFormat_Typer = 
-{ "SDL_PixelFormat", NULL,
+static DaoTypeCore SDL_PixelFormat_Core = 
+{
+  "SDL_PixelFormat",
+  sizeof(SDL_PixelFormat),
+  { NULL },
   dao_SDL_PixelFormat_Nums,
   dao_SDL_PixelFormat_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_PixelFormat_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_PixelFormat_Typer = & SDL_PixelFormat_Typer;
+DaoTypeCore *dao_SDL_PixelFormat_Core = & SDL_PixelFormat_Core;
 DaoType *dao_type_SDL_PixelFormat = NULL;
 static void dao_SDL_PixelFormat_GETF_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -991,7 +1234,7 @@ static void dao_SDL_PixelFormat_SDL_PixelFormat( DaoProcess *_proc, DaoValue *_p
 /* /usr/local/include/SDL2/SDL_rect.h */
 
 
-static DaoNumItem dao_SDL_Point_Nums[] = 
+static DaoNumberEntry dao_SDL_Point_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1003,30 +1246,46 @@ static void dao_SDL_Point_GETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Point_SETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Point_SDL_Point( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_Point_Meths[] = 
+static DaoFunctionEntry dao_SDL_Point_Meths[] = 
 {
-  { dao_SDL_Point_GETF_x, ".x( self :SDL_Point )=>int" },
-  { dao_SDL_Point_SETF_x, ".x=( self :SDL_Point, x :int )" },
-  { dao_SDL_Point_GETF_y, ".y( self :SDL_Point )=>int" },
-  { dao_SDL_Point_SETF_y, ".y=( self :SDL_Point, y :int )" },
+  { dao_SDL_Point_GETF_x, ".x( self: SDL_Point )=>int" },
+  { dao_SDL_Point_SETF_x, ".x=( self: SDL_Point, x: int )" },
+  { dao_SDL_Point_GETF_y, ".y( self: SDL_Point )=>int" },
+  { dao_SDL_Point_SETF_y, ".y=( self: SDL_Point, y: int )" },
   { dao_SDL_Point_SDL_Point, "SDL_Point(  )=>SDL_Point" },
   { NULL, NULL }
 };
-static void Dao_SDL_Point_Delete( void *self )
+static void Dao_SDL_Point_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_Point_Typer = 
-{ "SDL_Point", NULL,
+static DaoTypeCore SDL_Point_Core = 
+{
+  "SDL_Point",
+  sizeof(SDL_Point),
+  { NULL },
   dao_SDL_Point_Nums,
   dao_SDL_Point_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_Point_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_Point_Typer = & SDL_Point_Typer;
+DaoTypeCore *dao_SDL_Point_Core = & SDL_Point_Core;
 DaoType *dao_type_SDL_Point = NULL;
 static void dao_SDL_Point_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1056,7 +1315,7 @@ static void dao_SDL_Point_SDL_Point( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_rect.h */
 
 
-static DaoNumItem dao_SDL_Rect_Nums[] = 
+static DaoNumberEntry dao_SDL_Rect_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1072,34 +1331,50 @@ static void dao_SDL_Rect_GETF_h( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Rect_SETF_h( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Rect_SDL_Rect( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_Rect_Meths[] = 
+static DaoFunctionEntry dao_SDL_Rect_Meths[] = 
 {
-  { dao_SDL_Rect_GETF_x, ".x( self :SDL_Rect )=>int" },
-  { dao_SDL_Rect_SETF_x, ".x=( self :SDL_Rect, x :int )" },
-  { dao_SDL_Rect_GETF_y, ".y( self :SDL_Rect )=>int" },
-  { dao_SDL_Rect_SETF_y, ".y=( self :SDL_Rect, y :int )" },
-  { dao_SDL_Rect_GETF_w, ".w( self :SDL_Rect )=>int" },
-  { dao_SDL_Rect_SETF_w, ".w=( self :SDL_Rect, w :int )" },
-  { dao_SDL_Rect_GETF_h, ".h( self :SDL_Rect )=>int" },
-  { dao_SDL_Rect_SETF_h, ".h=( self :SDL_Rect, h :int )" },
+  { dao_SDL_Rect_GETF_x, ".x( self: SDL_Rect )=>int" },
+  { dao_SDL_Rect_SETF_x, ".x=( self: SDL_Rect, x: int )" },
+  { dao_SDL_Rect_GETF_y, ".y( self: SDL_Rect )=>int" },
+  { dao_SDL_Rect_SETF_y, ".y=( self: SDL_Rect, y: int )" },
+  { dao_SDL_Rect_GETF_w, ".w( self: SDL_Rect )=>int" },
+  { dao_SDL_Rect_SETF_w, ".w=( self: SDL_Rect, w: int )" },
+  { dao_SDL_Rect_GETF_h, ".h( self: SDL_Rect )=>int" },
+  { dao_SDL_Rect_SETF_h, ".h=( self: SDL_Rect, h: int )" },
   { dao_SDL_Rect_SDL_Rect, "SDL_Rect(  )=>SDL_Rect" },
   { NULL, NULL }
 };
-static void Dao_SDL_Rect_Delete( void *self )
+static void Dao_SDL_Rect_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_Rect_Typer = 
-{ "SDL_Rect", NULL,
+static DaoTypeCore SDL_Rect_Core = 
+{
+  "SDL_Rect",
+  sizeof(SDL_Rect),
+  { NULL },
   dao_SDL_Rect_Nums,
   dao_SDL_Rect_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_Rect_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_Rect_Typer = & SDL_Rect_Typer;
+DaoTypeCore *dao_SDL_Rect_Core = & SDL_Rect_Core;
 DaoType *dao_type_SDL_Rect = NULL;
 static void dao_SDL_Rect_GETF_x( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1149,7 +1424,7 @@ static void dao_SDL_Rect_SDL_Rect( DaoProcess *_proc, DaoValue *_p[], int _n )
 /* /usr/local/include/SDL2/SDL_surface.h */
 
 
-static DaoNumItem dao_SDL_Surface_Nums[] = 
+static DaoNumberEntry dao_SDL_Surface_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1171,40 +1446,56 @@ static void dao_SDL_Surface_GETF_map( DaoProcess *_proc, DaoValue *_p[], int _n 
 static void dao_SDL_Surface_GETF_refcount( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Surface_SDL_Surface( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_Surface_Meths[] = 
+static DaoFunctionEntry dao_SDL_Surface_Meths[] = 
 {
-  { dao_SDL_Surface_GETF_flags, ".flags( self :SDL_Surface )=>int" },
-  { dao_SDL_Surface_GETF_format, ".format( self :SDL_Surface )=>SDL_PixelFormat" },
-  { dao_SDL_Surface_GETF_w, ".w( self :SDL_Surface )=>int" },
-  { dao_SDL_Surface_GETF_h, ".h( self :SDL_Surface )=>int" },
-  { dao_SDL_Surface_GETF_pitch, ".pitch( self :SDL_Surface )=>int" },
-  { dao_SDL_Surface_GETF_pixels, ".pixels( self :SDL_Surface )=>cdata" },
-  { dao_SDL_Surface_GETI_Pixel, "[]( self :SDL_Surface, i :int, j :int, pixel :enum<uint8,uint16,uint32>=$uint8 )=>int" },
-  { dao_SDL_Surface_SETI_Pixel, "[]=( self :SDL_Surface, value :int, i :int, j :int, pixel :enum<uint8,uint16,uint32>=$uint8 )" },
-  { dao_SDL_Surface_GETF_userdata, ".userdata( self :SDL_Surface )=>cdata" },
-  { dao_SDL_Surface_GETF_locked, ".locked( self :SDL_Surface )=>int" },
-  { dao_SDL_Surface_GETF_lock_data, ".lock_data( self :SDL_Surface )=>cdata" },
-  { dao_SDL_Surface_GETF_clip_rect, ".clip_rect( self :SDL_Surface )=>SDL_Rect" },
-  { dao_SDL_Surface_GETF_map, ".map( self :SDL_Surface )=>SDL_BlitMap" },
-  { dao_SDL_Surface_GETF_refcount, ".refcount( self :SDL_Surface )=>int" },
+  { dao_SDL_Surface_GETF_flags, ".flags( self: SDL_Surface )=>int" },
+  { dao_SDL_Surface_GETF_format, ".format( self: SDL_Surface )=>SDL_PixelFormat" },
+  { dao_SDL_Surface_GETF_w, ".w( self: SDL_Surface )=>int" },
+  { dao_SDL_Surface_GETF_h, ".h( self: SDL_Surface )=>int" },
+  { dao_SDL_Surface_GETF_pitch, ".pitch( self: SDL_Surface )=>int" },
+  { dao_SDL_Surface_GETF_pixels, ".pixels( self: SDL_Surface )=>cdata" },
+  { dao_SDL_Surface_GETI_Pixel, "[]( self: SDL_Surface, i: int, j: int, pixel: enum<uint8,uint16,uint32>=$uint8 )=>int" },
+  { dao_SDL_Surface_SETI_Pixel, "[]=( self: SDL_Surface, value: int, i: int, j: int, pixel: enum<uint8,uint16,uint32>=$uint8 )" },
+  { dao_SDL_Surface_GETF_userdata, ".userdata( self: SDL_Surface )=>cdata" },
+  { dao_SDL_Surface_GETF_locked, ".locked( self: SDL_Surface )=>int" },
+  { dao_SDL_Surface_GETF_lock_data, ".lock_data( self: SDL_Surface )=>cdata" },
+  { dao_SDL_Surface_GETF_clip_rect, ".clip_rect( self: SDL_Surface )=>SDL_Rect" },
+  { dao_SDL_Surface_GETF_map, ".map( self: SDL_Surface )=>SDL_BlitMap" },
+  { dao_SDL_Surface_GETF_refcount, ".refcount( self: SDL_Surface )=>int" },
   { dao_SDL_Surface_SDL_Surface, "SDL_Surface(  )=>SDL_Surface" },
   { NULL, NULL }
 };
-static void Dao_SDL_Surface_Delete( void *self )
+static void Dao_SDL_Surface_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_Surface_Typer = 
-{ "SDL_Surface", NULL,
+static DaoTypeCore SDL_Surface_Core = 
+{
+  "SDL_Surface",
+  sizeof(SDL_Surface),
+  { NULL },
   dao_SDL_Surface_Nums,
   dao_SDL_Surface_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_Surface_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_Surface_Typer = & SDL_Surface_Typer;
+DaoTypeCore *dao_SDL_Surface_Core = & SDL_Surface_Core;
 DaoType *dao_type_SDL_Surface = NULL;
 static void dao_SDL_Surface_GETF_flags( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1330,14 +1621,37 @@ static void dao_SDL_Surface_SDL_Surface( DaoProcess *_proc, DaoValue *_p[], int 
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_Surface );
 }
 /* /usr/local/include/SDL2/SDL_surface.h */
-static DaoTypeBase SDL_BlitMap_Typer = 
-{ "SDL_BlitMap", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_BlitMap_Typer = & SDL_BlitMap_Typer;
+static DaoTypeCore SDL_BlitMap_Core = 
+{
+  "SDL_BlitMap",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_BlitMap_Core = & SDL_BlitMap_Core;
 DaoType *dao_type_SDL_BlitMap = NULL;
 /* /usr/local/include/SDL2/SDL_video.h */
 
 
-static DaoNumItem dao_SDL_DisplayMode_Nums[] = 
+static DaoNumberEntry dao_SDL_DisplayMode_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1354,35 +1668,51 @@ static void dao_SDL_DisplayMode_SETF_refresh_rate( DaoProcess *_proc, DaoValue *
 static void dao_SDL_DisplayMode_GETF_driverdata( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_DisplayMode_SDL_DisplayMode( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_DisplayMode_Meths[] = 
+static DaoFunctionEntry dao_SDL_DisplayMode_Meths[] = 
 {
-  { dao_SDL_DisplayMode_GETF_format, ".format( self :SDL_DisplayMode )=>int" },
-  { dao_SDL_DisplayMode_SETF_format, ".format=( self :SDL_DisplayMode, format :int )" },
-  { dao_SDL_DisplayMode_GETF_w, ".w( self :SDL_DisplayMode )=>int" },
-  { dao_SDL_DisplayMode_SETF_w, ".w=( self :SDL_DisplayMode, w :int )" },
-  { dao_SDL_DisplayMode_GETF_h, ".h( self :SDL_DisplayMode )=>int" },
-  { dao_SDL_DisplayMode_SETF_h, ".h=( self :SDL_DisplayMode, h :int )" },
-  { dao_SDL_DisplayMode_GETF_refresh_rate, ".refresh_rate( self :SDL_DisplayMode )=>int" },
-  { dao_SDL_DisplayMode_SETF_refresh_rate, ".refresh_rate=( self :SDL_DisplayMode, refresh_rate :int )" },
-  { dao_SDL_DisplayMode_GETF_driverdata, ".driverdata( self :SDL_DisplayMode )=>cdata" },
+  { dao_SDL_DisplayMode_GETF_format, ".format( self: SDL_DisplayMode )=>int" },
+  { dao_SDL_DisplayMode_SETF_format, ".format=( self: SDL_DisplayMode, format: int )" },
+  { dao_SDL_DisplayMode_GETF_w, ".w( self: SDL_DisplayMode )=>int" },
+  { dao_SDL_DisplayMode_SETF_w, ".w=( self: SDL_DisplayMode, w: int )" },
+  { dao_SDL_DisplayMode_GETF_h, ".h( self: SDL_DisplayMode )=>int" },
+  { dao_SDL_DisplayMode_SETF_h, ".h=( self: SDL_DisplayMode, h: int )" },
+  { dao_SDL_DisplayMode_GETF_refresh_rate, ".refresh_rate( self: SDL_DisplayMode )=>int" },
+  { dao_SDL_DisplayMode_SETF_refresh_rate, ".refresh_rate=( self: SDL_DisplayMode, refresh_rate: int )" },
+  { dao_SDL_DisplayMode_GETF_driverdata, ".driverdata( self: SDL_DisplayMode )=>cdata" },
   { dao_SDL_DisplayMode_SDL_DisplayMode, "SDL_DisplayMode(  )=>SDL_DisplayMode" },
   { NULL, NULL }
 };
-static void Dao_SDL_DisplayMode_Delete( void *self )
+static void Dao_SDL_DisplayMode_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_DisplayMode_Typer = 
-{ "SDL_DisplayMode", NULL,
+static DaoTypeCore SDL_DisplayMode_Core = 
+{
+  "SDL_DisplayMode",
+  sizeof(SDL_DisplayMode),
+  { NULL },
   dao_SDL_DisplayMode_Nums,
   dao_SDL_DisplayMode_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_DisplayMode_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_DisplayMode_Typer = & SDL_DisplayMode_Typer;
+DaoTypeCore *dao_SDL_DisplayMode_Core = & SDL_DisplayMode_Core;
 DaoType *dao_type_SDL_DisplayMode = NULL;
 static void dao_SDL_DisplayMode_GETF_format( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1435,14 +1765,37 @@ static void dao_SDL_DisplayMode_SDL_DisplayMode( DaoProcess *_proc, DaoValue *_p
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_DisplayMode );
 }
 /* /usr/local/include/SDL2/SDL_video.h */
-static DaoTypeBase SDL_Window_Typer = 
-{ "SDL_Window", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_Window_Typer = & SDL_Window_Typer;
+static DaoTypeCore SDL_Window_Core = 
+{
+  "SDL_Window",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_Window_Core = & SDL_Window_Core;
 DaoType *dao_type_SDL_Window = NULL;
 /* /usr/local/include/SDL2/SDL_keyboard.h */
 
 
-static DaoNumItem dao_SDL_Keysym_Nums[] = 
+static DaoNumberEntry dao_SDL_Keysym_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1458,34 +1811,50 @@ static void dao_SDL_Keysym_GETF_unused( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_Keysym_SETF_unused( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Keysym_SDL_Keysym( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_Keysym_Meths[] = 
+static DaoFunctionEntry dao_SDL_Keysym_Meths[] = 
 {
-  { dao_SDL_Keysym_GETF_scancode, ".scancode( self :SDL_Keysym )=>int" },
-  { dao_SDL_Keysym_SETF_scancode, ".scancode=( self :SDL_Keysym, scancode :int )" },
-  { dao_SDL_Keysym_GETF_sym, ".sym( self :SDL_Keysym )=>int" },
-  { dao_SDL_Keysym_SETF_sym, ".sym=( self :SDL_Keysym, sym :int )" },
-  { dao_SDL_Keysym_GETF_mod, ".mod( self :SDL_Keysym )=>int" },
-  { dao_SDL_Keysym_SETF_mod, ".mod=( self :SDL_Keysym, mod :int )" },
-  { dao_SDL_Keysym_GETF_unused, ".unused( self :SDL_Keysym )=>int" },
-  { dao_SDL_Keysym_SETF_unused, ".unused=( self :SDL_Keysym, unused :int )" },
+  { dao_SDL_Keysym_GETF_scancode, ".scancode( self: SDL_Keysym )=>int" },
+  { dao_SDL_Keysym_SETF_scancode, ".scancode=( self: SDL_Keysym, scancode: int )" },
+  { dao_SDL_Keysym_GETF_sym, ".sym( self: SDL_Keysym )=>int" },
+  { dao_SDL_Keysym_SETF_sym, ".sym=( self: SDL_Keysym, sym: int )" },
+  { dao_SDL_Keysym_GETF_mod, ".mod( self: SDL_Keysym )=>int" },
+  { dao_SDL_Keysym_SETF_mod, ".mod=( self: SDL_Keysym, mod: int )" },
+  { dao_SDL_Keysym_GETF_unused, ".unused( self: SDL_Keysym )=>int" },
+  { dao_SDL_Keysym_SETF_unused, ".unused=( self: SDL_Keysym, unused: int )" },
   { dao_SDL_Keysym_SDL_Keysym, "SDL_Keysym(  )=>SDL_Keysym" },
   { NULL, NULL }
 };
-static void Dao_SDL_Keysym_Delete( void *self )
+static void Dao_SDL_Keysym_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_Keysym_Typer = 
-{ "SDL_Keysym", NULL,
+static DaoTypeCore SDL_Keysym_Core = 
+{
+  "SDL_Keysym",
+  sizeof(SDL_Keysym),
+  { NULL },
   dao_SDL_Keysym_Nums,
   dao_SDL_Keysym_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_Keysym_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_Keysym_Typer = & SDL_Keysym_Typer;
+DaoTypeCore *dao_SDL_Keysym_Core = & SDL_Keysym_Core;
 DaoType *dao_type_SDL_Keysym = NULL;
 static void dao_SDL_Keysym_GETF_scancode( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1533,19 +1902,65 @@ static void dao_SDL_Keysym_SDL_Keysym( DaoProcess *_proc, DaoValue *_p[], int _n
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_Keysym );
 }
 /* /usr/local/include/SDL2/SDL_mouse.h */
-static DaoTypeBase SDL_Cursor_Typer = 
-{ "SDL_Cursor", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_Cursor_Typer = & SDL_Cursor_Typer;
+static DaoTypeCore SDL_Cursor_Core = 
+{
+  "SDL_Cursor",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_Cursor_Core = & SDL_Cursor_Core;
 DaoType *dao_type_SDL_Cursor = NULL;
 /* /usr/local/include/SDL2/SDL_joystick.h */
-static DaoTypeBase _SDL_Joystick_Typer = 
-{ "_SDL_Joystick", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao__SDL_Joystick_Typer = & _SDL_Joystick_Typer;
+static DaoTypeCore _SDL_Joystick_Core = 
+{
+  "_SDL_Joystick",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao__SDL_Joystick_Core = & _SDL_Joystick_Core;
 DaoType *dao_type__SDL_Joystick = NULL;
 /* /usr/local/include/SDL2/SDL_joystick.h */
 
 
-static DaoNumItem dao_SDL_JoystickGUID_Nums[] = 
+static DaoNumberEntry dao_SDL_JoystickGUID_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1555,28 +1970,44 @@ static void dao_SDL_JoystickGUID_GETF_data( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoystickGUID_SETF_data( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoystickGUID_SDL_JoystickGUID( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_JoystickGUID_Meths[] = 
+static DaoFunctionEntry dao_SDL_JoystickGUID_Meths[] = 
 {
-  { dao_SDL_JoystickGUID_GETF_data, ".data( self :SDL_JoystickGUID )=>array<int>" },
-  { dao_SDL_JoystickGUID_SETF_data, ".data=( self :SDL_JoystickGUID, data :array<int> )" },
+  { dao_SDL_JoystickGUID_GETF_data, ".data( self: SDL_JoystickGUID )=>array<int>" },
+  { dao_SDL_JoystickGUID_SETF_data, ".data=( self: SDL_JoystickGUID, data: array<int> )" },
   { dao_SDL_JoystickGUID_SDL_JoystickGUID, "SDL_JoystickGUID(  )=>SDL_JoystickGUID" },
   { NULL, NULL }
 };
-static void Dao_SDL_JoystickGUID_Delete( void *self )
+static void Dao_SDL_JoystickGUID_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_JoystickGUID_Typer = 
-{ "SDL_JoystickGUID", NULL,
+static DaoTypeCore SDL_JoystickGUID_Core = 
+{
+  "SDL_JoystickGUID",
+  sizeof(SDL_JoystickGUID),
+  { NULL },
   dao_SDL_JoystickGUID_Nums,
   dao_SDL_JoystickGUID_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_JoystickGUID_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_JoystickGUID_Typer = & SDL_JoystickGUID_Typer;
+DaoTypeCore *dao_SDL_JoystickGUID_Core = & SDL_JoystickGUID_Core;
 DaoType *dao_type_SDL_JoystickGUID = NULL;
 static void dao_SDL_JoystickGUID_GETF_data( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1600,7 +2031,7 @@ static void dao_SDL_JoystickGUID_SDL_JoystickGUID( DaoProcess *_proc, DaoValue *
 /* /usr/local/include/SDL2/SDL_touch.h */
 
 
-static DaoNumItem dao_SDL_Finger_Nums[] = 
+static DaoNumberEntry dao_SDL_Finger_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1616,34 +2047,50 @@ static void dao_SDL_Finger_GETF_pressure( DaoProcess *_proc, DaoValue *_p[], int
 static void dao_SDL_Finger_SETF_pressure( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Finger_SDL_Finger( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_Finger_Meths[] = 
+static DaoFunctionEntry dao_SDL_Finger_Meths[] = 
 {
-  { dao_SDL_Finger_GETF_id, ".id( self :SDL_Finger )=>int" },
-  { dao_SDL_Finger_SETF_id, ".id=( self :SDL_Finger, id :int )" },
-  { dao_SDL_Finger_GETF_x, ".x( self :SDL_Finger )=>float" },
-  { dao_SDL_Finger_SETF_x, ".x=( self :SDL_Finger, x :float )" },
-  { dao_SDL_Finger_GETF_y, ".y( self :SDL_Finger )=>float" },
-  { dao_SDL_Finger_SETF_y, ".y=( self :SDL_Finger, y :float )" },
-  { dao_SDL_Finger_GETF_pressure, ".pressure( self :SDL_Finger )=>float" },
-  { dao_SDL_Finger_SETF_pressure, ".pressure=( self :SDL_Finger, pressure :float )" },
+  { dao_SDL_Finger_GETF_id, ".id( self: SDL_Finger )=>int" },
+  { dao_SDL_Finger_SETF_id, ".id=( self: SDL_Finger, id: int )" },
+  { dao_SDL_Finger_GETF_x, ".x( self: SDL_Finger )=>float" },
+  { dao_SDL_Finger_SETF_x, ".x=( self: SDL_Finger, x: float )" },
+  { dao_SDL_Finger_GETF_y, ".y( self: SDL_Finger )=>float" },
+  { dao_SDL_Finger_SETF_y, ".y=( self: SDL_Finger, y: float )" },
+  { dao_SDL_Finger_GETF_pressure, ".pressure( self: SDL_Finger )=>float" },
+  { dao_SDL_Finger_SETF_pressure, ".pressure=( self: SDL_Finger, pressure: float )" },
   { dao_SDL_Finger_SDL_Finger, "SDL_Finger(  )=>SDL_Finger" },
   { NULL, NULL }
 };
-static void Dao_SDL_Finger_Delete( void *self )
+static void Dao_SDL_Finger_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_Finger_Typer = 
-{ "SDL_Finger", NULL,
+static DaoTypeCore SDL_Finger_Core = 
+{
+  "SDL_Finger",
+  sizeof(SDL_Finger),
+  { NULL },
   dao_SDL_Finger_Nums,
   dao_SDL_Finger_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_Finger_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_Finger_Typer = & SDL_Finger_Typer;
+DaoTypeCore *dao_SDL_Finger_Core = & SDL_Finger_Core;
 DaoType *dao_type_SDL_Finger = NULL;
 static void dao_SDL_Finger_GETF_id( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1693,7 +2140,7 @@ static void dao_SDL_Finger_SDL_Finger( DaoProcess *_proc, DaoValue *_p[], int _n
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_CommonEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_CommonEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1705,30 +2152,46 @@ static void dao_SDL_CommonEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_CommonEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_CommonEvent_SDL_CommonEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_CommonEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_CommonEvent_Meths[] = 
 {
-  { dao_SDL_CommonEvent_GETF_type, ".type( self :SDL_CommonEvent )=>int" },
-  { dao_SDL_CommonEvent_SETF_type, ".type=( self :SDL_CommonEvent, type :int )" },
-  { dao_SDL_CommonEvent_GETF_timestamp, ".timestamp( self :SDL_CommonEvent )=>int" },
-  { dao_SDL_CommonEvent_SETF_timestamp, ".timestamp=( self :SDL_CommonEvent, timestamp :int )" },
+  { dao_SDL_CommonEvent_GETF_type, ".type( self: SDL_CommonEvent )=>int" },
+  { dao_SDL_CommonEvent_SETF_type, ".type=( self: SDL_CommonEvent, type: int )" },
+  { dao_SDL_CommonEvent_GETF_timestamp, ".timestamp( self: SDL_CommonEvent )=>int" },
+  { dao_SDL_CommonEvent_SETF_timestamp, ".timestamp=( self: SDL_CommonEvent, timestamp: int )" },
   { dao_SDL_CommonEvent_SDL_CommonEvent, "SDL_CommonEvent(  )=>SDL_CommonEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_CommonEvent_Delete( void *self )
+static void Dao_SDL_CommonEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_CommonEvent_Typer = 
-{ "SDL_CommonEvent", NULL,
+static DaoTypeCore SDL_CommonEvent_Core = 
+{
+  "SDL_CommonEvent",
+  sizeof(SDL_CommonEvent),
+  { NULL },
   dao_SDL_CommonEvent_Nums,
   dao_SDL_CommonEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_CommonEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_CommonEvent_Typer = & SDL_CommonEvent_Typer;
+DaoTypeCore *dao_SDL_CommonEvent_Core = & SDL_CommonEvent_Core;
 DaoType *dao_type_SDL_CommonEvent = NULL;
 static void dao_SDL_CommonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1758,7 +2221,7 @@ static void dao_SDL_CommonEvent_SDL_CommonEvent( DaoProcess *_proc, DaoValue *_p
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_WindowEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_WindowEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1778,38 +2241,54 @@ static void dao_SDL_WindowEvent_GETF_data2( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_WindowEvent_SETF_data2( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_WindowEvent_SDL_WindowEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_WindowEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_WindowEvent_Meths[] = 
 {
-  { dao_SDL_WindowEvent_GETF_type, ".type( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_type, ".type=( self :SDL_WindowEvent, type :int )" },
-  { dao_SDL_WindowEvent_GETF_timestamp, ".timestamp( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_timestamp, ".timestamp=( self :SDL_WindowEvent, timestamp :int )" },
-  { dao_SDL_WindowEvent_GETF_windowID, ".windowID( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_windowID, ".windowID=( self :SDL_WindowEvent, windowID :int )" },
-  { dao_SDL_WindowEvent_GETF_event, ".event( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_event, ".event=( self :SDL_WindowEvent, event :int )" },
-  { dao_SDL_WindowEvent_GETF_data1, ".data1( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_data1, ".data1=( self :SDL_WindowEvent, data1 :int )" },
-  { dao_SDL_WindowEvent_GETF_data2, ".data2( self :SDL_WindowEvent )=>int" },
-  { dao_SDL_WindowEvent_SETF_data2, ".data2=( self :SDL_WindowEvent, data2 :int )" },
+  { dao_SDL_WindowEvent_GETF_type, ".type( self: SDL_WindowEvent )=>int" },
+  { dao_SDL_WindowEvent_SETF_type, ".type=( self: SDL_WindowEvent, type: int )" },
+  { dao_SDL_WindowEvent_GETF_timestamp, ".timestamp( self: SDL_WindowEvent )=>int" },
+  { dao_SDL_WindowEvent_SETF_timestamp, ".timestamp=( self: SDL_WindowEvent, timestamp: int )" },
+  { dao_SDL_WindowEvent_GETF_windowID, ".windowID( self: SDL_WindowEvent )=>int" },
+  { dao_SDL_WindowEvent_SETF_windowID, ".windowID=( self: SDL_WindowEvent, windowID: int )" },
+  { dao_SDL_WindowEvent_GETF_event, ".event( self: SDL_WindowEvent )=>int" },
+  { dao_SDL_WindowEvent_SETF_event, ".event=( self: SDL_WindowEvent, event: int )" },
+  { dao_SDL_WindowEvent_GETF_data1, ".data1( self: SDL_WindowEvent )=>int" },
+  { dao_SDL_WindowEvent_SETF_data1, ".data1=( self: SDL_WindowEvent, data1: int )" },
+  { dao_SDL_WindowEvent_GETF_data2, ".data2( self: SDL_WindowEvent )=>int" },
+  { dao_SDL_WindowEvent_SETF_data2, ".data2=( self: SDL_WindowEvent, data2: int )" },
   { dao_SDL_WindowEvent_SDL_WindowEvent, "SDL_WindowEvent(  )=>SDL_WindowEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_WindowEvent_Delete( void *self )
+static void Dao_SDL_WindowEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_WindowEvent_Typer = 
-{ "SDL_WindowEvent", NULL,
+static DaoTypeCore SDL_WindowEvent_Core = 
+{
+  "SDL_WindowEvent",
+  sizeof(SDL_WindowEvent),
+  { NULL },
   dao_SDL_WindowEvent_Nums,
   dao_SDL_WindowEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_WindowEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_WindowEvent_Typer = & SDL_WindowEvent_Typer;
+DaoTypeCore *dao_SDL_WindowEvent_Core = & SDL_WindowEvent_Core;
 DaoType *dao_type_SDL_WindowEvent = NULL;
 static void dao_SDL_WindowEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1879,7 +2358,7 @@ static void dao_SDL_WindowEvent_SDL_WindowEvent( DaoProcess *_proc, DaoValue *_p
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_KeyboardEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_KeyboardEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -1898,37 +2377,53 @@ static void dao_SDL_KeyboardEvent_SETF_repeat( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_KeyboardEvent_GETF_keysym( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_KeyboardEvent_SDL_KeyboardEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_KeyboardEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_KeyboardEvent_Meths[] = 
 {
-  { dao_SDL_KeyboardEvent_GETF_type, ".type( self :SDL_KeyboardEvent )=>int" },
-  { dao_SDL_KeyboardEvent_SETF_type, ".type=( self :SDL_KeyboardEvent, type :int )" },
-  { dao_SDL_KeyboardEvent_GETF_timestamp, ".timestamp( self :SDL_KeyboardEvent )=>int" },
-  { dao_SDL_KeyboardEvent_SETF_timestamp, ".timestamp=( self :SDL_KeyboardEvent, timestamp :int )" },
-  { dao_SDL_KeyboardEvent_GETF_windowID, ".windowID( self :SDL_KeyboardEvent )=>int" },
-  { dao_SDL_KeyboardEvent_SETF_windowID, ".windowID=( self :SDL_KeyboardEvent, windowID :int )" },
-  { dao_SDL_KeyboardEvent_GETF_state, ".state( self :SDL_KeyboardEvent )=>int" },
-  { dao_SDL_KeyboardEvent_SETF_state, ".state=( self :SDL_KeyboardEvent, state :int )" },
-  { dao_SDL_KeyboardEvent_GETF_repeat, ".repeat( self :SDL_KeyboardEvent )=>int" },
-  { dao_SDL_KeyboardEvent_SETF_repeat, ".repeat=( self :SDL_KeyboardEvent, repeat :int )" },
-  { dao_SDL_KeyboardEvent_GETF_keysym, ".keysym( self :SDL_KeyboardEvent )=>SDL_Keysym" },
+  { dao_SDL_KeyboardEvent_GETF_type, ".type( self: SDL_KeyboardEvent )=>int" },
+  { dao_SDL_KeyboardEvent_SETF_type, ".type=( self: SDL_KeyboardEvent, type: int )" },
+  { dao_SDL_KeyboardEvent_GETF_timestamp, ".timestamp( self: SDL_KeyboardEvent )=>int" },
+  { dao_SDL_KeyboardEvent_SETF_timestamp, ".timestamp=( self: SDL_KeyboardEvent, timestamp: int )" },
+  { dao_SDL_KeyboardEvent_GETF_windowID, ".windowID( self: SDL_KeyboardEvent )=>int" },
+  { dao_SDL_KeyboardEvent_SETF_windowID, ".windowID=( self: SDL_KeyboardEvent, windowID: int )" },
+  { dao_SDL_KeyboardEvent_GETF_state, ".state( self: SDL_KeyboardEvent )=>int" },
+  { dao_SDL_KeyboardEvent_SETF_state, ".state=( self: SDL_KeyboardEvent, state: int )" },
+  { dao_SDL_KeyboardEvent_GETF_repeat, ".repeat( self: SDL_KeyboardEvent )=>int" },
+  { dao_SDL_KeyboardEvent_SETF_repeat, ".repeat=( self: SDL_KeyboardEvent, repeat: int )" },
+  { dao_SDL_KeyboardEvent_GETF_keysym, ".keysym( self: SDL_KeyboardEvent )=>SDL_Keysym" },
   { dao_SDL_KeyboardEvent_SDL_KeyboardEvent, "SDL_KeyboardEvent(  )=>SDL_KeyboardEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_KeyboardEvent_Delete( void *self )
+static void Dao_SDL_KeyboardEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_KeyboardEvent_Typer = 
-{ "SDL_KeyboardEvent", NULL,
+static DaoTypeCore SDL_KeyboardEvent_Core = 
+{
+  "SDL_KeyboardEvent",
+  sizeof(SDL_KeyboardEvent),
+  { NULL },
   dao_SDL_KeyboardEvent_Nums,
   dao_SDL_KeyboardEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_KeyboardEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_KeyboardEvent_Typer = & SDL_KeyboardEvent_Typer;
+DaoTypeCore *dao_SDL_KeyboardEvent_Core = & SDL_KeyboardEvent_Core;
 DaoType *dao_type_SDL_KeyboardEvent = NULL;
 static void dao_SDL_KeyboardEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -1993,7 +2488,7 @@ static void dao_SDL_KeyboardEvent_SDL_KeyboardEvent( DaoProcess *_proc, DaoValue
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_TextEditingEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_TextEditingEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -2013,38 +2508,54 @@ static void dao_SDL_TextEditingEvent_GETF_length( DaoProcess *_proc, DaoValue *_
 static void dao_SDL_TextEditingEvent_SETF_length( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_TextEditingEvent_SDL_TextEditingEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_TextEditingEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_TextEditingEvent_Meths[] = 
 {
-  { dao_SDL_TextEditingEvent_GETF_type, ".type( self :SDL_TextEditingEvent )=>int" },
-  { dao_SDL_TextEditingEvent_SETF_type, ".type=( self :SDL_TextEditingEvent, type :int )" },
-  { dao_SDL_TextEditingEvent_GETF_timestamp, ".timestamp( self :SDL_TextEditingEvent )=>int" },
-  { dao_SDL_TextEditingEvent_SETF_timestamp, ".timestamp=( self :SDL_TextEditingEvent, timestamp :int )" },
-  { dao_SDL_TextEditingEvent_GETF_windowID, ".windowID( self :SDL_TextEditingEvent )=>int" },
-  { dao_SDL_TextEditingEvent_SETF_windowID, ".windowID=( self :SDL_TextEditingEvent, windowID :int )" },
-  { dao_SDL_TextEditingEvent_GETF_text, ".text( self :SDL_TextEditingEvent )=>array<int>" },
-  { dao_SDL_TextEditingEvent_SETF_text, ".text=( self :SDL_TextEditingEvent, text :array<int> )" },
-  { dao_SDL_TextEditingEvent_GETF_start, ".start( self :SDL_TextEditingEvent )=>int" },
-  { dao_SDL_TextEditingEvent_SETF_start, ".start=( self :SDL_TextEditingEvent, start :int )" },
-  { dao_SDL_TextEditingEvent_GETF_length, ".length( self :SDL_TextEditingEvent )=>int" },
-  { dao_SDL_TextEditingEvent_SETF_length, ".length=( self :SDL_TextEditingEvent, length :int )" },
+  { dao_SDL_TextEditingEvent_GETF_type, ".type( self: SDL_TextEditingEvent )=>int" },
+  { dao_SDL_TextEditingEvent_SETF_type, ".type=( self: SDL_TextEditingEvent, type: int )" },
+  { dao_SDL_TextEditingEvent_GETF_timestamp, ".timestamp( self: SDL_TextEditingEvent )=>int" },
+  { dao_SDL_TextEditingEvent_SETF_timestamp, ".timestamp=( self: SDL_TextEditingEvent, timestamp: int )" },
+  { dao_SDL_TextEditingEvent_GETF_windowID, ".windowID( self: SDL_TextEditingEvent )=>int" },
+  { dao_SDL_TextEditingEvent_SETF_windowID, ".windowID=( self: SDL_TextEditingEvent, windowID: int )" },
+  { dao_SDL_TextEditingEvent_GETF_text, ".text( self: SDL_TextEditingEvent )=>array<int>" },
+  { dao_SDL_TextEditingEvent_SETF_text, ".text=( self: SDL_TextEditingEvent, text: array<int> )" },
+  { dao_SDL_TextEditingEvent_GETF_start, ".start( self: SDL_TextEditingEvent )=>int" },
+  { dao_SDL_TextEditingEvent_SETF_start, ".start=( self: SDL_TextEditingEvent, start: int )" },
+  { dao_SDL_TextEditingEvent_GETF_length, ".length( self: SDL_TextEditingEvent )=>int" },
+  { dao_SDL_TextEditingEvent_SETF_length, ".length=( self: SDL_TextEditingEvent, length: int )" },
   { dao_SDL_TextEditingEvent_SDL_TextEditingEvent, "SDL_TextEditingEvent(  )=>SDL_TextEditingEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_TextEditingEvent_Delete( void *self )
+static void Dao_SDL_TextEditingEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_TextEditingEvent_Typer = 
-{ "SDL_TextEditingEvent", NULL,
+static DaoTypeCore SDL_TextEditingEvent_Core = 
+{
+  "SDL_TextEditingEvent",
+  sizeof(SDL_TextEditingEvent),
+  { NULL },
   dao_SDL_TextEditingEvent_Nums,
   dao_SDL_TextEditingEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_TextEditingEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_TextEditingEvent_Typer = & SDL_TextEditingEvent_Typer;
+DaoTypeCore *dao_SDL_TextEditingEvent_Core = & SDL_TextEditingEvent_Core;
 DaoType *dao_type_SDL_TextEditingEvent = NULL;
 static void dao_SDL_TextEditingEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2116,7 +2627,7 @@ static void dao_SDL_TextEditingEvent_SDL_TextEditingEvent( DaoProcess *_proc, Da
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_TextInputEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_TextInputEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -2132,34 +2643,50 @@ static void dao_SDL_TextInputEvent_GETF_text( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_TextInputEvent_SETF_text( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_TextInputEvent_SDL_TextInputEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_TextInputEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_TextInputEvent_Meths[] = 
 {
-  { dao_SDL_TextInputEvent_GETF_type, ".type( self :SDL_TextInputEvent )=>int" },
-  { dao_SDL_TextInputEvent_SETF_type, ".type=( self :SDL_TextInputEvent, type :int )" },
-  { dao_SDL_TextInputEvent_GETF_timestamp, ".timestamp( self :SDL_TextInputEvent )=>int" },
-  { dao_SDL_TextInputEvent_SETF_timestamp, ".timestamp=( self :SDL_TextInputEvent, timestamp :int )" },
-  { dao_SDL_TextInputEvent_GETF_windowID, ".windowID( self :SDL_TextInputEvent )=>int" },
-  { dao_SDL_TextInputEvent_SETF_windowID, ".windowID=( self :SDL_TextInputEvent, windowID :int )" },
-  { dao_SDL_TextInputEvent_GETF_text, ".text( self :SDL_TextInputEvent )=>array<int>" },
-  { dao_SDL_TextInputEvent_SETF_text, ".text=( self :SDL_TextInputEvent, text :array<int> )" },
+  { dao_SDL_TextInputEvent_GETF_type, ".type( self: SDL_TextInputEvent )=>int" },
+  { dao_SDL_TextInputEvent_SETF_type, ".type=( self: SDL_TextInputEvent, type: int )" },
+  { dao_SDL_TextInputEvent_GETF_timestamp, ".timestamp( self: SDL_TextInputEvent )=>int" },
+  { dao_SDL_TextInputEvent_SETF_timestamp, ".timestamp=( self: SDL_TextInputEvent, timestamp: int )" },
+  { dao_SDL_TextInputEvent_GETF_windowID, ".windowID( self: SDL_TextInputEvent )=>int" },
+  { dao_SDL_TextInputEvent_SETF_windowID, ".windowID=( self: SDL_TextInputEvent, windowID: int )" },
+  { dao_SDL_TextInputEvent_GETF_text, ".text( self: SDL_TextInputEvent )=>array<int>" },
+  { dao_SDL_TextInputEvent_SETF_text, ".text=( self: SDL_TextInputEvent, text: array<int> )" },
   { dao_SDL_TextInputEvent_SDL_TextInputEvent, "SDL_TextInputEvent(  )=>SDL_TextInputEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_TextInputEvent_Delete( void *self )
+static void Dao_SDL_TextInputEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_TextInputEvent_Typer = 
-{ "SDL_TextInputEvent", NULL,
+static DaoTypeCore SDL_TextInputEvent_Core = 
+{
+  "SDL_TextInputEvent",
+  sizeof(SDL_TextInputEvent),
+  { NULL },
   dao_SDL_TextInputEvent_Nums,
   dao_SDL_TextInputEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_TextInputEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_TextInputEvent_Typer = & SDL_TextInputEvent_Typer;
+DaoTypeCore *dao_SDL_TextInputEvent_Core = & SDL_TextInputEvent_Core;
 DaoType *dao_type_SDL_TextInputEvent = NULL;
 static void dao_SDL_TextInputEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2211,7 +2738,7 @@ static void dao_SDL_TextInputEvent_SDL_TextInputEvent( DaoProcess *_proc, DaoVal
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_MouseMotionEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_MouseMotionEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -2237,44 +2764,60 @@ static void dao_SDL_MouseMotionEvent_GETF_yrel( DaoProcess *_proc, DaoValue *_p[
 static void dao_SDL_MouseMotionEvent_SETF_yrel( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseMotionEvent_SDL_MouseMotionEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_MouseMotionEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_MouseMotionEvent_Meths[] = 
 {
-  { dao_SDL_MouseMotionEvent_GETF_type, ".type( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_type, ".type=( self :SDL_MouseMotionEvent, type :int )" },
-  { dao_SDL_MouseMotionEvent_GETF_timestamp, ".timestamp( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_timestamp, ".timestamp=( self :SDL_MouseMotionEvent, timestamp :int )" },
-  { dao_SDL_MouseMotionEvent_GETF_windowID, ".windowID( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_windowID, ".windowID=( self :SDL_MouseMotionEvent, windowID :int )" },
-  { dao_SDL_MouseMotionEvent_GETF_which, ".which( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_which, ".which=( self :SDL_MouseMotionEvent, which :int )" },
-  { dao_SDL_MouseMotionEvent_GETF_state, ".state( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_state, ".state=( self :SDL_MouseMotionEvent, state :int )" },
-  { dao_SDL_MouseMotionEvent_GETF_x, ".x( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_x, ".x=( self :SDL_MouseMotionEvent, x :int )" },
-  { dao_SDL_MouseMotionEvent_GETF_y, ".y( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_y, ".y=( self :SDL_MouseMotionEvent, y :int )" },
-  { dao_SDL_MouseMotionEvent_GETF_xrel, ".xrel( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_xrel, ".xrel=( self :SDL_MouseMotionEvent, xrel :int )" },
-  { dao_SDL_MouseMotionEvent_GETF_yrel, ".yrel( self :SDL_MouseMotionEvent )=>int" },
-  { dao_SDL_MouseMotionEvent_SETF_yrel, ".yrel=( self :SDL_MouseMotionEvent, yrel :int )" },
+  { dao_SDL_MouseMotionEvent_GETF_type, ".type( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_type, ".type=( self: SDL_MouseMotionEvent, type: int )" },
+  { dao_SDL_MouseMotionEvent_GETF_timestamp, ".timestamp( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_timestamp, ".timestamp=( self: SDL_MouseMotionEvent, timestamp: int )" },
+  { dao_SDL_MouseMotionEvent_GETF_windowID, ".windowID( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_windowID, ".windowID=( self: SDL_MouseMotionEvent, windowID: int )" },
+  { dao_SDL_MouseMotionEvent_GETF_which, ".which( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_which, ".which=( self: SDL_MouseMotionEvent, which: int )" },
+  { dao_SDL_MouseMotionEvent_GETF_state, ".state( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_state, ".state=( self: SDL_MouseMotionEvent, state: int )" },
+  { dao_SDL_MouseMotionEvent_GETF_x, ".x( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_x, ".x=( self: SDL_MouseMotionEvent, x: int )" },
+  { dao_SDL_MouseMotionEvent_GETF_y, ".y( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_y, ".y=( self: SDL_MouseMotionEvent, y: int )" },
+  { dao_SDL_MouseMotionEvent_GETF_xrel, ".xrel( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_xrel, ".xrel=( self: SDL_MouseMotionEvent, xrel: int )" },
+  { dao_SDL_MouseMotionEvent_GETF_yrel, ".yrel( self: SDL_MouseMotionEvent )=>int" },
+  { dao_SDL_MouseMotionEvent_SETF_yrel, ".yrel=( self: SDL_MouseMotionEvent, yrel: int )" },
   { dao_SDL_MouseMotionEvent_SDL_MouseMotionEvent, "SDL_MouseMotionEvent(  )=>SDL_MouseMotionEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_MouseMotionEvent_Delete( void *self )
+static void Dao_SDL_MouseMotionEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_MouseMotionEvent_Typer = 
-{ "SDL_MouseMotionEvent", NULL,
+static DaoTypeCore SDL_MouseMotionEvent_Core = 
+{
+  "SDL_MouseMotionEvent",
+  sizeof(SDL_MouseMotionEvent),
+  { NULL },
   dao_SDL_MouseMotionEvent_Nums,
   dao_SDL_MouseMotionEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_MouseMotionEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_MouseMotionEvent_Typer = & SDL_MouseMotionEvent_Typer;
+DaoTypeCore *dao_SDL_MouseMotionEvent_Core = & SDL_MouseMotionEvent_Core;
 DaoType *dao_type_SDL_MouseMotionEvent = NULL;
 static void dao_SDL_MouseMotionEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2374,7 +2917,7 @@ static void dao_SDL_MouseMotionEvent_SDL_MouseMotionEvent( DaoProcess *_proc, Da
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_MouseButtonEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_MouseButtonEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -2400,44 +2943,60 @@ static void dao_SDL_MouseButtonEvent_GETF_y( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_MouseButtonEvent_SETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseButtonEvent_SDL_MouseButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_MouseButtonEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_MouseButtonEvent_Meths[] = 
 {
-  { dao_SDL_MouseButtonEvent_GETF_type, ".type( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_type, ".type=( self :SDL_MouseButtonEvent, type :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_timestamp, ".timestamp( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_timestamp, ".timestamp=( self :SDL_MouseButtonEvent, timestamp :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_windowID, ".windowID( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_windowID, ".windowID=( self :SDL_MouseButtonEvent, windowID :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_which, ".which( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_which, ".which=( self :SDL_MouseButtonEvent, which :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_button, ".button( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_button, ".button=( self :SDL_MouseButtonEvent, button :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_state, ".state( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_state, ".state=( self :SDL_MouseButtonEvent, state :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_clicks, ".clicks( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_clicks, ".clicks=( self :SDL_MouseButtonEvent, clicks :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_x, ".x( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_x, ".x=( self :SDL_MouseButtonEvent, x :int )" },
-  { dao_SDL_MouseButtonEvent_GETF_y, ".y( self :SDL_MouseButtonEvent )=>int" },
-  { dao_SDL_MouseButtonEvent_SETF_y, ".y=( self :SDL_MouseButtonEvent, y :int )" },
+  { dao_SDL_MouseButtonEvent_GETF_type, ".type( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_type, ".type=( self: SDL_MouseButtonEvent, type: int )" },
+  { dao_SDL_MouseButtonEvent_GETF_timestamp, ".timestamp( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_timestamp, ".timestamp=( self: SDL_MouseButtonEvent, timestamp: int )" },
+  { dao_SDL_MouseButtonEvent_GETF_windowID, ".windowID( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_windowID, ".windowID=( self: SDL_MouseButtonEvent, windowID: int )" },
+  { dao_SDL_MouseButtonEvent_GETF_which, ".which( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_which, ".which=( self: SDL_MouseButtonEvent, which: int )" },
+  { dao_SDL_MouseButtonEvent_GETF_button, ".button( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_button, ".button=( self: SDL_MouseButtonEvent, button: int )" },
+  { dao_SDL_MouseButtonEvent_GETF_state, ".state( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_state, ".state=( self: SDL_MouseButtonEvent, state: int )" },
+  { dao_SDL_MouseButtonEvent_GETF_clicks, ".clicks( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_clicks, ".clicks=( self: SDL_MouseButtonEvent, clicks: int )" },
+  { dao_SDL_MouseButtonEvent_GETF_x, ".x( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_x, ".x=( self: SDL_MouseButtonEvent, x: int )" },
+  { dao_SDL_MouseButtonEvent_GETF_y, ".y( self: SDL_MouseButtonEvent )=>int" },
+  { dao_SDL_MouseButtonEvent_SETF_y, ".y=( self: SDL_MouseButtonEvent, y: int )" },
   { dao_SDL_MouseButtonEvent_SDL_MouseButtonEvent, "SDL_MouseButtonEvent(  )=>SDL_MouseButtonEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_MouseButtonEvent_Delete( void *self )
+static void Dao_SDL_MouseButtonEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_MouseButtonEvent_Typer = 
-{ "SDL_MouseButtonEvent", NULL,
+static DaoTypeCore SDL_MouseButtonEvent_Core = 
+{
+  "SDL_MouseButtonEvent",
+  sizeof(SDL_MouseButtonEvent),
+  { NULL },
   dao_SDL_MouseButtonEvent_Nums,
   dao_SDL_MouseButtonEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_MouseButtonEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_MouseButtonEvent_Typer = & SDL_MouseButtonEvent_Typer;
+DaoTypeCore *dao_SDL_MouseButtonEvent_Core = & SDL_MouseButtonEvent_Core;
 DaoType *dao_type_SDL_MouseButtonEvent = NULL;
 static void dao_SDL_MouseButtonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2537,7 +3096,7 @@ static void dao_SDL_MouseButtonEvent_SDL_MouseButtonEvent( DaoProcess *_proc, Da
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_MouseWheelEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_MouseWheelEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -2559,40 +3118,56 @@ static void dao_SDL_MouseWheelEvent_GETF_direction( DaoProcess *_proc, DaoValue 
 static void dao_SDL_MouseWheelEvent_SETF_direction( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MouseWheelEvent_SDL_MouseWheelEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_MouseWheelEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_MouseWheelEvent_Meths[] = 
 {
-  { dao_SDL_MouseWheelEvent_GETF_type, ".type( self :SDL_MouseWheelEvent )=>int" },
-  { dao_SDL_MouseWheelEvent_SETF_type, ".type=( self :SDL_MouseWheelEvent, type :int )" },
-  { dao_SDL_MouseWheelEvent_GETF_timestamp, ".timestamp( self :SDL_MouseWheelEvent )=>int" },
-  { dao_SDL_MouseWheelEvent_SETF_timestamp, ".timestamp=( self :SDL_MouseWheelEvent, timestamp :int )" },
-  { dao_SDL_MouseWheelEvent_GETF_windowID, ".windowID( self :SDL_MouseWheelEvent )=>int" },
-  { dao_SDL_MouseWheelEvent_SETF_windowID, ".windowID=( self :SDL_MouseWheelEvent, windowID :int )" },
-  { dao_SDL_MouseWheelEvent_GETF_which, ".which( self :SDL_MouseWheelEvent )=>int" },
-  { dao_SDL_MouseWheelEvent_SETF_which, ".which=( self :SDL_MouseWheelEvent, which :int )" },
-  { dao_SDL_MouseWheelEvent_GETF_x, ".x( self :SDL_MouseWheelEvent )=>int" },
-  { dao_SDL_MouseWheelEvent_SETF_x, ".x=( self :SDL_MouseWheelEvent, x :int )" },
-  { dao_SDL_MouseWheelEvent_GETF_y, ".y( self :SDL_MouseWheelEvent )=>int" },
-  { dao_SDL_MouseWheelEvent_SETF_y, ".y=( self :SDL_MouseWheelEvent, y :int )" },
-  { dao_SDL_MouseWheelEvent_GETF_direction, ".direction( self :SDL_MouseWheelEvent )=>int" },
-  { dao_SDL_MouseWheelEvent_SETF_direction, ".direction=( self :SDL_MouseWheelEvent, direction :int )" },
+  { dao_SDL_MouseWheelEvent_GETF_type, ".type( self: SDL_MouseWheelEvent )=>int" },
+  { dao_SDL_MouseWheelEvent_SETF_type, ".type=( self: SDL_MouseWheelEvent, type: int )" },
+  { dao_SDL_MouseWheelEvent_GETF_timestamp, ".timestamp( self: SDL_MouseWheelEvent )=>int" },
+  { dao_SDL_MouseWheelEvent_SETF_timestamp, ".timestamp=( self: SDL_MouseWheelEvent, timestamp: int )" },
+  { dao_SDL_MouseWheelEvent_GETF_windowID, ".windowID( self: SDL_MouseWheelEvent )=>int" },
+  { dao_SDL_MouseWheelEvent_SETF_windowID, ".windowID=( self: SDL_MouseWheelEvent, windowID: int )" },
+  { dao_SDL_MouseWheelEvent_GETF_which, ".which( self: SDL_MouseWheelEvent )=>int" },
+  { dao_SDL_MouseWheelEvent_SETF_which, ".which=( self: SDL_MouseWheelEvent, which: int )" },
+  { dao_SDL_MouseWheelEvent_GETF_x, ".x( self: SDL_MouseWheelEvent )=>int" },
+  { dao_SDL_MouseWheelEvent_SETF_x, ".x=( self: SDL_MouseWheelEvent, x: int )" },
+  { dao_SDL_MouseWheelEvent_GETF_y, ".y( self: SDL_MouseWheelEvent )=>int" },
+  { dao_SDL_MouseWheelEvent_SETF_y, ".y=( self: SDL_MouseWheelEvent, y: int )" },
+  { dao_SDL_MouseWheelEvent_GETF_direction, ".direction( self: SDL_MouseWheelEvent )=>int" },
+  { dao_SDL_MouseWheelEvent_SETF_direction, ".direction=( self: SDL_MouseWheelEvent, direction: int )" },
   { dao_SDL_MouseWheelEvent_SDL_MouseWheelEvent, "SDL_MouseWheelEvent(  )=>SDL_MouseWheelEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_MouseWheelEvent_Delete( void *self )
+static void Dao_SDL_MouseWheelEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_MouseWheelEvent_Typer = 
-{ "SDL_MouseWheelEvent", NULL,
+static DaoTypeCore SDL_MouseWheelEvent_Core = 
+{
+  "SDL_MouseWheelEvent",
+  sizeof(SDL_MouseWheelEvent),
+  { NULL },
   dao_SDL_MouseWheelEvent_Nums,
   dao_SDL_MouseWheelEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_MouseWheelEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_MouseWheelEvent_Typer = & SDL_MouseWheelEvent_Typer;
+DaoTypeCore *dao_SDL_MouseWheelEvent_Core = & SDL_MouseWheelEvent_Core;
 DaoType *dao_type_SDL_MouseWheelEvent = NULL;
 static void dao_SDL_MouseWheelEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2672,7 +3247,7 @@ static void dao_SDL_MouseWheelEvent_SDL_MouseWheelEvent( DaoProcess *_proc, DaoV
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_JoyAxisEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_JoyAxisEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -2690,36 +3265,52 @@ static void dao_SDL_JoyAxisEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], 
 static void dao_SDL_JoyAxisEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyAxisEvent_SDL_JoyAxisEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_JoyAxisEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_JoyAxisEvent_Meths[] = 
 {
-  { dao_SDL_JoyAxisEvent_GETF_type, ".type( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_type, ".type=( self :SDL_JoyAxisEvent, type :int )" },
-  { dao_SDL_JoyAxisEvent_GETF_timestamp, ".timestamp( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_timestamp, ".timestamp=( self :SDL_JoyAxisEvent, timestamp :int )" },
-  { dao_SDL_JoyAxisEvent_GETF_which, ".which( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_which, ".which=( self :SDL_JoyAxisEvent, which :int )" },
-  { dao_SDL_JoyAxisEvent_GETF_axis, ".axis( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_axis, ".axis=( self :SDL_JoyAxisEvent, axis :int )" },
-  { dao_SDL_JoyAxisEvent_GETF_value, ".value( self :SDL_JoyAxisEvent )=>int" },
-  { dao_SDL_JoyAxisEvent_SETF_value, ".value=( self :SDL_JoyAxisEvent, value :int )" },
+  { dao_SDL_JoyAxisEvent_GETF_type, ".type( self: SDL_JoyAxisEvent )=>int" },
+  { dao_SDL_JoyAxisEvent_SETF_type, ".type=( self: SDL_JoyAxisEvent, type: int )" },
+  { dao_SDL_JoyAxisEvent_GETF_timestamp, ".timestamp( self: SDL_JoyAxisEvent )=>int" },
+  { dao_SDL_JoyAxisEvent_SETF_timestamp, ".timestamp=( self: SDL_JoyAxisEvent, timestamp: int )" },
+  { dao_SDL_JoyAxisEvent_GETF_which, ".which( self: SDL_JoyAxisEvent )=>int" },
+  { dao_SDL_JoyAxisEvent_SETF_which, ".which=( self: SDL_JoyAxisEvent, which: int )" },
+  { dao_SDL_JoyAxisEvent_GETF_axis, ".axis( self: SDL_JoyAxisEvent )=>int" },
+  { dao_SDL_JoyAxisEvent_SETF_axis, ".axis=( self: SDL_JoyAxisEvent, axis: int )" },
+  { dao_SDL_JoyAxisEvent_GETF_value, ".value( self: SDL_JoyAxisEvent )=>int" },
+  { dao_SDL_JoyAxisEvent_SETF_value, ".value=( self: SDL_JoyAxisEvent, value: int )" },
   { dao_SDL_JoyAxisEvent_SDL_JoyAxisEvent, "SDL_JoyAxisEvent(  )=>SDL_JoyAxisEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_JoyAxisEvent_Delete( void *self )
+static void Dao_SDL_JoyAxisEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_JoyAxisEvent_Typer = 
-{ "SDL_JoyAxisEvent", NULL,
+static DaoTypeCore SDL_JoyAxisEvent_Core = 
+{
+  "SDL_JoyAxisEvent",
+  sizeof(SDL_JoyAxisEvent),
+  { NULL },
   dao_SDL_JoyAxisEvent_Nums,
   dao_SDL_JoyAxisEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_JoyAxisEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_JoyAxisEvent_Typer = & SDL_JoyAxisEvent_Typer;
+DaoTypeCore *dao_SDL_JoyAxisEvent_Core = & SDL_JoyAxisEvent_Core;
 DaoType *dao_type_SDL_JoyAxisEvent = NULL;
 static void dao_SDL_JoyAxisEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2779,7 +3370,7 @@ static void dao_SDL_JoyAxisEvent_SDL_JoyAxisEvent( DaoProcess *_proc, DaoValue *
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_JoyBallEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_JoyBallEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -2799,38 +3390,54 @@ static void dao_SDL_JoyBallEvent_GETF_yrel( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyBallEvent_SETF_yrel( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyBallEvent_SDL_JoyBallEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_JoyBallEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_JoyBallEvent_Meths[] = 
 {
-  { dao_SDL_JoyBallEvent_GETF_type, ".type( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_type, ".type=( self :SDL_JoyBallEvent, type :int )" },
-  { dao_SDL_JoyBallEvent_GETF_timestamp, ".timestamp( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_timestamp, ".timestamp=( self :SDL_JoyBallEvent, timestamp :int )" },
-  { dao_SDL_JoyBallEvent_GETF_which, ".which( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_which, ".which=( self :SDL_JoyBallEvent, which :int )" },
-  { dao_SDL_JoyBallEvent_GETF_ball, ".ball( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_ball, ".ball=( self :SDL_JoyBallEvent, ball :int )" },
-  { dao_SDL_JoyBallEvent_GETF_xrel, ".xrel( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_xrel, ".xrel=( self :SDL_JoyBallEvent, xrel :int )" },
-  { dao_SDL_JoyBallEvent_GETF_yrel, ".yrel( self :SDL_JoyBallEvent )=>int" },
-  { dao_SDL_JoyBallEvent_SETF_yrel, ".yrel=( self :SDL_JoyBallEvent, yrel :int )" },
+  { dao_SDL_JoyBallEvent_GETF_type, ".type( self: SDL_JoyBallEvent )=>int" },
+  { dao_SDL_JoyBallEvent_SETF_type, ".type=( self: SDL_JoyBallEvent, type: int )" },
+  { dao_SDL_JoyBallEvent_GETF_timestamp, ".timestamp( self: SDL_JoyBallEvent )=>int" },
+  { dao_SDL_JoyBallEvent_SETF_timestamp, ".timestamp=( self: SDL_JoyBallEvent, timestamp: int )" },
+  { dao_SDL_JoyBallEvent_GETF_which, ".which( self: SDL_JoyBallEvent )=>int" },
+  { dao_SDL_JoyBallEvent_SETF_which, ".which=( self: SDL_JoyBallEvent, which: int )" },
+  { dao_SDL_JoyBallEvent_GETF_ball, ".ball( self: SDL_JoyBallEvent )=>int" },
+  { dao_SDL_JoyBallEvent_SETF_ball, ".ball=( self: SDL_JoyBallEvent, ball: int )" },
+  { dao_SDL_JoyBallEvent_GETF_xrel, ".xrel( self: SDL_JoyBallEvent )=>int" },
+  { dao_SDL_JoyBallEvent_SETF_xrel, ".xrel=( self: SDL_JoyBallEvent, xrel: int )" },
+  { dao_SDL_JoyBallEvent_GETF_yrel, ".yrel( self: SDL_JoyBallEvent )=>int" },
+  { dao_SDL_JoyBallEvent_SETF_yrel, ".yrel=( self: SDL_JoyBallEvent, yrel: int )" },
   { dao_SDL_JoyBallEvent_SDL_JoyBallEvent, "SDL_JoyBallEvent(  )=>SDL_JoyBallEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_JoyBallEvent_Delete( void *self )
+static void Dao_SDL_JoyBallEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_JoyBallEvent_Typer = 
-{ "SDL_JoyBallEvent", NULL,
+static DaoTypeCore SDL_JoyBallEvent_Core = 
+{
+  "SDL_JoyBallEvent",
+  sizeof(SDL_JoyBallEvent),
+  { NULL },
   dao_SDL_JoyBallEvent_Nums,
   dao_SDL_JoyBallEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_JoyBallEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_JoyBallEvent_Typer = & SDL_JoyBallEvent_Typer;
+DaoTypeCore *dao_SDL_JoyBallEvent_Core = & SDL_JoyBallEvent_Core;
 DaoType *dao_type_SDL_JoyBallEvent = NULL;
 static void dao_SDL_JoyBallEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -2900,7 +3507,7 @@ static void dao_SDL_JoyBallEvent_SDL_JoyBallEvent( DaoProcess *_proc, DaoValue *
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_JoyHatEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_JoyHatEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -2918,36 +3525,52 @@ static void dao_SDL_JoyHatEvent_GETF_value( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_JoyHatEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyHatEvent_SDL_JoyHatEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_JoyHatEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_JoyHatEvent_Meths[] = 
 {
-  { dao_SDL_JoyHatEvent_GETF_type, ".type( self :SDL_JoyHatEvent )=>int" },
-  { dao_SDL_JoyHatEvent_SETF_type, ".type=( self :SDL_JoyHatEvent, type :int )" },
-  { dao_SDL_JoyHatEvent_GETF_timestamp, ".timestamp( self :SDL_JoyHatEvent )=>int" },
-  { dao_SDL_JoyHatEvent_SETF_timestamp, ".timestamp=( self :SDL_JoyHatEvent, timestamp :int )" },
-  { dao_SDL_JoyHatEvent_GETF_which, ".which( self :SDL_JoyHatEvent )=>int" },
-  { dao_SDL_JoyHatEvent_SETF_which, ".which=( self :SDL_JoyHatEvent, which :int )" },
-  { dao_SDL_JoyHatEvent_GETF_hat, ".hat( self :SDL_JoyHatEvent )=>int" },
-  { dao_SDL_JoyHatEvent_SETF_hat, ".hat=( self :SDL_JoyHatEvent, hat :int )" },
-  { dao_SDL_JoyHatEvent_GETF_value, ".value( self :SDL_JoyHatEvent )=>int" },
-  { dao_SDL_JoyHatEvent_SETF_value, ".value=( self :SDL_JoyHatEvent, value :int )" },
+  { dao_SDL_JoyHatEvent_GETF_type, ".type( self: SDL_JoyHatEvent )=>int" },
+  { dao_SDL_JoyHatEvent_SETF_type, ".type=( self: SDL_JoyHatEvent, type: int )" },
+  { dao_SDL_JoyHatEvent_GETF_timestamp, ".timestamp( self: SDL_JoyHatEvent )=>int" },
+  { dao_SDL_JoyHatEvent_SETF_timestamp, ".timestamp=( self: SDL_JoyHatEvent, timestamp: int )" },
+  { dao_SDL_JoyHatEvent_GETF_which, ".which( self: SDL_JoyHatEvent )=>int" },
+  { dao_SDL_JoyHatEvent_SETF_which, ".which=( self: SDL_JoyHatEvent, which: int )" },
+  { dao_SDL_JoyHatEvent_GETF_hat, ".hat( self: SDL_JoyHatEvent )=>int" },
+  { dao_SDL_JoyHatEvent_SETF_hat, ".hat=( self: SDL_JoyHatEvent, hat: int )" },
+  { dao_SDL_JoyHatEvent_GETF_value, ".value( self: SDL_JoyHatEvent )=>int" },
+  { dao_SDL_JoyHatEvent_SETF_value, ".value=( self: SDL_JoyHatEvent, value: int )" },
   { dao_SDL_JoyHatEvent_SDL_JoyHatEvent, "SDL_JoyHatEvent(  )=>SDL_JoyHatEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_JoyHatEvent_Delete( void *self )
+static void Dao_SDL_JoyHatEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_JoyHatEvent_Typer = 
-{ "SDL_JoyHatEvent", NULL,
+static DaoTypeCore SDL_JoyHatEvent_Core = 
+{
+  "SDL_JoyHatEvent",
+  sizeof(SDL_JoyHatEvent),
+  { NULL },
   dao_SDL_JoyHatEvent_Nums,
   dao_SDL_JoyHatEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_JoyHatEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_JoyHatEvent_Typer = & SDL_JoyHatEvent_Typer;
+DaoTypeCore *dao_SDL_JoyHatEvent_Core = & SDL_JoyHatEvent_Core;
 DaoType *dao_type_SDL_JoyHatEvent = NULL;
 static void dao_SDL_JoyHatEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3007,7 +3630,7 @@ static void dao_SDL_JoyHatEvent_SDL_JoyHatEvent( DaoProcess *_proc, DaoValue *_p
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_JoyButtonEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_JoyButtonEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3025,36 +3648,52 @@ static void dao_SDL_JoyButtonEvent_GETF_state( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_JoyButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyButtonEvent_SDL_JoyButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_JoyButtonEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_JoyButtonEvent_Meths[] = 
 {
-  { dao_SDL_JoyButtonEvent_GETF_type, ".type( self :SDL_JoyButtonEvent )=>int" },
-  { dao_SDL_JoyButtonEvent_SETF_type, ".type=( self :SDL_JoyButtonEvent, type :int )" },
-  { dao_SDL_JoyButtonEvent_GETF_timestamp, ".timestamp( self :SDL_JoyButtonEvent )=>int" },
-  { dao_SDL_JoyButtonEvent_SETF_timestamp, ".timestamp=( self :SDL_JoyButtonEvent, timestamp :int )" },
-  { dao_SDL_JoyButtonEvent_GETF_which, ".which( self :SDL_JoyButtonEvent )=>int" },
-  { dao_SDL_JoyButtonEvent_SETF_which, ".which=( self :SDL_JoyButtonEvent, which :int )" },
-  { dao_SDL_JoyButtonEvent_GETF_button, ".button( self :SDL_JoyButtonEvent )=>int" },
-  { dao_SDL_JoyButtonEvent_SETF_button, ".button=( self :SDL_JoyButtonEvent, button :int )" },
-  { dao_SDL_JoyButtonEvent_GETF_state, ".state( self :SDL_JoyButtonEvent )=>int" },
-  { dao_SDL_JoyButtonEvent_SETF_state, ".state=( self :SDL_JoyButtonEvent, state :int )" },
+  { dao_SDL_JoyButtonEvent_GETF_type, ".type( self: SDL_JoyButtonEvent )=>int" },
+  { dao_SDL_JoyButtonEvent_SETF_type, ".type=( self: SDL_JoyButtonEvent, type: int )" },
+  { dao_SDL_JoyButtonEvent_GETF_timestamp, ".timestamp( self: SDL_JoyButtonEvent )=>int" },
+  { dao_SDL_JoyButtonEvent_SETF_timestamp, ".timestamp=( self: SDL_JoyButtonEvent, timestamp: int )" },
+  { dao_SDL_JoyButtonEvent_GETF_which, ".which( self: SDL_JoyButtonEvent )=>int" },
+  { dao_SDL_JoyButtonEvent_SETF_which, ".which=( self: SDL_JoyButtonEvent, which: int )" },
+  { dao_SDL_JoyButtonEvent_GETF_button, ".button( self: SDL_JoyButtonEvent )=>int" },
+  { dao_SDL_JoyButtonEvent_SETF_button, ".button=( self: SDL_JoyButtonEvent, button: int )" },
+  { dao_SDL_JoyButtonEvent_GETF_state, ".state( self: SDL_JoyButtonEvent )=>int" },
+  { dao_SDL_JoyButtonEvent_SETF_state, ".state=( self: SDL_JoyButtonEvent, state: int )" },
   { dao_SDL_JoyButtonEvent_SDL_JoyButtonEvent, "SDL_JoyButtonEvent(  )=>SDL_JoyButtonEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_JoyButtonEvent_Delete( void *self )
+static void Dao_SDL_JoyButtonEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_JoyButtonEvent_Typer = 
-{ "SDL_JoyButtonEvent", NULL,
+static DaoTypeCore SDL_JoyButtonEvent_Core = 
+{
+  "SDL_JoyButtonEvent",
+  sizeof(SDL_JoyButtonEvent),
+  { NULL },
   dao_SDL_JoyButtonEvent_Nums,
   dao_SDL_JoyButtonEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_JoyButtonEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_JoyButtonEvent_Typer = & SDL_JoyButtonEvent_Typer;
+DaoTypeCore *dao_SDL_JoyButtonEvent_Core = & SDL_JoyButtonEvent_Core;
 DaoType *dao_type_SDL_JoyButtonEvent = NULL;
 static void dao_SDL_JoyButtonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3114,7 +3753,7 @@ static void dao_SDL_JoyButtonEvent_SDL_JoyButtonEvent( DaoProcess *_proc, DaoVal
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_JoyDeviceEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_JoyDeviceEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3128,32 +3767,48 @@ static void dao_SDL_JoyDeviceEvent_GETF_which( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_JoyDeviceEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_JoyDeviceEvent_SDL_JoyDeviceEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_JoyDeviceEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_JoyDeviceEvent_Meths[] = 
 {
-  { dao_SDL_JoyDeviceEvent_GETF_type, ".type( self :SDL_JoyDeviceEvent )=>int" },
-  { dao_SDL_JoyDeviceEvent_SETF_type, ".type=( self :SDL_JoyDeviceEvent, type :int )" },
-  { dao_SDL_JoyDeviceEvent_GETF_timestamp, ".timestamp( self :SDL_JoyDeviceEvent )=>int" },
-  { dao_SDL_JoyDeviceEvent_SETF_timestamp, ".timestamp=( self :SDL_JoyDeviceEvent, timestamp :int )" },
-  { dao_SDL_JoyDeviceEvent_GETF_which, ".which( self :SDL_JoyDeviceEvent )=>int" },
-  { dao_SDL_JoyDeviceEvent_SETF_which, ".which=( self :SDL_JoyDeviceEvent, which :int )" },
+  { dao_SDL_JoyDeviceEvent_GETF_type, ".type( self: SDL_JoyDeviceEvent )=>int" },
+  { dao_SDL_JoyDeviceEvent_SETF_type, ".type=( self: SDL_JoyDeviceEvent, type: int )" },
+  { dao_SDL_JoyDeviceEvent_GETF_timestamp, ".timestamp( self: SDL_JoyDeviceEvent )=>int" },
+  { dao_SDL_JoyDeviceEvent_SETF_timestamp, ".timestamp=( self: SDL_JoyDeviceEvent, timestamp: int )" },
+  { dao_SDL_JoyDeviceEvent_GETF_which, ".which( self: SDL_JoyDeviceEvent )=>int" },
+  { dao_SDL_JoyDeviceEvent_SETF_which, ".which=( self: SDL_JoyDeviceEvent, which: int )" },
   { dao_SDL_JoyDeviceEvent_SDL_JoyDeviceEvent, "SDL_JoyDeviceEvent(  )=>SDL_JoyDeviceEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_JoyDeviceEvent_Delete( void *self )
+static void Dao_SDL_JoyDeviceEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_JoyDeviceEvent_Typer = 
-{ "SDL_JoyDeviceEvent", NULL,
+static DaoTypeCore SDL_JoyDeviceEvent_Core = 
+{
+  "SDL_JoyDeviceEvent",
+  sizeof(SDL_JoyDeviceEvent),
+  { NULL },
   dao_SDL_JoyDeviceEvent_Nums,
   dao_SDL_JoyDeviceEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_JoyDeviceEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_JoyDeviceEvent_Typer = & SDL_JoyDeviceEvent_Typer;
+DaoTypeCore *dao_SDL_JoyDeviceEvent_Core = & SDL_JoyDeviceEvent_Core;
 DaoType *dao_type_SDL_JoyDeviceEvent = NULL;
 static void dao_SDL_JoyDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3193,7 +3848,7 @@ static void dao_SDL_JoyDeviceEvent_SDL_JoyDeviceEvent( DaoProcess *_proc, DaoVal
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_ControllerAxisEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_ControllerAxisEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3211,36 +3866,52 @@ static void dao_SDL_ControllerAxisEvent_GETF_value( DaoProcess *_proc, DaoValue 
 static void dao_SDL_ControllerAxisEvent_SETF_value( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerAxisEvent_SDL_ControllerAxisEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_ControllerAxisEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_ControllerAxisEvent_Meths[] = 
 {
-  { dao_SDL_ControllerAxisEvent_GETF_type, ".type( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_type, ".type=( self :SDL_ControllerAxisEvent, type :int )" },
-  { dao_SDL_ControllerAxisEvent_GETF_timestamp, ".timestamp( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_timestamp, ".timestamp=( self :SDL_ControllerAxisEvent, timestamp :int )" },
-  { dao_SDL_ControllerAxisEvent_GETF_which, ".which( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_which, ".which=( self :SDL_ControllerAxisEvent, which :int )" },
-  { dao_SDL_ControllerAxisEvent_GETF_axis, ".axis( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_axis, ".axis=( self :SDL_ControllerAxisEvent, axis :int )" },
-  { dao_SDL_ControllerAxisEvent_GETF_value, ".value( self :SDL_ControllerAxisEvent )=>int" },
-  { dao_SDL_ControllerAxisEvent_SETF_value, ".value=( self :SDL_ControllerAxisEvent, value :int )" },
+  { dao_SDL_ControllerAxisEvent_GETF_type, ".type( self: SDL_ControllerAxisEvent )=>int" },
+  { dao_SDL_ControllerAxisEvent_SETF_type, ".type=( self: SDL_ControllerAxisEvent, type: int )" },
+  { dao_SDL_ControllerAxisEvent_GETF_timestamp, ".timestamp( self: SDL_ControllerAxisEvent )=>int" },
+  { dao_SDL_ControllerAxisEvent_SETF_timestamp, ".timestamp=( self: SDL_ControllerAxisEvent, timestamp: int )" },
+  { dao_SDL_ControllerAxisEvent_GETF_which, ".which( self: SDL_ControllerAxisEvent )=>int" },
+  { dao_SDL_ControllerAxisEvent_SETF_which, ".which=( self: SDL_ControllerAxisEvent, which: int )" },
+  { dao_SDL_ControllerAxisEvent_GETF_axis, ".axis( self: SDL_ControllerAxisEvent )=>int" },
+  { dao_SDL_ControllerAxisEvent_SETF_axis, ".axis=( self: SDL_ControllerAxisEvent, axis: int )" },
+  { dao_SDL_ControllerAxisEvent_GETF_value, ".value( self: SDL_ControllerAxisEvent )=>int" },
+  { dao_SDL_ControllerAxisEvent_SETF_value, ".value=( self: SDL_ControllerAxisEvent, value: int )" },
   { dao_SDL_ControllerAxisEvent_SDL_ControllerAxisEvent, "SDL_ControllerAxisEvent(  )=>SDL_ControllerAxisEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_ControllerAxisEvent_Delete( void *self )
+static void Dao_SDL_ControllerAxisEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_ControllerAxisEvent_Typer = 
-{ "SDL_ControllerAxisEvent", NULL,
+static DaoTypeCore SDL_ControllerAxisEvent_Core = 
+{
+  "SDL_ControllerAxisEvent",
+  sizeof(SDL_ControllerAxisEvent),
+  { NULL },
   dao_SDL_ControllerAxisEvent_Nums,
   dao_SDL_ControllerAxisEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_ControllerAxisEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_ControllerAxisEvent_Typer = & SDL_ControllerAxisEvent_Typer;
+DaoTypeCore *dao_SDL_ControllerAxisEvent_Core = & SDL_ControllerAxisEvent_Core;
 DaoType *dao_type_SDL_ControllerAxisEvent = NULL;
 static void dao_SDL_ControllerAxisEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3300,7 +3971,7 @@ static void dao_SDL_ControllerAxisEvent_SDL_ControllerAxisEvent( DaoProcess *_pr
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_ControllerButtonEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_ControllerButtonEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3318,36 +3989,52 @@ static void dao_SDL_ControllerButtonEvent_GETF_state( DaoProcess *_proc, DaoValu
 static void dao_SDL_ControllerButtonEvent_SETF_state( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerButtonEvent_SDL_ControllerButtonEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_ControllerButtonEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_ControllerButtonEvent_Meths[] = 
 {
-  { dao_SDL_ControllerButtonEvent_GETF_type, ".type( self :SDL_ControllerButtonEvent )=>int" },
-  { dao_SDL_ControllerButtonEvent_SETF_type, ".type=( self :SDL_ControllerButtonEvent, type :int )" },
-  { dao_SDL_ControllerButtonEvent_GETF_timestamp, ".timestamp( self :SDL_ControllerButtonEvent )=>int" },
-  { dao_SDL_ControllerButtonEvent_SETF_timestamp, ".timestamp=( self :SDL_ControllerButtonEvent, timestamp :int )" },
-  { dao_SDL_ControllerButtonEvent_GETF_which, ".which( self :SDL_ControllerButtonEvent )=>int" },
-  { dao_SDL_ControllerButtonEvent_SETF_which, ".which=( self :SDL_ControllerButtonEvent, which :int )" },
-  { dao_SDL_ControllerButtonEvent_GETF_button, ".button( self :SDL_ControllerButtonEvent )=>int" },
-  { dao_SDL_ControllerButtonEvent_SETF_button, ".button=( self :SDL_ControllerButtonEvent, button :int )" },
-  { dao_SDL_ControllerButtonEvent_GETF_state, ".state( self :SDL_ControllerButtonEvent )=>int" },
-  { dao_SDL_ControllerButtonEvent_SETF_state, ".state=( self :SDL_ControllerButtonEvent, state :int )" },
+  { dao_SDL_ControllerButtonEvent_GETF_type, ".type( self: SDL_ControllerButtonEvent )=>int" },
+  { dao_SDL_ControllerButtonEvent_SETF_type, ".type=( self: SDL_ControllerButtonEvent, type: int )" },
+  { dao_SDL_ControllerButtonEvent_GETF_timestamp, ".timestamp( self: SDL_ControllerButtonEvent )=>int" },
+  { dao_SDL_ControllerButtonEvent_SETF_timestamp, ".timestamp=( self: SDL_ControllerButtonEvent, timestamp: int )" },
+  { dao_SDL_ControllerButtonEvent_GETF_which, ".which( self: SDL_ControllerButtonEvent )=>int" },
+  { dao_SDL_ControllerButtonEvent_SETF_which, ".which=( self: SDL_ControllerButtonEvent, which: int )" },
+  { dao_SDL_ControllerButtonEvent_GETF_button, ".button( self: SDL_ControllerButtonEvent )=>int" },
+  { dao_SDL_ControllerButtonEvent_SETF_button, ".button=( self: SDL_ControllerButtonEvent, button: int )" },
+  { dao_SDL_ControllerButtonEvent_GETF_state, ".state( self: SDL_ControllerButtonEvent )=>int" },
+  { dao_SDL_ControllerButtonEvent_SETF_state, ".state=( self: SDL_ControllerButtonEvent, state: int )" },
   { dao_SDL_ControllerButtonEvent_SDL_ControllerButtonEvent, "SDL_ControllerButtonEvent(  )=>SDL_ControllerButtonEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_ControllerButtonEvent_Delete( void *self )
+static void Dao_SDL_ControllerButtonEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_ControllerButtonEvent_Typer = 
-{ "SDL_ControllerButtonEvent", NULL,
+static DaoTypeCore SDL_ControllerButtonEvent_Core = 
+{
+  "SDL_ControllerButtonEvent",
+  sizeof(SDL_ControllerButtonEvent),
+  { NULL },
   dao_SDL_ControllerButtonEvent_Nums,
   dao_SDL_ControllerButtonEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_ControllerButtonEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_ControllerButtonEvent_Typer = & SDL_ControllerButtonEvent_Typer;
+DaoTypeCore *dao_SDL_ControllerButtonEvent_Core = & SDL_ControllerButtonEvent_Core;
 DaoType *dao_type_SDL_ControllerButtonEvent = NULL;
 static void dao_SDL_ControllerButtonEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3407,7 +4094,7 @@ static void dao_SDL_ControllerButtonEvent_SDL_ControllerButtonEvent( DaoProcess 
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_ControllerDeviceEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_ControllerDeviceEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3421,32 +4108,48 @@ static void dao_SDL_ControllerDeviceEvent_GETF_which( DaoProcess *_proc, DaoValu
 static void dao_SDL_ControllerDeviceEvent_SETF_which( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_ControllerDeviceEvent_SDL_ControllerDeviceEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_ControllerDeviceEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_ControllerDeviceEvent_Meths[] = 
 {
-  { dao_SDL_ControllerDeviceEvent_GETF_type, ".type( self :SDL_ControllerDeviceEvent )=>int" },
-  { dao_SDL_ControllerDeviceEvent_SETF_type, ".type=( self :SDL_ControllerDeviceEvent, type :int )" },
-  { dao_SDL_ControllerDeviceEvent_GETF_timestamp, ".timestamp( self :SDL_ControllerDeviceEvent )=>int" },
-  { dao_SDL_ControllerDeviceEvent_SETF_timestamp, ".timestamp=( self :SDL_ControllerDeviceEvent, timestamp :int )" },
-  { dao_SDL_ControllerDeviceEvent_GETF_which, ".which( self :SDL_ControllerDeviceEvent )=>int" },
-  { dao_SDL_ControllerDeviceEvent_SETF_which, ".which=( self :SDL_ControllerDeviceEvent, which :int )" },
+  { dao_SDL_ControllerDeviceEvent_GETF_type, ".type( self: SDL_ControllerDeviceEvent )=>int" },
+  { dao_SDL_ControllerDeviceEvent_SETF_type, ".type=( self: SDL_ControllerDeviceEvent, type: int )" },
+  { dao_SDL_ControllerDeviceEvent_GETF_timestamp, ".timestamp( self: SDL_ControllerDeviceEvent )=>int" },
+  { dao_SDL_ControllerDeviceEvent_SETF_timestamp, ".timestamp=( self: SDL_ControllerDeviceEvent, timestamp: int )" },
+  { dao_SDL_ControllerDeviceEvent_GETF_which, ".which( self: SDL_ControllerDeviceEvent )=>int" },
+  { dao_SDL_ControllerDeviceEvent_SETF_which, ".which=( self: SDL_ControllerDeviceEvent, which: int )" },
   { dao_SDL_ControllerDeviceEvent_SDL_ControllerDeviceEvent, "SDL_ControllerDeviceEvent(  )=>SDL_ControllerDeviceEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_ControllerDeviceEvent_Delete( void *self )
+static void Dao_SDL_ControllerDeviceEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_ControllerDeviceEvent_Typer = 
-{ "SDL_ControllerDeviceEvent", NULL,
+static DaoTypeCore SDL_ControllerDeviceEvent_Core = 
+{
+  "SDL_ControllerDeviceEvent",
+  sizeof(SDL_ControllerDeviceEvent),
+  { NULL },
   dao_SDL_ControllerDeviceEvent_Nums,
   dao_SDL_ControllerDeviceEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_ControllerDeviceEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_ControllerDeviceEvent_Typer = & SDL_ControllerDeviceEvent_Typer;
+DaoTypeCore *dao_SDL_ControllerDeviceEvent_Core = & SDL_ControllerDeviceEvent_Core;
 DaoType *dao_type_SDL_ControllerDeviceEvent = NULL;
 static void dao_SDL_ControllerDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3486,7 +4189,7 @@ static void dao_SDL_ControllerDeviceEvent_SDL_ControllerDeviceEvent( DaoProcess 
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_AudioDeviceEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_AudioDeviceEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3508,40 +4211,56 @@ static void dao_SDL_AudioDeviceEvent_GETF_padding3( DaoProcess *_proc, DaoValue 
 static void dao_SDL_AudioDeviceEvent_SETF_padding3( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_AudioDeviceEvent_SDL_AudioDeviceEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_AudioDeviceEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_AudioDeviceEvent_Meths[] = 
 {
-  { dao_SDL_AudioDeviceEvent_GETF_type, ".type( self :SDL_AudioDeviceEvent )=>int" },
-  { dao_SDL_AudioDeviceEvent_SETF_type, ".type=( self :SDL_AudioDeviceEvent, type :int )" },
-  { dao_SDL_AudioDeviceEvent_GETF_timestamp, ".timestamp( self :SDL_AudioDeviceEvent )=>int" },
-  { dao_SDL_AudioDeviceEvent_SETF_timestamp, ".timestamp=( self :SDL_AudioDeviceEvent, timestamp :int )" },
-  { dao_SDL_AudioDeviceEvent_GETF_which, ".which( self :SDL_AudioDeviceEvent )=>int" },
-  { dao_SDL_AudioDeviceEvent_SETF_which, ".which=( self :SDL_AudioDeviceEvent, which :int )" },
-  { dao_SDL_AudioDeviceEvent_GETF_iscapture, ".iscapture( self :SDL_AudioDeviceEvent )=>int" },
-  { dao_SDL_AudioDeviceEvent_SETF_iscapture, ".iscapture=( self :SDL_AudioDeviceEvent, iscapture :int )" },
-  { dao_SDL_AudioDeviceEvent_GETF_padding1, ".padding1( self :SDL_AudioDeviceEvent )=>int" },
-  { dao_SDL_AudioDeviceEvent_SETF_padding1, ".padding1=( self :SDL_AudioDeviceEvent, padding1 :int )" },
-  { dao_SDL_AudioDeviceEvent_GETF_padding2, ".padding2( self :SDL_AudioDeviceEvent )=>int" },
-  { dao_SDL_AudioDeviceEvent_SETF_padding2, ".padding2=( self :SDL_AudioDeviceEvent, padding2 :int )" },
-  { dao_SDL_AudioDeviceEvent_GETF_padding3, ".padding3( self :SDL_AudioDeviceEvent )=>int" },
-  { dao_SDL_AudioDeviceEvent_SETF_padding3, ".padding3=( self :SDL_AudioDeviceEvent, padding3 :int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_type, ".type( self: SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_type, ".type=( self: SDL_AudioDeviceEvent, type: int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_timestamp, ".timestamp( self: SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_timestamp, ".timestamp=( self: SDL_AudioDeviceEvent, timestamp: int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_which, ".which( self: SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_which, ".which=( self: SDL_AudioDeviceEvent, which: int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_iscapture, ".iscapture( self: SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_iscapture, ".iscapture=( self: SDL_AudioDeviceEvent, iscapture: int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_padding1, ".padding1( self: SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_padding1, ".padding1=( self: SDL_AudioDeviceEvent, padding1: int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_padding2, ".padding2( self: SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_padding2, ".padding2=( self: SDL_AudioDeviceEvent, padding2: int )" },
+  { dao_SDL_AudioDeviceEvent_GETF_padding3, ".padding3( self: SDL_AudioDeviceEvent )=>int" },
+  { dao_SDL_AudioDeviceEvent_SETF_padding3, ".padding3=( self: SDL_AudioDeviceEvent, padding3: int )" },
   { dao_SDL_AudioDeviceEvent_SDL_AudioDeviceEvent, "SDL_AudioDeviceEvent(  )=>SDL_AudioDeviceEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_AudioDeviceEvent_Delete( void *self )
+static void Dao_SDL_AudioDeviceEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_AudioDeviceEvent_Typer = 
-{ "SDL_AudioDeviceEvent", NULL,
+static DaoTypeCore SDL_AudioDeviceEvent_Core = 
+{
+  "SDL_AudioDeviceEvent",
+  sizeof(SDL_AudioDeviceEvent),
+  { NULL },
   dao_SDL_AudioDeviceEvent_Nums,
   dao_SDL_AudioDeviceEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_AudioDeviceEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_AudioDeviceEvent_Typer = & SDL_AudioDeviceEvent_Typer;
+DaoTypeCore *dao_SDL_AudioDeviceEvent_Core = & SDL_AudioDeviceEvent_Core;
 DaoType *dao_type_SDL_AudioDeviceEvent = NULL;
 static void dao_SDL_AudioDeviceEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3621,7 +4340,7 @@ static void dao_SDL_AudioDeviceEvent_SDL_AudioDeviceEvent( DaoProcess *_proc, Da
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_TouchFingerEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_TouchFingerEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3647,44 +4366,60 @@ static void dao_SDL_TouchFingerEvent_GETF_pressure( DaoProcess *_proc, DaoValue 
 static void dao_SDL_TouchFingerEvent_SETF_pressure( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_TouchFingerEvent_SDL_TouchFingerEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_TouchFingerEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_TouchFingerEvent_Meths[] = 
 {
-  { dao_SDL_TouchFingerEvent_GETF_type, ".type( self :SDL_TouchFingerEvent )=>int" },
-  { dao_SDL_TouchFingerEvent_SETF_type, ".type=( self :SDL_TouchFingerEvent, type :int )" },
-  { dao_SDL_TouchFingerEvent_GETF_timestamp, ".timestamp( self :SDL_TouchFingerEvent )=>int" },
-  { dao_SDL_TouchFingerEvent_SETF_timestamp, ".timestamp=( self :SDL_TouchFingerEvent, timestamp :int )" },
-  { dao_SDL_TouchFingerEvent_GETF_touchId, ".touchId( self :SDL_TouchFingerEvent )=>int" },
-  { dao_SDL_TouchFingerEvent_SETF_touchId, ".touchId=( self :SDL_TouchFingerEvent, touchId :int )" },
-  { dao_SDL_TouchFingerEvent_GETF_fingerId, ".fingerId( self :SDL_TouchFingerEvent )=>int" },
-  { dao_SDL_TouchFingerEvent_SETF_fingerId, ".fingerId=( self :SDL_TouchFingerEvent, fingerId :int )" },
-  { dao_SDL_TouchFingerEvent_GETF_x, ".x( self :SDL_TouchFingerEvent )=>float" },
-  { dao_SDL_TouchFingerEvent_SETF_x, ".x=( self :SDL_TouchFingerEvent, x :float )" },
-  { dao_SDL_TouchFingerEvent_GETF_y, ".y( self :SDL_TouchFingerEvent )=>float" },
-  { dao_SDL_TouchFingerEvent_SETF_y, ".y=( self :SDL_TouchFingerEvent, y :float )" },
-  { dao_SDL_TouchFingerEvent_GETF_dx, ".dx( self :SDL_TouchFingerEvent )=>float" },
-  { dao_SDL_TouchFingerEvent_SETF_dx, ".dx=( self :SDL_TouchFingerEvent, dx :float )" },
-  { dao_SDL_TouchFingerEvent_GETF_dy, ".dy( self :SDL_TouchFingerEvent )=>float" },
-  { dao_SDL_TouchFingerEvent_SETF_dy, ".dy=( self :SDL_TouchFingerEvent, dy :float )" },
-  { dao_SDL_TouchFingerEvent_GETF_pressure, ".pressure( self :SDL_TouchFingerEvent )=>float" },
-  { dao_SDL_TouchFingerEvent_SETF_pressure, ".pressure=( self :SDL_TouchFingerEvent, pressure :float )" },
+  { dao_SDL_TouchFingerEvent_GETF_type, ".type( self: SDL_TouchFingerEvent )=>int" },
+  { dao_SDL_TouchFingerEvent_SETF_type, ".type=( self: SDL_TouchFingerEvent, type: int )" },
+  { dao_SDL_TouchFingerEvent_GETF_timestamp, ".timestamp( self: SDL_TouchFingerEvent )=>int" },
+  { dao_SDL_TouchFingerEvent_SETF_timestamp, ".timestamp=( self: SDL_TouchFingerEvent, timestamp: int )" },
+  { dao_SDL_TouchFingerEvent_GETF_touchId, ".touchId( self: SDL_TouchFingerEvent )=>int" },
+  { dao_SDL_TouchFingerEvent_SETF_touchId, ".touchId=( self: SDL_TouchFingerEvent, touchId: int )" },
+  { dao_SDL_TouchFingerEvent_GETF_fingerId, ".fingerId( self: SDL_TouchFingerEvent )=>int" },
+  { dao_SDL_TouchFingerEvent_SETF_fingerId, ".fingerId=( self: SDL_TouchFingerEvent, fingerId: int )" },
+  { dao_SDL_TouchFingerEvent_GETF_x, ".x( self: SDL_TouchFingerEvent )=>float" },
+  { dao_SDL_TouchFingerEvent_SETF_x, ".x=( self: SDL_TouchFingerEvent, x: float )" },
+  { dao_SDL_TouchFingerEvent_GETF_y, ".y( self: SDL_TouchFingerEvent )=>float" },
+  { dao_SDL_TouchFingerEvent_SETF_y, ".y=( self: SDL_TouchFingerEvent, y: float )" },
+  { dao_SDL_TouchFingerEvent_GETF_dx, ".dx( self: SDL_TouchFingerEvent )=>float" },
+  { dao_SDL_TouchFingerEvent_SETF_dx, ".dx=( self: SDL_TouchFingerEvent, dx: float )" },
+  { dao_SDL_TouchFingerEvent_GETF_dy, ".dy( self: SDL_TouchFingerEvent )=>float" },
+  { dao_SDL_TouchFingerEvent_SETF_dy, ".dy=( self: SDL_TouchFingerEvent, dy: float )" },
+  { dao_SDL_TouchFingerEvent_GETF_pressure, ".pressure( self: SDL_TouchFingerEvent )=>float" },
+  { dao_SDL_TouchFingerEvent_SETF_pressure, ".pressure=( self: SDL_TouchFingerEvent, pressure: float )" },
   { dao_SDL_TouchFingerEvent_SDL_TouchFingerEvent, "SDL_TouchFingerEvent(  )=>SDL_TouchFingerEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_TouchFingerEvent_Delete( void *self )
+static void Dao_SDL_TouchFingerEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_TouchFingerEvent_Typer = 
-{ "SDL_TouchFingerEvent", NULL,
+static DaoTypeCore SDL_TouchFingerEvent_Core = 
+{
+  "SDL_TouchFingerEvent",
+  sizeof(SDL_TouchFingerEvent),
+  { NULL },
   dao_SDL_TouchFingerEvent_Nums,
   dao_SDL_TouchFingerEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_TouchFingerEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_TouchFingerEvent_Typer = & SDL_TouchFingerEvent_Typer;
+DaoTypeCore *dao_SDL_TouchFingerEvent_Core = & SDL_TouchFingerEvent_Core;
 DaoType *dao_type_SDL_TouchFingerEvent = NULL;
 static void dao_SDL_TouchFingerEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3784,7 +4519,7 @@ static void dao_SDL_TouchFingerEvent_SDL_TouchFingerEvent( DaoProcess *_proc, Da
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_MultiGestureEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_MultiGestureEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3808,42 +4543,58 @@ static void dao_SDL_MultiGestureEvent_GETF_numFingers( DaoProcess *_proc, DaoVal
 static void dao_SDL_MultiGestureEvent_SETF_numFingers( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_MultiGestureEvent_SDL_MultiGestureEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_MultiGestureEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_MultiGestureEvent_Meths[] = 
 {
-  { dao_SDL_MultiGestureEvent_GETF_type, ".type( self :SDL_MultiGestureEvent )=>int" },
-  { dao_SDL_MultiGestureEvent_SETF_type, ".type=( self :SDL_MultiGestureEvent, type :int )" },
-  { dao_SDL_MultiGestureEvent_GETF_timestamp, ".timestamp( self :SDL_MultiGestureEvent )=>int" },
-  { dao_SDL_MultiGestureEvent_SETF_timestamp, ".timestamp=( self :SDL_MultiGestureEvent, timestamp :int )" },
-  { dao_SDL_MultiGestureEvent_GETF_touchId, ".touchId( self :SDL_MultiGestureEvent )=>int" },
-  { dao_SDL_MultiGestureEvent_SETF_touchId, ".touchId=( self :SDL_MultiGestureEvent, touchId :int )" },
-  { dao_SDL_MultiGestureEvent_GETF_dTheta, ".dTheta( self :SDL_MultiGestureEvent )=>float" },
-  { dao_SDL_MultiGestureEvent_SETF_dTheta, ".dTheta=( self :SDL_MultiGestureEvent, dTheta :float )" },
-  { dao_SDL_MultiGestureEvent_GETF_dDist, ".dDist( self :SDL_MultiGestureEvent )=>float" },
-  { dao_SDL_MultiGestureEvent_SETF_dDist, ".dDist=( self :SDL_MultiGestureEvent, dDist :float )" },
-  { dao_SDL_MultiGestureEvent_GETF_x, ".x( self :SDL_MultiGestureEvent )=>float" },
-  { dao_SDL_MultiGestureEvent_SETF_x, ".x=( self :SDL_MultiGestureEvent, x :float )" },
-  { dao_SDL_MultiGestureEvent_GETF_y, ".y( self :SDL_MultiGestureEvent )=>float" },
-  { dao_SDL_MultiGestureEvent_SETF_y, ".y=( self :SDL_MultiGestureEvent, y :float )" },
-  { dao_SDL_MultiGestureEvent_GETF_numFingers, ".numFingers( self :SDL_MultiGestureEvent )=>int" },
-  { dao_SDL_MultiGestureEvent_SETF_numFingers, ".numFingers=( self :SDL_MultiGestureEvent, numFingers :int )" },
+  { dao_SDL_MultiGestureEvent_GETF_type, ".type( self: SDL_MultiGestureEvent )=>int" },
+  { dao_SDL_MultiGestureEvent_SETF_type, ".type=( self: SDL_MultiGestureEvent, type: int )" },
+  { dao_SDL_MultiGestureEvent_GETF_timestamp, ".timestamp( self: SDL_MultiGestureEvent )=>int" },
+  { dao_SDL_MultiGestureEvent_SETF_timestamp, ".timestamp=( self: SDL_MultiGestureEvent, timestamp: int )" },
+  { dao_SDL_MultiGestureEvent_GETF_touchId, ".touchId( self: SDL_MultiGestureEvent )=>int" },
+  { dao_SDL_MultiGestureEvent_SETF_touchId, ".touchId=( self: SDL_MultiGestureEvent, touchId: int )" },
+  { dao_SDL_MultiGestureEvent_GETF_dTheta, ".dTheta( self: SDL_MultiGestureEvent )=>float" },
+  { dao_SDL_MultiGestureEvent_SETF_dTheta, ".dTheta=( self: SDL_MultiGestureEvent, dTheta: float )" },
+  { dao_SDL_MultiGestureEvent_GETF_dDist, ".dDist( self: SDL_MultiGestureEvent )=>float" },
+  { dao_SDL_MultiGestureEvent_SETF_dDist, ".dDist=( self: SDL_MultiGestureEvent, dDist: float )" },
+  { dao_SDL_MultiGestureEvent_GETF_x, ".x( self: SDL_MultiGestureEvent )=>float" },
+  { dao_SDL_MultiGestureEvent_SETF_x, ".x=( self: SDL_MultiGestureEvent, x: float )" },
+  { dao_SDL_MultiGestureEvent_GETF_y, ".y( self: SDL_MultiGestureEvent )=>float" },
+  { dao_SDL_MultiGestureEvent_SETF_y, ".y=( self: SDL_MultiGestureEvent, y: float )" },
+  { dao_SDL_MultiGestureEvent_GETF_numFingers, ".numFingers( self: SDL_MultiGestureEvent )=>int" },
+  { dao_SDL_MultiGestureEvent_SETF_numFingers, ".numFingers=( self: SDL_MultiGestureEvent, numFingers: int )" },
   { dao_SDL_MultiGestureEvent_SDL_MultiGestureEvent, "SDL_MultiGestureEvent(  )=>SDL_MultiGestureEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_MultiGestureEvent_Delete( void *self )
+static void Dao_SDL_MultiGestureEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_MultiGestureEvent_Typer = 
-{ "SDL_MultiGestureEvent", NULL,
+static DaoTypeCore SDL_MultiGestureEvent_Core = 
+{
+  "SDL_MultiGestureEvent",
+  sizeof(SDL_MultiGestureEvent),
+  { NULL },
   dao_SDL_MultiGestureEvent_Nums,
   dao_SDL_MultiGestureEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_MultiGestureEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_MultiGestureEvent_Typer = & SDL_MultiGestureEvent_Typer;
+DaoTypeCore *dao_SDL_MultiGestureEvent_Core = & SDL_MultiGestureEvent_Core;
 DaoType *dao_type_SDL_MultiGestureEvent = NULL;
 static void dao_SDL_MultiGestureEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -3933,7 +4684,7 @@ static void dao_SDL_MultiGestureEvent_SDL_MultiGestureEvent( DaoProcess *_proc, 
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_DollarGestureEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_DollarGestureEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -3957,42 +4708,58 @@ static void dao_SDL_DollarGestureEvent_GETF_y( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_DollarGestureEvent_SETF_y( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_DollarGestureEvent_SDL_DollarGestureEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_DollarGestureEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_DollarGestureEvent_Meths[] = 
 {
-  { dao_SDL_DollarGestureEvent_GETF_type, ".type( self :SDL_DollarGestureEvent )=>int" },
-  { dao_SDL_DollarGestureEvent_SETF_type, ".type=( self :SDL_DollarGestureEvent, type :int )" },
-  { dao_SDL_DollarGestureEvent_GETF_timestamp, ".timestamp( self :SDL_DollarGestureEvent )=>int" },
-  { dao_SDL_DollarGestureEvent_SETF_timestamp, ".timestamp=( self :SDL_DollarGestureEvent, timestamp :int )" },
-  { dao_SDL_DollarGestureEvent_GETF_touchId, ".touchId( self :SDL_DollarGestureEvent )=>int" },
-  { dao_SDL_DollarGestureEvent_SETF_touchId, ".touchId=( self :SDL_DollarGestureEvent, touchId :int )" },
-  { dao_SDL_DollarGestureEvent_GETF_gestureId, ".gestureId( self :SDL_DollarGestureEvent )=>int" },
-  { dao_SDL_DollarGestureEvent_SETF_gestureId, ".gestureId=( self :SDL_DollarGestureEvent, gestureId :int )" },
-  { dao_SDL_DollarGestureEvent_GETF_numFingers, ".numFingers( self :SDL_DollarGestureEvent )=>int" },
-  { dao_SDL_DollarGestureEvent_SETF_numFingers, ".numFingers=( self :SDL_DollarGestureEvent, numFingers :int )" },
-  { dao_SDL_DollarGestureEvent_GETF_error, ".error( self :SDL_DollarGestureEvent )=>float" },
-  { dao_SDL_DollarGestureEvent_SETF_error, ".error=( self :SDL_DollarGestureEvent, error :float )" },
-  { dao_SDL_DollarGestureEvent_GETF_x, ".x( self :SDL_DollarGestureEvent )=>float" },
-  { dao_SDL_DollarGestureEvent_SETF_x, ".x=( self :SDL_DollarGestureEvent, x :float )" },
-  { dao_SDL_DollarGestureEvent_GETF_y, ".y( self :SDL_DollarGestureEvent )=>float" },
-  { dao_SDL_DollarGestureEvent_SETF_y, ".y=( self :SDL_DollarGestureEvent, y :float )" },
+  { dao_SDL_DollarGestureEvent_GETF_type, ".type( self: SDL_DollarGestureEvent )=>int" },
+  { dao_SDL_DollarGestureEvent_SETF_type, ".type=( self: SDL_DollarGestureEvent, type: int )" },
+  { dao_SDL_DollarGestureEvent_GETF_timestamp, ".timestamp( self: SDL_DollarGestureEvent )=>int" },
+  { dao_SDL_DollarGestureEvent_SETF_timestamp, ".timestamp=( self: SDL_DollarGestureEvent, timestamp: int )" },
+  { dao_SDL_DollarGestureEvent_GETF_touchId, ".touchId( self: SDL_DollarGestureEvent )=>int" },
+  { dao_SDL_DollarGestureEvent_SETF_touchId, ".touchId=( self: SDL_DollarGestureEvent, touchId: int )" },
+  { dao_SDL_DollarGestureEvent_GETF_gestureId, ".gestureId( self: SDL_DollarGestureEvent )=>int" },
+  { dao_SDL_DollarGestureEvent_SETF_gestureId, ".gestureId=( self: SDL_DollarGestureEvent, gestureId: int )" },
+  { dao_SDL_DollarGestureEvent_GETF_numFingers, ".numFingers( self: SDL_DollarGestureEvent )=>int" },
+  { dao_SDL_DollarGestureEvent_SETF_numFingers, ".numFingers=( self: SDL_DollarGestureEvent, numFingers: int )" },
+  { dao_SDL_DollarGestureEvent_GETF_error, ".error( self: SDL_DollarGestureEvent )=>float" },
+  { dao_SDL_DollarGestureEvent_SETF_error, ".error=( self: SDL_DollarGestureEvent, error: float )" },
+  { dao_SDL_DollarGestureEvent_GETF_x, ".x( self: SDL_DollarGestureEvent )=>float" },
+  { dao_SDL_DollarGestureEvent_SETF_x, ".x=( self: SDL_DollarGestureEvent, x: float )" },
+  { dao_SDL_DollarGestureEvent_GETF_y, ".y( self: SDL_DollarGestureEvent )=>float" },
+  { dao_SDL_DollarGestureEvent_SETF_y, ".y=( self: SDL_DollarGestureEvent, y: float )" },
   { dao_SDL_DollarGestureEvent_SDL_DollarGestureEvent, "SDL_DollarGestureEvent(  )=>SDL_DollarGestureEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_DollarGestureEvent_Delete( void *self )
+static void Dao_SDL_DollarGestureEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_DollarGestureEvent_Typer = 
-{ "SDL_DollarGestureEvent", NULL,
+static DaoTypeCore SDL_DollarGestureEvent_Core = 
+{
+  "SDL_DollarGestureEvent",
+  sizeof(SDL_DollarGestureEvent),
+  { NULL },
   dao_SDL_DollarGestureEvent_Nums,
   dao_SDL_DollarGestureEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_DollarGestureEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_DollarGestureEvent_Typer = & SDL_DollarGestureEvent_Typer;
+DaoTypeCore *dao_SDL_DollarGestureEvent_Core = & SDL_DollarGestureEvent_Core;
 DaoType *dao_type_SDL_DollarGestureEvent = NULL;
 static void dao_SDL_DollarGestureEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4082,7 +4849,7 @@ static void dao_SDL_DollarGestureEvent_SDL_DollarGestureEvent( DaoProcess *_proc
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_DropEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_DropEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -4095,31 +4862,47 @@ static void dao_SDL_DropEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_DropEvent_GETF_file( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_DropEvent_SDL_DropEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_DropEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_DropEvent_Meths[] = 
 {
-  { dao_SDL_DropEvent_GETF_type, ".type( self :SDL_DropEvent )=>int" },
-  { dao_SDL_DropEvent_SETF_type, ".type=( self :SDL_DropEvent, type :int )" },
-  { dao_SDL_DropEvent_GETF_timestamp, ".timestamp( self :SDL_DropEvent )=>int" },
-  { dao_SDL_DropEvent_SETF_timestamp, ".timestamp=( self :SDL_DropEvent, timestamp :int )" },
-  { dao_SDL_DropEvent_GETF_file, ".file( self :SDL_DropEvent )=>string" },
+  { dao_SDL_DropEvent_GETF_type, ".type( self: SDL_DropEvent )=>int" },
+  { dao_SDL_DropEvent_SETF_type, ".type=( self: SDL_DropEvent, type: int )" },
+  { dao_SDL_DropEvent_GETF_timestamp, ".timestamp( self: SDL_DropEvent )=>int" },
+  { dao_SDL_DropEvent_SETF_timestamp, ".timestamp=( self: SDL_DropEvent, timestamp: int )" },
+  { dao_SDL_DropEvent_GETF_file, ".file( self: SDL_DropEvent )=>string" },
   { dao_SDL_DropEvent_SDL_DropEvent, "SDL_DropEvent(  )=>SDL_DropEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_DropEvent_Delete( void *self )
+static void Dao_SDL_DropEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_DropEvent_Typer = 
-{ "SDL_DropEvent", NULL,
+static DaoTypeCore SDL_DropEvent_Core = 
+{
+  "SDL_DropEvent",
+  sizeof(SDL_DropEvent),
+  { NULL },
   dao_SDL_DropEvent_Nums,
   dao_SDL_DropEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_DropEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_DropEvent_Typer = & SDL_DropEvent_Typer;
+DaoTypeCore *dao_SDL_DropEvent_Core = & SDL_DropEvent_Core;
 DaoType *dao_type_SDL_DropEvent = NULL;
 static void dao_SDL_DropEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4154,7 +4937,7 @@ static void dao_SDL_DropEvent_SDL_DropEvent( DaoProcess *_proc, DaoValue *_p[], 
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_QuitEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_QuitEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -4166,30 +4949,46 @@ static void dao_SDL_QuitEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[],
 static void dao_SDL_QuitEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_QuitEvent_SDL_QuitEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_QuitEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_QuitEvent_Meths[] = 
 {
-  { dao_SDL_QuitEvent_GETF_type, ".type( self :SDL_QuitEvent )=>int" },
-  { dao_SDL_QuitEvent_SETF_type, ".type=( self :SDL_QuitEvent, type :int )" },
-  { dao_SDL_QuitEvent_GETF_timestamp, ".timestamp( self :SDL_QuitEvent )=>int" },
-  { dao_SDL_QuitEvent_SETF_timestamp, ".timestamp=( self :SDL_QuitEvent, timestamp :int )" },
+  { dao_SDL_QuitEvent_GETF_type, ".type( self: SDL_QuitEvent )=>int" },
+  { dao_SDL_QuitEvent_SETF_type, ".type=( self: SDL_QuitEvent, type: int )" },
+  { dao_SDL_QuitEvent_GETF_timestamp, ".timestamp( self: SDL_QuitEvent )=>int" },
+  { dao_SDL_QuitEvent_SETF_timestamp, ".timestamp=( self: SDL_QuitEvent, timestamp: int )" },
   { dao_SDL_QuitEvent_SDL_QuitEvent, "SDL_QuitEvent(  )=>SDL_QuitEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_QuitEvent_Delete( void *self )
+static void Dao_SDL_QuitEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_QuitEvent_Typer = 
-{ "SDL_QuitEvent", NULL,
+static DaoTypeCore SDL_QuitEvent_Core = 
+{
+  "SDL_QuitEvent",
+  sizeof(SDL_QuitEvent),
+  { NULL },
   dao_SDL_QuitEvent_Nums,
   dao_SDL_QuitEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_QuitEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_QuitEvent_Typer = & SDL_QuitEvent_Typer;
+DaoTypeCore *dao_SDL_QuitEvent_Core = & SDL_QuitEvent_Core;
 DaoType *dao_type_SDL_QuitEvent = NULL;
 static void dao_SDL_QuitEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4219,7 +5018,7 @@ static void dao_SDL_QuitEvent_SDL_QuitEvent( DaoProcess *_proc, DaoValue *_p[], 
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_OSEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_OSEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -4231,30 +5030,46 @@ static void dao_SDL_OSEvent_GETF_timestamp( DaoProcess *_proc, DaoValue *_p[], i
 static void dao_SDL_OSEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_OSEvent_SDL_OSEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_OSEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_OSEvent_Meths[] = 
 {
-  { dao_SDL_OSEvent_GETF_type, ".type( self :SDL_OSEvent )=>int" },
-  { dao_SDL_OSEvent_SETF_type, ".type=( self :SDL_OSEvent, type :int )" },
-  { dao_SDL_OSEvent_GETF_timestamp, ".timestamp( self :SDL_OSEvent )=>int" },
-  { dao_SDL_OSEvent_SETF_timestamp, ".timestamp=( self :SDL_OSEvent, timestamp :int )" },
+  { dao_SDL_OSEvent_GETF_type, ".type( self: SDL_OSEvent )=>int" },
+  { dao_SDL_OSEvent_SETF_type, ".type=( self: SDL_OSEvent, type: int )" },
+  { dao_SDL_OSEvent_GETF_timestamp, ".timestamp( self: SDL_OSEvent )=>int" },
+  { dao_SDL_OSEvent_SETF_timestamp, ".timestamp=( self: SDL_OSEvent, timestamp: int )" },
   { dao_SDL_OSEvent_SDL_OSEvent, "SDL_OSEvent(  )=>SDL_OSEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_OSEvent_Delete( void *self )
+static void Dao_SDL_OSEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_OSEvent_Typer = 
-{ "SDL_OSEvent", NULL,
+static DaoTypeCore SDL_OSEvent_Core = 
+{
+  "SDL_OSEvent",
+  sizeof(SDL_OSEvent),
+  { NULL },
   dao_SDL_OSEvent_Nums,
   dao_SDL_OSEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_OSEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_OSEvent_Typer = & SDL_OSEvent_Typer;
+DaoTypeCore *dao_SDL_OSEvent_Core = & SDL_OSEvent_Core;
 DaoType *dao_type_SDL_OSEvent = NULL;
 static void dao_SDL_OSEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4284,7 +5099,7 @@ static void dao_SDL_OSEvent_SDL_OSEvent( DaoProcess *_proc, DaoValue *_p[], int 
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_UserEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_UserEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -4302,36 +5117,52 @@ static void dao_SDL_UserEvent_GETF_data1( DaoProcess *_proc, DaoValue *_p[], int
 static void dao_SDL_UserEvent_GETF_data2( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_UserEvent_SDL_UserEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_UserEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_UserEvent_Meths[] = 
 {
-  { dao_SDL_UserEvent_GETF_type, ".type( self :SDL_UserEvent )=>int" },
-  { dao_SDL_UserEvent_SETF_type, ".type=( self :SDL_UserEvent, type :int )" },
-  { dao_SDL_UserEvent_GETF_timestamp, ".timestamp( self :SDL_UserEvent )=>int" },
-  { dao_SDL_UserEvent_SETF_timestamp, ".timestamp=( self :SDL_UserEvent, timestamp :int )" },
-  { dao_SDL_UserEvent_GETF_windowID, ".windowID( self :SDL_UserEvent )=>int" },
-  { dao_SDL_UserEvent_SETF_windowID, ".windowID=( self :SDL_UserEvent, windowID :int )" },
-  { dao_SDL_UserEvent_GETF_code, ".code( self :SDL_UserEvent )=>int" },
-  { dao_SDL_UserEvent_SETF_code, ".code=( self :SDL_UserEvent, code :int )" },
-  { dao_SDL_UserEvent_GETF_data1, ".data1( self :SDL_UserEvent )=>cdata" },
-  { dao_SDL_UserEvent_GETF_data2, ".data2( self :SDL_UserEvent )=>cdata" },
+  { dao_SDL_UserEvent_GETF_type, ".type( self: SDL_UserEvent )=>int" },
+  { dao_SDL_UserEvent_SETF_type, ".type=( self: SDL_UserEvent, type: int )" },
+  { dao_SDL_UserEvent_GETF_timestamp, ".timestamp( self: SDL_UserEvent )=>int" },
+  { dao_SDL_UserEvent_SETF_timestamp, ".timestamp=( self: SDL_UserEvent, timestamp: int )" },
+  { dao_SDL_UserEvent_GETF_windowID, ".windowID( self: SDL_UserEvent )=>int" },
+  { dao_SDL_UserEvent_SETF_windowID, ".windowID=( self: SDL_UserEvent, windowID: int )" },
+  { dao_SDL_UserEvent_GETF_code, ".code( self: SDL_UserEvent )=>int" },
+  { dao_SDL_UserEvent_SETF_code, ".code=( self: SDL_UserEvent, code: int )" },
+  { dao_SDL_UserEvent_GETF_data1, ".data1( self: SDL_UserEvent )=>cdata" },
+  { dao_SDL_UserEvent_GETF_data2, ".data2( self: SDL_UserEvent )=>cdata" },
   { dao_SDL_UserEvent_SDL_UserEvent, "SDL_UserEvent(  )=>SDL_UserEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_UserEvent_Delete( void *self )
+static void Dao_SDL_UserEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_UserEvent_Typer = 
-{ "SDL_UserEvent", NULL,
+static DaoTypeCore SDL_UserEvent_Core = 
+{
+  "SDL_UserEvent",
+  sizeof(SDL_UserEvent),
+  { NULL },
   dao_SDL_UserEvent_Nums,
   dao_SDL_UserEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_UserEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_UserEvent_Typer = & SDL_UserEvent_Typer;
+DaoTypeCore *dao_SDL_UserEvent_Core = & SDL_UserEvent_Core;
 DaoType *dao_type_SDL_UserEvent = NULL;
 static void dao_SDL_UserEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4389,14 +5220,37 @@ static void dao_SDL_UserEvent_SDL_UserEvent( DaoProcess *_proc, DaoValue *_p[], 
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_UserEvent );
 }
 /* /usr/local/include/SDL2/SDL_events.h */
-static DaoTypeBase SDL_SysWMmsg_Typer = 
-{ "SDL_SysWMmsg", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_SysWMmsg_Typer = & SDL_SysWMmsg_Typer;
+static DaoTypeCore SDL_SysWMmsg_Core = 
+{
+  "SDL_SysWMmsg",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_SysWMmsg_Core = & SDL_SysWMmsg_Core;
 DaoType *dao_type_SDL_SysWMmsg = NULL;
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_SysWMEvent_Nums[] = 
+static DaoNumberEntry dao_SDL_SysWMEvent_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -4409,31 +5263,47 @@ static void dao_SDL_SysWMEvent_SETF_timestamp( DaoProcess *_proc, DaoValue *_p[]
 static void dao_SDL_SysWMEvent_GETF_msg( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_SysWMEvent_SDL_SysWMEvent( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_SysWMEvent_Meths[] = 
+static DaoFunctionEntry dao_SDL_SysWMEvent_Meths[] = 
 {
-  { dao_SDL_SysWMEvent_GETF_type, ".type( self :SDL_SysWMEvent )=>int" },
-  { dao_SDL_SysWMEvent_SETF_type, ".type=( self :SDL_SysWMEvent, type :int )" },
-  { dao_SDL_SysWMEvent_GETF_timestamp, ".timestamp( self :SDL_SysWMEvent )=>int" },
-  { dao_SDL_SysWMEvent_SETF_timestamp, ".timestamp=( self :SDL_SysWMEvent, timestamp :int )" },
-  { dao_SDL_SysWMEvent_GETF_msg, ".msg( self :SDL_SysWMEvent )=>SDL_SysWMmsg" },
+  { dao_SDL_SysWMEvent_GETF_type, ".type( self: SDL_SysWMEvent )=>int" },
+  { dao_SDL_SysWMEvent_SETF_type, ".type=( self: SDL_SysWMEvent, type: int )" },
+  { dao_SDL_SysWMEvent_GETF_timestamp, ".timestamp( self: SDL_SysWMEvent )=>int" },
+  { dao_SDL_SysWMEvent_SETF_timestamp, ".timestamp=( self: SDL_SysWMEvent, timestamp: int )" },
+  { dao_SDL_SysWMEvent_GETF_msg, ".msg( self: SDL_SysWMEvent )=>SDL_SysWMmsg" },
   { dao_SDL_SysWMEvent_SDL_SysWMEvent, "SDL_SysWMEvent(  )=>SDL_SysWMEvent" },
   { NULL, NULL }
 };
-static void Dao_SDL_SysWMEvent_Delete( void *self )
+static void Dao_SDL_SysWMEvent_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_SysWMEvent_Typer = 
-{ "SDL_SysWMEvent", NULL,
+static DaoTypeCore SDL_SysWMEvent_Core = 
+{
+  "SDL_SysWMEvent",
+  sizeof(SDL_SysWMEvent),
+  { NULL },
   dao_SDL_SysWMEvent_Nums,
   dao_SDL_SysWMEvent_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_SysWMEvent_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_SysWMEvent_Typer = & SDL_SysWMEvent_Typer;
+DaoTypeCore *dao_SDL_SysWMEvent_Core = & SDL_SysWMEvent_Core;
 DaoType *dao_type_SDL_SysWMEvent = NULL;
 static void dao_SDL_SysWMEvent_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4468,7 +5338,7 @@ static void dao_SDL_SysWMEvent_SDL_SysWMEvent( DaoProcess *_proc, DaoValue *_p[]
 /* /usr/local/include/SDL2/SDL_events.h */
 
 
-static DaoNumItem dao_SDL_Event_Nums[] = 
+static DaoNumberEntry dao_SDL_Event_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -4502,52 +5372,68 @@ static void dao_SDL_Event_GETF_dgesture( DaoProcess *_proc, DaoValue *_p[], int 
 static void dao_SDL_Event_GETF_drop( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_Event_SDL_Event( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_Event_Meths[] = 
+static DaoFunctionEntry dao_SDL_Event_Meths[] = 
 {
-  { dao_SDL_Event_GETF_type, ".type( self :SDL_Event )=>int" },
-  { dao_SDL_Event_SETF_type, ".type=( self :SDL_Event, type :int )" },
-  { dao_SDL_Event_GETF_common, ".common( self :SDL_Event )=>SDL_CommonEvent" },
-  { dao_SDL_Event_GETF_window, ".window( self :SDL_Event )=>SDL_WindowEvent" },
-  { dao_SDL_Event_GETF_key, ".key( self :SDL_Event )=>SDL_KeyboardEvent" },
-  { dao_SDL_Event_GETF_edit, ".edit( self :SDL_Event )=>SDL_TextEditingEvent" },
-  { dao_SDL_Event_GETF_text, ".text( self :SDL_Event )=>SDL_TextInputEvent" },
-  { dao_SDL_Event_GETF_motion, ".motion( self :SDL_Event )=>SDL_MouseMotionEvent" },
-  { dao_SDL_Event_GETF_button, ".button( self :SDL_Event )=>SDL_MouseButtonEvent" },
-  { dao_SDL_Event_GETF_wheel, ".wheel( self :SDL_Event )=>SDL_MouseWheelEvent" },
-  { dao_SDL_Event_GETF_jaxis, ".jaxis( self :SDL_Event )=>SDL_JoyAxisEvent" },
-  { dao_SDL_Event_GETF_jball, ".jball( self :SDL_Event )=>SDL_JoyBallEvent" },
-  { dao_SDL_Event_GETF_jhat, ".jhat( self :SDL_Event )=>SDL_JoyHatEvent" },
-  { dao_SDL_Event_GETF_jbutton, ".jbutton( self :SDL_Event )=>SDL_JoyButtonEvent" },
-  { dao_SDL_Event_GETF_jdevice, ".jdevice( self :SDL_Event )=>SDL_JoyDeviceEvent" },
-  { dao_SDL_Event_GETF_caxis, ".caxis( self :SDL_Event )=>SDL_ControllerAxisEvent" },
-  { dao_SDL_Event_GETF_cbutton, ".cbutton( self :SDL_Event )=>SDL_ControllerButtonEvent" },
-  { dao_SDL_Event_GETF_cdevice, ".cdevice( self :SDL_Event )=>SDL_ControllerDeviceEvent" },
-  { dao_SDL_Event_GETF_adevice, ".adevice( self :SDL_Event )=>SDL_AudioDeviceEvent" },
-  { dao_SDL_Event_GETF_quit, ".quit( self :SDL_Event )=>SDL_QuitEvent" },
-  { dao_SDL_Event_GETF_user, ".user( self :SDL_Event )=>SDL_UserEvent" },
-  { dao_SDL_Event_GETF_syswm, ".syswm( self :SDL_Event )=>SDL_SysWMEvent" },
-  { dao_SDL_Event_GETF_tfinger, ".tfinger( self :SDL_Event )=>SDL_TouchFingerEvent" },
-  { dao_SDL_Event_GETF_mgesture, ".mgesture( self :SDL_Event )=>SDL_MultiGestureEvent" },
-  { dao_SDL_Event_GETF_dgesture, ".dgesture( self :SDL_Event )=>SDL_DollarGestureEvent" },
-  { dao_SDL_Event_GETF_drop, ".drop( self :SDL_Event )=>SDL_DropEvent" },
+  { dao_SDL_Event_GETF_type, ".type( self: SDL_Event )=>int" },
+  { dao_SDL_Event_SETF_type, ".type=( self: SDL_Event, type: int )" },
+  { dao_SDL_Event_GETF_common, ".common( self: SDL_Event )=>SDL_CommonEvent" },
+  { dao_SDL_Event_GETF_window, ".window( self: SDL_Event )=>SDL_WindowEvent" },
+  { dao_SDL_Event_GETF_key, ".key( self: SDL_Event )=>SDL_KeyboardEvent" },
+  { dao_SDL_Event_GETF_edit, ".edit( self: SDL_Event )=>SDL_TextEditingEvent" },
+  { dao_SDL_Event_GETF_text, ".text( self: SDL_Event )=>SDL_TextInputEvent" },
+  { dao_SDL_Event_GETF_motion, ".motion( self: SDL_Event )=>SDL_MouseMotionEvent" },
+  { dao_SDL_Event_GETF_button, ".button( self: SDL_Event )=>SDL_MouseButtonEvent" },
+  { dao_SDL_Event_GETF_wheel, ".wheel( self: SDL_Event )=>SDL_MouseWheelEvent" },
+  { dao_SDL_Event_GETF_jaxis, ".jaxis( self: SDL_Event )=>SDL_JoyAxisEvent" },
+  { dao_SDL_Event_GETF_jball, ".jball( self: SDL_Event )=>SDL_JoyBallEvent" },
+  { dao_SDL_Event_GETF_jhat, ".jhat( self: SDL_Event )=>SDL_JoyHatEvent" },
+  { dao_SDL_Event_GETF_jbutton, ".jbutton( self: SDL_Event )=>SDL_JoyButtonEvent" },
+  { dao_SDL_Event_GETF_jdevice, ".jdevice( self: SDL_Event )=>SDL_JoyDeviceEvent" },
+  { dao_SDL_Event_GETF_caxis, ".caxis( self: SDL_Event )=>SDL_ControllerAxisEvent" },
+  { dao_SDL_Event_GETF_cbutton, ".cbutton( self: SDL_Event )=>SDL_ControllerButtonEvent" },
+  { dao_SDL_Event_GETF_cdevice, ".cdevice( self: SDL_Event )=>SDL_ControllerDeviceEvent" },
+  { dao_SDL_Event_GETF_adevice, ".adevice( self: SDL_Event )=>SDL_AudioDeviceEvent" },
+  { dao_SDL_Event_GETF_quit, ".quit( self: SDL_Event )=>SDL_QuitEvent" },
+  { dao_SDL_Event_GETF_user, ".user( self: SDL_Event )=>SDL_UserEvent" },
+  { dao_SDL_Event_GETF_syswm, ".syswm( self: SDL_Event )=>SDL_SysWMEvent" },
+  { dao_SDL_Event_GETF_tfinger, ".tfinger( self: SDL_Event )=>SDL_TouchFingerEvent" },
+  { dao_SDL_Event_GETF_mgesture, ".mgesture( self: SDL_Event )=>SDL_MultiGestureEvent" },
+  { dao_SDL_Event_GETF_dgesture, ".dgesture( self: SDL_Event )=>SDL_DollarGestureEvent" },
+  { dao_SDL_Event_GETF_drop, ".drop( self: SDL_Event )=>SDL_DropEvent" },
   { dao_SDL_Event_SDL_Event, "SDL_Event(  )=>SDL_Event" },
   { NULL, NULL }
 };
-static void Dao_SDL_Event_Delete( void *self )
+static void Dao_SDL_Event_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_Event_Typer = 
-{ "SDL_Event", NULL,
+static DaoTypeCore SDL_Event_Core = 
+{
+  "SDL_Event",
+  sizeof(SDL_Event),
+  { NULL },
   dao_SDL_Event_Nums,
   dao_SDL_Event_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_Event_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_Event_Typer = & SDL_Event_Typer;
+DaoTypeCore *dao_SDL_Event_Core = & SDL_Event_Core;
 DaoType *dao_type_SDL_Event = NULL;
 static void dao_SDL_Event_GETF_type( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4685,44 +5571,205 @@ static void dao_SDL_Event_SDL_Event( DaoProcess *_proc, DaoValue *_p[], int _n )
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_Event );
 }
 /* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase SDL_HapticDirection_Typer = 
-{ "SDL_HapticDirection", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_HapticDirection_Typer = & SDL_HapticDirection_Typer;
+static DaoTypeCore SDL_HapticDirection_Core = 
+{
+  "SDL_HapticDirection",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_HapticDirection_Core = & SDL_HapticDirection_Core;
 DaoType *dao_type_SDL_HapticDirection = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase SDL_HapticConstant_Typer = 
-{ "SDL_HapticConstant", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_HapticConstant_Typer = & SDL_HapticConstant_Typer;
+static DaoTypeCore SDL_HapticConstant_Core = 
+{
+  "SDL_HapticConstant",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_HapticConstant_Core = & SDL_HapticConstant_Core;
 DaoType *dao_type_SDL_HapticConstant = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase SDL_HapticPeriodic_Typer = 
-{ "SDL_HapticPeriodic", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_HapticPeriodic_Typer = & SDL_HapticPeriodic_Typer;
+static DaoTypeCore SDL_HapticPeriodic_Core = 
+{
+  "SDL_HapticPeriodic",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_HapticPeriodic_Core = & SDL_HapticPeriodic_Core;
 DaoType *dao_type_SDL_HapticPeriodic = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase SDL_HapticCondition_Typer = 
-{ "SDL_HapticCondition", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_HapticCondition_Typer = & SDL_HapticCondition_Typer;
+static DaoTypeCore SDL_HapticCondition_Core = 
+{
+  "SDL_HapticCondition",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_HapticCondition_Core = & SDL_HapticCondition_Core;
 DaoType *dao_type_SDL_HapticCondition = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase SDL_HapticRamp_Typer = 
-{ "SDL_HapticRamp", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_HapticRamp_Typer = & SDL_HapticRamp_Typer;
+static DaoTypeCore SDL_HapticRamp_Core = 
+{
+  "SDL_HapticRamp",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_HapticRamp_Core = & SDL_HapticRamp_Core;
 DaoType *dao_type_SDL_HapticRamp = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase SDL_HapticLeftRight_Typer = 
-{ "SDL_HapticLeftRight", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_HapticLeftRight_Typer = & SDL_HapticLeftRight_Typer;
+static DaoTypeCore SDL_HapticLeftRight_Core = 
+{
+  "SDL_HapticLeftRight",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_HapticLeftRight_Core = & SDL_HapticLeftRight_Core;
 DaoType *dao_type_SDL_HapticLeftRight = NULL;
 /* /usr/local/include/SDL2/SDL_haptic.h */
-static DaoTypeBase SDL_HapticCustom_Typer = 
-{ "SDL_HapticCustom", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_HapticCustom_Typer = & SDL_HapticCustom_Typer;
+static DaoTypeCore SDL_HapticCustom_Core = 
+{
+  "SDL_HapticCustom",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_HapticCustom_Core = & SDL_HapticCustom_Core;
 DaoType *dao_type_SDL_HapticCustom = NULL;
 /* /usr/local/include/SDL2/SDL_render.h */
 
 
-static DaoNumItem dao_SDL_RendererInfo_Nums[] = 
+static DaoNumberEntry dao_SDL_RendererInfo_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -4741,37 +5788,53 @@ static void dao_SDL_RendererInfo_GETF_max_texture_height( DaoProcess *_proc, Dao
 static void dao_SDL_RendererInfo_SETF_max_texture_height( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_RendererInfo_SDL_RendererInfo( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_RendererInfo_Meths[] = 
+static DaoFunctionEntry dao_SDL_RendererInfo_Meths[] = 
 {
-  { dao_SDL_RendererInfo_GETF_name, ".name( self :SDL_RendererInfo )=>string" },
-  { dao_SDL_RendererInfo_GETF_flags, ".flags( self :SDL_RendererInfo )=>int" },
-  { dao_SDL_RendererInfo_SETF_flags, ".flags=( self :SDL_RendererInfo, flags :int )" },
-  { dao_SDL_RendererInfo_GETF_num_texture_formats, ".num_texture_formats( self :SDL_RendererInfo )=>int" },
-  { dao_SDL_RendererInfo_SETF_num_texture_formats, ".num_texture_formats=( self :SDL_RendererInfo, num_texture_formats :int )" },
-  { dao_SDL_RendererInfo_GETF_texture_formats, ".texture_formats( self :SDL_RendererInfo )=>array<int>" },
-  { dao_SDL_RendererInfo_SETF_texture_formats, ".texture_formats=( self :SDL_RendererInfo, texture_formats :array<int> )" },
-  { dao_SDL_RendererInfo_GETF_max_texture_width, ".max_texture_width( self :SDL_RendererInfo )=>int" },
-  { dao_SDL_RendererInfo_SETF_max_texture_width, ".max_texture_width=( self :SDL_RendererInfo, max_texture_width :int )" },
-  { dao_SDL_RendererInfo_GETF_max_texture_height, ".max_texture_height( self :SDL_RendererInfo )=>int" },
-  { dao_SDL_RendererInfo_SETF_max_texture_height, ".max_texture_height=( self :SDL_RendererInfo, max_texture_height :int )" },
+  { dao_SDL_RendererInfo_GETF_name, ".name( self: SDL_RendererInfo )=>string" },
+  { dao_SDL_RendererInfo_GETF_flags, ".flags( self: SDL_RendererInfo )=>int" },
+  { dao_SDL_RendererInfo_SETF_flags, ".flags=( self: SDL_RendererInfo, flags: int )" },
+  { dao_SDL_RendererInfo_GETF_num_texture_formats, ".num_texture_formats( self: SDL_RendererInfo )=>int" },
+  { dao_SDL_RendererInfo_SETF_num_texture_formats, ".num_texture_formats=( self: SDL_RendererInfo, num_texture_formats: int )" },
+  { dao_SDL_RendererInfo_GETF_texture_formats, ".texture_formats( self: SDL_RendererInfo )=>array<int>" },
+  { dao_SDL_RendererInfo_SETF_texture_formats, ".texture_formats=( self: SDL_RendererInfo, texture_formats: array<int> )" },
+  { dao_SDL_RendererInfo_GETF_max_texture_width, ".max_texture_width( self: SDL_RendererInfo )=>int" },
+  { dao_SDL_RendererInfo_SETF_max_texture_width, ".max_texture_width=( self: SDL_RendererInfo, max_texture_width: int )" },
+  { dao_SDL_RendererInfo_GETF_max_texture_height, ".max_texture_height( self: SDL_RendererInfo )=>int" },
+  { dao_SDL_RendererInfo_SETF_max_texture_height, ".max_texture_height=( self: SDL_RendererInfo, max_texture_height: int )" },
   { dao_SDL_RendererInfo_SDL_RendererInfo, "SDL_RendererInfo(  )=>SDL_RendererInfo" },
   { NULL, NULL }
 };
-static void Dao_SDL_RendererInfo_Delete( void *self )
+static void Dao_SDL_RendererInfo_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_RendererInfo_Typer = 
-{ "SDL_RendererInfo", NULL,
+static DaoTypeCore SDL_RendererInfo_Core = 
+{
+  "SDL_RendererInfo",
+  sizeof(SDL_RendererInfo),
+  { NULL },
   dao_SDL_RendererInfo_Nums,
   dao_SDL_RendererInfo_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_RendererInfo_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_RendererInfo_Typer = & SDL_RendererInfo_Typer;
+DaoTypeCore *dao_SDL_RendererInfo_Core = & SDL_RendererInfo_Core;
 DaoType *dao_type_SDL_RendererInfo = NULL;
 static void dao_SDL_RendererInfo_GETF_name( DaoProcess *_proc, DaoValue *_p[], int _n )
 {
@@ -4838,19 +5901,65 @@ static void dao_SDL_RendererInfo_SDL_RendererInfo( DaoProcess *_proc, DaoValue *
 	DaoProcess_WrapCdata( _proc, self, dao_type_SDL_RendererInfo );
 }
 /* /usr/local/include/SDL2/SDL_render.h */
-static DaoTypeBase SDL_Renderer_Typer = 
-{ "SDL_Renderer", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_Renderer_Typer = & SDL_Renderer_Typer;
+static DaoTypeCore SDL_Renderer_Core = 
+{
+  "SDL_Renderer",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_Renderer_Core = & SDL_Renderer_Core;
 DaoType *dao_type_SDL_Renderer = NULL;
 /* /usr/local/include/SDL2/SDL_render.h */
-static DaoTypeBase SDL_Texture_Typer = 
-{ "SDL_Texture", NULL, NULL, NULL, { NULL }, { NULL }, NULL, NULL };
-DaoTypeBase *dao_SDL_Texture_Typer = & SDL_Texture_Typer;
+static DaoTypeCore SDL_Texture_Core = 
+{
+  "SDL_Texture",
+  0,
+  { NULL },
+  NULL,
+  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL
+};
+
+DaoTypeCore *dao_SDL_Texture_Core = & SDL_Texture_Core;
 DaoType *dao_type_SDL_Texture = NULL;
 /* /usr/local/include/SDL2/SDL_version.h */
 
 
-static DaoNumItem dao_SDL_version_Nums[] = 
+static DaoNumberEntry dao_SDL_version_Nums[] = 
 {
   { NULL, 0, 0 }
 };
@@ -4864,32 +5973,48 @@ static void dao_SDL_version_GETF_patch( DaoProcess *_proc, DaoValue *_p[], int _
 static void dao_SDL_version_SETF_patch( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao_SDL_version_SDL_version( DaoProcess *_proc, DaoValue *_p[], int _n );
 
-static DaoFuncItem dao_SDL_version_Meths[] = 
+static DaoFunctionEntry dao_SDL_version_Meths[] = 
 {
-  { dao_SDL_version_GETF_major, ".major( self :SDL_version )=>int" },
-  { dao_SDL_version_SETF_major, ".major=( self :SDL_version, major :int )" },
-  { dao_SDL_version_GETF_minor, ".minor( self :SDL_version )=>int" },
-  { dao_SDL_version_SETF_minor, ".minor=( self :SDL_version, minor :int )" },
-  { dao_SDL_version_GETF_patch, ".patch( self :SDL_version )=>int" },
-  { dao_SDL_version_SETF_patch, ".patch=( self :SDL_version, patch :int )" },
+  { dao_SDL_version_GETF_major, ".major( self: SDL_version )=>int" },
+  { dao_SDL_version_SETF_major, ".major=( self: SDL_version, major: int )" },
+  { dao_SDL_version_GETF_minor, ".minor( self: SDL_version )=>int" },
+  { dao_SDL_version_SETF_minor, ".minor=( self: SDL_version, minor: int )" },
+  { dao_SDL_version_GETF_patch, ".patch( self: SDL_version )=>int" },
+  { dao_SDL_version_SETF_patch, ".patch=( self: SDL_version, patch: int )" },
   { dao_SDL_version_SDL_version, "SDL_version(  )=>SDL_version" },
   { NULL, NULL }
 };
-static void Dao_SDL_version_Delete( void *self )
+static void Dao_SDL_version_Delete( DaoValue *self )
 {
-	free( self );
+	if( DaoValue_TryGetCdata( self ) ) free( DaoValue_TryGetCdata( self ) );
+	DaoCstruct_Delete( (DaoCstruct*) self );
 }
 
-static DaoTypeBase SDL_version_Typer = 
-{ "SDL_version", NULL,
+static DaoTypeCore SDL_version_Core = 
+{
+  "SDL_version",
+  sizeof(SDL_version),
+  { NULL },
   dao_SDL_version_Nums,
   dao_SDL_version_Meths,
-  { NULL },
-  { NULL },
+  DaoCstruct_CheckGetField,    DaoCstruct_DoGetField,
+  DaoCstruct_CheckSetField,    DaoCstruct_DoSetField,
+  DaoCstruct_CheckGetItem,     DaoCstruct_DoGetItem,
+  DaoCstruct_CheckSetItem,     DaoCstruct_DoSetItem,
+  DaoCstruct_CheckUnary,       DaoCstruct_DoUnary,
+  DaoCstruct_CheckBinary,      DaoCstruct_DoBinary,
+  DaoCstruct_CheckConversion,  DaoCstruct_DoConversion,
+  DaoCstruct_CheckForEach,     DaoCstruct_DoForEach,
+  DaoCstruct_Print,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
   Dao_SDL_version_Delete,
   NULL
 };
-DaoTypeBase *dao_SDL_version_Typer = & SDL_version_Typer;
+DaoTypeCore *dao_SDL_version_Core = & SDL_version_Core;
 DaoType *dao_type_SDL_version = NULL;
 static void dao_SDL_version_GETF_major( DaoProcess *_proc, DaoValue *_p[], int _n )
 {

@@ -471,7 +471,7 @@ static void dao__SDL_InitSubSystem( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_QuitSubSystem( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_WasInit( DaoProcess *_proc, DaoValue *_p[], int _n );
 static void dao__SDL_Quit( DaoProcess *_proc, DaoValue *_p[], int _n );
-static DaoFuncItem dao__Funcs[] = 
+static DaoFunctionEntry dao__Funcs[] = 
 {
   { dao__SDL_malloc, "SDL_malloc( size: int )=>cdata" },
   { dao__SDL_calloc, "SDL_calloc( nmemb: int, size: int )=>cdata" },
@@ -5048,7 +5048,7 @@ static void dao__SDL_Quit( DaoProcess *_proc, DaoValue *_p[], int _n )
 #ifdef __cplusplus
 }
 #endif
-static DaoNumItem dao__Nums[] = 
+static DaoNumberEntry dao__Nums[] = 
 {
   {  "SDL_INIT_AUDIO", DAO_FLOAT, SDL_INIT_AUDIO},
   {  "SDL_INIT_EVENTS", DAO_FLOAT, SDL_INIT_EVENTS},
@@ -5906,68 +5906,68 @@ int DaoSDL_OnLoad( DaoVmSpace *vms, DaoNamespace *ns )
 	DaoNamespace *aux = DaoVmSpace_LinkModule( vms, ns, "aux" );
 	if( aux == NULL ) return 1;
 	DaoNamespace_AddConstNumbers( ns, dao__Nums );
-	dao_type__SDL_iconv_t = DaoNamespace_WrapType( ns, dao__SDL_iconv_t_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_AssertData = DaoNamespace_WrapType( ns, dao_SDL_AssertData_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_atomic_t = DaoNamespace_WrapType( ns, dao_SDL_atomic_t_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_mutex = DaoNamespace_WrapType( ns, dao_SDL_mutex_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_semaphore = DaoNamespace_WrapType( ns, dao_SDL_semaphore_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_cond = DaoNamespace_WrapType( ns, dao_SDL_cond_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Thread = DaoNamespace_WrapType( ns, dao_SDL_Thread_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_RWops = DaoNamespace_WrapType( ns, dao_SDL_RWops_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_AudioSpec = DaoNamespace_WrapType( ns, dao_SDL_AudioSpec_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_AudioCVT = DaoNamespace_WrapType( ns, dao_SDL_AudioCVT_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Color = DaoNamespace_WrapType( ns, dao_SDL_Color_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Palette = DaoNamespace_WrapType( ns, dao_SDL_Palette_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_PixelFormat = DaoNamespace_WrapType( ns, dao_SDL_PixelFormat_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Point = DaoNamespace_WrapType( ns, dao_SDL_Point_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Rect = DaoNamespace_WrapType( ns, dao_SDL_Rect_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Surface = DaoNamespace_WrapType( ns, dao_SDL_Surface_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_BlitMap = DaoNamespace_WrapType( ns, dao_SDL_BlitMap_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_DisplayMode = DaoNamespace_WrapType( ns, dao_SDL_DisplayMode_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Window = DaoNamespace_WrapType( ns, dao_SDL_Window_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Keysym = DaoNamespace_WrapType( ns, dao_SDL_Keysym_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Cursor = DaoNamespace_WrapType( ns, dao_SDL_Cursor_Typer, DAO_CDATA, 0 );
-	dao_type__SDL_Joystick = DaoNamespace_WrapType( ns, dao__SDL_Joystick_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_JoystickGUID = DaoNamespace_WrapType( ns, dao_SDL_JoystickGUID_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Finger = DaoNamespace_WrapType( ns, dao_SDL_Finger_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_CommonEvent = DaoNamespace_WrapType( ns, dao_SDL_CommonEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_WindowEvent = DaoNamespace_WrapType( ns, dao_SDL_WindowEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_KeyboardEvent = DaoNamespace_WrapType( ns, dao_SDL_KeyboardEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_TextEditingEvent = DaoNamespace_WrapType( ns, dao_SDL_TextEditingEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_TextInputEvent = DaoNamespace_WrapType( ns, dao_SDL_TextInputEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_MouseMotionEvent = DaoNamespace_WrapType( ns, dao_SDL_MouseMotionEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_MouseButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_MouseButtonEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_MouseWheelEvent = DaoNamespace_WrapType( ns, dao_SDL_MouseWheelEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_JoyAxisEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyAxisEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_JoyBallEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyBallEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_JoyHatEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyHatEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_JoyButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyButtonEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_JoyDeviceEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyDeviceEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_ControllerAxisEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerAxisEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_ControllerButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerButtonEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_ControllerDeviceEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerDeviceEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_AudioDeviceEvent = DaoNamespace_WrapType( ns, dao_SDL_AudioDeviceEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_TouchFingerEvent = DaoNamespace_WrapType( ns, dao_SDL_TouchFingerEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_MultiGestureEvent = DaoNamespace_WrapType( ns, dao_SDL_MultiGestureEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_DollarGestureEvent = DaoNamespace_WrapType( ns, dao_SDL_DollarGestureEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_DropEvent = DaoNamespace_WrapType( ns, dao_SDL_DropEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_QuitEvent = DaoNamespace_WrapType( ns, dao_SDL_QuitEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_OSEvent = DaoNamespace_WrapType( ns, dao_SDL_OSEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_UserEvent = DaoNamespace_WrapType( ns, dao_SDL_UserEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_SysWMmsg = DaoNamespace_WrapType( ns, dao_SDL_SysWMmsg_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_SysWMEvent = DaoNamespace_WrapType( ns, dao_SDL_SysWMEvent_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Event = DaoNamespace_WrapType( ns, dao_SDL_Event_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_HapticDirection = DaoNamespace_WrapType( ns, dao_SDL_HapticDirection_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_HapticConstant = DaoNamespace_WrapType( ns, dao_SDL_HapticConstant_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_HapticPeriodic = DaoNamespace_WrapType( ns, dao_SDL_HapticPeriodic_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_HapticCondition = DaoNamespace_WrapType( ns, dao_SDL_HapticCondition_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_HapticRamp = DaoNamespace_WrapType( ns, dao_SDL_HapticRamp_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_HapticLeftRight = DaoNamespace_WrapType( ns, dao_SDL_HapticLeftRight_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_HapticCustom = DaoNamespace_WrapType( ns, dao_SDL_HapticCustom_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_RendererInfo = DaoNamespace_WrapType( ns, dao_SDL_RendererInfo_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Renderer = DaoNamespace_WrapType( ns, dao_SDL_Renderer_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_Texture = DaoNamespace_WrapType( ns, dao_SDL_Texture_Typer, DAO_CDATA, 0 );
-	dao_type_SDL_version = DaoNamespace_WrapType( ns, dao_SDL_version_Typer, DAO_CDATA, 0 );
+	dao_type__SDL_iconv_t = DaoNamespace_WrapType( ns, dao__SDL_iconv_t_Core, DAO_CDATA, 0 );
+	dao_type_SDL_AssertData = DaoNamespace_WrapType( ns, dao_SDL_AssertData_Core, DAO_CDATA, 0 );
+	dao_type_SDL_atomic_t = DaoNamespace_WrapType( ns, dao_SDL_atomic_t_Core, DAO_CDATA, 0 );
+	dao_type_SDL_mutex = DaoNamespace_WrapType( ns, dao_SDL_mutex_Core, DAO_CDATA, 0 );
+	dao_type_SDL_semaphore = DaoNamespace_WrapType( ns, dao_SDL_semaphore_Core, DAO_CDATA, 0 );
+	dao_type_SDL_cond = DaoNamespace_WrapType( ns, dao_SDL_cond_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Thread = DaoNamespace_WrapType( ns, dao_SDL_Thread_Core, DAO_CDATA, 0 );
+	dao_type_SDL_RWops = DaoNamespace_WrapType( ns, dao_SDL_RWops_Core, DAO_CDATA, 0 );
+	dao_type_SDL_AudioSpec = DaoNamespace_WrapType( ns, dao_SDL_AudioSpec_Core, DAO_CDATA, 0 );
+	dao_type_SDL_AudioCVT = DaoNamespace_WrapType( ns, dao_SDL_AudioCVT_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Color = DaoNamespace_WrapType( ns, dao_SDL_Color_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Palette = DaoNamespace_WrapType( ns, dao_SDL_Palette_Core, DAO_CDATA, 0 );
+	dao_type_SDL_PixelFormat = DaoNamespace_WrapType( ns, dao_SDL_PixelFormat_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Point = DaoNamespace_WrapType( ns, dao_SDL_Point_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Rect = DaoNamespace_WrapType( ns, dao_SDL_Rect_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Surface = DaoNamespace_WrapType( ns, dao_SDL_Surface_Core, DAO_CDATA, 0 );
+	dao_type_SDL_BlitMap = DaoNamespace_WrapType( ns, dao_SDL_BlitMap_Core, DAO_CDATA, 0 );
+	dao_type_SDL_DisplayMode = DaoNamespace_WrapType( ns, dao_SDL_DisplayMode_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Window = DaoNamespace_WrapType( ns, dao_SDL_Window_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Keysym = DaoNamespace_WrapType( ns, dao_SDL_Keysym_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Cursor = DaoNamespace_WrapType( ns, dao_SDL_Cursor_Core, DAO_CDATA, 0 );
+	dao_type__SDL_Joystick = DaoNamespace_WrapType( ns, dao__SDL_Joystick_Core, DAO_CDATA, 0 );
+	dao_type_SDL_JoystickGUID = DaoNamespace_WrapType( ns, dao_SDL_JoystickGUID_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Finger = DaoNamespace_WrapType( ns, dao_SDL_Finger_Core, DAO_CDATA, 0 );
+	dao_type_SDL_CommonEvent = DaoNamespace_WrapType( ns, dao_SDL_CommonEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_WindowEvent = DaoNamespace_WrapType( ns, dao_SDL_WindowEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_KeyboardEvent = DaoNamespace_WrapType( ns, dao_SDL_KeyboardEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_TextEditingEvent = DaoNamespace_WrapType( ns, dao_SDL_TextEditingEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_TextInputEvent = DaoNamespace_WrapType( ns, dao_SDL_TextInputEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_MouseMotionEvent = DaoNamespace_WrapType( ns, dao_SDL_MouseMotionEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_MouseButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_MouseButtonEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_MouseWheelEvent = DaoNamespace_WrapType( ns, dao_SDL_MouseWheelEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_JoyAxisEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyAxisEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_JoyBallEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyBallEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_JoyHatEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyHatEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_JoyButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyButtonEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_JoyDeviceEvent = DaoNamespace_WrapType( ns, dao_SDL_JoyDeviceEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_ControllerAxisEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerAxisEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_ControllerButtonEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerButtonEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_ControllerDeviceEvent = DaoNamespace_WrapType( ns, dao_SDL_ControllerDeviceEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_AudioDeviceEvent = DaoNamespace_WrapType( ns, dao_SDL_AudioDeviceEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_TouchFingerEvent = DaoNamespace_WrapType( ns, dao_SDL_TouchFingerEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_MultiGestureEvent = DaoNamespace_WrapType( ns, dao_SDL_MultiGestureEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_DollarGestureEvent = DaoNamespace_WrapType( ns, dao_SDL_DollarGestureEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_DropEvent = DaoNamespace_WrapType( ns, dao_SDL_DropEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_QuitEvent = DaoNamespace_WrapType( ns, dao_SDL_QuitEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_OSEvent = DaoNamespace_WrapType( ns, dao_SDL_OSEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_UserEvent = DaoNamespace_WrapType( ns, dao_SDL_UserEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_SysWMmsg = DaoNamespace_WrapType( ns, dao_SDL_SysWMmsg_Core, DAO_CDATA, 0 );
+	dao_type_SDL_SysWMEvent = DaoNamespace_WrapType( ns, dao_SDL_SysWMEvent_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Event = DaoNamespace_WrapType( ns, dao_SDL_Event_Core, DAO_CDATA, 0 );
+	dao_type_SDL_HapticDirection = DaoNamespace_WrapType( ns, dao_SDL_HapticDirection_Core, DAO_CDATA, 0 );
+	dao_type_SDL_HapticConstant = DaoNamespace_WrapType( ns, dao_SDL_HapticConstant_Core, DAO_CDATA, 0 );
+	dao_type_SDL_HapticPeriodic = DaoNamespace_WrapType( ns, dao_SDL_HapticPeriodic_Core, DAO_CDATA, 0 );
+	dao_type_SDL_HapticCondition = DaoNamespace_WrapType( ns, dao_SDL_HapticCondition_Core, DAO_CDATA, 0 );
+	dao_type_SDL_HapticRamp = DaoNamespace_WrapType( ns, dao_SDL_HapticRamp_Core, DAO_CDATA, 0 );
+	dao_type_SDL_HapticLeftRight = DaoNamespace_WrapType( ns, dao_SDL_HapticLeftRight_Core, DAO_CDATA, 0 );
+	dao_type_SDL_HapticCustom = DaoNamespace_WrapType( ns, dao_SDL_HapticCustom_Core, DAO_CDATA, 0 );
+	dao_type_SDL_RendererInfo = DaoNamespace_WrapType( ns, dao_SDL_RendererInfo_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Renderer = DaoNamespace_WrapType( ns, dao_SDL_Renderer_Core, DAO_CDATA, 0 );
+	dao_type_SDL_Texture = DaoNamespace_WrapType( ns, dao_SDL_Texture_Core, DAO_CDATA, 0 );
+	dao_type_SDL_version = DaoNamespace_WrapType( ns, dao_SDL_version_Core, DAO_CDATA, 0 );
 	DaoNamespace_AliasTypes( ns, dao__Aliases );
 	DaoNamespace_WrapFunctions( ns, dao__Funcs );
 	return 0;
